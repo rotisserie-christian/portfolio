@@ -1,6 +1,7 @@
 import { Suspense, lazy, useState, useRef, useEffect } from "react";
 const SemanticGraph = lazy(() => import('../components/SemanticGraph'));
-import { FaAngleDoubleRight, FaGithub } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import Funnel from "../components/Funnel";
 import cb from "../assets/cb.png";
 import GraphLegend from "../components/GraphLegend";
@@ -77,7 +78,13 @@ export default function Home() {
                         A web-based music creation tool with reactive visuals
                     </p>
 
-                    <button className="btn w-26 bg-neutral text-cyan-200 rounded-xl mt-4">Visit<FaAngleDoubleRight /></button>
+                    <a 
+                    href='https://crayonbrain.com' 
+                    target='_blank' rel='noreferrer'>
+                        <button className="btn w-26 bg-neutral text-cyan-200 rounded-xl mt-4">
+                            Visit<FaAngleDoubleRight />
+                        </button>
+                    </a>
                 </div>
             </section>
 
@@ -92,7 +99,14 @@ export default function Home() {
                         of a marketing funnel 
                     </p>
 
-                    <button className="btn w-26 bg-neutral rounded-xl text-neutral-content/85 mt-4 lg:mb-8"><FaGithub />GitHub</button>
+                    <a 
+                    href='https://github.com/rotisserie-christian/portfolio/blob/master/src/components/Funnel.jsx' 
+                    target='_blank' rel='noreferrer'>
+                        <button 
+                        className="btn w-26 bg-neutral rounded-xl text-neutral-content/85 mt-4 lg:mb-8">
+                            <FaGithub />GitHub
+                        </button>
+                    </a>
                     
                     <div className="w-full max-w-4xl">
                         <Funnel stages={stages} />
@@ -110,9 +124,13 @@ export default function Home() {
                         A toolkit for making 3D force graphs based on semantic similarity
                     </p>
 
-                    <button className="btn w-26 bg-neutral text-neutral-content/85 rounded-xl mt-4">
-                        <FaGithub />GitHub
-                    </button>
+                    <a 
+                    href='https://github.com/rotisserie-christian/portfolio/blob/master/src/components/SemanticGraph.jsx' 
+                    target='_blank' rel='noreferrer'>
+                        <button className="btn w-26 bg-neutral text-neutral-content/85 rounded-xl mt-4">
+                            <FaGithub />GitHub
+                        </button>
+                    </a>
 
                     <Suspense fallback={<div>Loading...</div>}>
                         <SemanticGraph shouldStart={shouldStartGraph} />
