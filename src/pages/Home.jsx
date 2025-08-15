@@ -61,7 +61,7 @@ export default function Home() {
                     </h3>
 
                     <div className="flex justify-center w-full mt-5">
-                        <div className="border-l-[8px] border-dotted border-gray-600 h-[175px]"></div>
+                        <div className="border-l-[8px] border-dotted border-gray-600 h-[120px] lg:h-[175px]"></div>
                     </div>
                 </div>
             </section>
