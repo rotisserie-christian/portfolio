@@ -121,7 +121,7 @@ export default function Home() {
                     </h1>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/80 text-center max-w-xs lg:max-w-lg">
-                        A 3D force graphs that visualizes semantic similarity
+                        A 3D force graph that visualizes semantic similarity
                     </p>
 
                     <a 
