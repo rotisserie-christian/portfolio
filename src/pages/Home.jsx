@@ -5,10 +5,15 @@ import { FaGithub } from "react-icons/fa";
 import Funnel from "../components/Funnel";
 import cb from "../assets/cb.png";
 import GraphLegend from "../components/GraphLegend";
+import { ShootingStars } from "../components/ShootingStars";
+import { StarsBackground } from "../components/StarsBackground";
+import DemoSequencer from "../components/DemoSequencer";
+import Visualizer from "../components/Visualizer";
 
 export default function Home() {
     const [shouldStartGraph, setShouldStartGraph] = useState(false);
     const graphSectionRef = useRef();
+    const projectsSectionRef = useRef();
     
     // Funnel data
     const stages = [
@@ -43,11 +48,21 @@ export default function Home() {
         };
     }, [shouldStartGraph]);
 
+    const scrollToProjects = () => {
+        projectsSectionRef.current?.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    };
+
     return (
         <>
         <div className="flex flex-col items-center justify-center w-full">
-            <section className="flex items-center justify-center w-full">
-                <div className="flex flex-col mt-20 md:mt-32 lg:mt-40 items-center justify-center w-full">
+            <section className="flex items-center justify-center w-full min-h-screen bg-base-300 min-h-screen">
+                <StarsBackground />
+                <ShootingStars />
+
+                <div className="flex flex-col items-center justify-center bg-opacity-90 backdrop-blur-sm px-4">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                         Christian Waters
                     </h1>
@@ -56,17 +71,16 @@ export default function Home() {
                         <span className="text-xl mr-2">{'\u{1F1E8}\u{1F1E6}'}</span>Web Developer 
                     </p>
 
-                    <h3 className="text-xl lg:text-2xl font-semibold mt-20 md:mt-32 lg:mt-40 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        Check out my work
-                    </h3>
-
-                    <div className="flex justify-center w-full mt-5">
-                        <div className="border-l-[8px] border-dotted border-gray-600 h-[120px] lg:h-[175px]"></div>
-                    </div>
+                    <button 
+                        onClick={scrollToProjects}
+                        className="btn w-28 lg:w-32 lg:btn-lg bg-neutral text-cyan-200 rounded-xl lg:rounded-2xl mt-10"
+                    >
+                        Projects<FaAngleDoubleRight />
+                    </button>
                 </div>
             </section>
 
-            <section className="flex items-center justify-center w-full">
+            <section ref={projectsSectionRef} className="flex items-center justify-center w-full min-h-screen">
                 <div className="flex flex-col mt-10 mb-20 md:mb-32 lg:mb-40 items-center justify-center w-full">
                     <img src={cb} alt="Crayonbrain" className="w-[120px]" />
 
@@ -81,14 +95,28 @@ export default function Home() {
                     <a 
                     href='https://crayonbrain.com' 
                     target='_blank' rel='noreferrer'>
-                        <button className="btn w-26 bg-neutral text-cyan-200 rounded-xl mt-4">
+                        <button className="btn w-26 bg-neutral text-cyan-200 rounded-xl mt-4 mb-8">
                             Visit<FaAngleDoubleRight />
                         </button>
                     </a>
+
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
+                        <div className="w-full lg:w-1/2">
+                            <DemoSequencer />
+                        </div>
+
+                        <div className="w-full lg:w-1/2">
+                            <Visualizer 
+                                presetLabel="fractal" 
+                                canvasId="demo-visualizer"
+                                className="bg-base-300 rounded-xl"
+                            />
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section className="flex items-center justify-center w-full bg-base-300">
+            <section className="flex items-center justify-center w-full min-h-screen bg-base-300">
                 <div className="flex flex-col my-20 md:my-32 lg:my-40 items-center justify-center w-full">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                         Visual Funnel
@@ -114,7 +142,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section ref={graphSectionRef} className="flex items-center justify-center w-full">
+            <section ref={graphSectionRef} className="flex items-center justify-center w-full min-h-screen">
                 <div className="flex flex-col my-20 md:my-32 lg:my-40 items-center justify-center w-full">                
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                         Semantic Graph
