@@ -61,7 +61,7 @@ export default function Home() {
                     </h3>
 
                     <div className="flex justify-center w-full mt-5">
-                        <div className="border-l-[8px] border-dotted border-gray-600 h-[200px]"></div>
+                        <div className="border-l-[8px] border-dotted border-gray-600 h-[175px]"></div>
                     </div>
                 </div>
             </section>
@@ -121,7 +121,7 @@ export default function Home() {
                     </h1>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/80 text-center max-w-xs lg:max-w-lg">
-                        A toolkit for making 3D force graphs based on semantic similarity
+                        A 3D force graphs that visualizes semantic similarity
                     </p>
 
                     <a 
