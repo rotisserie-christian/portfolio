@@ -12,6 +12,7 @@ import Visualizer from "../components/Visualizer";
 
 export default function Home() {
     const [shouldStartGraph, setShouldStartGraph] = useState(false);
+    const [isSequencerPlaying, setIsSequencerPlaying] = useState(false);
     const graphSectionRef = useRef();
     const projectsSectionRef = useRef();
     
@@ -102,7 +103,7 @@ export default function Home() {
 
                     <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
                         <div className="w-full lg:w-1/2">
-                            <DemoSequencer />
+                            <DemoSequencer onPlayStateChange={setIsSequencerPlaying} />
                         </div>
 
                         <div className="w-full lg:w-1/2">
@@ -110,6 +111,7 @@ export default function Home() {
                                 presetLabel="fractal" 
                                 canvasId="demo-visualizer"
                                 className="bg-base-300 rounded-xl"
+                                isPlaying={isSequencerPlaying}
                             />
                         </div>
                     </div>

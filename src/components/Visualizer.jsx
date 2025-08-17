@@ -4,12 +4,13 @@ import * as Tone from 'tone';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 
-const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillParent = false }) => {
+const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillParent = false, isPlaying = true }) => {
   const canvasRef = useRef(null);
   const visualizerRef = useRef(null);
   const analyserRef = useRef(null);
   const rafRef = useRef(null);
   const presetsRef = useRef(null);
+  const isPlayingRef = useRef(isPlaying);
 
   const resolvePresetKey = (label) => {
     const presets = presetsRef.current || {};
@@ -108,7 +109,9 @@ const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillPar
 
     const render = () => {
       try {
-        viz.render();
+        if (isPlayingRef.current) {
+          viz.render();
+        }
       } catch (err) {
         if (import.meta?.env?.MODE === 'development') {
           console.warn('ButterchurnVisualizer: render error', err);
@@ -132,6 +135,11 @@ const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillPar
     };
   }, [presetLabel, loadPresetByLabel]);
 
+  // Update playing state
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
   // Update preset when label changes
   useEffect(() => {
     loadPresetByLabel(presetLabel);
@@ -153,6 +161,7 @@ Visualizer.propTypes = {
   presetLabel: PropTypes.string,
   canvasId: PropTypes.string,
   fillParent: PropTypes.bool,
+  isPlaying: PropTypes.bool,
 };
 
 export default Visualizer;

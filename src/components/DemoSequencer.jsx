@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
+import PropTypes from 'prop-types';
 import * as Tone from 'tone';
 import kickSound from '../assets/kick.wav';
 import snareSound from '../assets/snare.wav';
@@ -15,15 +16,15 @@ const DRUM_SOUNDS = [
 const TIME_STEPS = 8;
 const TEMPO_BPM = 120;
 
-const DemoSequencer = () => {
+const DemoSequencer = ({ onPlayStateChange }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     
-    // Default pattern: kick on 0,2,4,6 and hat on 1,3,5,7
+    // Default pattern
     const [drumSequence, setDrumSequence] = useState([
-        { steps: [true, false, true, false, true, false, true, false] }, // kick
-        { steps: [false, false, false, false, false, false, false, false] }, // snare
-        { steps: [false, true, false, true, false, true, false, true] }, // hat
+        { steps: [true, false, false, false, true, true, false, false] }, // kick
+        { steps: [false, false, true, false, false, false, true, false] }, // snare
+        { steps: [true, true, false, true, false, true, false, true] }, // hat
     ]);
     
     const playersRef = useRef({});
@@ -92,11 +93,13 @@ const DemoSequencer = () => {
                 sequenceRef.current?.start();
                 Tone.Transport.start();
                 setIsPlaying(true);
+                onPlayStateChange?.(true);
             } else {
                 Tone.Transport.stop();
                 sequenceRef.current?.stop();
                 setIsPlaying(false);
                 setCurrentStep(0);
+                onPlayStateChange?.(false);
             }
         } catch (error) {
             console.error('Error controlling playback:', error);
@@ -176,6 +179,10 @@ const DemoSequencer = () => {
             </div>
         </div>
     );
+};
+
+DemoSequencer.propTypes = {
+    onPlayStateChange: PropTypes.func,
 };
 
 export default DemoSequencer;
