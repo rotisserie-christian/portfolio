@@ -3,14 +3,14 @@ import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import * as Tone from 'tone';
-import kickSound from '../assets/kick.wav';
-import snareSound from '../assets/snare.wav';
-import hatSound from '../assets/hat.wav';
+import kick from '../../assets/kick.wav';
+import snare from '../../assets/snare.wav';
+import hat from '../../assets/hat.wav';
 
 const DRUM_SOUNDS = [
-    { id: 'kick', name: 'Kick', src: kickSound },
-    { id: 'snare', name: 'Snare', src: snareSound },
-    { id: 'hat', name: 'Hat', src: hatSound },
+    { id: 'kick', name: 'Kick', src: kick },
+    { id: 'snare', name: 'Snare', src: snare },
+    { id: 'hat', name: 'Hat', src: hat },
 ];
 
 const TIME_STEPS = 8;
@@ -84,18 +84,18 @@ const DemoSequencer = ({ onPlayStateChange }) => {
 
     const handlePlay = async () => {
         try {
-            if (Tone.context.state !== 'running') {
+            if (Tone.getContext().state !== 'running') {
                 await Tone.start();
             }
 
             if (!isPlaying) {
-                Tone.Transport.bpm.value = TEMPO_BPM;
+                Tone.getTransport().bpm.value = TEMPO_BPM;
                 sequenceRef.current?.start();
-                Tone.Transport.start();
+                Tone.getTransport().start();
                 setIsPlaying(true);
                 onPlayStateChange?.(true);
             } else {
-                Tone.Transport.stop();
+                Tone.getTransport().stop();
                 sequenceRef.current?.stop();
                 setIsPlaying(false);
                 setCurrentStep(0);
