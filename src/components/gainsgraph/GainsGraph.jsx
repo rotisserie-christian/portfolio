@@ -38,17 +38,13 @@ ChartJS.register(
 
 export default function GainsGraph({ data: initialData, exerciseName = "Squat", onDataChange }) {
   const [data, setData] = useState(initialData || oneRMData);
-  const [isClient, setIsClient] = useState(false);
+
   const [activeTimeRange, setActiveTimeRange] = useState('all');
   const itemsPerPage = 5;
 
   // state management hooks
   const workoutForm = useWorkoutForm();
   const viewState = useGainsGraphView();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   // Update local data when props change
   useEffect(() => {
@@ -117,23 +113,18 @@ export default function GainsGraph({ data: initialData, exerciseName = "Squat", 
     const updatedData = calculateChanges(newData);
     setData(updatedData);
     
-    // Call the parent's onDataChange (which now saves to database)
     if (onDataChange) {
       await onDataChange(updatedData);
     }
     
     viewState.showMainView();
     workoutForm.resetForm();
-  }, [data, workoutForm, calculateChanges, onDataChange, viewState]);
+  }, [data, workoutForm, onDataChange, viewState]);
 
   const handleCancelWorkout = () => {
     viewState.showMainView();
     workoutForm.resetForm();
   };
-
-  if (!isClient) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="bg-base-300 rounded-2xl w-full max-w-xl p-6 lg:p-10">
