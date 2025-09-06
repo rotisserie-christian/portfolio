@@ -87,7 +87,7 @@ export default function Home() {
             <section ref={projectsSectionRef} className="flex items-center justify-center w-full bg-base-300 min-h-screen relative">
                 <StarsBackground />
                 
-                <div className="flex flex-col my-20 md:my-32 lg:my-40 items-center justify-center w-full relative z-10">
+                <div className="flex flex-col my-8 md:my-20 lg:my-32 items-center justify-center w-full relative z-10">
                     <div className="flex flex-col items-center justify-center bg-opacity-90 backdrop-blur-sm px-4">
                         <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                             Fake Airlines
@@ -118,7 +118,7 @@ export default function Home() {
                         </a>
                     </div>
 
-                    <div className="w-full max-w-6xl h-[600px] rounded-xl overflow-hidden">
+                    <div className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden">
                         <Earth />
                     </div>
                 </div>

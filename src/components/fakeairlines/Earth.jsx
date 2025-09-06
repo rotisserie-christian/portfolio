@@ -76,6 +76,7 @@ const Earth = () => {
         globeRadius={dimensions.width * 0.167}
         backgroundColor="rgba(0,0,0,0)"
         enablePointerInteraction={false}
+        pointerEvents="none"
         labelsData={[]}
         labelLat="lat"
         labelLng="lng"
