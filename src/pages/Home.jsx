@@ -10,7 +10,8 @@ import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
 import DemoSequencer from "../components/crayonbrain/DemoSequencer";
 import Visualizer from "../components/crayonbrain/Visualizer";
-import GainsGraph from "../components/gainsgraph/GainsGraph"
+import GainsGraph from "../components/gainsgraph/GainsGraph";
+import Earth from "../components/fakeairlines/Earth";
 
 export default function Home() {
     const [shouldStartGraph, setShouldStartGraph] = useState(false);
@@ -83,7 +84,47 @@ export default function Home() {
                 </div>
             </section>
 
-            <section ref={projectsSectionRef} className="flex items-center justify-center w-full">
+            <section ref={projectsSectionRef} className="flex items-center justify-center w-full bg-base-300 min-h-screen relative">
+                <StarsBackground />
+                
+                <div className="flex flex-col my-20 md:my-32 lg:my-40 items-center justify-center w-full relative z-10">
+                    <div className="flex flex-col items-center justify-center bg-opacity-90 backdrop-blur-sm px-4">
+                        <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
+                            Fake Airlines
+                        </h1>
+
+                        <div className="flex flex-row items-center justify-center w-full gap-2">
+                            <div className="flex flex-row items-center justify-center w-24 h-8 bg-base-100 rounded-lg gap-2 mt-4">
+                                <FaReact className="text-xl" />
+                                <p className="text-xs">React</p>
+                            </div>
+
+                            <div className="flex flex-row items-center justify-center w-24 h-8 bg-base-100 rounded-lg gap-2 mt-4">
+                                <RiTailwindCssFill className="text-xl" />
+                                <p className="text-xs">Tailwind</p>
+                            </div>
+                        </div>
+
+                        <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                            Business simulation game
+                        </p>
+
+                        <a 
+                        href='https://fakeairlines.com' 
+                        target='_blank' rel='noreferrer'>
+                            <button className="btn w-26 bg-neutral text-cyan-200 rounded-xl mt-4 mb-8">
+                                Visit<FaAngleDoubleRight />
+                            </button>
+                        </a>
+                    </div>
+
+                    <div className="w-full max-w-6xl h-[600px] rounded-xl overflow-hidden">
+                        <Earth />
+                    </div>
+                </div>
+            </section>
+
+            <section className="flex items-center justify-center w-full">
                 <div className="flex flex-col mt-10 mb-20 md:mb-32 lg:mb-40 items-center justify-center w-full">
                     <img src={cb} alt="Crayonbrain" className="w-[120px] mt-10" />
 
@@ -104,7 +145,7 @@ export default function Home() {
                     </div>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        A web-based music creation tool with reactive visuals
+                        Music composer with reactive visuals
                     </p>
 
                     <a 
@@ -158,7 +199,7 @@ export default function Home() {
                     </div>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-[300px] lg:max-w-lg">
-                        A white-label charting app for strength training
+                        Charting app for strength training
                     </p>
 
                     <a 
