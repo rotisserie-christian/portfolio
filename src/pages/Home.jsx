@@ -118,7 +118,7 @@ export default function Home() {
                         </a>
                     </div>
 
-                    <div className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden">
+                    <div className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden pointer-events-none">
                         <Earth />
                     </div>
                 </div>
