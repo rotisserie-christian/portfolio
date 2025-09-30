@@ -20,7 +20,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     
-    // Default pattern
+    // default pattern
     const [drumSequence, setDrumSequence] = useState([
         { steps: [true, false, false, false, true, true, false, false] }, // kick
         { steps: [false, false, true, false, false, false, true, false] }, // snare
@@ -30,7 +30,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
     const playersRef = useRef({});
     const sequenceRef = useRef(null);
 
-    // Initialize Tone.js players
+    // initialize tone.js 
     useEffect(() => {
         const initializePlayers = async () => {
             try {
@@ -56,7 +56,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
         };
     }, []);
 
-    // Setup sequence
+    // setup sequence
     useEffect(() => {
         if (sequenceRef.current) {
             sequenceRef.current.dispose();

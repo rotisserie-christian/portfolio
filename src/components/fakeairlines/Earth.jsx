@@ -1,59 +1,64 @@
-import React, { useMemo, useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Globe from 'react-globe.gl';
 import { routesData } from './routesData.js';
+
+const hubColors = {
+    'New York': { start: '#FF6B6B', end: '#FF8E8E' }, // red
+    'Los Angeles': { start: '#4ECDC4', end: '#6EDDD6' }, // teal
+    'Tokyo': { start: '#45B7D1', end: '#6BC5D8' }, // blue 
+    'Istanbul': { start: '#96CEB4', end: '#A8D5BA' }, // green 
+    'Abu Dhabi': { start: '#FFEAA7', end: '#FFF0B8' }, // yellow 
+    'Lagos': { start: '#DDA0DD', end: '#E6B8E6' }, // purple 
+    'Santiago': { start: '#FFB347', end: '#FFC266' }, // orange 
+    'fallback': { start: '#95A5A6', end: '#AAB7B8' } // gray fallback
+};
 
 const Earth = () => {
     const globeRef = useRef();
     const containerRef = useRef();
     const [dimensions, setDimensions] = useState({ width: 600, height: 600 });
-    
-    // Create data for react-globe based on routesData
-    const arcsData = useMemo(() => {
-    return routesData.map((route, index) => ({
-        startLat: route.startLat,
-        startLng: route.startLng,
-        endLat: route.endLat,
-        endLng: route.endLng,
-        color: [
-        // link colors
-        `hsl(${(index * 137.5) % 360}, 70%, 50%)`,
-        `hsl(${((index + 10) * 137.5) % 360}, 70%, 50%)`
-        ],
-        name: route.name,
-        id: route.id
-    }));
-    }, []);
 
-    // Responsive sizing
-    useEffect(() => {
-    const updateDimensions = () => {
-        if (containerRef.current) {
-        const { clientWidth, clientHeight } = containerRef.current;
-        const size = Math.min(clientWidth, clientHeight, 600); // Cap at 600px max
-        setDimensions({ width: size, height: size });
-        }
+    // pick colors based on hub
+    const arcColor = (d) => {
+        const c = hubColors[d.hub] || hubColors.fallback;
+        return [c.start, c.end];
     };
 
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
+    // responsive sizing
+    useEffect(() => {
+        const updateDimensions = () => {
+            if (containerRef.current) {
+            const { clientWidth, clientHeight } = containerRef.current;
+            const size = Math.min(clientWidth, clientHeight, 600); // 600px max
+            setDimensions({ width: size, height: size });
+            }
+        };
 
-    return () => window.removeEventListener('resize', updateDimensions);
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+
+        return () => window.removeEventListener('resize', updateDimensions);
     }, []);
 
-    // Small delay to ensure the globe is fully loaded before trying to set the controls
+    // small delay to start rotation after controls exist, workaround for globe library not having a rotation prop  
     useEffect(() => {
-    if (!globeRef.current) return;
+        if (!globeRef.current) return;
+        const tryEnable = () => {
+            const controls = globeRef.current && globeRef.current.controls && globeRef.current.controls();
+            if (!controls) return false;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 1;
+            controls.enableZoom = false;
+            controls.enablePan = false;
+            controls.enableRotate = false;
+            controls.update && controls.update();
+            return true;
+        };
 
-    setTimeout(() => {
-        const controls = globeRef.current.controls();
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 1;
-        controls.enableZoom = false;
-        controls.enablePan = false;
-        controls.enableRotate = false;
-        
-        controls.update();
-    }, 100);
+        if (!tryEnable()) {
+            const id = setTimeout(tryEnable, 0);
+            return () => clearTimeout(id);
+        }
     }, []);
 
     return (
@@ -66,9 +71,9 @@ const Earth = () => {
         width={dimensions.width}
         height={dimensions.height}
         globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-        arcsData={arcsData}
-        arcColor={'color'}
-        arcDashLength={0.5}
+        arcsData={routesData}
+        arcColor={arcColor}
+        arcDashLength={0.7}
         arcDashGap={1}
         arcDashAnimateTime={1500}
         arcStroke={0.5}

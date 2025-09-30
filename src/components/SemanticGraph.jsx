@@ -19,6 +19,22 @@ export default function SemanticGraph({ shouldStart = false }) {
                 setLoading(true);
                 setError(null);
                 
+                // Check cache first
+                const cacheKey = 'graph-embeddings';
+                const cached = localStorage.getItem(cacheKey);
+                
+                if (cached) {
+                    try {
+                        const cachedData = JSON.parse(cached);
+                        setGraphData(cachedData);
+                        setLoading(false);
+                        return;
+                    } catch {
+                        console.warn('Invalid cached data, fetching fresh');
+                        localStorage.removeItem(cacheKey);
+                    }
+                }
+                
                 // Check if Supabase is configured
                 if (!supabase) {
                     throw new Error('Supabase client not configured');
@@ -42,10 +58,14 @@ export default function SemanticGraph({ shouldStart = false }) {
                     embedding
                 }));
 
-                setGraphData({
+                const graphData = {
                     nodes,
                     links: []
-                });
+                };
+
+                // Cache the data
+                localStorage.setItem(cacheKey, JSON.stringify(graphData));
+                setGraphData(graphData);
             } catch (err) {
                 console.error('Error fetching graph data:', err);
                 setError(err.message);

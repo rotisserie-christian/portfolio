@@ -12,7 +12,7 @@ export default function Navbar() {
                         </button>
                     </a>
 
-                    <a href='https://linkedin.com/in/cwaters96' target='_blank' rel='noreferrer'>
+                    <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer'>
                         <button 
                         className="btn btn-neutral rounded-xl text-neutral-content/85">
                             <FaLinkedin />Contact
