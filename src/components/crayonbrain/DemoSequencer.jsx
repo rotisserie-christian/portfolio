@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
-import * as Tone from 'tone';
+import { useSequencer } from '../../hooks/useSequencer';
 import kick from '../../assets/kick.wav';
 import snare from '../../assets/snare.wav';
 import hat from '../../assets/hat.wav';
@@ -17,105 +17,37 @@ const TIME_STEPS = 8;
 const TEMPO_BPM = 120;
 
 const DemoSequencer = ({ onPlayStateChange }) => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [currentStep, setCurrentStep] = useState(0);
-    
-    // default pattern
+    // Default pattern
     const [drumSequence, setDrumSequence] = useState([
         { steps: [true, false, false, false, true, true, false, false] }, // kick
         { steps: [false, false, true, false, false, false, true, false] }, // snare
         { steps: [true, true, false, true, false, true, false, true] }, // hat
     ]);
     
-    const playersRef = useRef({});
-    const sequenceRef = useRef(null);
-
-    // initialize tone.js 
-    useEffect(() => {
-        const initializePlayers = async () => {
-            try {
-                const players = {};
-                for (const sound of DRUM_SOUNDS) {
-                    players[sound.id] = new Tone.Player(sound.src).toDestination();
-                }
-                await Tone.loaded();
-                playersRef.current = players;
-            } catch (error) {
-                console.error('Error initializing audio:', error);
-            }
-        };
-
-        initializePlayers();
-
-        return () => {
-            Object.values(playersRef.current).forEach(player => {
-                if (player.dispose) {
-                    player.dispose();
-                }
-            });
-        };
+    const onStepChange = useCallback(() => {
+        // Optional: handle step changes if needed
     }, []);
 
-    // setup sequence
-    useEffect(() => {
-        if (sequenceRef.current) {
-            sequenceRef.current.dispose();
-        }
+    const { isPlaying, currentStep, handlePlay } = useSequencer(
+        drumSequence, 
+        DRUM_SOUNDS,
+        onStepChange
+    );
 
-        sequenceRef.current = new Tone.Sequence((time, step) => {
-            setCurrentStep(step);
-            
-            DRUM_SOUNDS.forEach((sound, soundIndex) => {
-                if (drumSequence[soundIndex]?.steps[step]) {
-                    const player = playersRef.current[sound.id];
-                    if (player) {
-                        player.start(time);
-                    }
-                }
-            });
-        }, [...Array(TIME_STEPS).keys()], `${TIME_STEPS}n`);
-
-        return () => {
-            if (sequenceRef.current) {
-                sequenceRef.current.dispose();
-            }
-        };
-    }, [drumSequence]);
-
-    const handlePlay = async () => {
-        try {
-            if (Tone.getContext().state !== 'running') {
-                await Tone.start();
-            }
-
-            if (!isPlaying) {
-                Tone.getTransport().bpm.value = TEMPO_BPM;
-                sequenceRef.current?.start();
-                Tone.getTransport().start();
-                setIsPlaying(true);
-                onPlayStateChange?.(true);
-            } else {
-                Tone.getTransport().stop();
-                sequenceRef.current?.stop();
-                setIsPlaying(false);
-                setCurrentStep(0);
-                onPlayStateChange?.(false);
-            }
-        } catch (error) {
-            console.error('Error controlling playback:', error);
-        }
+    const handlePlayWithCallback = async () => {
+        await handlePlay();
+        onPlayStateChange?.(!isPlaying);
     };
 
     const handleDrumCellClick = (soundIndex, stepIndex) => {
-        const newSequence = drumSequence.map((track, currentSoundIndex) => {
+        setDrumSequence(prev => prev.map((track, currentSoundIndex) => {
             if (currentSoundIndex === soundIndex) {
                 const newSteps = [...track.steps];
                 newSteps[stepIndex] = !newSteps[stepIndex];
                 return { ...track, steps: newSteps };
             }
             return track;
-        });
-        setDrumSequence(newSequence);
+        }));
     };
 
     const handleClear = () => {
@@ -126,6 +58,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
         setDrumSequence(clearedSequence);
     };
 
+    // alternating shades to highlight 1/4 notes 
     const shouldBeDarkerDrum = (timeStep) => {
         return (timeStep === 2 || timeStep === 3) || (timeStep === 6 || timeStep === 7);
     };
@@ -134,7 +67,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
         <div className="demo-sequencer w-full p-4 md:p-6 lg:p-8 bg-base-300 rounded-xl shadow-md h-[220px] md:h-[280px] lg:h-[360px] flex flex-col">
             <div className="flex flex-row items-center justify-between w-full mb-4 md:mb-6 lg:mb-8 px-2">
                 <button
-                    onClick={handlePlay}
+                    onClick={handlePlayWithCallback}
                     className={`btn btn-sm md:btn-md lg:btn-lg btn-neutral rounded-lg ${isPlaying ? 'text-red-300' : 'text-cyan-200'} w-24 md:w-28 lg:w-32`}
                     aria-label={isPlaying ? "Stop drum loop" : "Play drum loop"}
                 >

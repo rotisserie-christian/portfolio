@@ -24,7 +24,7 @@ const Earth = () => {
         return [c.start, c.end];
     };
 
-    // responsive sizing
+    // Responsive sizing
     useEffect(() => {
         const updateDimensions = () => {
             if (containerRef.current) {
