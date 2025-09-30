@@ -1,81 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { ForceGraph3D } from 'react-force-graph';
 import { generateLinks, getNodeColor } from '../utils/graphUtils.js';
-import { supabase } from '../../supabaseClient.js';
+import { useGraphData } from '../hooks/useGraphData.js';
 
 export default function SemanticGraph({ shouldStart = false }) {
     const [visibleData, setVisibleData] = useState({ nodes: [], links: [] });
     const [nodeIndex, setNodeIndex] = useState(0);
-    const [graphData, setGraphData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { graphData, loading, error } = useGraphData();
 
     const fgRef = useRef();
-
-    // Fetch data when component mounts
-    useEffect(() => {
-        const fetchGraphData = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                
-                // Check cache first
-                const cacheKey = 'graph-embeddings';
-                const cached = localStorage.getItem(cacheKey);
-                
-                if (cached) {
-                    try {
-                        const cachedData = JSON.parse(cached);
-                        setGraphData(cachedData);
-                        setLoading(false);
-                        return;
-                    } catch {
-                        console.warn('Invalid cached data, fetching fresh');
-                        localStorage.removeItem(cacheKey);
-                    }
-                }
-                
-                // Check if Supabase is configured
-                if (!supabase) {
-                    throw new Error('Supabase client not configured');
-                }
-
-                const { data, error } = await supabase
-                    .from('graphs')
-                    .select('data')
-                    .eq('name', 'sounds')
-                    .single();
-
-                if (error) {
-                    console.error('Error fetching graph data:', error);
-                    setError(error.message);
-                    return;
-                }
-
-                const nodes = Object.entries(data.data.embeddings).map(([id, embedding]) => ({
-                    id,
-                    group: data.data.groups[id] || 1,
-                    embedding
-                }));
-
-                const graphData = {
-                    nodes,
-                    links: []
-                };
-
-                // Cache the data
-                localStorage.setItem(cacheKey, JSON.stringify(graphData));
-                setGraphData(graphData);
-            } catch (err) {
-                console.error('Error fetching graph data:', err);
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchGraphData();
-    }, []);
 
     // Camera setup and rotation
     useEffect(() => {
