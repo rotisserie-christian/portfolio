@@ -14,8 +14,12 @@ export default function SemanticGraph({ shouldStart = false }) {
     // Dynamic import
     useEffect(() => {
         if (!ForceGraph3DComponent) {
-            import('react-force-graph').then(module => {
-                setForceGraph3DComponent(() => module.ForceGraph3D);
+            Promise.all([
+                import('react-force-graph'),
+                import('three'),
+                import('d3')
+            ]).then(([forceModule]) => {
+                setForceGraph3DComponent(() => forceModule.ForceGraph3D);
                 setIsLoading(false);
             }).catch(err => {
                 console.error('Failed to load ForceGraph3D component:', err);

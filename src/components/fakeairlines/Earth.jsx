@@ -22,8 +22,11 @@ const Earth = () => {
     // Dynamic import 
     useEffect(() => {
         if (!GlobeComponent) {
-            import('react-globe.gl').then(module => {
-                setGlobeComponent(() => module.default);
+            Promise.all([
+                import('react-globe.gl'),
+                import('three')
+            ]).then(([globeModule]) => {
+                setGlobeComponent(() => globeModule.default);
                 setIsLoading(false);
             }).catch(err => {
                 console.error('Failed to load Globe component:', err);
