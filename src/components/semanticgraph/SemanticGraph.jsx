@@ -16,8 +16,7 @@ export default function SemanticGraph({ shouldStart = false }) {
         if (!ForceGraph3DComponent) {
             Promise.all([
                 import('react-force-graph'),
-                import('three'),
-                import('d3')
+                import('three')
             ]).then(([forceModule]) => {
                 setForceGraph3DComponent(() => forceModule.ForceGraph3D);
                 setIsLoading(false);
