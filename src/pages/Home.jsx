@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 export default function Home() {
-    const projectsSectionRef = useRef();
     const [FakeairlinesComponent, setFakeairlinesComponent] = useState(null);
     const [CrayonbrainComponent, setCrayonbrainComponent] = useState(null);
     const [SemanticGraphComponent, setSemanticGraphComponent] = useState(null);
@@ -14,75 +14,50 @@ export default function Home() {
         semanticgraph: false
     });
 
-    // Dynamic import 
+    // Dynamic import functions
     const loadFakeairlines = () => import('../components/fakeairlines/Fakeairlines');
     const loadCrayonbrain = () => import('../components/crayonbrain/Crayonbrain');
     const loadSemanticGraph = () => import('../components/semanticgraph/SemanticGraphSection');
 
     // Intersection observers for progressive loading
-    useEffect(() => {
-        const observers = [];
+    const fakeairlinesObserver = useIntersectionObserver({
+        onIntersect: () => {
+            if (!FakeairlinesComponent && !loadingStates.fakeairlines) {
+                setLoadingStates(prev => ({ ...prev, fakeairlines: true }));
+                loadFakeairlines().then(module => {
+                    setFakeairlinesComponent(() => module.default);
+                    setLoadingStates(prev => ({ ...prev, fakeairlines: false }));
+                });
+            }
+        }
+    });
 
-        // Fake Airlines observer
-        const fakeairlinesObserver = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !FakeairlinesComponent && !loadingStates.fakeairlines) {
-                    setLoadingStates(prev => ({ ...prev, fakeairlines: true }));
-                    loadFakeairlines().then(module => {
-                        setFakeairlinesComponent(() => module.default);
-                        setLoadingStates(prev => ({ ...prev, fakeairlines: false }));
-                    });
-                }
-            },
-            { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-        );
+    const crayonbrainObserver = useIntersectionObserver({
+        onIntersect: () => {
+            if (!CrayonbrainComponent && !loadingStates.crayonbrain) {
+                setLoadingStates(prev => ({ ...prev, crayonbrain: true }));
+                loadCrayonbrain().then(module => {
+                    setCrayonbrainComponent(() => module.default);
+                    setLoadingStates(prev => ({ ...prev, crayonbrain: false }));
+                });
+            }
+        }
+    });
 
-        // Crayonbrain observer
-        const crayonbrainObserver = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !CrayonbrainComponent && !loadingStates.crayonbrain) {
-                    setLoadingStates(prev => ({ ...prev, crayonbrain: true }));
-                    loadCrayonbrain().then(module => {
-                        setCrayonbrainComponent(() => module.default);
-                        setLoadingStates(prev => ({ ...prev, crayonbrain: false }));
-                    });
-                }
-            },
-            { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-        );
-
-        // Semantic Graph observer
-        const semanticGraphObserver = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !SemanticGraphComponent && !loadingStates.semanticgraph) {
-                    setLoadingStates(prev => ({ ...prev, semanticgraph: true }));
-                    loadSemanticGraph().then(module => {
-                        setSemanticGraphComponent(() => module.default);
-                        setLoadingStates(prev => ({ ...prev, semanticgraph: false }));
-                    });
-                }
-            },
-            { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-        );
-
-        observers.push(fakeairlinesObserver, crayonbrainObserver, semanticGraphObserver);
-
-        // Observe sections
-        const fakeairlinesSection = document.querySelector('[data-section="fakeairlines"]');
-        const crayonbrainSection = document.querySelector('[data-section="crayonbrain"]');
-        const semanticgraphSection = document.querySelector('[data-section="semanticgraph"]');
-
-        if (fakeairlinesSection) fakeairlinesObserver.observe(fakeairlinesSection);
-        if (crayonbrainSection) crayonbrainObserver.observe(crayonbrainSection);
-        if (semanticgraphSection) semanticGraphObserver.observe(semanticgraphSection);
-
-        return () => {
-            observers.forEach(observer => observer.disconnect());
-        };
-    }, [FakeairlinesComponent, CrayonbrainComponent, SemanticGraphComponent, loadingStates]);
+    const semanticGraphObserver = useIntersectionObserver({
+        onIntersect: () => {
+            if (!SemanticGraphComponent && !loadingStates.semanticgraph) {
+                setLoadingStates(prev => ({ ...prev, semanticgraph: true }));
+                loadSemanticGraph().then(module => {
+                    setSemanticGraphComponent(() => module.default);
+                    setLoadingStates(prev => ({ ...prev, semanticgraph: false }));
+                });
+            }
+        }
+    });
 
     const scrollToProjects = () => {
-        projectsSectionRef.current?.scrollIntoView({ 
+        fakeairlinesObserver.ref.current?.scrollIntoView({ 
             behavior: 'smooth',
             block: 'start'
         });
@@ -113,7 +88,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <div className='w-full' ref={projectsSectionRef} data-section="fakeairlines">
+            <div className='w-full' ref={fakeairlinesObserver.ref} data-section="fakeairlines">
                 {loadingStates.fakeairlines ? (
                     <div className="flex items-center justify-center min-h-screen">
                         <span className="loading loading-spinner loading-lg text-primary"></span>
@@ -129,7 +104,7 @@ export default function Home() {
                 )}
             </div>
 
-            <div data-section="crayonbrain">
+            <div ref={crayonbrainObserver.ref} data-section="crayonbrain">
                 {loadingStates.crayonbrain ? (
                     <div className="flex items-center justify-center min-h-screen">
                         <span className="loading loading-spinner loading-lg text-primary"></span>
@@ -145,7 +120,7 @@ export default function Home() {
                 )}
             </div>
 
-            <div data-section="semanticgraph">
+            <div ref={semanticGraphObserver.ref} data-section="semanticgraph">
                 {loadingStates.semanticgraph ? (
                     <div className="flex items-center justify-center min-h-screen">
                         <span className="loading loading-spinner loading-lg text-primary"></span>

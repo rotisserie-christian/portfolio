@@ -1,3 +1,4 @@
 ## Crayonbrain
-- **`DemoSequencer.jsx`** - The main drum sequencer container
-- **`Visualizer.jsx`** - Audio visualization using butterchurn and Tone.js
+- **`Crayonbrain.jsx`** - Main container
+- **`DemoSequencer.jsx`** - Drum machine UI
+- **`Visualizer.jsx`** - renders the visualizer canvas and delegates to useVisualizer
