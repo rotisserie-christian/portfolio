@@ -11,6 +11,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     const playersRef = useRef({});
     const sequenceRef = useRef(null);
     const drumSequenceRef = useRef(drumSequence);
+    const sequencerGainRef = useRef(null);
 
     // Keep a ref of the latest sequence so the scheduler reads fresh data
     useEffect(() => {
@@ -21,9 +22,14 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     useEffect(() => {
         const initializePlayers = async () => {
             try {
+                // Create dedicated gain node for sequencer audio
+                const sequencerGain = new Tone.Gain(1);
+                sequencerGain.toDestination();
+                sequencerGainRef.current = sequencerGain;
+
                 const players = {};
                 for (const sound of drumSounds) {
-                    players[sound.id] = new Tone.Player(sound.src).toDestination();
+                    players[sound.id] = new Tone.Player(sound.src).connect(sequencerGain);
                 }
                 await Tone.loaded();
                 playersRef.current = players;
@@ -40,6 +46,9 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
                     player.dispose();
                 }
             });
+            if (sequencerGainRef.current) {
+                sequencerGainRef.current.dispose();
+            }
         };
     }, [drumSounds]);
 
@@ -95,6 +104,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
         isPlaying,
         currentStep,
         handlePlay,
-        playersRef
+        playersRef,
+        sequencerGainRef
     };
 };

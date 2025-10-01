@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
@@ -16,7 +16,7 @@ const DRUM_SOUNDS = [
 const TIME_STEPS = 8;
 const TEMPO_BPM = 120;
 
-const DemoSequencer = ({ onPlayStateChange }) => {
+const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
     // Default pattern
     const [drumSequence, setDrumSequence] = useState([
         { steps: [true, false, false, false, true, true, false, false] }, // kick
@@ -28,7 +28,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
         // Optional: handle step changes if needed
     }, []);
 
-    const { isPlaying, currentStep, handlePlay } = useSequencer(
+    const { isPlaying, currentStep, handlePlay, sequencerGainRef } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
         onStepChange
@@ -38,6 +38,13 @@ const DemoSequencer = ({ onPlayStateChange }) => {
         await handlePlay();
         onPlayStateChange?.(!isPlaying);
     };
+
+    // Pass sequencerGainRef to parent when it's available
+    useEffect(() => {
+        if (sequencerGainRef && onSequencerGainRef) {
+            onSequencerGainRef(sequencerGainRef);
+        }
+    }, [sequencerGainRef, onSequencerGainRef]);
 
     const handleDrumCellClick = (soundIndex, stepIndex) => {
         setDrumSequence(prev => prev.map((track, currentSoundIndex) => {
@@ -92,13 +99,13 @@ const DemoSequencer = ({ onPlayStateChange }) => {
                             {sound.name}
                         </div>
 
-                        <div className="flex-grow grid gap-0.5 md:gap-1 lg:gap-2" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
+                        <div className="flex-grow grid gap-1 md:gap-1.5 lg:gap-2" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
                             {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                                 <button
                                     key={`${sound.id}-${stepIndex}`}
                                     onClick={() => handleDrumCellClick(soundIndex, stepIndex)}
                                     className={`
-                                        h-10 md:h-12 lg:h-16 w-full rounded border border-base-content/30
+                                        h-10 md:h-12 lg:h-16 w-full min-w-[32px] md:min-w-[36px] lg:min-w-[40px] rounded border border-base-content/30
                                         transition-all duration-100 ease-in-out
                                         ${isActive ? 'bg-accent scale-95' : (shouldBeDarkerDrum(stepIndex) ? 'bg-base-300 hover:bg-neutral-500' : 'bg-base-100 hover:bg-neutral-focus/30')}
                                         ${currentStep === stepIndex && isPlaying ? 'ring-2 ring-primary ring-offset-1 ring-offset-base-300' : ''}
@@ -116,6 +123,7 @@ const DemoSequencer = ({ onPlayStateChange }) => {
 
 DemoSequencer.propTypes = {
     onPlayStateChange: PropTypes.func,
+    onSequencerGainRef: PropTypes.func,
 };
 
 export default DemoSequencer;

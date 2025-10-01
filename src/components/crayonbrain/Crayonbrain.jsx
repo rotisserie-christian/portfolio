@@ -7,6 +7,7 @@ import DemoSequencer from "./DemoSequencer";
 
 export default function Crayonbrain() {
     const [isSequencerPlaying, setIsSequencerPlaying] = useState(false);
+    const [sequencerGainRef, setSequencerGainRef] = useState(null);
 
     return (
         <section className="flex items-center justify-center w-full">
@@ -42,17 +43,20 @@ export default function Crayonbrain() {
                 </a>
 
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
-                    <div className="w-full lg:w-1/2">
-                        <DemoSequencer onPlayStateChange={setIsSequencerPlaying} />
+                    <div className="w-full lg:w-3/5">
+                        <DemoSequencer 
+                            onPlayStateChange={setIsSequencerPlaying}
+                            onSequencerGainRef={setSequencerGainRef}
+                        />
                     </div>
 
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full lg:w-2/5">
                         <Suspense fallback={<div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
                             <Visualizer 
-                                presetLabel="fractal" 
                                 canvasId="demo-visualizer"
                                 className="bg-base-300 rounded-xl"
                                 isPlaying={isSequencerPlaying}
+                                sequencerGainRef={sequencerGainRef}
                             />
                         </Suspense>
                     </div>
