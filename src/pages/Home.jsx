@@ -1,5 +1,7 @@
 import { Suspense, lazy, useState, useRef, useEffect } from "react";
 const SemanticGraph = lazy(() => import('../components/SemanticGraph'));
+const Earth = lazy(() => import('../components/fakeairlines/Earth'));
+const Visualizer = lazy(() => import('../components/crayonbrain/Visualizer'));
 import { FaAngleDoubleRight, FaReact, FaSeedling, FaGithub } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import cb from "../assets/cb.png";
@@ -7,14 +9,16 @@ import GraphLegend from "../components/GraphLegend";
 import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
 import DemoSequencer from "../components/crayonbrain/DemoSequencer";
-import Visualizer from "../components/crayonbrain/Visualizer";
-import Earth from "../components/fakeairlines/Earth";
 
 export default function Home() {
     const [shouldStartGraph, setShouldStartGraph] = useState(false);
+    const [shouldLoadEarth, setShouldLoadEarth] = useState(false);
+    const [shouldLoadVisualizer, setShouldLoadVisualizer] = useState(false);
     const [isSequencerPlaying, setIsSequencerPlaying] = useState(false);
     const graphSectionRef = useRef();
     const projectsSectionRef = useRef();
+    const earthSectionRef = useRef();
+    const visualizerSectionRef = useRef();
     
     // Intersection Observer for SemanticGraph
     useEffect(() => {
@@ -41,6 +45,58 @@ export default function Home() {
             }
         };
     }, [shouldStartGraph]);
+
+    // Intersection Observer for Earth
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !shouldLoadEarth) {
+                    setShouldLoadEarth(true);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            }
+        );
+
+        const currentRef = earthSectionRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, [shouldLoadEarth]);
+
+    // Intersection Observer for Visualizer
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !shouldLoadVisualizer) {
+                    setShouldLoadVisualizer(true);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            }
+        );
+
+        const currentRef = visualizerSectionRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, [shouldLoadVisualizer]);
 
     const scrollToProjects = () => {
         projectsSectionRef.current?.scrollIntoView({ 
@@ -108,8 +164,18 @@ export default function Home() {
                         </a>
                     </div>
 
-                    <div className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden pointer-events-none">
-                        <Earth />
+                    <div ref={earthSectionRef} className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden pointer-events-none">
+                        {shouldLoadEarth ? (
+                            <Suspense fallback={<div className="flex items-center justify-center h-full"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
+                                <Earth />
+                            </Suspense>
+                        ) : (
+                            <div className="flex items-center justify-center h-full bg-base-200 rounded-xl">
+                                <div className="flex flex-col items-center gap-4">
+                                    <span className="loading loading-spinner loading-lg text-primary"></span>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -151,13 +217,23 @@ export default function Home() {
                             <DemoSequencer onPlayStateChange={setIsSequencerPlaying} />
                         </div>
 
-                        <div className="w-full lg:w-1/2">
-                            <Visualizer 
-                                presetLabel="fractal" 
-                                canvasId="demo-visualizer"
-                                className="bg-base-300 rounded-xl"
-                                isPlaying={isSequencerPlaying}
-                            />
+                        <div ref={visualizerSectionRef} className="w-full lg:w-1/2">
+                            {shouldLoadVisualizer ? (
+                                <Suspense fallback={<div className="flex items-center justify-center h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
+                                    <Visualizer 
+                                        presetLabel="fractal" 
+                                        canvasId="demo-visualizer"
+                                        className="bg-base-300 rounded-xl"
+                                        isPlaying={isSequencerPlaying}
+                                    />
+                                </Suspense>
+                            ) : (
+                                <div className="flex items-center justify-center h-[220px] md:h-[280px] lg:h-[360px] bg-base-300 rounded-xl">
+                                    <div className="flex flex-col items-center gap-4">
+                                        <span className="loading loading-spinner loading-lg text-primary"></span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -181,7 +257,13 @@ export default function Home() {
                         </button>
                     </a>
 
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense 
+                        fallback={
+                            <div className="flex items-center justify-center h-[330px]">
+                                <span className="loading loading-spinner loading-lg text-primary"></span>
+                            </div>
+                        }>
+                            
                         <SemanticGraph shouldStart={shouldStartGraph} />
                     </Suspense>
 
