@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ForceGraph3D } from 'react-force-graph';
-import { generateLinks, getNodeColor } from '../utils/graphUtils.js';
-import { useGraphData } from '../hooks/useGraphData.js';
+import { generateLinks, getNodeColor } from '../../utils/graphUtils.js';
+import { useGraphData } from '../../hooks/useGraphData.js';
 
 export default function SemanticGraph({ shouldStart = false }) {
     const [visibleData, setVisibleData] = useState({ nodes: [], links: [] });
