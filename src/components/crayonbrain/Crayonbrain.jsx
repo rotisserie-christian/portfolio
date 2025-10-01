@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState, useRef, useEffect } from "react";
+import { Suspense, lazy, useState } from "react";
 const Visualizer = lazy(() => import('./Visualizer'));
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
@@ -6,35 +6,7 @@ import cb from "../../assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
 
 export default function Crayonbrain() {
-    const [shouldLoadVisualizer, setShouldLoadVisualizer] = useState(false);
     const [isSequencerPlaying, setIsSequencerPlaying] = useState(false);
-    const visualizerSectionRef = useRef();
-
-    // Intersection Observer for Visualizer
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !shouldLoadVisualizer) {
-                    setShouldLoadVisualizer(true);
-                }
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            }
-        );
-
-        const currentRef = visualizerSectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, [shouldLoadVisualizer]);
 
     return (
         <section className="flex items-center justify-center w-full">
@@ -74,23 +46,15 @@ export default function Crayonbrain() {
                         <DemoSequencer onPlayStateChange={setIsSequencerPlaying} />
                     </div>
 
-                    <div ref={visualizerSectionRef} className="w-full lg:w-1/2">
-                        {shouldLoadVisualizer ? (
-                            <Suspense fallback={<div className="flex items-center justify-center h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
-                                <Visualizer 
-                                    presetLabel="fractal" 
-                                    canvasId="demo-visualizer"
-                                    className="bg-base-300 rounded-xl"
-                                    isPlaying={isSequencerPlaying}
-                                />
-                            </Suspense>
-                        ) : (
-                            <div className="flex items-center justify-center h-[220px] md:h-[280px] lg:h-[360px] bg-base-300 rounded-xl">
-                                <div className="flex flex-col items-center gap-4">
-                                    <span className="loading loading-spinner loading-lg text-primary"></span>
-                                </div>
-                            </div>
-                        )}
+                    <div className="w-full lg:w-1/2">
+                        <Suspense fallback={<div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
+                            <Visualizer 
+                                presetLabel="fractal" 
+                                canvasId="demo-visualizer"
+                                className="bg-base-300 rounded-xl"
+                                isPlaying={isSequencerPlaying}
+                            />
+                        </Suspense>
                     </div>
                 </div>
             </div>

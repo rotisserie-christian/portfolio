@@ -5,31 +5,28 @@ import { useGraphData } from '../../hooks/useGraphData.js';
 export default function SemanticGraph({ shouldStart = false }) {
     const [visibleData, setVisibleData] = useState({ nodes: [], links: [] });
     const [nodeIndex, setNodeIndex] = useState(0);
-    const [ForceGraph3D, setForceGraph3D] = useState(null);
-    const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
+    const [ForceGraph3DComponent, setForceGraph3DComponent] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const { graphData, loading, error } = useGraphData();
 
     const fgRef = useRef();
 
     // Dynamic import
     useEffect(() => {
-        if (!shouldStart || ForceGraph3D) return;
-        
-        setIsLoadingLibrary(true);
-        import('react-force-graph')
-            .then(module => {
-                setForceGraph3D(() => module.ForceGraph3D);
-                setIsLoadingLibrary(false);
-            })
-            .catch(err => {
-                console.error('Failed to load ForceGraph3D:', err);
-                setIsLoadingLibrary(false);
+        if (!ForceGraph3DComponent) {
+            import('react-force-graph').then(module => {
+                setForceGraph3DComponent(() => module.ForceGraph3D);
+                setIsLoading(false);
+            }).catch(err => {
+                console.error('Failed to load ForceGraph3D component:', err);
+                setIsLoading(false);
             });
-    }, [shouldStart, ForceGraph3D]);
+        }
+    }, [ForceGraph3DComponent]);
 
     // Camera setup and rotation
     useEffect(() => {
-        if (!shouldStart || !fgRef.current || !visibleData.nodes.length || !ForceGraph3D) return;
+        if (!shouldStart || !fgRef.current || !visibleData.nodes.length) return;
         
         // Set initial camera position
         fgRef.current.camera().position.z = 800;
@@ -50,19 +47,19 @@ export default function SemanticGraph({ shouldStart = false }) {
         };
         
         animate();
-    }, [shouldStart, visibleData.nodes.length, ForceGraph3D]);
+    }, [shouldStart, visibleData.nodes.length]);
 
     // Start graph growth animation
     useEffect(() => {
-        if (!shouldStart || !graphData) return;
+        if (!shouldStart || !graphData || !ForceGraph3DComponent) return;
         
         setNodeIndex(0);
         setVisibleData({ nodes: [], links: [] });
-    }, [shouldStart, graphData]);
+    }, [shouldStart, graphData, ForceGraph3DComponent]);
 
     // Graph growth animation
     useEffect(() => {
-        if (!shouldStart || !graphData) return;
+        if (!shouldStart || !graphData || !ForceGraph3DComponent) return;
 
         const allLinks = generateLinks(graphData.nodes);
         
@@ -87,18 +84,17 @@ export default function SemanticGraph({ shouldStart = false }) {
         }, 50);
 
         return () => clearInterval(growthInterval);
-    }, [nodeIndex, visibleData, shouldStart, graphData]);
+    }, [nodeIndex, visibleData, shouldStart, graphData, ForceGraph3DComponent]);
 
-    if (loading) return <div className="text-center text-neutral-content/85">Loading graph...</div>;
+    if (loading || isLoading) return <div className="text-center text-neutral-content/85">Loading graph...</div>;
     if (error) return <div className="text-center text-red-400">Error: {error}</div>;
     if (!graphData) return <div className="text-center text-neutral-content/85">No graph data available</div>;
-    if (isLoadingLibrary) return <div className="text-center text-neutral-content/85">Loading 3D library...</div>;
-    if (!ForceGraph3D) return <div className="text-center text-neutral-content/85">Failed to load 3D library</div>;
+    if (!ForceGraph3DComponent) return <div className="text-center text-neutral-content/85">Loading 3D engine...</div>;
 
     return (
         <div className='touch-auto pointer-events-none'>
             <div className='flex items-center justify-center bg-transparent'>
-                <ForceGraph3D
+                <ForceGraph3DComponent
                     ref={fgRef}
                     width={370}
                     height={330}

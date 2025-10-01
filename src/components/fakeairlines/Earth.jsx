@@ -16,22 +16,21 @@ const Earth = () => {
     const globeRef = useRef();
     const containerRef = useRef();
     const [dimensions, setDimensions] = useState({ width: 600, height: 600 });
-    const [Globe, setGlobe] = useState(null);
-    const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
+    const [GlobeComponent, setGlobeComponent] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Dynamic import of Globe
+    // Dynamic import 
     useEffect(() => {
-        setIsLoadingLibrary(true);
-        import('react-globe.gl')
-            .then(module => {
-                setGlobe(() => module.default);
-                setIsLoadingLibrary(false);
-            })
-            .catch(err => {
-                console.error('Failed to load Globe:', err);
-                setIsLoadingLibrary(false);
+        if (!GlobeComponent) {
+            import('react-globe.gl').then(module => {
+                setGlobeComponent(() => module.default);
+                setIsLoading(false);
+            }).catch(err => {
+                console.error('Failed to load Globe component:', err);
+                setIsLoading(false);
             });
-    }, []);
+        }
+    }, [GlobeComponent]);
 
     // pick colors based on hub
     const arcColor = (d) => {
@@ -57,7 +56,7 @@ const Earth = () => {
 
     // small delay to start rotation after controls exist, workaround for globe library not having a rotation prop  
     useEffect(() => {
-        if (!globeRef.current || !Globe) return;
+        if (!globeRef.current || !GlobeComponent) return;
         const tryEnable = () => {
             const controls = globeRef.current && globeRef.current.controls && globeRef.current.controls();
             if (!controls) return false;
@@ -74,26 +73,15 @@ const Earth = () => {
             const id = setTimeout(tryEnable, 0);
             return () => clearTimeout(id);
         }
-    }, [Globe]);
+    }, [GlobeComponent]);
 
-    if (isLoadingLibrary) {
+    if (isLoading) {
         return (
             <div 
                 ref={containerRef}
                 style={{ width: '100%', height: '100%', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <div className="text-neutral-content/85">Loading 3D Globe...</div>
-            </div>
-        );
-    }
-
-    if (!Globe) {
-        return (
-            <div 
-                ref={containerRef}
-                style={{ width: '100%', height: '100%', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-                <div className="text-red-400">Failed to load 3D Globe</div>
+                <span className="loading loading-spinner loading-lg text-primary"></span>
             </div>
         );
     }
@@ -103,7 +91,7 @@ const Earth = () => {
         ref={containerRef}
         style={{ width: '100%', height: '100%', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-        <Globe
+        <GlobeComponent
         ref={globeRef}
         width={dimensions.width}
         height={dimensions.height}

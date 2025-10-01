@@ -1,38 +1,10 @@
-import { useState, useRef, useEffect } from "react";
-import Earth from './Earth';
+import { Suspense, lazy } from "react";
+const Earth = lazy(() => import('./Earth'));
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { StarsBackground } from "../StarsBackground";
 
 export default function Fakeairlines() {
-    const [shouldLoadEarth, setShouldLoadEarth] = useState(false);
-    const earthSectionRef = useRef();
-
-    // Intersection Observer for Earth
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !shouldLoadEarth) {
-                    setShouldLoadEarth(true);
-                }
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            }
-        );
-
-        const currentRef = earthSectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, [shouldLoadEarth]);
 
     return (
         <section className="flex items-center justify-center w-full bg-base-300 min-h-screen relative">
@@ -68,16 +40,10 @@ export default function Fakeairlines() {
                     </a>
                 </div>
 
-                <div ref={earthSectionRef} className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden pointer-events-none">
-                    {shouldLoadEarth ? (
+                <div className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden pointer-events-none">
+                    <Suspense fallback={<div className="flex items-center justify-center h-full"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
                         <Earth />
-                    ) : (
-                        <div className="flex items-center justify-center h-full bg-base-200 rounded-xl">
-                            <div className="flex flex-col items-center gap-4">
-                                <span className="loading loading-spinner loading-lg text-primary"></span>
-                            </div>
-                        </div>
-                    )}
+                    </Suspense>
                 </div>
             </div>
         </section>

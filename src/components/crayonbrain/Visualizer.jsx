@@ -1,41 +1,16 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import * as Tone from 'tone';
+import butterchurn from 'butterchurn';
+import butterchurnPresets from 'butterchurn-presets';
 
-const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillParent = false, isPlaying = true }) => {
+const Visualizer = ({ className = '', presetLabel = 'maxawow', canvasId, fillParent = false, isPlaying = true }) => {
   const canvasRef = useRef(null);
   const visualizerRef = useRef(null);
   const analyserRef = useRef(null);
   const rafRef = useRef(null);
   const presetsRef = useRef(null);
   const isPlayingRef = useRef(isPlaying);
-  const [isLoadingLibraries, setIsLoadingLibraries] = useState(false);
-  const [librariesLoaded, setLibrariesLoaded] = useState(false);
-
-  // Dynamic import
-  useEffect(() => {
-    setIsLoadingLibraries(true);
-    
-    Promise.all([
-      import('tone'),
-      import('butterchurn'),
-      import('butterchurn-presets')
-    ])
-    .then(([toneModule, butterchurnModule, presetsModule]) => {
-      // Store Tone globally for the component
-      window.Tone = toneModule.default;
-      
-      // Store butterchurn and presets
-      window.butterchurn = butterchurnModule.default;
-      window.butterchurnPresets = presetsModule.default;
-      
-      setLibrariesLoaded(true);
-      setIsLoadingLibraries(false);
-    })
-    .catch(err => {
-      console.error('Failed to load audio/visualization libraries:', err);
-      setIsLoadingLibraries(false);
-    });
-  }, []);
 
   const resolvePresetKey = (label) => {
     const presets = presetsRef.current || {};
@@ -89,13 +64,9 @@ const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillPar
 
   // audio and video pipeline 
   useEffect(() => {
-    if (!librariesLoaded || typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-
-    const Tone = window.Tone;
-    const butterchurn = window.butterchurn;
-    const butterchurnPresets = window.butterchurnPresets;
 
     const audioCtx = Tone.getContext().rawContext;
 
@@ -162,7 +133,7 @@ const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillPar
         }
       }
     };
-  }, [librariesLoaded, presetLabel, loadPresetByLabel]);
+  }, [presetLabel, loadPresetByLabel]);
 
   // Update playing state
   useEffect(() => {
@@ -171,30 +142,12 @@ const Visualizer = ({ className = '', presetLabel = 'Maxawow', canvasId, fillPar
 
   // Update preset when label changes
   useEffect(() => {
-    if (librariesLoaded) {
-      loadPresetByLabel(presetLabel);
-    }
-  }, [presetLabel, loadPresetByLabel, librariesLoaded]);
+    loadPresetByLabel(presetLabel);
+  }, [presetLabel, loadPresetByLabel]);
 
   const canvasClasses = fillParent
     ? 'w-full h-full lg:rounded-2xl shadow-lg'
     : 'w-full max-w-7xl h-[220px] md:h-[280px] lg:h-[360px] lg:rounded-2xl shadow-lg';
-
-  if (isLoadingLibraries) {
-    return (
-      <div className={`w-full flex items-center justify-center ${className}`}>
-        <div className="text-neutral-content/85">Loading audio libraries...</div>
-      </div>
-    );
-  }
-
-  if (!librariesLoaded) {
-    return (
-      <div className={`w-full flex items-center justify-center ${className}`}>
-        <div className="text-red-400">Failed to load audio libraries</div>
-      </div>
-    );
-  }
 
   return (
     <div className={`w-full flex items-center justify-center ${className}`}>

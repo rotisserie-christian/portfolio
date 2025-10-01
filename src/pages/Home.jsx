@@ -42,7 +42,7 @@ export default function Home() {
             </section>
 
             <div className='w-full' ref={projectsSectionRef}>
-                <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
+                <Suspense fallback={<div className="flex items-center justify-center w-full min-h-screen"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
                     <Fakeairlines />
                 </Suspense>
             </div>

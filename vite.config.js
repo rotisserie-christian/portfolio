@@ -14,22 +14,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         compact: true,
-        manualChunks: {
-          // 3D
-          'three-libs': ['three'],
-          'globe-libs': ['react-globe.gl'],
-          'force-graph-libs': ['react-force-graph'],
-          'aframe-libs': ['aframe', 'aframe-extras', 'aframe-forcegraph-component'],
-          
-          // Audio/Visualization
-          'audio-libs': ['tone', 'butterchurn', 'butterchurn-presets'],
-          
-          // UI
-          'ui-libs': ['react-icons', 'react-intersection-observer', 'uuid'],
-          
-          // Utils
-          'utils': ['date-fns', 'clsx', 'tailwind-merge']
-        }
+        manualChunks: undefined, // Disable chunking for single page
       }
     },
     
@@ -39,10 +24,6 @@ export default defineConfig({
     },
     
     chunkSizeWarningLimit: 1000,
-    
-    // Performance optimizations
-    sourcemap: false, // Disable sourcemaps in production for smaller bundles
-    reportCompressedSize: false, // Faster builds
   },
   test: {
     environment: 'jsdom',
