@@ -1,18 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
-import { ForceGraph3D } from 'react-force-graph';
 import { generateLinks, getNodeColor } from '../../utils/graphUtils.js';
 import { useGraphData } from '../../hooks/useGraphData.js';
 
 export default function SemanticGraph({ shouldStart = false }) {
     const [visibleData, setVisibleData] = useState({ nodes: [], links: [] });
     const [nodeIndex, setNodeIndex] = useState(0);
+    const [ForceGraph3D, setForceGraph3D] = useState(null);
+    const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
     const { graphData, loading, error } = useGraphData();
 
     const fgRef = useRef();
 
+    // Dynamic import
+    useEffect(() => {
+        if (!shouldStart || ForceGraph3D) return;
+        
+        setIsLoadingLibrary(true);
+        import('react-force-graph')
+            .then(module => {
+                setForceGraph3D(() => module.ForceGraph3D);
+                setIsLoadingLibrary(false);
+            })
+            .catch(err => {
+                console.error('Failed to load ForceGraph3D:', err);
+                setIsLoadingLibrary(false);
+            });
+    }, [shouldStart, ForceGraph3D]);
+
     // Camera setup and rotation
     useEffect(() => {
-        if (!shouldStart || !fgRef.current || !visibleData.nodes.length) return;
+        if (!shouldStart || !fgRef.current || !visibleData.nodes.length || !ForceGraph3D) return;
         
         // Set initial camera position
         fgRef.current.camera().position.z = 800;
@@ -33,7 +50,7 @@ export default function SemanticGraph({ shouldStart = false }) {
         };
         
         animate();
-    }, [shouldStart, visibleData.nodes.length]);
+    }, [shouldStart, visibleData.nodes.length, ForceGraph3D]);
 
     // Start graph growth animation
     useEffect(() => {
@@ -75,6 +92,8 @@ export default function SemanticGraph({ shouldStart = false }) {
     if (loading) return <div className="text-center text-neutral-content/85">Loading graph...</div>;
     if (error) return <div className="text-center text-red-400">Error: {error}</div>;
     if (!graphData) return <div className="text-center text-neutral-content/85">No graph data available</div>;
+    if (isLoadingLibrary) return <div className="text-center text-neutral-content/85">Loading 3D library...</div>;
+    if (!ForceGraph3D) return <div className="text-center text-neutral-content/85">Failed to load 3D library</div>;
 
     return (
         <div className='touch-auto pointer-events-none'>

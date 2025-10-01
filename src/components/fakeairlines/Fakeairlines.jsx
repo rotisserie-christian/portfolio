@@ -1,5 +1,5 @@
-import { Suspense, lazy, useState, useRef, useEffect } from "react";
-const Earth = lazy(() => import('./Earth'));
+import { useState, useRef, useEffect } from "react";
+import Earth from './Earth';
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { StarsBackground } from "../StarsBackground";
@@ -70,9 +70,7 @@ export default function Fakeairlines() {
 
                 <div ref={earthSectionRef} className="w-full max-w-6xl h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden pointer-events-none">
                     {shouldLoadEarth ? (
-                        <Suspense fallback={<div className="flex items-center justify-center h-full"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
-                            <Earth />
-                        </Suspense>
+                        <Earth />
                     ) : (
                         <div className="flex items-center justify-center h-full bg-base-200 rounded-xl">
                             <div className="flex flex-col items-center gap-4">
