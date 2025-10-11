@@ -14,9 +14,6 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.55.0",
     "@tailwindcss/vite": "^4.1.10",
-    "aframe": "^1.7.1",
-    "aframe-extras": "^7.6.0",
-    "aframe-forcegraph-component": "^3.3.0",
     "autoprefixer": "^10.4.21",
     "butterchurn": "^2.6.7",
     "butterchurn-presets": "^2.4.7",
