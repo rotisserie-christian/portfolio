@@ -20,7 +20,7 @@ This is a simple single page website that hosts demo versions of my projects
 - **`postcss`** - CSS post-processor
 - **`react-icons`** - Icon library
 #### Utilities 
-- **`@supabase/supabase-js `** - Database
+- **`@supabase/supabase-js `** - Database service
 - **`react-router-dom`** - Client-side routing 
 - **`react-intersection-observer`** - Viewport detection hook 
 
