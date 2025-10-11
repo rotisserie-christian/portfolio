@@ -9,12 +9,18 @@ export default defineConfig({
     // Enable tree shaking
     minify: 'esbuild',
     target: 'esnext',
+    cssCodeSplit: true, 
     
     // Compression settings
     rollupOptions: {
       output: {
         compact: true,
-        manualChunks: undefined, // Disable chunking for single page
+        manualChunks: {
+          'vendor': ['react', 'react-dom'],
+          'ui': ['daisyui'],
+          'audio': ['tone', 'butterchurn', 'butterchurn-presets'],
+          'graph': ['react-force-graph', 'three']
+        }
       }
     },
     
