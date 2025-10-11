@@ -7,6 +7,7 @@ const TEMPO_BPM = 120;
 export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
+    const [isInitializing, setIsInitializing] = useState(true);
     
     const playersRef = useRef({});
     const sequenceRef = useRef(null);
@@ -22,6 +23,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     useEffect(() => {
         const initializePlayers = async () => {
             try {
+                setIsInitializing(true);
                 // Create dedicated gain node for sequencer audio
                 const sequencerGain = new Tone.Gain(1);
                 sequencerGain.toDestination();
@@ -33,7 +35,9 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
                 }
                 await Tone.loaded();
                 playersRef.current = players;
+                setIsInitializing(false);
             } catch (error) {
+                setIsInitializing(false);
                 console.error('Error initializing audio:', error);
             }
         };
@@ -105,6 +109,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
         currentStep,
         handlePlay,
         playersRef,
-        sequencerGainRef
+        sequencerGainRef,
+        isInitializing
     };
 };

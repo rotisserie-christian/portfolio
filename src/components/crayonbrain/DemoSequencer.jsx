@@ -28,7 +28,7 @@ const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
         // Optional: handle step changes if needed
     }, []);
 
-    const { isPlaying, currentStep, handlePlay, sequencerGainRef } = useSequencer(
+    const { isPlaying, currentStep, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
         onStepChange
@@ -76,10 +76,17 @@ const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
                 <button
                     onClick={handlePlayWithCallback}
                     className={`btn btn-sm md:btn-md lg:btn-lg btn-neutral rounded-lg ${isPlaying ? 'text-red-300' : 'text-cyan-200'} w-24 md:w-28 lg:w-32`}
+                    disabled={isInitializing}
                     aria-label={isPlaying ? "Stop drum loop" : "Play drum loop"}
                 >
-                    {isPlaying ? <FaStop className="mr-1" /> : <FaPlay className="mr-1" />}
-                    {isPlaying ? 'Stop' : 'Play'}
+                    {isInitializing ? (
+                        <span className="loading loading-spinner loading-sm"></span>
+                    ) : (
+                        <>
+                            {isPlaying ? <FaStop className="mr-1" /> : <FaPlay className="mr-1" />}
+                            {isPlaying ? 'Stop' : 'Play'}
+                        </>
+                    )}
                 </button>
 
                 <button

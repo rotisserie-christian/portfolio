@@ -41,13 +41,3 @@ export function useIntersectionObserver({
 
     return { ref, isIntersecting: isIntersecting.current };
 }
-
-/**
- * Hook for managing multiple intersection observers
- * @param {Array} configs - Array of observer configurations
- * @returns {Array} - Array of observer results
- */
-export function useMultipleIntersectionObservers(configs) {
-    const results = configs.map(config => useIntersectionObserver(config));
-    return results;
-}

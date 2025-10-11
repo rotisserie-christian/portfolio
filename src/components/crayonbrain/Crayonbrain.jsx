@@ -43,14 +43,14 @@ export default function Crayonbrain() {
                 </a>
 
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
-                    <div className="w-full lg:w-3/5">
+                    <div className="w-full lg:w-1/2">
                         <DemoSequencer 
                             onPlayStateChange={setIsSequencerPlaying}
                             onSequencerGainRef={setSequencerGainRef}
                         />
                     </div>
 
-                    <div className="w-full lg:w-2/5">
+                    <div className="w-full lg:w-1/2">
                         <Suspense fallback={<div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
                             <Visualizer 
                                 canvasId="demo-visualizer"

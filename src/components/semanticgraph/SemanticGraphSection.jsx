@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 const SemanticGraph = lazy(() => import('./SemanticGraph'));
 import GraphLegend from "./GraphLegend";
 
-export default function SemanticGraphSection() {
+export default function SemanticGraphSection({ shouldStart = false }) {
 
     return (
         <section className="flex items-center justify-center w-full min-h-screen">
@@ -21,7 +21,7 @@ export default function SemanticGraphSection() {
                             <span className="loading loading-spinner loading-lg text-primary"></span>
                         </div>
                     }>
-                    <SemanticGraph shouldStart={true} />
+                    <SemanticGraph shouldStart={shouldStart} />
                 </Suspense>
 
                 <GraphLegend />

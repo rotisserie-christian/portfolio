@@ -14,9 +14,6 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.55.0",
     "@tailwindcss/vite": "^4.1.10",
-    "aframe": "^1.7.1",
-    "aframe-extras": "^7.6.0",
-    "aframe-forcegraph-component": "^3.3.0",
     "autoprefixer": "^10.4.21",
     "butterchurn": "^2.6.7",
     "butterchurn-presets": "^2.4.7",
@@ -28,7 +25,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-force-graph": "^1.48.0",
-    "react-globe.gl": "^2.36.0",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-router-dom": "^7.6.2",
