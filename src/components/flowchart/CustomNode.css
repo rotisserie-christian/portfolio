@@ -1,0 +1,28 @@
+.darkNodeStyle {
+    background-color: #3b3b3b;
+    color: rgb(235, 235, 235);
+    border-radius: 16px;
+    padding: 12px;
+    width: 150px;
+    text-align: center;
+    font-size: 16px; 
+}
+
+.handle {
+    width: 8px;
+    height: 8px;
+    background-color: #555;
+    border-radius: 50%;
+}
+
+.handle-left {
+    left: -4px;
+}
+
+.handle-right {
+    right: -4px;
+}
+
+.react-flow__attribution {
+    display: none;
+}

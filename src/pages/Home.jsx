@@ -1,35 +1,9 @@
-import { useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import Crayonbrain from "../components/crayonbrain/Crayonbrain";
 
 export default function Home() {
-    const [SemanticGraphComponent, setSemanticGraphComponent] = useState(null);
-    const [shouldStartSemanticGraph, setShouldStartSemanticGraph] = useState(false);
-    const [loadingStates, setLoadingStates] = useState({
-        semanticgraph: false
-    });
-
-    // Dynamic import
-    const loadSemanticGraph = () => import('../components/semanticgraph/SemanticGraphSection');
-
-    // Start semantic graph animation when section is in view
-    const semanticGraphObserver = useIntersectionObserver({
-        onIntersect: () => {
-            if (!SemanticGraphComponent && !loadingStates.semanticgraph) {
-                setLoadingStates(prev => ({ ...prev, semanticgraph: true }));
-                loadSemanticGraph().then(module => {
-                    setSemanticGraphComponent(() => module.default);
-                    setLoadingStates(prev => ({ ...prev, semanticgraph: false }));
-                });
-            }
-
-            setShouldStartSemanticGraph(true);
-        }
-    });
-
     const scrollToProjects = () => {
         document.querySelector('[data-section="crayonbrain"]')?.scrollIntoView({ 
             behavior: 'smooth',
@@ -64,22 +38,6 @@ export default function Home() {
 
             <div data-section="crayonbrain">
                 <Crayonbrain />
-            </div>
-
-            <div ref={semanticGraphObserver.ref} data-section="semanticgraph">
-                {loadingStates.semanticgraph ? (
-                    <div className="flex items-center justify-center min-h-screen">
-                        <span className="loading loading-spinner loading-lg text-primary"></span>
-                    </div>
-                ) : SemanticGraphComponent ? (
-                    <SemanticGraphComponent shouldStart={shouldStartSemanticGraph} />
-                ) : (
-                    <div className="flex items-center justify-center min-h-screen bg-base-300">
-                        <div className="flex flex-col items-center gap-4">
-                            <span className="loading loading-spinner loading-lg text-primary"></span>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
         </>

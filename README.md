@@ -12,13 +12,11 @@ This is a simple single page website that hosts demo versions of my projects
 - **`@tailwindcss/vite`** - Tailwind CSS Vite plugin
 - **`daisyui`** - Tailwind component library
 - **`tailwind-merge`** - Tailwind class merging utility
-- **`autoprefixer`** - CSS vendor prefixing
+- **`autoprefixer`** - CSS vendor prefixing, supports legacy browsers 
 - **`clsx`** - Conditional className utility
 - **`postcss`** - CSS post-processor
 - **`react-icons`** - Icon library
 #### Utilities 
-- **`@supabase/supabase-js `** - Database service
 - **`react-router-dom`** - Client-side routing 
-- **`react-intersection-observer`** - Viewport detection hook 
 
 
