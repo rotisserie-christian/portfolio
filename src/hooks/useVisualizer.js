@@ -18,7 +18,7 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     const keys = Object.keys(presets);
     if (keys.length === 0) return;
     
-    // Just use the first available preset
+    // Set preset 
     const preset = presets[keys[0]];
     if (!preset) return;
     
@@ -34,7 +34,7 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // audio and video pipeline 
+  // audio and visual pipeline 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const canvas = canvasRef.current;

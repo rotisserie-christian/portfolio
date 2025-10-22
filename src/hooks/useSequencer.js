@@ -14,7 +14,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     const drumSequenceRef = useRef(drumSequence);
     const sequencerGainRef = useRef(null);
 
-    // Keep a ref of the latest sequence so the scheduler reads fresh data
+    // Ref of the latest sequence, so the scheduler reads fresh data
     useEffect(() => {
         drumSequenceRef.current = drumSequence;
     }, [drumSequence]);
@@ -24,7 +24,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
         const initializePlayers = async () => {
             try {
                 setIsInitializing(true);
-                // Create dedicated gain node for sequencer audio
+                // gain node for sequencer audio
                 const sequencerGain = new Tone.Gain(1);
                 sequencerGain.toDestination();
                 sequencerGainRef.current = sequencerGain;

@@ -41,16 +41,24 @@ export default function Home() {
                 <Crayonbrain />
             </div>
 
-            <div className="flex flex-col lg:flex-row mt-20 gap-10 items-center justify-center max-w-4xl">
-                <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold">
-                    How it works
-                </h1>
+            <div className="flex flex-col lg:flex-row mt-10 gap-10 items-center justify-center max-w-4xl">
+                <div className="flex flex-col items-center lg:items-end justify-center w-full lg:w-1/2">
+                    <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold mb-5">
+                        How it works
+                    </h1>
 
-                <p className="text-lg lg:text-xl text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                
-                </p>
-                
-                <Flowchart />
+                    <p className="lg:text-lg lg:text-right text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                        The main feature is converting music clips into abstract visuals that can be downloaded as a video file.
+                        Audio can be uploaded, composed directly on the website, or piped in from a microphone.<br /><br />
+
+                        The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.
+                        Crayonbrain is an attempt to extend this project by building audio systems around it, and making it easier to share the results.<br /><br />
+                    </p>
+                </div>
+
+                <div className="w-full lg:w-1/2">
+                    <Flowchart />
+                </div>
             </div>
         </div>
         </>

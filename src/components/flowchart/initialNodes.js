@@ -15,14 +15,14 @@ const initialNodes = [
   },
   {
     id: '4',
-    position: { x: 300, y: 175 },
+    position: { x: 300, y: 176 },
     data: { label: 'Callbacks for playback timing, tempo, and loop points' },
     draggable: false,
     type: 'custom',
   },
   {
     id: '5',
-    position: { x: 50, y: 325 },
+    position: { x: 50, y: 315 },
     data: { label: 'Builds and renders the musical sequence' },
     draggable: false,
     type: 'process',
