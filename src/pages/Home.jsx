@@ -2,6 +2,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
 import Crayonbrain from "../components/crayonbrain/Crayonbrain";
+import Flowchart from "../components/flowchart/Flowchart";
 
 export default function Home() {
     const scrollToProjects = () => {
@@ -38,6 +39,13 @@ export default function Home() {
 
             <div data-section="crayonbrain">
                 <Crayonbrain />
+            </div>
+
+            <div className="flex flex-col lg:flex-row mt-20 gap-10 items-center justify-center max-w-4xl">
+                <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold">
+                    How it works
+                </h1>
+                <Flowchart />
             </div>
         </div>
         </>
