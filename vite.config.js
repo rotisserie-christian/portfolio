@@ -18,8 +18,7 @@ export default defineConfig({
         manualChunks: {
           'vendor': ['react', 'react-dom'],
           'ui': ['daisyui'],
-          'audio': ['tone', 'butterchurn', 'butterchurn-presets'],
-          'graph': ['react-force-graph', 'three']
+          'audio': ['butterchurn', 'butterchurn-presets'],
         }
       }
     },

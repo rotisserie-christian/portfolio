@@ -45,6 +45,11 @@ export default function Home() {
                 <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold">
                     How it works
                 </h1>
+
+                <p className="text-lg lg:text-xl text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                
+                </p>
+                
                 <Flowchart />
             </div>
         </div>
