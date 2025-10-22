@@ -47,11 +47,10 @@ export default function Home() {
                         How it works
                     </h1>
 
-                    <p className="lg:text-lg lg:text-right text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        The main feature is converting music clips into abstract visuals that can be downloaded as a video file.
+                    <p className="lg:text-lg lg:text-right text-neutral-content/85 text-left w-full max-w-sm lg:max-w-lg">
+                        The main feature is converting music clips into abstract visuals that can be downloaded as a video file.<br /><br />
                         Audio can be uploaded, composed directly on the website, or piped in from a microphone.<br /><br />
-
-                        The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.
+                        The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.<br /><br />
                         Crayonbrain is an attempt to extend this project by building audio systems around it, and making it easier to share the results.<br /><br />
                     </p>
                 </div>
