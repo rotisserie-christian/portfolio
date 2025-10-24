@@ -3,6 +3,16 @@ import * as Tone from 'tone';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 
+/**
+ * Renders reactive visuals, connects to main audio output to generate visual effects
+ * 
+ * @param {Object} canvasRef - React ref to the canvas element
+ * @param {boolean} isPlaying -  Is audio playing
+ * @param {Object} sequencerGainRef - Reference to sequencer's gain node
+ * @returns {Object} Visualizer state and controls
+ * @returns {Object} returns.visualizerRef - Reference to the Butterchurn visualizer instance
+ * @returns {Object} returns.analyserRef - Reference to the Web Audio analyser node
+ */
 export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
   const visualizerRef = useRef(null);
   const analyserRef = useRef(null);
@@ -19,7 +29,8 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     if (keys.length === 0) return;
     
     // Set preset 
-    const preset = presets[keys[0]];
+    const presetName = keys[0];
+    const preset = presets[presetName];
     if (!preset) return;
     
     try {
@@ -34,7 +45,7 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // audio and visual pipeline 
+  // Audio and visual pipeline 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const canvas = canvasRef.current;
@@ -42,6 +53,7 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
 
     const audioCtx = Tone.getContext().rawContext;
 
+    // Splits audio into 2048 frequency bands (bass, mid, treble)
     const analyser = audioCtx.createAnalyser();
     analyser.fftSize = 2048;
     analyser.smoothingTimeConstant = 0.3;
@@ -51,18 +63,28 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     
     try {
       if (sequencerGain) {
-        // Connect to sequencer audio if available
         sequencerGain.connect(analyser);
       } else {
-        // Fallback to master destination
-        const destination = Tone.getDestination();
-        destination.input.connect(analyser);
+        // Fallback: gain node connected to master output
+        const fallbackGain = audioCtx.createGain();
+        fallbackGain.connect(analyser);
+        
+        const masterGain = Tone.getDestination().input;
+        if (masterGain && masterGain.connect) {
+          masterGain.connect(fallbackGain);
+        } else {
+          // Fallback: create a silent node
+          const source = audioCtx.createMediaStreamDestination();
+          source.connect(fallbackGain);
+          console.warn('Using alternative audio routing fallback');
+        }
       }
     } catch (err) {
       console.warn('failed to connect analyser to audio source', err);
     }
     analyserRef.current = analyser;
 
+    // listen for resize events and update the canvas size
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -110,8 +132,11 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
         if (sequencerGain) {
           sequencerGain.disconnect(analyser);
         } else {
-          const destination = Tone.getDestination();
-          destination.input.disconnect(analyser);
+          // Clean up fallback audio routing
+          const masterGain = Tone.getDestination().input;
+          if (masterGain && masterGain.disconnect) {
+            masterGain.disconnect(analyser);
+          }
         }
       } catch (err) {
         if (import.meta?.env?.MODE === 'development') {

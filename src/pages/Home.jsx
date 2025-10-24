@@ -42,12 +42,12 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col lg:flex-row mt-10 gap-10 items-center justify-center max-w-4xl">
-                <div className="flex flex-col items-center lg:items-end justify-center w-full lg:w-1/2">
+                <div className="flex flex-col items-center lg:items-end justify-center">
                     <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold mb-5">
                         How it works
                     </h1>
 
-                    <p className="lg:text-lg lg:text-right text-neutral-content/85 text-left w-full max-w-sm lg:max-w-lg">
+                    <p className="lg:text-lg lg:text-right text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
                         The main feature is converting music clips into abstract visuals that can be downloaded as a video file.<br /><br />
                         Audio can be uploaded, composed directly on the website, or piped in from a microphone.<br /><br />
                         The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.<br /><br />
