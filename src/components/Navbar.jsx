@@ -13,13 +13,6 @@ export default function Navbar() {
                     </a>
 
                     <div className="flex flex-row items-center gap-2">
-                        <a href='https://www.tiktok.com/@fakeairlines.com' target='_blank' rel='noreferrer'>
-                            <button 
-                            className="btn btn-neutral rounded-xl text-neutral-content/85">
-                                <FaTiktok />TikTok
-                            </button>
-                        </a>
-                        
                         <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer'>
                             <button 
                             className="btn btn-neutral rounded-xl text-neutral-content/85">
