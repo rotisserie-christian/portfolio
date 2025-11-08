@@ -4,7 +4,7 @@
 - **`/contexts`** - Context providers for shared state
 - **`/pages`** - Contains the single Home page 
 - **`/hooks`** - Logic for sequencing audio and rendering visuals
-- **`/utils`** - Just a single tailwind utility for now
+- **`/utils`** - Helper functions and constants 
 - **`RouteSwitch.jsx`** - Sort of unnecessary right now but why not 
 
 

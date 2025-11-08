@@ -124,7 +124,7 @@ const DemoSequencer = () => {
                                         h-10 w-full min-w-[32px] md:min-w-[34px] lg:min-w-[34px] rounded border border-base-content/30
                                         transition-all duration-100 ease-in-out cursor-pointer
                                         ${isActive ? 'bg-accent scale-95' : (shouldBeDarkerDrum(stepIndex) ? 'bg-base-300 hover:bg-neutral-500' : 'bg-base-100 hover:bg-neutral-focus/30')}
-                                        ${currentStep === stepIndex && isPlaying ? 'ring-2 ring-primary ring-offset-1 ring-offset-base-300' : ''}
+                                        ${currentStep === stepIndex && isPlaying ? 'border-2 border-primary md:border-base-content/30 md:ring-2 md:ring-primary md:ring-offset-1 md:ring-offset-base-300' : ''}
                                     `}
                                     aria-label={`Toggle ${sound.name} at step ${stepIndex + 1}`}
                                 />
