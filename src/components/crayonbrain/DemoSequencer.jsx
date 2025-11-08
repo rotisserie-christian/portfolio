@@ -19,9 +19,9 @@ const TEMPO_BPM = 120;
 const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
     // Default pattern
     const [drumSequence, setDrumSequence] = useState([
-        { steps: [true, false, false, false, true, true, false, false] }, // kick
+        { steps: [true, false, false, false, false, true, false, false] }, // kick
         { steps: [false, false, true, false, false, false, true, false] }, // snare
-        { steps: [true, true, false, true, false, true, false, true] }, // hat
+        { steps: [true, false, false, false, true, false, false, false] }, // hat
     ]);
     
     const onStepChange = useCallback(() => {

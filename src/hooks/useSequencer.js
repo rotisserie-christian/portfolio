@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import * as Tone from 'tone';
 
 const TIME_STEPS = 8;
-const TEMPO_BPM = 120;
+const TEMPO_BPM = 170;
 
 /**
  * Builds and renders musical sequence, and callbacks to change the sequence during playback
