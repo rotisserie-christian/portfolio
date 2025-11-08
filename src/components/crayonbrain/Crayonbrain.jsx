@@ -35,7 +35,7 @@ export default function Crayonbrain() {
                 <a 
                 href='https://crayonbrain.com' 
                 target='_blank' rel='noreferrer'>
-                    <button className="btn w-26 bg-neutral text-cyan-200 rounded-xl mt-4 mb-8">
+                    <button className="btn w-26 bg-neutral rounded-xl mt-4 mb-8">
                         Visit<FaAngleDoubleRight />
                     </button>
                 </a>
@@ -47,10 +47,15 @@ export default function Crayonbrain() {
                         </div>
 
                         <div className="w-full lg:w-1/2">
-                            <Suspense fallback={<div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
+                            <Suspense 
+                                fallback={
+                                    <div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]">
+                                        <span className="loading loading-spinner loading-lg text-primary"></span>
+                                    </div>
+                                }>
+                                
                                 <Visualizer 
                                     canvasId="demo-visualizer"
-                                    className="bg-base-300 rounded-xl"
                                 />
                             </Suspense>
                         </div>

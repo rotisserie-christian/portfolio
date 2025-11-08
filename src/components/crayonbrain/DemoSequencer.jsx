@@ -7,11 +7,13 @@ import TempoSlider from './TempoSlider';
 import { DEFAULT_BPM } from './tempoConstants';
 import kick from '../../assets/kick.wav';
 import snare from '../../assets/snare.wav';
+import snare2 from '../../assets/snare2.wav';
 import hat from '../../assets/hat.wav';
 
 const DRUM_SOUNDS = [
     { id: 'kick', name: 'Kick', src: kick },
     { id: 'snare', name: 'Snare', src: snare },
+    { id: 'snare2', name: 'Snare2', src: snare2 },
     { id: 'hat', name: 'Hat', src: hat },
 ];
 
@@ -24,6 +26,7 @@ const DemoSequencer = () => {
     const [drumSequence, setDrumSequence] = useState([
         { steps: [true, false, false, false, false, true, false, false] }, // kick
         { steps: [false, false, true, false, false, false, true, false] }, // snare
+        { steps: [false, false, false, false, false, false, false, false] }, // snare2
         { steps: [true, false, false, false, true, false, false, false] }, // hat
     ]);
     
@@ -72,7 +75,7 @@ const DemoSequencer = () => {
     };
 
     return (
-        <div className="demo-sequencer w-full p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+        <div className="demo-sequencer w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
             <div className="flex flex-row items-center justify-between w-full mb-4 md:mb-6 lg:mb-8 px-2">
                 <button
                     onClick={handlePlay}
@@ -102,14 +105,14 @@ const DemoSequencer = () => {
 
             <TempoSlider bpm={bpm} onBpmChange={setBpm} />
 
-            <div className="flex flex-col gap-1 p-1 md:p-2 lg:p-3 bg-base-300 rounded flex-grow">
+            <div className="flex flex-col gap-1 p-1 md:p-2 lg:p-3 bg-base-300 rounded">
                 {DRUM_SOUNDS.map((sound, soundIndex) => (
                     <div key={sound.id} className="flex items-center gap-1">
                         <div className="w-20 md:w-24 lg:w-28 h-10 flex items-center justify-center text-xs md:text-sm lg:text-base font-semibold bg-base-100 text-base-content rounded p-1 truncate">
                             {sound.name}
                         </div>
 
-                        <div className="flex-grow grid gap-1" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
+                        <div className="flex-grow grid gap-0.5" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
                             {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                                 <button
                                     key={`${sound.id}-${stepIndex}`}

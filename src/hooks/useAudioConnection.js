@@ -4,8 +4,6 @@ import * as Tone from 'tone';
 /**
  * Manages audio analyser connection to the source with polling fallback
  * 
- * 
- * 
  * @param {Object} audioSourceRef - Reference to the audio source gain node
  * @param {Object} analyserRef - Reference to the Web Audio analyser node
  * @param {Object} audioCtxRef - Reference to the Web Audio context

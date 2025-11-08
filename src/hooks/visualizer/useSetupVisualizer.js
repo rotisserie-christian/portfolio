@@ -4,7 +4,7 @@ import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import { createAnalyser } from '../../utils/analyserSetup';
 import { loadPreset } from '../../utils/presetLoader';
-import { DEFAULT_PRESET_INDEX, PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
+import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
 
 /**
  * Sets up Butterchurn visualizer with audio context, analyser, and presets
@@ -58,8 +58,8 @@ export const useSetupVisualizer = (
     // Cache presets
     presetsRef.current = butterchurnPresets.getPresets();
 
-    // Load default preset
-    loadPreset(viz, presetsRef.current, DEFAULT_PRESET_INDEX, PRESET_BLEND_TIME);
+    // Load initial preset (index 0 - first preset in our selection)
+    loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
 
     return () => {
       try {

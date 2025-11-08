@@ -65,7 +65,8 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
 
   return {
     visualizerRef,
-    analyserRef
+    analyserRef,
+    presetsRef
   };
 };
 

@@ -18,7 +18,7 @@ const TempoSlider = ({ bpm, onBpmChange, minBpm = MIN_BPM, maxBpm = MAX_BPM }) =
 
     return (
         <div className='flex flex-col items-center gap-2 w-full mt-3 mb-2'>
-            <div className="flex items-center gap-3"> 
+            <div className="flex items-center text-neutral-content/85 gap-3"> 
                 <button 
                     onClick={handleDecrement} 
                     className="btn btn-ghost btn-sm p-1" 

@@ -41,9 +41,9 @@ export default function Home() {
                 <Crayonbrain />
             </div>
 
-            <div className="flex flex-col lg:flex-row mt-10 gap-10 items-center justify-center max-w-4xl w-full">
+            <div className="flex flex-col lg:flex-row mt-10 mb-20 gap-10 lg:gap-20 items-center justify-center max-w-5xl mx-auto w-full">
                 <div className="flex flex-col items-center lg:items-end justify-center w-full px-2">
-                    <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold mb-5">
+                    <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold mb-6 lg:mb-8">
                         How it works
                     </h1>
 
@@ -55,7 +55,7 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="w-full lg:w-1/2">
+                <div className="w-full">
                     <Flowchart />
                 </div>
             </div>
