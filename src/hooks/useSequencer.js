@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import * as Tone from 'tone';
 
 const TIME_STEPS = 8;
-const TEMPO_BPM = 170;
+const DEFAULT_TEMPO_BPM = 170;
 
 /**
  * Builds and renders musical sequence, and callbacks to change the sequence during playback
@@ -10,6 +10,7 @@ const TEMPO_BPM = 170;
  * @param {Array} drumSequence - Array of drum tracks with step patterns
  * @param {Array} drumSounds - Array of sound objects { id, name, src }
  * @param {Function} onStepChange - Optional callback for step changes
+ * @param {number} tempoBpm - Tempo in BPM (default: 170)
  * @returns {Object} Sequencer state and controls
  * @returns {boolean} returns.isPlaying - Current playback state
  * @returns {number} returns.currentStep - Current step in sequence
@@ -17,7 +18,7 @@ const TEMPO_BPM = 170;
  * @returns {Object} returns.sequencerGainRef - Audio gain node reference
  * @returns {boolean} returns.isInitializing - Initialization state
  */
-export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
+export const useSequencer = (drumSequence, drumSounds, onStepChange, tempoBpm = DEFAULT_TEMPO_BPM) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     const [isInitializing, setIsInitializing] = useState(true);
@@ -27,6 +28,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     const drumSequenceRef = useRef(drumSequence);
     const sequencerGainRef = useRef(null);
     const isInitializingRef = useRef(false);
+    const tempoBpmRef = useRef(tempoBpm);
     
     // Stabilize drumSounds to prevent unnecessary reinitializations
     const stableDrumSounds = useMemo(() => drumSounds, [drumSounds]);
@@ -35,6 +37,14 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
     useEffect(() => {
         drumSequenceRef.current = drumSequence;
     }, [drumSequence]);
+
+    // Update tempo ref and transport BPM when tempo changes
+    useEffect(() => {
+        tempoBpmRef.current = tempoBpm;
+        if (Tone.getTransport().state === 'started') {
+            Tone.getTransport().bpm.value = tempoBpm;
+        }
+    }, [tempoBpm]);
 
     // Initialize tone.js
     useEffect(() => {
@@ -128,7 +138,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange) => {
                     return;
                 }
                 
-                Tone.getTransport().bpm.value = TEMPO_BPM;
+                Tone.getTransport().bpm.value = tempoBpmRef.current;
                 sequenceRef.current.start();
                 Tone.getTransport().start();
                 

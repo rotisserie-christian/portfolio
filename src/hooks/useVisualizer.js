@@ -19,6 +19,8 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
   const rafRef = useRef(null);
   const presetsRef = useRef(null);
   const isPlayingRef = useRef(isPlaying);
+  const connectedGainRef = useRef(null);
+  const audioCtxRef = useRef(null);
 
   const loadPreset = useCallback((viz) => {
     const visualizer = viz || visualizerRef.current;
@@ -29,7 +31,7 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     if (keys.length === 0) return;
     
     // Set preset 
-    const presetName = keys[0];
+    const presetName = keys[58];
     const preset = presets[presetName];
     if (!preset) return;
     
@@ -45,29 +47,32 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Audio and visual pipeline 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const audioCtx = Tone.getContext().rawContext;
-
-    // Splits audio into 2048 frequency bands (bass, mid, treble)
-    const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
-    analyser.smoothingTimeConstant = 0.3;
+  const connectAnalyser = useCallback(() => {
+    if (!analyserRef.current || !audioCtxRef.current) return;
     
-    // Capture the ref value to avoid stale closure issues
+    const analyser = analyserRef.current;
+    const audioCtx = audioCtxRef.current;
     const sequencerGain = sequencerGainRef?.current;
+    
+    // Disconnect from previous source if any
+    try {
+      if (connectedGainRef.current) {
+        connectedGainRef.current.disconnect(analyser);
+        connectedGainRef.current = null;
+      }
+    } catch {
+      // Ignore disconnect errors
+    }
     
     try {
       if (sequencerGain) {
         sequencerGain.connect(analyser);
+        connectedGainRef.current = sequencerGain;
       } else {
         // Fallback: gain node connected to master output
         const fallbackGain = audioCtx.createGain();
         fallbackGain.connect(analyser);
+        connectedGainRef.current = fallbackGain;
         
         const masterGain = Tone.getDestination().input;
         if (masterGain && masterGain.connect) {
@@ -82,7 +87,70 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     } catch (err) {
       console.warn('failed to connect analyser to audio source', err);
     }
+  }, [sequencerGainRef]);
+
+  // Reconnect when sequencerGainRef becomes available
+  // Polling approach since refs don't trigger re-renders
+  useEffect(() => {
+    let interval = null;
+    let isCleanedUp = false;
+    
+    const checkConnection = () => {
+      if (isCleanedUp) return;
+      
+      const sequencerGain = sequencerGainRef?.current;
+      const currentConnection = connectedGainRef.current;
+      
+      // If we have a sequencer gain and it's different from what we're connected to, reconnect
+      if (sequencerGain && analyserRef.current) {
+        if (currentConnection !== sequencerGain) {
+          connectAnalyser();
+          // Stop polling once connected to sequencer gain
+          if (interval && connectedGainRef.current === sequencerGain) {
+            clearInterval(interval);
+            interval = null;
+          }
+        }
+      }
+    };
+    
+    // Check immediately
+    checkConnection();
+    
+    // Poll periodically to catch when sequencerGainRef becomes available
+    // Stop polling once we're connected to the sequencer gain
+    interval = setInterval(() => {
+      if (!connectedGainRef.current || connectedGainRef.current !== sequencerGainRef?.current) {
+        checkConnection();
+      } else if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    }, 100);
+    
+    return () => {
+      isCleanedUp = true;
+      if (interval) clearInterval(interval);
+    };
+  }, [sequencerGainRef, connectAnalyser]);
+
+  // Audio and visual pipeline 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const audioCtx = Tone.getContext().rawContext;
+    audioCtxRef.current = audioCtx;
+
+    // Splits audio into 2048 frequency bands (bass, mid, treble)
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 2048;
+    analyser.smoothingTimeConstant = 0.3;
     analyserRef.current = analyser;
+    
+    // Try to connect immediately if sequencerGain is available
+    connectAnalyser();
 
     // listen for resize events and update the canvas size
     const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -113,9 +181,8 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
 
     const render = () => {
       try {
-        if (isPlayingRef.current) {
-          viz.render();
-        }
+        // Always render, but visualizer will show static if no audio
+        viz.render();
       } catch (err) {
         if (import.meta?.env?.MODE === 'development') {
           console.warn('visualizer render error', err);
@@ -129,22 +196,24 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
       try {
-        if (sequencerGain) {
-          sequencerGain.disconnect(analyser);
-        } else {
-          // Clean up fallback audio routing
-          const masterGain = Tone.getDestination().input;
-          if (masterGain && masterGain.disconnect) {
-            masterGain.disconnect(analyser);
-          }
+        if (connectedGainRef.current) {
+          connectedGainRef.current.disconnect(analyser);
+          connectedGainRef.current = null;
         }
       } catch (err) {
         if (import.meta?.env?.MODE === 'development') {
           console.debug('visualizer disconnect error', err);
         }
       }
+      if (visualizerRef.current) {
+        try {
+          visualizerRef.current.disconnect();
+        } catch {
+          // Ignore disconnect errors
+        }
+      }
     };
-  }, [loadPreset, sequencerGainRef]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loadPreset, connectAnalyser]); // eslint-disable-line react-hooks/exhaustive-deps
   // disabled because canvasRef does not change between renders 
 
   return {
