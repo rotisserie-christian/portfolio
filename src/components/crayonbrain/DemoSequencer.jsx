@@ -112,7 +112,7 @@ const DemoSequencer = () => {
                             {sound.name}
                         </div>
 
-                        <div className="flex-grow grid gap-0.5" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
+                        <div className="flex-grow grid gap-1" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
                             {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                                 <button
                                     key={`${sound.id}-${stepIndex}`}
