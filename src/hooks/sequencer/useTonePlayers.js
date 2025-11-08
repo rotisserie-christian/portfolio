@@ -9,6 +9,7 @@ import * as Tone from 'tone';
  * @param {Object} sequencerGainRef - React ref to store sequencer gain node
  * @param {Object} isInitializingRef - React ref to track initialization state
  * @param {Function} setIsInitializing - Function to update initialization state
+ * @param {boolean} shouldInitialize - Whether to initialize players (for lazy loading)
  * @returns {void}
  */
 export const useTonePlayers = (
@@ -16,9 +17,12 @@ export const useTonePlayers = (
   playersRef,
   sequencerGainRef,
   isInitializingRef,
-  setIsInitializing
+  setIsInitializing,
+  shouldInitialize = true
 ) => {
   useEffect(() => {
+    if (!shouldInitialize) return;
+
     const initializePlayers = async () => {
       try {
         isInitializingRef.current = true;
@@ -60,6 +64,6 @@ export const useTonePlayers = (
         }
       }
     };
-  }, [drumSounds, playersRef, sequencerGainRef, isInitializingRef, setIsInitializing]);
+  }, [drumSounds, playersRef, sequencerGainRef, isInitializingRef, setIsInitializing, shouldInitialize]);
 };
 

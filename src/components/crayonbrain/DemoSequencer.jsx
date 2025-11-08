@@ -3,6 +3,7 @@ import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
 import { useSequencer } from '../../hooks/sequencer/useSequencer';
 import { useSequencerContext } from '../../hooks/useSequencerContext';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import TempoSlider from './TempoSlider';
 import { DEFAULT_BPM } from './tempoConstants';
 import kick from '../../assets/kick.wav';
@@ -21,6 +22,7 @@ const TIME_STEPS = 8;
 
 const DemoSequencer = () => {
     const { setIsPlaying, sequencerGainRef: contextGainRef } = useSequencerContext();
+    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '100px' });
     
     // Default pattern
     const [drumSequence, setDrumSequence] = useState([
@@ -35,7 +37,8 @@ const DemoSequencer = () => {
     const { isPlaying, currentStep, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
-        bpm
+        bpm,
+        hasIntersected
     );
 
     // Update context when sequencer state changes
@@ -75,7 +78,7 @@ const DemoSequencer = () => {
     };
 
     return (
-        <div className="demo-sequencer w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+        <div ref={elementRef} className="demo-sequencer w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
             <div className="flex flex-row items-center justify-between w-full mb-4 md:mb-6 lg:mb-8 px-2">
                 <button
                     onClick={handlePlay}
@@ -112,7 +115,7 @@ const DemoSequencer = () => {
                             {sound.name}
                         </div>
 
-                        <div className="flex-grow grid gap-1" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
+                        <div className="flex-grow grid gap-2 md:gap-1.5 lg:gap-1" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
                             {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                                 <button
                                     key={`${sound.id}-${stepIndex}`}

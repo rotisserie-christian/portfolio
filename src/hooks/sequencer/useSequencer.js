@@ -11,6 +11,7 @@ import { useTransport } from './useTransport';
  * @param {Array} drumSequence - Array of drum tracks with step patterns
  * @param {Array} drumSounds - Array of sound objects { id, name, src }
  * @param {number} tempoBpm - Tempo in BPM (default: 170)
+ * @param {boolean} shouldInitialize - Whether to initialize audio players (for lazy loading)
  * @returns {Object} Sequencer state and controls
  * @returns {boolean} returns.isPlaying - Current playback state
  * @returns {number} returns.currentStep - Current step in sequence
@@ -18,7 +19,7 @@ import { useTransport } from './useTransport';
  * @returns {Object} returns.sequencerGainRef - Audio gain node reference
  * @returns {boolean} returns.isInitializing - Initialization state
  */
-export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_TEMPO_BPM) => {
+export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_TEMPO_BPM, shouldInitialize = true) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     const [isInitializing, setIsInitializing] = useState(true);
@@ -47,7 +48,8 @@ export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_TEMPO_
         playersRef,
         sequencerGainRef,
         isInitializingRef,
-        setIsInitializing
+        setIsInitializing,
+        shouldInitialize
     );
 
     // Setup Tone.Sequence for step-based playback
