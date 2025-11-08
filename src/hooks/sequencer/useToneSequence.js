@@ -10,7 +10,6 @@ import { TIME_STEPS } from './sequencerConstants';
  * @param {Object} drumSequenceRef - React ref to current drum sequence pattern
  * @param {Object} sequenceRef - React ref to store Tone.Sequence instance
  * @param {Function} setCurrentStep - Function to update current step state
- * @param {Function} onStepChange - Optional callback for step changes
  * @returns {void}
  */
 export const useToneSequence = (
@@ -18,13 +17,11 @@ export const useToneSequence = (
   playersRef,
   drumSequenceRef,
   sequenceRef,
-  setCurrentStep,
-  onStepChange
+  setCurrentStep
 ) => {
   useEffect(() => {
     sequenceRef.current = new Tone.Sequence((time, step) => {
       setCurrentStep(step);
-      onStepChange?.(step);
       
       stableDrumSounds.forEach((sound, soundIndex) => {
         const track = drumSequenceRef.current[soundIndex];
@@ -48,6 +45,6 @@ export const useToneSequence = (
         sequenceRef.current = null;
       }
     };
-  }, [stableDrumSounds, onStepChange, playersRef, drumSequenceRef, sequenceRef, setCurrentStep]);
+  }, [stableDrumSounds, playersRef, drumSequenceRef, sequenceRef, setCurrentStep]);
 };
 

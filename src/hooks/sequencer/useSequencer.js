@@ -10,7 +10,6 @@ import { useTransport } from './useTransport';
  * 
  * @param {Array} drumSequence - Array of drum tracks with step patterns
  * @param {Array} drumSounds - Array of sound objects { id, name, src }
- * @param {Function} onStepChange - Optional callback for step changes
  * @param {number} tempoBpm - Tempo in BPM (default: 170)
  * @returns {Object} Sequencer state and controls
  * @returns {boolean} returns.isPlaying - Current playback state
@@ -19,7 +18,7 @@ import { useTransport } from './useTransport';
  * @returns {Object} returns.sequencerGainRef - Audio gain node reference
  * @returns {boolean} returns.isInitializing - Initialization state
  */
-export const useSequencer = (drumSequence, drumSounds, onStepChange, tempoBpm = DEFAULT_TEMPO_BPM) => {
+export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_TEMPO_BPM) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     const [isInitializing, setIsInitializing] = useState(true);
@@ -57,8 +56,7 @@ export const useSequencer = (drumSequence, drumSounds, onStepChange, tempoBpm = 
         playersRef,
         drumSequenceRef,
         sequenceRef,
-        setCurrentStep,
-        onStepChange
+        setCurrentStep
     );
 
     // Manage Transport play/stop functionality

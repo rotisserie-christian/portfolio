@@ -1,14 +1,12 @@
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy } from "react";
 const Visualizer = lazy(() => import('./Visualizer'));
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import cb from "../../assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
+import { SequencerProvider } from "../../contexts/SequencerContext.jsx";
 
 export default function Crayonbrain() {
-    const [isSequencerPlaying, setIsSequencerPlaying] = useState(false);
-    const [sequencerGainRef, setSequencerGainRef] = useState(null);
-
     return (
         <section className="flex items-center justify-center w-full">
             <div className="flex flex-col mt-10 mb-20 md:mb-32 lg:mb-40 items-center justify-center w-full">
@@ -42,25 +40,22 @@ export default function Crayonbrain() {
                     </button>
                 </a>
 
-                <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
-                    <div className="w-full lg:w-1/2">
-                        <DemoSequencer 
-                            onPlayStateChange={setIsSequencerPlaying}
-                            onSequencerGainRef={setSequencerGainRef}
-                        />
-                    </div>
+                <SequencerProvider>
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
+                        <div className="w-full lg:w-1/2">
+                            <DemoSequencer />
+                        </div>
 
-                    <div className="w-full lg:w-1/2">
-                        <Suspense fallback={<div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
-                            <Visualizer 
-                                canvasId="demo-visualizer"
-                                className="bg-base-300 rounded-xl"
-                                isPlaying={isSequencerPlaying}
-                                sequencerGainRef={sequencerGainRef}
-                            />
-                        </Suspense>
+                        <div className="w-full lg:w-1/2">
+                            <Suspense fallback={<div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]"><span className="loading loading-spinner loading-lg text-primary"></span></div>}>
+                                <Visualizer 
+                                    canvasId="demo-visualizer"
+                                    className="bg-base-300 rounded-xl"
+                                />
+                            </Suspense>
+                        </div>
                     </div>
-                </div>
+                </SequencerProvider>
             </div>
         </section>
     );

@@ -1,8 +1,8 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
-import PropTypes from 'prop-types';
 import { useSequencer } from '../../hooks/sequencer/useSequencer';
+import { useSequencerContext } from '../../hooks/useSequencerContext';
 import TempoSlider from './TempoSlider';
 import { DEFAULT_BPM } from './tempoConstants';
 import kick from '../../assets/kick.wav';
@@ -17,7 +17,9 @@ const DRUM_SOUNDS = [
 
 const TIME_STEPS = 8;
 
-const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
+const DemoSequencer = () => {
+    const { setIsPlaying, sequencerGainRef: contextGainRef } = useSequencerContext();
+    
     // Default pattern
     const [drumSequence, setDrumSequence] = useState([
         { steps: [true, false, false, false, false, true, false, false] }, // kick
@@ -26,29 +28,24 @@ const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
     ]);
     
     const [bpm, setBpm] = useState(DEFAULT_BPM);
-    
-    const onStepChange = useCallback(() => {
-        // Optional: handle step changes if needed
-    }, []);
 
     const { isPlaying, currentStep, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
-        onStepChange,
         bpm
     );
 
-    const handlePlayWithCallback = async () => {
-        await handlePlay();
-        onPlayStateChange?.(!isPlaying);
-    };
-
-    // Pass sequencerGainRef to parent when it's available
+    // Update context when sequencer state changes
     useEffect(() => {
-        if (sequencerGainRef && onSequencerGainRef) {
-            onSequencerGainRef(sequencerGainRef);
+        setIsPlaying(isPlaying);
+    }, [isPlaying, setIsPlaying]);
+
+    // Sync sequencerGainRef to context when it's available
+    useEffect(() => {
+        if (sequencerGainRef?.current) {
+            contextGainRef.current = sequencerGainRef.current;
         }
-    }, [sequencerGainRef, onSequencerGainRef]);
+    }, [sequencerGainRef, contextGainRef]);
 
     const handleDrumCellClick = (soundIndex, stepIndex) => {
         setDrumSequence(prev => prev.map((track, currentSoundIndex) => {
@@ -78,7 +75,7 @@ const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
         <div className="demo-sequencer w-full p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
             <div className="flex flex-row items-center justify-between w-full mb-4 md:mb-6 lg:mb-8 px-2">
                 <button
-                    onClick={handlePlayWithCallback}
+                    onClick={handlePlay}
                     className={`btn btn-neutral rounded-xl ${isPlaying ? 'text-red-300' : 'text-cyan-200'} w-24 md:w-28 lg:w-32`}
                     disabled={isInitializing}
                     aria-label={isPlaying ? "Stop drum loop" : "Play drum loop"}
@@ -134,9 +131,5 @@ const DemoSequencer = ({ onPlayStateChange, onSequencerGainRef }) => {
     );
 };
 
-DemoSequencer.propTypes = {
-    onPlayStateChange: PropTypes.func,
-    onSequencerGainRef: PropTypes.func,
-};
 
 export default DemoSequencer;
