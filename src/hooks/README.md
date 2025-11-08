@@ -1,8 +1,8 @@
 ### Hooks
 
 **Shared:**
-- **`useAudioConnection.js`** - Handles reconnection when audio source becomes available
-- **`useSequencerContext.js`** - Hook to access sequencer context (must be used within SequencerProvider)
+- **`useAudioConnection.js`** - Connects analyzer node to an audio source 
+- **`useSequencerContext.js`** - Access sequencer context
 
 **Sequencer:**
 - See `sequencer/README.md`
