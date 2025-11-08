@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useVisualizer } from '../../hooks/useVisualizer';
+import { useVisualizer } from '../../hooks/visualizer/useVisualizer';
 
 const Visualizer = ({ className = '', canvasId, fillParent = false, isPlaying = true, sequencerGainRef = null }) => {
   const canvasRef = useRef(null);

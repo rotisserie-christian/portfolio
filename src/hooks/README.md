@@ -1,3 +1,10 @@
 ### Hooks
-- **`useSequencer.js`** - Tone.js playback, live editing, and step tracking
-- **`useVisualizer.js`** - Render loop for the visualizer 
+
+**Shared:**
+- **`useAudioConnection.js`** - Handles reconnection when audio source becomes available
+
+**Sequencer:**
+- See `sequencer/README.md`
+
+**Visualizer:**
+- See `visualizer/README.md` 
