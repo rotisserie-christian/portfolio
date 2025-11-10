@@ -1,6 +1,6 @@
-### Hooks
+# Hooks
 
-#### Sequencer
+## Sequencer
 - **`sequencerConstants.js`** - Sequencer configuration constants
 - **`useSequencer.js`** - Orchestrator
 - **`useTempo.js`** - Manages tempo synchronization between React state and Tone.js Transport
@@ -10,8 +10,8 @@
 
 ---
 
-#### Main Hook
-##### `useSequencer`
+## Main Hook
+### `useSequencer`
 
 Main orchestrator that handles player initialization, sequence scheduling, tempo management, and transport control.
 
@@ -38,8 +38,8 @@ Main orchestrator that handles player initialization, sequence scheduling, tempo
 
 ---
 
-#### Supporting Hooks
-##### `useTonePlayers`
+## Supporting Hooks
+### `useTonePlayers`
 
 Initializes and manages Tone.Player instances. Creates a shared gain node that all players connect to.
 
@@ -57,7 +57,7 @@ Initializes and manages Tone.Player instances. Creates a shared gain node that a
 
 ---
 
-##### `useToneSequence`
+### `useToneSequence`
 
 Sets up and manages Tone.Sequence for playback. Schedules audio playback at each step and updates current step state.
 
@@ -74,7 +74,7 @@ Sets up and manages Tone.Sequence for playback. Schedules audio playback at each
 
 ---
 
-##### `useTempo`
+### `useTempo`
 
 Manages tempo synchronization between React state and Tone.js Transport
 
