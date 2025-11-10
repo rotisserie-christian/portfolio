@@ -1,20 +1,12 @@
-### Hooks
+# Hooks
 
-**Shared:**
-- **`useAudioConnection.js`** - Connects analyzer node to an audio source 
+## Data Flow
+### Lazy Loading → Sequencer → Context → Visualizer
+
+## Shared Hooks
 - **`useIntersectionObserver.js`** - Observes element intersection with viewport for lazy loading
 - **`useSequencerContext.js`** - Access sequencer context
-
-**Sequencer:**
-- See `sequencer/README.md`
-
-**Visualizer:**
-- See `visualizer/README.md`
-
----
-
-#### Data Flow
-##### Lazy Loading → Sequencer → Context → Visualizer
+- **`useAudioConnection.js`** - Connects analyzer node to an audio source 
 
 1. **useIntersectionObserver** (DemoSequencer)
    - Observes when sequencer enters viewport, for progressive loading
