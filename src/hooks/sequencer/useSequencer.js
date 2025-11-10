@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { DEFAULT_TEMPO_BPM } from './sequencerConstants';
+import { DEFAULT_TEMPO_BPM } from '../../utils/sequencerConstants';
 import { useTonePlayers } from './useTonePlayers';
 import { useTempo } from './useTempo';
 import { useToneSequence } from './useToneSequence';

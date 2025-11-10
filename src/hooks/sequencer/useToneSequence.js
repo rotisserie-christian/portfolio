@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import * as Tone from 'tone';
-import { TIME_STEPS } from './sequencerConstants';
+import { TIME_STEPS } from '../../utils/sequencerConstants';
 
 /**
  * Sets up and manages Tone.Sequence 
