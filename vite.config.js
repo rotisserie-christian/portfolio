@@ -31,8 +31,9 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
   },
   test: {
-    environment: 'jsdom',
+    environment: 'happy-dom',
     globals: true,
+    setupFiles: ['./src/test-utils/setup.js'],
     include: ['src/**/*.test.{js,jsx,ts,tsx}']
   }
 })
