@@ -1,6 +1,8 @@
 # Hooks
 
 ## Visualizer
+- **`analyserSetup.js`** - Creates and configures Web Audio analyser nodes
+- **`presetLoader.js`** - Loads Butterchurn presets
 - **`useCanvasResize.js`** - Handles canvas sizing on window resize events
 - **`usePresetSwitching.js`** - Manages preset selection, switching, and name display
 - **`useRenderLoop.js`** - Manages requestAnimationFrame render loop

@@ -1,33 +1,14 @@
 ### Utilities
 
 **Functions:**
-- **`analyserSetup.js`** - Creates and configures Web Audio analyser nodes
 - **`cn.js`** - Merge Tailwind CSS classes using clsx and tailwind-merge
-- **`presetLoader.js`** - Loads Butterchurn presets
 
 **Constants:**
-- **`sequencerConstants.js`** - Sequencer configuration constants
-- **`visualizerConstants.js`** - Visualizer configuration constants
+- **`visualizerConstants.js`** - Visualizer configuration constants (shared across hooks and components)
 
 ---
 
 #### Functions
-
-##### `createAnalyser`
-
-Creates and configures a Web Audio analyser node for frequency analysis.
-
-**Parameters:**
-- `audioContext` (AudioContext) - Web Audio context
-- `fftSize` (number, optional) - FFT size for frequency analysis (default: 2048)
-- `smoothingTimeConstant` (number, optional) - Temporal smoothing (default: 0.2)
-
-**Returns:**
-- `AnalyserNode` - Configured analyser node
-
-**Used in:** `useSetupVisualizer.js:5`
-
----
 
 ##### `cn`
 
@@ -43,36 +24,7 @@ Merges Tailwind CSS classes using clsx and tailwind-merge. Enables conditional c
 
 ---
 
-##### `loadPreset`
-
-Loads a Butterchurn preset into the visualizer with validation and error handling.
-
-**Parameters:**
-- `visualizer` (Object) - Butterchurn visualizer instance
-- `presets` (Object) - Object containing preset data
-- `presetIndex` (number, optional) - Index of preset to load (default: 58)
-- `blendTime` (number, optional) - Time in seconds for preset transition (default: 1.0)
-
-**Returns:**
-- `boolean` - Whether preset was successfully loaded
-
-**Used in:** `useSetupVisualizer.js:6`, `usePresetSwitching.js:2`
-
----
-
 #### Constants
-
-##### `sequencerConstants.js`
-
-Configuration constants for the sequencer system.
-
-**Exports:**
-- `TIME_STEPS` (number) - Number of steps in sequence (8)
-- `DEFAULT_TEMPO_BPM` (number) - Default tempo in BPM (170)
-
-**Used in:** `useSequencer.js:2`, `useToneSequence.js:3`
-
----
 
 ##### `visualizerConstants.js`
 

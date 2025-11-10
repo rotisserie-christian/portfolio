@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { usePresetSwitching } from './usePresetSwitching';
-import { loadPreset } from '../../utils/presetLoader';
+import { loadPreset } from './presetLoader';
 import { PRESET_INDICES, PRESET_BLEND_TIME } from '../../utils/visualizerConstants';
 import {
   createMockVisualizer,
@@ -9,7 +9,7 @@ import {
 } from './__test-utils__';
 
 // Mock dependencies
-vi.mock('../../utils/presetLoader', () => ({
+vi.mock('./presetLoader', () => ({
   loadPreset: vi.fn(() => true),
 }));
 

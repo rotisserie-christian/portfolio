@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import * as Tone from 'tone';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
-import { createAnalyser } from '../../utils/analyserSetup';
-import { loadPreset } from '../../utils/presetLoader';
+import { createAnalyser } from './analyserSetup';
+import { loadPreset } from './presetLoader';
 import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
 
 /**

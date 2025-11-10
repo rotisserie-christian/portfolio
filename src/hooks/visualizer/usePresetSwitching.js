@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { loadPreset } from '../../utils/presetLoader';
+import { loadPreset } from './presetLoader';
 import { PRESET_BLEND_TIME, PRESET_INDICES } from '../../utils/visualizerConstants';
 
 /**

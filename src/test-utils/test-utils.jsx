@@ -10,6 +10,8 @@ const customRender = (ui, options = {}) => {
   return render(ui, { wrapper: AllTheProviders, ...options });
 };
 
+// Re-exports testing functions, not React components
+/* eslint-disable react-refresh/only-export-components */
 export * from '@testing-library/react';
 export { customRender as render };
 
