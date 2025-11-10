@@ -30,7 +30,7 @@ describe('usePresetSwitching', () => {
 
     // Mock presets object - keys array indices must match PRESET_INDICES values
     // PRESET_INDICES = [0, 54, 77], so keys[0], keys[54], keys[77] should exist
-    mockPresets = createMockPresets({ presetIndices: PRESET_INDICES, totalPresets: 78 });
+    mockPresets = createMockPresets({ totalPresets: 78 });
 
     visualizerRef = { current: mockVisualizer };
     presetsRef = { current: null };

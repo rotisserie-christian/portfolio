@@ -80,7 +80,7 @@ export const createMockDrumSequence = () => [
 ];
 
 /**
- * Creates a mock gain node for testing
+ * Creates a mock gain node 
  * @returns {Object} Mock gain node
  */
 export const createMockGain = () => ({
@@ -91,7 +91,7 @@ export const createMockGain = () => ({
 });
 
 /**
- * Creates a mock sequence for testing
+ * Creates a mock sequence 
  * @returns {Object} Mock sequence
  */
 export const createMockSequence = () => ({
@@ -101,7 +101,7 @@ export const createMockSequence = () => ({
 });
 
 /**
- * Creates a mock transport for testing
+ * Creates a mock transport
  * @param {Object} options - Configuration options
  * @param {string} options.state - Transport state ('stopped' | 'started')
  * @param {number} options.bpm - Initial BPM value (default: 120)
@@ -117,7 +117,7 @@ export const createMockTransport = ({ state = 'stopped', bpm = 120 } = {}) => ({
 });
 
 /**
- * Sets up Tone.js mocks for useTonePlayers tests
+ * Tone.js mocks for useTonePlayers tests
  * @returns {Object} Object containing mockGain
  */
 export const setupToneMocks = () => {
@@ -178,7 +178,7 @@ export const waitForPlayersInitialized = async (playersRef, expectedCount = 3, o
 };
 
 /**
- * Asserts that all expected players exist
+ * All expected players exist
  * @param {Object} playersRef - React ref containing players
  * @param {Array<string>} playerIds - Array of player IDs to check (default: ['kick', 'snare', 'hat'])
  */
@@ -190,7 +190,7 @@ export const expectAllPlayersExist = (playersRef, playerIds = ['kick', 'snare', 
 };
 
 /**
- * Asserts that all players are connected to the gain node
+ * All players are connected to the gain node
  * @param {Object} playersRef - React ref containing players
  * @param {Object} mockGain - Mock gain node
  * @param {Array<string>} playerIds - Array of player IDs to check (default: ['kick', 'snare', 'hat'])
@@ -202,7 +202,7 @@ export const expectAllPlayersConnected = (playersRef, mockGain, playerIds = ['ki
 };
 
 /**
- * Asserts that all players and gain are disposed
+ * All players and gain are disposed
  * @param {Object} players - Object containing player instances
  * @param {Object} mockGain - Mock gain node
  * @param {Array<string>} excludeIds - Player IDs to exclude from disposal check
@@ -219,7 +219,7 @@ export const expectAllPlayersDisposed = (players, mockGain, excludeIds = []) => 
 };
 
 /**
- * Asserts that players and gain are NOT disposed
+ * Players and gain are not disposed
  * @param {Object} players - Object containing player instances
  * @param {Object} mockGain - Mock gain node
  * @param {Array<string>} playerIds - Player IDs to check (default: ['kick', 'snare', 'hat'])

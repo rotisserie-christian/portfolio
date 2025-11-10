@@ -32,34 +32,43 @@ export const useSetupVisualizer = (
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const audioCtx = Tone.getContext().rawContext;
-    audioCtxRef.current = audioCtx;
+    try {
+      const audioCtx = Tone.getContext().rawContext;
+      audioCtxRef.current = audioCtx;
 
-    // Create and configure analyser for frequency analysis
-    analyserRef.current = createAnalyser(audioCtx);
-    
-    // Try to connect immediately if audio source is available
-    connectAnalyser();
+      // Create and configure analyser for frequency analysis
+      analyserRef.current = createAnalyser(audioCtx);
+      
+      // Try to connect immediately if audio source is available
+      connectAnalyser();
 
-    // Get initial canvas dimensions for visualizer setup
-    const dpr = Math.min(MAX_DEVICE_PIXEL_RATIO, window.devicePixelRatio || 1);
-    const rect = canvas.getBoundingClientRect();
-    const initialWidth = Math.max(1, Math.floor(rect.width * dpr));
-    const initialHeight = Math.max(1, Math.floor(rect.height * dpr));
-    
-    const viz = butterchurn.createVisualizer(audioCtx, canvas, {
-      width: initialWidth,
-      height: initialHeight,
-      pixelRatio: dpr,
-    });
-    viz.connectAudio(analyserRef.current);
-    visualizerRef.current = viz;
+      // Get initial canvas dimensions for visualizer setup
+      const dpr = Math.min(MAX_DEVICE_PIXEL_RATIO, window.devicePixelRatio || 1);
+      const rect = canvas.getBoundingClientRect();
+      const initialWidth = Math.max(1, Math.floor(rect.width * dpr));
+      const initialHeight = Math.max(1, Math.floor(rect.height * dpr));
+      
+      const viz = butterchurn.createVisualizer(audioCtx, canvas, {
+        width: initialWidth,
+        height: initialHeight,
+        pixelRatio: dpr,
+      });
+      viz.connectAudio(analyserRef.current);
+      visualizerRef.current = viz;
 
-    // Cache presets
-    presetsRef.current = butterchurnPresets.getPresets();
+      // Cache presets
+      presetsRef.current = butterchurnPresets.getPresets();
 
-    // Load initial preset (index 0 - first preset in our selection)
-    loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
+      // Load initial preset (index 0 - first preset in our selection)
+      loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
+    } catch (error) {
+      // Log error but don't crash the component
+      console.error('Error setting up visualizer:', error);
+      // Reset refs to safe state
+      visualizerRef.current = null;
+      analyserRef.current = null;
+      presetsRef.current = null;
+    }
 
     return () => {
       try {

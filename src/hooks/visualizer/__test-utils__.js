@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 
 /**
- * Sets up device pixel ratio mock for testing
+ * Sets up device pixel ratio mock
  * @param {number} dpr - Device pixel ratio value to set (default: 1)
  * @returns {number} Original device pixel ratio value (for restoration)
  */
@@ -32,17 +32,15 @@ export const restoreDevicePixelRatio = (originalDpr) => {
 };
 
 /**
- * Creates a mock canvas element for testing
+ * Creates a mock canvas element
  * @param {Object} options - Configuration options
  * @param {number} options.width - Canvas width (default: 800)
  * @param {number} options.height - Canvas height (default: 600)
- * @param {number} options.devicePixelRatio - Device pixel ratio (default: 1)
  * @returns {Object} Mock canvas element
  */
 export const createMockCanvas = ({
   width = 800,
   height = 600,
-  devicePixelRatio = 1,
 } = {}) => {
   const canvas = {
     width: 0,
@@ -56,7 +54,7 @@ export const createMockCanvas = ({
 };
 
 /**
- * Creates a mock visualizer instance for testing
+ * Creates a mock visualizer instance
  * @param {Object} options - Configuration options
  * @param {boolean} options.withConnectAudio - Whether visualizer should have connectAudio method
  * @param {boolean} options.withDisconnect - Whether visualizer should have disconnect method
@@ -96,22 +94,15 @@ export const createMockVisualizer = ({
 };
 
 /**
- * Creates mock presets object for testing
+ * Creates mock presets object
  * @param {Object} options - Configuration options
- * @param {Array<number>} options.presetIndices - Array of preset indices to include (default: [0, 54, 77])
  * @param {number} options.totalPresets - Total number of presets to create (default: 78)
  * @returns {Object} Mock presets object
  */
 export const createMockPresets = ({
-  presetIndices = [0, 54, 77],
   totalPresets = 78,
 } = {}) => {
-  const presetKeys = Array(totalPresets).fill(null).map((_, i) => {
-    if (presetIndices.includes(i)) {
-      return `Preset ${i}`;
-    }
-    return `Preset ${i}`;
-  });
+  const presetKeys = Array(totalPresets).fill(null).map((_, i) => `Preset ${i}`);
   
   const presets = {};
   presetKeys.forEach((key, index) => {
@@ -135,7 +126,7 @@ export const createMockPresetsMinimal = (indices = [0, 54, 77]) => {
 };
 
 /**
- * Creates a mock audio context for testing
+ * Creates a mock audio context
  * @param {Object} options - Configuration options
  * @param {boolean} options.withCreateAnalyser - Whether context should have createAnalyser method
  * @returns {Object} Mock audio context
@@ -153,7 +144,7 @@ export const createMockAudioContext = ({
 };
 
 /**
- * Creates a mock analyser node for testing
+ * Creates a mock analyser node
  * @param {Object} options - Configuration options
  * @param {number} options.fftSize - FFT size value (default: 2048)
  * @param {number} options.smoothingTimeConstant - Smoothing time constant (default: 0.2)
@@ -184,7 +175,7 @@ export const createMockAnalyser = ({
 };
 
 /**
- * Creates a mock Web Audio API gain node for testing
+ * Creates a mock Web Audio API gain node
  * @param {Object} options - Configuration options
  * @param {boolean} options.withConnect - Whether gain should have connect method
  * @param {boolean} options.withDisconnect - Whether gain should have disconnect method
@@ -216,18 +207,20 @@ export const createMockGainNode = ({
 };
 
 /**
- * Sets up requestAnimationFrame mocks for testing
+ * Sets up requestAnimationFrame mocks
  * @returns {Object} Object containing rafId counter and frame callback storage
  */
 export const setupRequestAnimationFrame = () => {
   let rafId = 1;
   let frameCallback = null;
   
+  // eslint-disable-next-line no-undef
   global.requestAnimationFrame = vi.fn((cb) => {
     frameCallback = cb;
     return rafId++;
   });
   
+  // eslint-disable-next-line no-undef
   const cancelAnimationFrameSpy = vi.spyOn(global, 'cancelAnimationFrame').mockImplementation(() => {});
   
   return {
