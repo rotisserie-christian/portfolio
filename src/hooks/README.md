@@ -1,7 +1,7 @@
 # Hooks
 
 ## Data Flow
-### Lazy Loading → Sequencer → Context → Visualizer
+##### Lazy Loading → Sequencer → Context → Visualizer
 
 ## Shared Hooks
 - **`useIntersectionObserver.js`** - Observes element intersection with viewport for lazy loading
