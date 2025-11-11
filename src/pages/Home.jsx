@@ -5,6 +5,8 @@ import Crayonbrain from "../components/crayonbrain/Crayonbrain";
 import Flowchart from "../components/flowchart/Flowchart";
 
 export default function Home() {
+    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
     const scrollToProjects = () => {
         document.querySelector('[data-section="crayonbrain"]')?.scrollIntoView({ 
             behavior: 'smooth',
@@ -25,7 +27,7 @@ export default function Home() {
                     </h1>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        <span className="text-xl mr-2">{'\u{1F1E8}\u{1F1E6}'}</span>Web Developer 
+                        {!isChrome && <span className="text-xl mr-2">🇨🇦</span>}Web Developer 
                     </p>
 
                     <button 
