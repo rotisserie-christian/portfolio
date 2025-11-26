@@ -1,10 +1,10 @@
 This website hosts demo versions of my projects
 
 # Testing
-Tests are colocated, except for shared utilities 
+Tests are colocated
 - **`vitest`** - Testing framework
 - **`happy-dom`** - Simulated browser environment
-## Test Utilities
+### Test Utilities
 - **`test-utils/`** - Shared helpers and utilities
   - `audioIntegrationMocks.js` - Tone.js mocks for integration tests
   - `integrationTestHelpers.js` - Shared helpers 
@@ -17,7 +17,7 @@ These are progressively loaded
 - **`butterchurn-presets`** - Visualizer preset library
 - **`tone`** - Web Audio framework
 - **`reactflow`** - Library for making flowcharts
-## Design / Styling
+### Design / Styling
 - **`tailwindcss`** - CSS framework
 - **`@tailwindcss/vite`** - Tailwind CSS Vite plugin
 - **`daisyui`** - Tailwind component library
@@ -26,7 +26,7 @@ These are progressively loaded
 - **`clsx`** - Conditional className utility
 - **`postcss`** - CSS post-processor
 - **`react-icons`** - Icon library
-## Utilities 
+### Utilities 
 - **`react-router-dom`** - Client-side routing 
 
 
