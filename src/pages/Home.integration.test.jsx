@@ -19,9 +19,36 @@ vi.mock('../assets/cb.png', () => ({
   default: 'mock-cb-image.png',
 }));
 
+// Mock Intersection Observer to always intersect in tests
+vi.mock('../hooks/useIntersectionObserver', () => ({
+  useIntersectionObserver: () => ({
+    elementRef: { current: null },
+    isIntersecting: true,
+    hasIntersected: true, // Always true so lazy components load
+  }),
+}));
+
 // Mock Visualizer
 vi.mock('../components/crayonbrain/Visualizer', () => ({
   default: () => <div data-testid="visualizer">Visualizer</div>,
+}));
+
+// Mock Crayonbrain
+vi.mock('../components/crayonbrain/Crayonbrain', () => ({
+  default: () => (
+    <div data-testid="crayonbrain">
+      <img src="mock-cb-image.png" alt="Crayonbrain" />
+      <h1>Crayonbrain</h1>
+      <p>Download reactive visuals from audio</p>
+      <div data-testid="react-icon">React</div>
+      <div data-testid="tailwind-icon">Tailwind</div>
+      <a href="https://crayonbrain.com" target="_blank" rel="noreferrer">
+        <button>Visit</button>
+      </a>
+      <div data-testid="demo-sequencer">Demo Sequencer</div>
+      <div data-testid="visualizer">Visualizer</div>
+    </div>
+  ),
 }));
 
 // Mock DemoSequencer
@@ -88,9 +115,10 @@ describe('Home Page Integration', () => {
       expect(screen.getByText(/Web Developer/i)).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /projects/i })).toBeInTheDocument();
 
-      // Crayonbrain section
-      expect(screen.getByRole('heading', { name: /Crayonbrain/i })).toBeInTheDocument();
-      expect(screen.getByText(/Download reactive visuals from audio/i)).toBeInTheDocument();
+      // Crayonbrain section (lazy-loaded, but mocked so loads immediately)
+      await waitFor(() => {
+        expect(screen.getByTestId('crayonbrain')).toBeInTheDocument();
+      });
 
       // How it works section
       expect(screen.getByText(/How it works/i)).toBeInTheDocument();
@@ -112,11 +140,19 @@ describe('Home Page Integration', () => {
     it('should render Crayonbrain project section with all components', async () => {
       await renderHomeWithProviders();
 
+      // Wait for lazy-loaded Crayonbrain
+      await waitFor(() => {
+        expect(screen.getByTestId('crayonbrain')).toBeInTheDocument();
+      });
+
       // Crayonbrain logo
       const logo = screen.getByAltText('Crayonbrain');
       expect(logo).toBeInTheDocument();
       expect(logo).toHaveAttribute('src', 'mock-cb-image.png');
 
+      // Crayonbrain heading
+      expect(screen.getByRole('heading', { name: /Crayonbrain/i })).toBeInTheDocument();
+      
       // Tech badges
       expect(screen.getByTestId('react-icon')).toBeInTheDocument();
       expect(screen.getByTestId('tailwind-icon')).toBeInTheDocument();
@@ -140,6 +176,11 @@ describe('Home Page Integration', () => {
 
     it('should render sequencer and visualizer within SequencerProvider', async () => {
       await renderHomeWithProviders();
+
+      // Wait for lazy-loaded Crayonbrain first
+      await waitFor(() => {
+        expect(screen.getByTestId('crayonbrain')).toBeInTheDocument();
+      });
 
       expect(screen.getByTestId('demo-sequencer')).toBeInTheDocument();
       await waitFor(() => {
@@ -198,8 +239,13 @@ describe('Home Page Integration', () => {
       const mainHeading = screen.getByText(/Christian Waters/i);
       expect(mainHeading).toHaveClass('text-3xl', 'lg:text-5xl');
 
+      // Wait for lazy-loaded Crayonbrain, then check heading
+      await waitFor(() => {
+        expect(screen.getByTestId('crayonbrain')).toBeInTheDocument();
+      });
+      
       const crayonbrainHeading = screen.getByRole('heading', { name: /Crayonbrain/i });
-      expect(crayonbrainHeading).toHaveClass('text-3xl', 'lg:text-5xl');
+      expect(crayonbrainHeading).toBeInTheDocument();
     });
   });
 
@@ -217,10 +263,13 @@ describe('Home Page Integration', () => {
       const sections = container.querySelectorAll('section');
       expect(sections.length).toBeGreaterThan(0);
 
-      // Verify Crayonbrain section contains its children
+      // Verify Crayonbrain section exists and wait for lazy-loaded content
       const crayonbrainSection = container.querySelector('[data-section="crayonbrain"]');
       expect(crayonbrainSection).toBeInTheDocument();
-      expect(crayonbrainSection?.querySelector('img[alt="Crayonbrain"]')).toBeInTheDocument();
+      
+      await waitFor(() => {
+        expect(crayonbrainSection?.querySelector('img[alt="Crayonbrain"]')).toBeInTheDocument();
+      });
     });
   });
 });

@@ -2,8 +2,52 @@ import { lazy, Suspense } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
-import Crayonbrain from "../components/crayonbrain/Crayonbrain";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+
+const Crayonbrain = lazy(() => import("../components/crayonbrain/Crayonbrain"));
 const Flowchart = lazy(() => import("../components/flowchart/Flowchart"));
+
+// Wrapper for lazy-loaded Crayonbrain
+const LazyCrayonbrain = () => {
+  const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '200px' });
+
+  return (
+    <div ref={elementRef} data-section="crayonbrain">
+      {hasIntersected ? (
+        <Suspense fallback={
+          <div className="flex items-center justify-center w-full h-96">
+            <span className="loading loading-spinner loading-lg text-primary"></span>
+          </div>
+        }>
+          <Crayonbrain />
+        </Suspense>
+      ) : (
+        <div className="h-96" /> // Placeholder to maintain layout
+      )}
+    </div>
+  );
+};
+
+// Wrapper for lazy-loaded Flowchart
+const LazyFlowchart = () => {
+  const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '200px' });
+
+  return (
+    <div ref={elementRef} className="w-full">
+      {hasIntersected ? (
+        <Suspense fallback={
+          <div className="mx-auto w-[350px] lg:w-[421px] h-[750px] flex items-center justify-center">
+            <span className="loading loading-spinner loading-lg text-primary"></span>
+          </div>
+        }>
+          <Flowchart />
+        </Suspense>
+      ) : (
+        <div className="mx-auto w-[350px] lg:w-[421px] h-[750px]" /> // Placeholder
+      )}
+    </div>
+  );
+};
 
 export default function Home() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -40,9 +84,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <div data-section="crayonbrain">
-                <Crayonbrain />
-            </div>
+            <LazyCrayonbrain />
 
             <div className="flex flex-col lg:flex-row mt-10 mb-20 gap-10 lg:gap-20 items-center justify-center max-w-5xl mx-auto w-full">
                 <div className="flex flex-col items-center lg:items-end justify-center w-full px-2">
@@ -58,15 +100,7 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="w-full">
-                    <Suspense fallback={
-                        <div className="mx-auto w-[350px] lg:w-[421px] h-[750px] flex items-center justify-center">
-                            <span className="loading loading-spinner loading-lg text-primary"></span>
-                        </div>
-                    }>
-                        <Flowchart />
-                    </Suspense>
-                </div>
+                <LazyFlowchart />
             </div>
         </div>
         </>

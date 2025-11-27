@@ -97,10 +97,18 @@ export const StarsBackground = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    if (!ctx) return; // Context not available (e.g., in test environment)
     let af;
     let frameCount = 0; // Add frame counter for throttling
 
     const render = () => {
+      // Check if canvas still exists (component might have unmounted)
+      const currentCanvas = canvasRef.current;
+      if (!currentCanvas || !ctx) {
+        if (af) cancelAnimationFrame(af);
+        return;
+      }
+
       frameCount++;
       
       // Render at 25fps (skip 2 out of 3 frames)
@@ -109,7 +117,7 @@ export const StarsBackground = ({
         return;
       }
 
-      const { width, height } = canvas;
+      const { width, height } = currentCanvas;
       ctx.clearRect(0, 0, width, height);
 
       const centerX = width / 2;
@@ -154,7 +162,9 @@ export const StarsBackground = ({
       af = requestAnimationFrame(render);
     };
     render();
-    return () => cancelAnimationFrame(af);
+    return () => {
+      if (af) cancelAnimationFrame(af);
+    };
   }, [
     stars,
     gravityStrength,
