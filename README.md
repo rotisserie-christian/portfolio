@@ -14,7 +14,7 @@ Tests are colocated, mostly covering hooks and integration.
   - `test-utils.jsx` - Custom render wrapper with providers
 
 # Dependencies 
-These are progressively loaded 
+### Audio / Visual 
 - **`butterchurn`** - WebGL music visualizer
 - **`butterchurn-presets`** - Visualizer preset library
 - **`tone`** - Web Audio framework
