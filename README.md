@@ -1,7 +1,9 @@
-This website hosts demo versions of my projects
+This website hosts demo versions of my projects.
+
+I'm using an approach where all the main content renders within a single route, progressively loading heavier assets and dependencies using Interaction Observer. 
 
 # Testing
-Tests are colocated
+Tests are colocated, mostly covering hooks and integration.
 - **`vitest`** - Testing framework
 - **`happy-dom`** - Simulated browser environment
 ### Test Utilities
@@ -12,7 +14,7 @@ Tests are colocated
   - `test-utils.jsx` - Custom render wrapper with providers
 
 # Dependencies 
-These are progressively loaded 
+### Audio / Visual 
 - **`butterchurn`** - WebGL music visualizer
 - **`butterchurn-presets`** - Visualizer preset library
 - **`tone`** - Web Audio framework
