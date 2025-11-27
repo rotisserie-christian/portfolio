@@ -1,8 +1,9 @@
+import { lazy, Suspense } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { ShootingStars } from "../components/ShootingStars";
 import { StarsBackground } from "../components/StarsBackground";
 import Crayonbrain from "../components/crayonbrain/Crayonbrain";
-import Flowchart from "../components/flowchart/Flowchart";
+const Flowchart = lazy(() => import("../components/flowchart/Flowchart"));
 
 export default function Home() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -58,7 +59,13 @@ export default function Home() {
                 </div>
 
                 <div className="w-full">
-                    <Flowchart />
+                    <Suspense fallback={
+                        <div className="mx-auto w-[350px] lg:w-[421px] h-[750px] flex items-center justify-center">
+                            <span className="loading loading-spinner loading-lg text-primary"></span>
+                        </div>
+                    }>
+                        <Flowchart />
+                    </Suspense>
                 </div>
             </div>
         </div>

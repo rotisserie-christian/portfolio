@@ -19,17 +19,27 @@ vi.mock('../assets/cb.png', () => ({
   default: 'mock-cb-image.png',
 }));
 
-// Mock Visualizer (heavy dependency, lazy-loaded)
+// Mock Visualizer
 vi.mock('../components/crayonbrain/Visualizer', () => ({
   default: () => <div data-testid="visualizer">Visualizer</div>,
 }));
 
-// Mock DemoSequencer (keep it simple for integration test)
+// Mock DemoSequencer
 vi.mock('../components/crayonbrain/DemoSequencer', () => ({
   default: () => <div data-testid="demo-sequencer">Demo Sequencer</div>,
 }));
 
-// Mock ReactFlow (heavy dependency)
+// Mock Flowchart
+vi.mock('../components/flowchart/Flowchart', () => ({
+  default: () => (
+    <>
+      <div data-testid="react-flow">Flowchart</div>
+      <div data-testid="flowchart-background">Background</div>
+    </>
+  ),
+}));
+
+// Mock ReactFlow
 vi.mock('reactflow', async () => {
   const actual = await vi.importActual('reactflow');
   return {
@@ -118,10 +128,13 @@ describe('Home Page Integration', () => {
       expect(visitLink).toHaveAttribute('target', '_blank');
     });
 
-    it('should render Flowchart component', async () => {
+    it('should render Flowchart component (lazy-loaded)', async () => {
       await renderHomeWithProviders();
 
-      expect(screen.getByTestId('react-flow')).toBeInTheDocument();
+      // Wait for lazy-loaded Flowchart to resolve via Suspense
+      await waitFor(() => {
+        expect(screen.getByTestId('react-flow')).toBeInTheDocument();
+      });
       expect(screen.getByTestId('flowchart-background')).toBeInTheDocument();
     });
 
