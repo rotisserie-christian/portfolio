@@ -1,6 +1,3 @@
-# Hooks
-
-## Visualizer
 - **`analyserSetup.js`** - Creates and configures Web Audio analyser nodes
 - **`presetLoader.js`** - Loads Butterchurn presets
 - **`useCanvasResize.js`** - Handles canvas sizing on window resize events
@@ -10,9 +7,7 @@
 - **`useVisualizer.js`** - Orchestrator
 
 
-## Main Hook
-### `useVisualizer`
-
+# Main Hook: `useVisualizer`
 Main orchestrator that handles visualizer setup, audio connection, canvas resizing, and rendering.
 
 **Parameters:**
@@ -35,8 +30,8 @@ Main orchestrator that handles visualizer setup, audio connection, canvas resizi
 **Used in:** `Visualizer.jsx:12`
 
 
-## Supporting Hooks
-### `useSetupVisualizer`
+# Supporting Hooks:
+## `useSetupVisualizer`
 
 Sets up Butterchurn with audio context, analyser, and presets. Initializes the visualizer instance and connects it to audio analysis.
 
@@ -54,7 +49,7 @@ Sets up Butterchurn with audio context, analyser, and presets. Initializes the v
 **Used internally by:** `useVisualizer`
 
 
-### `useRenderLoop`
+## `useRenderLoop`
 
 Manages a requestAnimationFrame render loop for continuous canvas rendering.
 
@@ -67,7 +62,7 @@ Manages a requestAnimationFrame render loop for continuous canvas rendering.
 **Used internally by:** `useVisualizer`
 
 
-### `usePresetSwitching`
+## `usePresetSwitching`
 
 Manages preset selection, switching, and name display for the visualizer.
 
@@ -83,7 +78,7 @@ Manages preset selection, switching, and name display for the visualizer.
 **Used in:** `Visualizer.jsx:14`
 
 
-### `useCanvasResize`
+## `useCanvasResize`
 
 Handles canvas sizing on window resize events.
 
