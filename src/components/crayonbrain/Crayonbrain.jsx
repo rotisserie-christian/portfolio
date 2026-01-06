@@ -9,7 +9,7 @@ import { SequencerProvider } from "../../contexts/SequencerContext.jsx";
 export default function Crayonbrain() {
     return (
         <section className="flex items-center justify-center w-full">
-            <div className="flex flex-col mt-10 mb-20 md:mb-32 lg:mb-40 items-center justify-center w-full">
+            <div className="flex flex-col mt-10 mb-10 lg:mb-16 items-center justify-center w-full">
                 <img src={cb} alt="Crayonbrain" className="w-[120px] mt-10" />
 
                 <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">

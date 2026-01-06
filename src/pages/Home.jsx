@@ -64,7 +64,7 @@ export default function Home() {
               <StarsBackground />
               <ShootingStars />
 
-                <div className="flex flex-col items-center justify-center bg-opacity-90 backdrop-blur-sm px-4">
+                <div className="flex flex-col items-center justify-center bg-base-300 bg-opacity-90 backdrop-blur-sm z-100 px-4 py-8 rounded-3xl">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                         Christian Waters
                     </h1>
@@ -75,7 +75,7 @@ export default function Home() {
 
                     <button 
                         onClick={scrollToProjects}
-                        className="btn w-28 lg:w-32 lg:btn-lg bg-neutral text-cyan-200 rounded-xl lg:rounded-2xl mt-10"
+                        className="btn w-28 lg:w-32 lg:btn-lg btn-neutral text-cyan-200 rounded-xl lg:rounded-2xl mt-10"
                     >
                         Projects<FaAngleDoubleRight />
                     </button>
@@ -84,22 +84,30 @@ export default function Home() {
 
             <LazyCrayonbrain />
 
-            <div className="flex flex-col lg:flex-row mt-10 mb-20 gap-10 lg:gap-20 items-center justify-center max-w-5xl mx-auto w-full">
-                <div className="flex flex-col items-center lg:items-end justify-center w-full px-2">
-                    <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold mb-6 lg:mb-8">
-                        How it works
-                    </h1>
-
-                    <p className="lg:text-lg lg:text-right text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
-                        The main feature is converting music clips into abstract visuals that can be downloaded as a video file.<br /><br />
-                        Audio can be uploaded or piped in from a microphone.<br /><br />
-                        The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.<br /><br />
-                        Crayonbrain is an attempt to extend this project by building audio systems around it, and making it easier to share the results.<br /><br />
-                    </p>
-                </div>
-
-                <LazyFlowchart />
+            <div className="flex justify-center w-full mt-2">
+              <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
             </div>
+
+            <h1 className="text-3xl lg:text-5xl lg:text-right text-neutral-content/85 ubuntu-bold mt-8 lg:mt-10">
+              How it works
+            </h1>
+
+            <div className="flex flex-col lg:flex-row mt-5 mb-10 gap-10 items-center justify-center max-w-5xl mx-auto w-full">
+              <LazyFlowchart />
+              
+              <div className="flex flex-col items-center lg:items-start justify-center w-full px-2">
+                <p className="lg:text-lg lg:text-left text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
+                  The main feature is converting audio into abstract visuals that can be downloaded as a video file.<br /><br />
+                  
+                  Audio can be uploaded, composed on the site, or piped in from a microphone.<br /><br />
+
+                  It's meant for private experimentation. It runs with very few backend services and collects minimal user data.<br /><br />
+
+                  The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.
+                  Crayonbrain is an attempt to build new audio systems around it, and make it easier to share the results.<br /><br />
+                </p>
+              </div>
+          </div>
         </div>
         </>
     );

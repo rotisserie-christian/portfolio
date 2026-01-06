@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from 'prop-types';
 
 export const StarsBackground = ({
-  starDensity = 0.00015,
+  starDensity = 0.0007,
   allStarsTwinkle = true,
   twinkleProbability = 0.9,
   minTwinkleSpeed = 1,
