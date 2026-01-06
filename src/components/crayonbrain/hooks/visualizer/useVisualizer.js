@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useAudioConnection } from '../useAudioConnection';
+import { useAudioConnection } from './useAudioConnection';
 import { useCanvasResize } from './useCanvasResize';
 import { useRenderLoop } from './useRenderLoop';
 import { useSetupVisualizer } from './useSetupVisualizer';

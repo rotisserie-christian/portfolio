@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
-import { render, screen, waitFor, act } from '../../test-utils/test-utils';
-import { wrapperWithSequencerProvider } from '../../test-utils/integrationTestWrappers';
-import { setupIntegrationToneMocks, cleanupToneMocks } from '../../test-utils/audioIntegrationMocks';
-import { waitForSequencerReady, INTEGRATION_TIMEOUTS } from '../../test-utils/integrationTestHelpers';
-import { useSequencer } from './useSequencer';
+import { render, screen, waitFor, act } from '../../../../../test-utils/test-utils';
+import { wrapperWithSequencerProvider } from '../../../../../test-utils/integrationTestWrappers';
+import { setupIntegrationToneMocks, cleanupToneMocks } from '../../../../../test-utils/audioIntegrationMocks';
+import { waitForSequencerReady, INTEGRATION_TIMEOUTS } from '../../../../../test-utils/integrationTestHelpers';
+import { useSequencer } from '../useSequencer';
 import {
   createMockDrumSounds,
   createMockDrumSequence,
@@ -416,10 +416,9 @@ describe('useSequencer Integration', () => {
       }
 
       // Verify gain cleanup
-      // Note: Cleanup happens in the effect's return function, which may not run immediately
-      // We verify the dispose method exists and was set up correctly
+      // happens in the effect's return function, which may not run immediately
+      // verifying the dispose method exists and was set up correctly
       expect(mockGainNode.dispose).toBeDefined();
-      // The cleanup should happen, but timing may vary
       await waitFor(() => {
         if (mockGainNode.dispose) {
           expect(mockGainNode.dispose).toHaveBeenCalled();

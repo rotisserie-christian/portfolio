@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { usePresetSwitching } from './usePresetSwitching';
 import { loadPreset } from './presetLoader';
-import { PRESET_INDICES, PRESET_BLEND_TIME } from '../../utils/visualizerConstants';
+import { PRESET_INDICES, PRESET_BLEND_TIME } from '../../../../../utils/visualizerConstants';
 import {
   createMockVisualizer,
   createMockPresets,

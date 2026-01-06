@@ -4,7 +4,7 @@ import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import { createAnalyser } from './analyserSetup';
 import { loadPreset } from './presetLoader';
-import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
+import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../../../utils/visualizerConstants';
 
 /**
  * Sets up Butterchurn visualizer with audio context, analyser, and presets
@@ -59,10 +59,9 @@ export const useSetupVisualizer = (
       // Cache presets
       presetsRef.current = butterchurnPresets.getPresets();
 
-      // Load initial preset (index 0 - first preset in our selection)
+      // Load initial preset: index 0 = $$$ Royal - Mashup (197)
       loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
     } catch (error) {
-      // Log error but don't crash the component
       console.error('Error setting up visualizer:', error);
       // Reset refs to safe state
       visualizerRef.current = null;

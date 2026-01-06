@@ -6,7 +6,7 @@ import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import { createAnalyser } from './analyserSetup';
 import { loadPreset } from './presetLoader';
-import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
+import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../../../../utils/visualizerConstants';
 import {
   setupDevicePixelRatio,
   restoreDevicePixelRatio,

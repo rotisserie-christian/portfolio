@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useAudioConnection } from './useAudioConnection';
+import { useAudioConnection } from '../useAudioConnection';
 import * as Tone from 'tone';
 
 // Mock Tone.js

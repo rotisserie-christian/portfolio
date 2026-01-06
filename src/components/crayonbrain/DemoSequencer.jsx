@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
-import { useSequencer } from '../../hooks/sequencer/useSequencer';
-import { useSequencerContext } from '../../hooks/useSequencerContext';
+import { useSequencer } from './hooks/sequencer/useSequencer';
+import { useSequencerContext } from './hooks/useSequencerContext';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import TempoSlider from './TempoSlider';
 import { DEFAULT_BPM } from './tempoConstants';

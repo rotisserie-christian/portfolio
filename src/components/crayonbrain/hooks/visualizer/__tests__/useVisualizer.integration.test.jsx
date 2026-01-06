@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, waitFor, act } from '../../test-utils/test-utils';
-import { wrapperWithSequencerProvider } from '../../test-utils/integrationTestWrappers';
-import { setupIntegrationToneMocks, cleanupToneMocks } from '../../test-utils/audioIntegrationMocks';
-import Visualizer from '../../components/crayonbrain/Visualizer';
+import { render, screen, waitFor, act } from '../../../../../test-utils/test-utils';
+import { wrapperWithSequencerProvider } from '../../../../../test-utils/integrationTestWrappers';
+import { setupIntegrationToneMocks, cleanupToneMocks } from '../../../../../test-utils/audioIntegrationMocks';
+import Visualizer from '../../../Visualizer';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import {

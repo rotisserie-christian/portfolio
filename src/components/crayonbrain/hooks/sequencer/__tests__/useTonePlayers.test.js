@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { useTonePlayers } from './useTonePlayers';
+import { useTonePlayers } from '../useTonePlayers';
 import * as Tone from 'tone';
 import {
   createMockDrumSounds,
