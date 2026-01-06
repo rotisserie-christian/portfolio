@@ -63,8 +63,6 @@ export default function Home() {
         <>
         <div className="flex flex-col items-center justify-center w-full">
             <section className="flex items-center justify-center w-full min-h-screen bg-base-300 min-h-screen">
-                <StarsBackground />
-                <ShootingStars />
 
                 <div className="flex flex-col items-center justify-center bg-opacity-90 backdrop-blur-sm px-4">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
