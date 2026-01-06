@@ -83,8 +83,10 @@ export const useSetupVisualizer = (
       if (visualizerRef.current) {
         try {
           visualizerRef.current.disconnect();
-        } catch {
-          // Ignore disconnect errors
+        } catch (err) {
+          if (import.meta?.env?.MODE === 'development') {
+            console.debug('visualizer disconnect error', err);
+          }
         }
       }
     };
