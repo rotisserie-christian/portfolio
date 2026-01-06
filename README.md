@@ -1,17 +1,8 @@
-This website hosts demo versions of my projects.
+This website hosts demo versions of my projects
+
+- **`crayonbrain`** - T
 
 I'm using an approach where all the main content renders within a single route, progressively loading heavier assets and dependencies using Interaction Observer. 
-
-# Testing
-Tests are colocated, mostly covering hooks and integration.
-- **`vitest`** - Testing framework
-- **`happy-dom`** - Simulated browser environment
-### Test Utilities
-- **`test-utils/`** - Shared helpers and utilities
-  - `audioIntegrationMocks.js` - Tone.js mocks for integration tests
-  - `integrationTestHelpers.js` - Shared helpers 
-  - `integrationTestWrappers.jsx` - Provider wrappers for tests
-  - `test-utils.jsx` - Custom render wrapper with providers
 
 # Dependencies 
 ### Audio / Visual 
@@ -31,4 +22,7 @@ Tests are colocated, mostly covering hooks and integration.
 ### Utilities 
 - **`react-router-dom`** - Client-side routing 
 
+# Testing
+- **`vitest`** - Testing framework
+- **`happy-dom`** - Simulated browser environment
 

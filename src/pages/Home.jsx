@@ -7,9 +7,8 @@ import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 const Crayonbrain = lazy(() => import("../components/crayonbrain/Crayonbrain"));
 const Flowchart = lazy(() => import("../components/flowchart/Flowchart"));
 
-// Wrapper for lazy-loaded Crayonbrain
 const LazyCrayonbrain = () => {
-  const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '200px' });
+  const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '0px' });
 
   return (
     <div ref={elementRef} data-section="crayonbrain">
@@ -28,7 +27,6 @@ const LazyCrayonbrain = () => {
   );
 };
 
-// Wrapper for lazy-loaded Flowchart
 const LazyFlowchart = () => {
   const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '200px' });
 
@@ -63,6 +61,8 @@ export default function Home() {
         <>
         <div className="flex flex-col items-center justify-center w-full">
             <section className="flex items-center justify-center w-full min-h-screen bg-base-300 min-h-screen">
+              <StarsBackground />
+              <ShootingStars />
 
                 <div className="flex flex-col items-center justify-center bg-opacity-90 backdrop-blur-sm px-4">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
