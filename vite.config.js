@@ -6,29 +6,46 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    // Enable tree shaking
-    minify: 'esbuild',
+    cssCodeSplit: true,
     target: 'esnext',
-    cssCodeSplit: true, 
-    
-    // Compression settings
     rollupOptions: {
       output: {
         compact: true,
-        manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'ui': ['daisyui'],
-          'audio': ['butterchurn', 'butterchurn-presets'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            // Heavy library chunks
+            if (id.includes('tone')) {
+              return 'tone-vendor';
+            }
+            if (id.includes('butterchurn')) {
+              return 'butterchurn-vendor';
+            }
+            if (id.includes('three')) {
+              return 'three-vendor';
+            }
+            if (id.includes('daisyui') || id.includes('tailwindcss')) {
+              return 'ui-vendor';
+            }
+          }
+        },
+        // Put CSS files in assets/css/ subdirectory
+        assetFileNames: (assetInfo) => {
+          const fileName = assetInfo.names?.[0] || '';
+          if (fileName.endsWith('.css')) {
+            return 'assets/css/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
         }
       }
     },
-    
-    // Remove console logs in production
-    esbuild: {
-      drop: ['console', 'debugger'],
-    },
-    
     chunkSizeWarningLimit: 1000,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   },
   test: {
     environment: 'happy-dom',
