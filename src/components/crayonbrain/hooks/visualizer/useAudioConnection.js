@@ -26,8 +26,10 @@ export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, con
         connectedGainRef.current.disconnect(analyser);
         connectedGainRef.current = null;
       }
-    } catch {
-      // Ignore disconnect errors
+    } catch (err) {
+      if (import.meta?.env?.MODE === 'development') {
+        console.debug('audio connection disconnect error', err);
+      }
     }
     
     try {
