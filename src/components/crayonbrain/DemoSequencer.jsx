@@ -5,7 +5,7 @@ import { useSequencer } from './hooks/sequencer/useSequencer';
 import { useSequencerContext } from './hooks/useSequencerContext';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import TempoSlider from './TempoSlider';
-import { DEFAULT_BPM } from './tempoConstants';
+import { DEFAULT_BPM } from './utils/sequencerConstants';
 import kick from '../../assets/kick.wav';
 import snare from '../../assets/snare.wav';
 import snare2 from '../../assets/snare2.wav';

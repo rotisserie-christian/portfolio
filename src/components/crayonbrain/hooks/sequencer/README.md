@@ -1,4 +1,4 @@
-- **`sequencerConstants.js`** - Sequencer configuration constants
+- **`utils/sequencerConstants.js`** - Sequencer configuration constants (located in `components/crayonbrain/utils/`)
 - **`useSequencer.js`** - Orchestrator
 - **`useTempo.js`** - Manages tempo synchronization between React state and Tone.js Transport
 - **`useTonePlayers.js`** - Initializes and manages Tone.Player instances

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { DEFAULT_TEMPO_BPM } from './sequencerConstants';
+import { DEFAULT_BPM } from '../../utils/sequencerConstants';
 import { useTonePlayers } from './useTonePlayers';
 import { useTempo } from './useTempo';
 import { useToneSequence } from './useToneSequence';
@@ -19,7 +19,7 @@ import { useTransport } from './useTransport';
  * @returns {Object} returns.sequencerGainRef - Audio gain node reference
  * @returns {boolean} returns.isInitializing - Initialization state
  */
-export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_TEMPO_BPM, shouldInitialize = true) => {
+export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_BPM, shouldInitialize = true) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     const [isInitializing, setIsInitializing] = useState(true);

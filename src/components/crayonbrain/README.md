@@ -4,5 +4,5 @@
 - **`DemoSequencer.jsx`** - Drum sequencer
 - **`PresetControls.jsx`** - Preset navigation UI for visualizer
 - **`TempoSlider.jsx`** - BPM control
-- **`tempoConstants.js`** - separate file for tempo constants, avoids issue where fast refresh falls back to full page loads in development  
+- **`utils/sequencerConstants.js`** - Sequencer configuration constants (TIME_STEPS, MIN_BPM, MAX_BPM, DEFAULT_BPM)  
 - **`Visualizer.jsx`** - renders the visualizer canvas and delegates to useVisualizer
