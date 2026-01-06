@@ -119,10 +119,6 @@ describe('Home Page Integration', () => {
       await waitFor(() => {
         expect(screen.getByTestId('crayonbrain')).toBeInTheDocument();
       });
-
-      // How it works section
-      expect(screen.getByText(/How it works/i)).toBeInTheDocument();
-      expect(screen.getByText(/converting music clips into abstract visuals/i)).toBeInTheDocument();
     });
 
     it('should render background components', async () => {
@@ -164,15 +160,7 @@ describe('Home Page Integration', () => {
       expect(visitLink).toHaveAttribute('target', '_blank');
     });
 
-    it('should render Flowchart component (lazy-loaded)', async () => {
-      await renderHomeWithProviders();
-
-      // Wait for lazy-loaded Flowchart to resolve via Suspense
-      await waitFor(() => {
-        expect(screen.getByTestId('react-flow')).toBeInTheDocument();
-      });
-      expect(screen.getByTestId('flowchart-background')).toBeInTheDocument();
-    });
+    // Flowchart is now tested on its own page; Home no longer asserts its presence
 
     it('should render sequencer and visualizer within SequencerProvider', async () => {
       await renderHomeWithProviders();
