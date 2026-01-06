@@ -1,3 +1,7 @@
+/**
+ * Custom error classes for crayonbrain components
+ */
+
 export class SequencerContextError extends Error {
   constructor() {
     super('useSequencerContext must be used within SequencerProvider');

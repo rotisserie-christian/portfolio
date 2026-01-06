@@ -1,4 +1,4 @@
-import { PresetLoadError } from '../../errors';
+import { PresetLoadError } from '../../utils/errors';
 
 /**
  * Loads a Butterchurn preset into the visualizer

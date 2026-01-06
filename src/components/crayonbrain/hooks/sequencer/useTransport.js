@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import * as Tone from 'tone';
-import { TransportError } from '../../errors';
+import { TransportError } from '../../utils/errors';
 
 /**
  * Manages Tone.js Transport play/stop functionality

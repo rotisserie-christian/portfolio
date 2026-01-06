@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import * as Tone from 'tone';
-import { AudioInitializationError } from '../../errors';
+import { AudioInitializationError } from '../../utils/errors';
 
 /**
  * Initializes and manages Tone.Player instances
