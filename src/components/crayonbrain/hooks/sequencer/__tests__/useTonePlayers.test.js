@@ -139,6 +139,21 @@ describe('useTonePlayers', () => {
   });
 
   describe('error handling', () => {
+    let originalMode;
+
+    beforeEach(() => {
+      // Mock import.meta.env.MODE to 'development' so errors are logged
+      originalMode = import.meta.env.MODE;
+      import.meta.env.MODE = 'development';
+    });
+
+    afterEach(() => {
+      // Restore original mode
+      if (originalMode !== undefined) {
+        import.meta.env.MODE = originalMode;
+      }
+    });
+
     it('should handle errors during initialization', async () => {
       Tone.loaded.mockRejectedValue(new Error('Failed to load audio'));
 

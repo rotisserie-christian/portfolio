@@ -40,7 +40,7 @@ vi.mock('tone', () => ({
 import * as Tone from 'tone';
 
 // Mock PresetControls 
-vi.mock('../../components/crayonbrain/PresetControls', () => ({
+vi.mock('../../../PresetControls', () => ({
   default: () => <div data-testid="preset-controls">Preset Controls</div>,
 }));
 
@@ -194,6 +194,21 @@ describe('useVisualizer Integration', () => {
   });
 
   describe('Error Handling', () => {
+    let originalMode;
+
+    beforeEach(() => {
+      // Mock import.meta.env.MODE to 'development' so errors are logged
+      originalMode = import.meta.env.MODE;
+      import.meta.env.MODE = 'development';
+    });
+
+    afterEach(() => {
+      // Restore original mode
+      if (originalMode !== undefined) {
+        import.meta.env.MODE = originalMode;
+      }
+    });
+
     it('should handle visualizer creation errors gracefully', async () => {
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       
@@ -208,7 +223,7 @@ describe('useVisualizer Integration', () => {
       // Should log the error
       await waitFor(() => {
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          'Error setting up visualizer:',
+          'Error setting up visualizer',
           expect.any(Error)
         );
       });

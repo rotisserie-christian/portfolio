@@ -29,7 +29,7 @@ export default function Crayonbrain() {
                 </div>
 
                 <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                    Download reactive visuals from audio
+                    Music composer with reactive visuals
                 </p>
 
                 <a 

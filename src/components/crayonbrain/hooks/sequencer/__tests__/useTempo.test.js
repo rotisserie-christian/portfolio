@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useTempo } from './useTempo';
+import { useTempo } from '../useTempo';
 import * as Tone from 'tone';
 import { createMockTransport } from './__test-utils__';
 

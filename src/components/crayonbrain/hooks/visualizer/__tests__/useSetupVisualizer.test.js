@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useSetupVisualizer } from './useSetupVisualizer';
+import { useSetupVisualizer } from '../useSetupVisualizer';
 import * as Tone from 'tone';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
-import { createAnalyser } from './analyserSetup';
-import { loadPreset } from './presetLoader';
+import { createAnalyser } from '../analyserSetup';
+import { loadPreset } from '../presetLoader';
 import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../../../../utils/visualizerConstants';
 import {
   setupDevicePixelRatio,
@@ -35,11 +35,11 @@ vi.mock('butterchurn-presets', () => ({
   },
 }));
 
-vi.mock('./analyserSetup', () => ({
+vi.mock('../analyserSetup', () => ({
   createAnalyser: vi.fn(),
 }));
 
-vi.mock('./presetLoader', () => ({
+vi.mock('../presetLoader', () => ({
   loadPreset: vi.fn(() => true),
 }));
 

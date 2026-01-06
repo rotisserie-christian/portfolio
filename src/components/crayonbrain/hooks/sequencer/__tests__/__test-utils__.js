@@ -240,7 +240,7 @@ export const expectNoPlayersDisposed = (players, mockGain, playerIds = ['kick', 
  * @param {string} errorMessage - Expected error message prefix
  * @param {Object} options - waitFor options
  */
-export const waitForErrorLog = async (errorMessage = 'Error initializing audio:', options = {}) => {
+export const waitForErrorLog = async (errorMessage = 'Error initializing audio', options = {}) => {
   await waitFor(() => {
     expect(console.error).toHaveBeenCalledWith(
       errorMessage,

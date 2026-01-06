@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useTransport } from './useTransport';
+import { useTransport } from '../useTransport';
 import * as Tone from 'tone';
 import {
   createMockTransport,
@@ -163,6 +163,21 @@ describe('useTransport', () => {
   });
 
   describe('error handling', () => {
+    let originalMode;
+
+    beforeEach(() => {
+      // Mock import.meta.env.MODE to 'development' so errors are logged
+      originalMode = import.meta.env.MODE;
+      import.meta.env.MODE = 'development';
+    });
+
+    afterEach(() => {
+      // Restore original mode
+      if (originalMode !== undefined) {
+        import.meta.env.MODE = originalMode;
+      }
+    });
+
     it('should handle errors and reset state', async () => {
       mockTransport.start.mockImplementation(() => {
         throw new Error('Transport start failed');
@@ -171,7 +186,7 @@ describe('useTransport', () => {
 
       await callHookResult(result.current);
 
-      await waitForErrorLog('Error controlling playback:');
+      await waitForErrorLog('Error controlling playback');
       expect(setIsPlaying).toHaveBeenCalledWith(false);
       expect(setCurrentStep).toHaveBeenCalledWith(0);
     });
@@ -184,7 +199,7 @@ describe('useTransport', () => {
 
       await callHookResult(result.current);
 
-      await waitForErrorLog('Error controlling playback:');
+      await waitForErrorLog('Error controlling playback');
       expect(setIsPlaying).toHaveBeenCalledWith(false);
       expect(setCurrentStep).toHaveBeenCalledWith(0);
     });
@@ -196,7 +211,7 @@ describe('useTransport', () => {
 
       await callHookResult(result.current);
 
-      await waitForErrorLog('Error controlling playback:');
+      await waitForErrorLog('Error controlling playback');
       expect(setIsPlaying).toHaveBeenCalledWith(false);
       expect(setCurrentStep).toHaveBeenCalledWith(0);
     });

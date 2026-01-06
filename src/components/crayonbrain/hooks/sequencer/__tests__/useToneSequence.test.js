@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useToneSequence } from './useToneSequence';
+import { useToneSequence } from '../useToneSequence';
 import * as Tone from 'tone';
-import { TIME_STEPS } from '../../utils/sequencerConstants';
+import { TIME_STEPS } from '../../../utils/sequencerConstants';
 import {
   createMockDrumSoundsMinimal,
   createMockPlayers,

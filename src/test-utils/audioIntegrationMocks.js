@@ -3,7 +3,7 @@ import {
   createMockAudioContext,
   createMockGainNode,
   createMockAnalyser,
-} from '../hooks/visualizer/__test-utils__';
+} from '../components/crayonbrain/hooks/visualizer/__tests__/__test-utils__';
 
 /**
  * Sets up comprehensive Tone.js mocks for integration tests

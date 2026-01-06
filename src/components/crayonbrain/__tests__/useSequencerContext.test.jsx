@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useSequencerContext } from './useSequencerContext';
+import { useSequencerContext } from '../hooks/useSequencerContext';
 import { SequencerProvider } from '../../../contexts/SequencerContext.jsx';
 
 // Helper function to wrap hook with provider
