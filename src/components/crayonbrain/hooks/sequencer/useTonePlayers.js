@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import * as Tone from 'tone';
+import { AudioInitializationError } from '../../errors';
 
 /**
  * Initializes and manages Tone.Player instances
@@ -45,7 +46,10 @@ export const useTonePlayers = (
       } catch (error) {
         isInitializingRef.current = false;
         setIsInitializing(false);
-        console.error('Error initializing audio:', error);
+        const audioError = new AudioInitializationError('Error initializing audio', error);
+        if (import.meta?.env?.MODE === 'development') {
+          console.error(audioError.message, audioError.cause);
+        }
       }
     };
 

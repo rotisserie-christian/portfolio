@@ -1,3 +1,5 @@
+import { PresetLoadError } from '../../errors';
+
 /**
  * Loads a Butterchurn preset into the visualizer
  * 
@@ -42,7 +44,10 @@ export const loadPreset = (visualizer, presets, presetIndex = 58, blendTime = 1.
     visualizer.loadPreset(preset, blendTime);
     return true;
   } catch (err) {
-    console.warn('Failed to load preset:', err);
+    const presetError = new PresetLoadError('Failed to load preset', presetIndex, err);
+    if (import.meta?.env?.MODE === 'development') {
+      console.warn(presetError.message, presetError.cause);
+    }
     return false;
   }
 };

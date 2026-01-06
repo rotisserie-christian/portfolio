@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import * as Tone from 'tone';
+import { TransportError } from '../../errors';
 
 /**
  * Manages Tone.js Transport play/stop functionality
@@ -44,7 +45,10 @@ export const useTransport = (
         setCurrentStep(0);
       }
     } catch (error) {
-      console.error('Error controlling playback:', error);
+      const transportError = new TransportError('Error controlling playback', error);
+      if (import.meta?.env?.MODE === 'development') {
+        console.error(transportError.message, transportError.cause);
+      }
       // Reset state on error
       setIsPlaying(false);
       setCurrentStep(0);
