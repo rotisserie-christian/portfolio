@@ -4,5 +4,5 @@
 - **`DemoSequencer.jsx`** - Drum sequencer
 - **`PresetControls.jsx`** - Preset navigation UI for visualizer
 - **`TempoSlider.jsx`** - BPM control
-- **`utils/sequencerConstants.js`** - Sequencer configuration constants (TIME_STEPS, MIN_BPM, MAX_BPM, DEFAULT_BPM)  
+- **`/utils`** - Sequencer constants and error classes 
 - **`Visualizer.jsx`** - renders the visualizer canvas and delegates to useVisualizer
