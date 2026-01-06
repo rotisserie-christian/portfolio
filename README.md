@@ -1,8 +1,6 @@
 This website hosts demo versions of my projects
 
-- **`crayonbrain`** - T
-
-I'm using an approach where all the main content renders within a single route, progressively loading heavier assets and dependencies using Interaction Observer. 
+The main interactive components render on the home page, progressively loading heavier assets and dependencies using Intersection Observer. 
 
 # Dependencies 
 ### Audio / Visual 
@@ -21,6 +19,7 @@ I'm using an approach where all the main content renders within a single route, 
 - **`react-icons`** - Icon library
 ### Utilities 
 - **`react-router-dom`** - Client-side routing 
+- **`terser`** - Javascript minification 
 
 # Testing
 - **`vitest`** - Testing framework
