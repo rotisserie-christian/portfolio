@@ -8,10 +8,14 @@ export const StarsBackground = ({
   twinkleProbability = 0.9,
   minTwinkleSpeed = 1,
   maxTwinkleSpeed = 2,
-  exclusionSize = 220,
-  gravityStrength = 0.3,        // distortion intensity
-  swirlStrength = 0.5,          // swirl in radians
-  gravityRadiusFactor = 0.3,    // fraction of smallest dimension
+  exclusionSize = 270,
+  gravityStrength = 0.2,        // distortion intensity
+  swirlStrength = 0.2,          // swirl in radians
+  gravityRadiusFactor = 0.4,    // outer radius - where effect starts (fraction of smallest dimension)
+  innerGravityRadiusFactor = 0.2, // inner radius - where full strength begins
+  trailLength = 7,              // number of trail points
+  swirlRotationSpeed = 0.00008,  // rotation speed for animated swirl
+  minTrailStrength = 0.2,       // minimum norm value to show trails
   className,
 }) => {
   const [stars, setStars] = useState([]);
@@ -55,6 +59,7 @@ export const StarsBackground = ({
             ? minTwinkleSpeed +
               Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
             : null,
+          trail: [], // Initialize empty trail array
         };
       });
     },
@@ -113,8 +118,11 @@ export const StarsBackground = ({
 
       const centerX = width / 2;
       const centerY = height / 2;
-      const gravityRadius =
-        Math.min(width, height) * gravityRadiusFactor;
+      const minDimension = Math.min(width, height);
+      const outerGravityRadius = minDimension * gravityRadiusFactor;
+      const innerGravityRadius = minDimension * innerGravityRadiusFactor;
+      const time = Date.now();
+      const swirlRotation = time * swirlRotationSpeed;
 
       stars.forEach((star) => {
         // apply gravitational lensing + swirl
@@ -122,21 +130,75 @@ export const StarsBackground = ({
         const dx = x - centerX;
         const dy = y - centerY;
         const dist = Math.hypot(dx, dy);
+        let isInGravityZone = false;
+        let distortedX = x;
+        let distortedY = y;
+        let norm = 0;
 
-        if (dist < gravityRadius) {
-          const norm = (gravityRadius - dist) / gravityRadius;
+        if (dist < outerGravityRadius) {
+          isInGravityZone = true;
+          
+          if (dist < innerGravityRadius) {
+            // Inside inner radius: full strength
+            norm = 1.0;
+          } else {
+            // Between inner and outer: progressive falloff
+            // norm goes from 1.0 at innerRadius to 0.0 at outerRadius
+            norm = (outerGravityRadius - dist) / (outerGravityRadius - innerGravityRadius);
+          }
+          
+          // Apply effect scaled by norm (0 = no effect, 1 = full effect)
           // radial distortion
           const scale = 1 + gravityStrength * norm;
           const newDist = dist * scale;
-          // swirl around center
-          const angle = Math.atan2(dy, dx) + swirlStrength * norm;
-          x = centerX + Math.cos(angle) * newDist;
-          y = centerY + Math.sin(angle) * newDist;
+          // swirl around center with animated rotation
+          const angle = Math.atan2(dy, dx) + swirlStrength * norm + swirlRotation * norm;
+          distortedX = centerX + Math.cos(angle) * newDist;
+          distortedY = centerY + Math.sin(angle) * newDist;
         }
 
-        // draw star
+        // Update trail for stars in gravity zone (only if effect is strong enough)
+        if (isInGravityZone && norm >= minTrailStrength) {
+          // Initialize trail if it doesn't exist
+          if (!star.trail) {
+            star.trail = [];
+          }
+          // Add current position to trail
+          star.trail.push({ x: distortedX, y: distortedY });
+          // Keep only the last trailLength points
+          if (star.trail.length > trailLength) {
+            star.trail.shift();
+          }
+        } else {
+          // Clear trail when star leaves gravity zone or effect is too weak
+          if (star.trail) {
+            star.trail = [];
+          }
+        }
+
+        // Draw trail before drawing star (scale trail opacity by norm for progressive effect)
+        if (star.trail && star.trail.length > 1) {
+          for (let i = 0; i < star.trail.length - 1; i++) {
+            const current = star.trail[i];
+            const next = star.trail[i + 1];
+            // Fade opacity from oldest (low) to newest (higher)
+            const progress = i / (star.trail.length - 1);
+            // Scale trail opacity by norm so trails fade out as effect weakens
+            const baseTrailOpacity = (0.1 + progress * 0.3) * opacity;
+            const trailOpacity = baseTrailOpacity * norm;
+            
+            ctx.beginPath();
+            ctx.moveTo(current.x, current.y);
+            ctx.lineTo(next.x, next.y);
+            ctx.strokeStyle = `rgba(255,255,255,${trailOpacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+
+        // Draw star
         ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.arc(distortedX, distortedY, radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,255,${opacity})`;
         ctx.fill();
 
@@ -145,7 +207,7 @@ export const StarsBackground = ({
           star.opacity =
             0.8 +
             Math.abs(
-              Math.sin((Date.now() * 0.001) / twinkleSpeed) * 0.5
+              Math.sin((time * 0.001) / twinkleSpeed) * 0.5
             );
         }
       });
@@ -161,6 +223,10 @@ export const StarsBackground = ({
     gravityStrength,
     swirlStrength,
     gravityRadiusFactor,
+    innerGravityRadiusFactor,
+    trailLength,
+    swirlRotationSpeed,
+    minTrailStrength,
   ]);
 
   return (
@@ -181,6 +247,10 @@ StarsBackground.propTypes = {
   gravityStrength: PropTypes.number,
   swirlStrength: PropTypes.number,
   gravityRadiusFactor: PropTypes.number,
+  innerGravityRadiusFactor: PropTypes.number,
+  trailLength: PropTypes.number,
+  swirlRotationSpeed: PropTypes.number,
+  minTrailStrength: PropTypes.number,
   className: PropTypes.string,
 };
 
@@ -193,6 +263,10 @@ StarsBackground.defaultProps = {
   exclusionSize: 250,
   gravityStrength: 0.3,
   swirlStrength: 0.5,
-  gravityRadiusFactor: 0.3,
+  gravityRadiusFactor: 0.6,
+  innerGravityRadiusFactor: 0.3,
+  trailLength: 8,
+  swirlRotationSpeed: 0.0001,
+  minTrailStrength: 0.2,
   className: "",
 };
