@@ -64,7 +64,7 @@ export default function Home() {
               <StarsBackground />
               <ShootingStars />
 
-                <div className="flex flex-col items-center justify-center bg-base-300 bg-opacity-90 backdrop-blur-sm z-100 px-4 py-8 rounded-3xl">
+                <div className="flex flex-col items-center justify-center bg-base-300 bg-opacity-90 backdrop-blur-sm z-40 px-4 py-8 rounded-3xl">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                         Christian Waters
                     </h1>

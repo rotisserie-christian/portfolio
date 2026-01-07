@@ -99,21 +99,12 @@ export const StarsBackground = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return; // Context not available (e.g., in test environment)
     let af;
-    let frameCount = 0; // Add frame counter for throttling
 
     const render = () => {
       // Check if canvas still exists (component might have unmounted)
       const currentCanvas = canvasRef.current;
       if (!currentCanvas || !ctx) {
         if (af) cancelAnimationFrame(af);
-        return;
-      }
-
-      frameCount++;
-      
-      // Render at 25fps (skip 2 out of 3 frames)
-      if (frameCount % 3 !== 0) {
-        af = requestAnimationFrame(render);
         return;
       }
 
