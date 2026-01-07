@@ -99,13 +99,18 @@ export default function Home() {
                 <p className="lg:text-lg lg:text-left text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
                   The main feature is converting audio into abstract visuals that can be downloaded as a video file.<br /><br />
                   
-                  Audio can be uploaded, composed on the site, or piped in from a microphone.
-                  The <br /><br />
+                  It&apos;s modular, allowing for audio to be uploaded, composed on the site, or piped in from a microphone.<br /><br />
 
-                  It's meant for private experimentation. It runs with very few backend services and collects minimal user data.<br /><br />
+                  The composer includes an optional sharing feature, and both microphone input and file uploads are sandboxed in the browser.
+                  It runs with very few backend services and collects minimal user data.<br /><br />
 
-                  The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.
-                  Crayonbrain is an attempt to build new audio systems around it, and make it easier to share the results.<br /><br />
+                  The visuals are made with 
+                  <a href="https://github.com/jberg/butterchurn" target="_blank" rel="noreferrer" className="underline ml-1">Butterchurn</a>,
+                  a web port of the famous 
+                  <a href="https://www.geisswerks.com/milkdrop/" target="_blank" rel="noreferrer" className="underline mx-1">MilkDrop</a>
+                  visualizer featured in Winamp.<br /><br />
+
+                  Crayonbrain is an attempt to build new audio systems around it, and make it easier to share the results.
                 </p>
               </div>
           </div>
