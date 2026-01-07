@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import { ShootingStars } from "../components/ShootingStars";
-import { StarsBackground } from "../components/StarsBackground";
+import { ShootingStars } from "../components/starfield/ShootingStars";
+import { StarsBackground } from "../components/starfield/StarsBackground";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const Crayonbrain = lazy(() => import("../components/crayonbrain/Crayonbrain"));

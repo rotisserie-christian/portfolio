@@ -1,4 +1,4 @@
-import { cn } from "../utils/cn";
+import { cn } from "../../utils/cn";
 import { useEffect, useState, useRef } from "react";
 import PropTypes from 'prop-types';
 
