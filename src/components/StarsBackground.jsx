@@ -3,23 +3,24 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from 'prop-types';
 
 export const StarsBackground = ({
-  starDensity = 0.0007,
+  starDensity = 0.002,
   allStarsTwinkle = true,
   twinkleProbability = 0.9,
   minTwinkleSpeed = 1,
   maxTwinkleSpeed = 2,
-  exclusionSize = 270,
-  gravityStrength = 0.2,        // distortion intensity
-  swirlStrength = 0.2,          // swirl in radians
-  gravityRadiusFactor = 0.4,    // outer radius - where effect starts (fraction of smallest dimension)
-  innerGravityRadiusFactor = 0.2, // inner radius - where full strength begins
-  trailLength = 7,              // number of trail points
-  swirlRotationSpeed = 0.00008,  // rotation speed for animated swirl
-  minTrailStrength = 0.2,       // minimum norm value to show trails
+  exclusionSize = 350,
+  gravityStrength = 0.2, // distortion intensity
+  swirlStrength = 0.2, // swirl in radians
+  gravityRadiusFactor = 0.9, // outer radius - where effect starts (fraction of smallest dimension)
+  innerGravityRadiusFactor = 0.1, // inner radius - where full strength begins
+  trailLength = 6, // number of trail points
+  swirlRotationSpeed = 0.00007, // rotation speed for animated swirl
+  minTrailStrength = 0.7, // minimum norm value to show trails
   className,
 }) => {
   const [stars, setStars] = useState([]);
   const canvasRef = useRef(null);
+  const starsRef = useRef([]);
 
   const generateStars = useCallback(
     (width, height) => {
@@ -81,7 +82,9 @@ export const StarsBackground = ({
       const { width, height } = canvas.getBoundingClientRect();
       canvas.width = width;
       canvas.height = height;
-      setStars(generateStars(width, height));
+      const newStars = generateStars(width, height);
+      setStars(newStars);
+      starsRef.current = newStars; // Update ref whenever stars change
     };
     updateStars();
     const ro = new ResizeObserver(updateStars);
@@ -96,6 +99,11 @@ export const StarsBackground = ({
     maxTwinkleSpeed,
     exclusionSize,
   ]);
+
+  // Keep ref in sync with stars state
+  useEffect(() => {
+    starsRef.current = stars;
+  }, [stars]);
 
   // draw + twinkle + gravitational distortion
   useEffect(() => {
@@ -124,7 +132,7 @@ export const StarsBackground = ({
       const time = Date.now();
       const swirlRotation = time * swirlRotationSpeed;
 
-      stars.forEach((star) => {
+      starsRef.current.forEach((star) => {
         // apply gravitational lensing + swirl
         let { x, y, radius, opacity, twinkleSpeed } = star;
         const dx = x - centerX;
@@ -219,7 +227,6 @@ export const StarsBackground = ({
       if (af) cancelAnimationFrame(af);
     };
   }, [
-    stars,
     gravityStrength,
     swirlStrength,
     gravityRadiusFactor,
