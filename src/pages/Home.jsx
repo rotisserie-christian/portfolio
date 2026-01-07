@@ -3,29 +3,9 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import { ShootingStars } from "../components/starfield/ShootingStars";
 import { StarsBackground } from "../components/starfield/StarsBackground";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import Crayonbrain from "../components/crayonbrain/Crayonbrain";
 
-const Crayonbrain = lazy(() => import("../components/crayonbrain/Crayonbrain"));
 const Flowchart = lazy(() => import("../components/flowchart/Flowchart"));
-
-const LazyCrayonbrain = () => {
-  const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '0px' });
-
-  return (
-    <div ref={elementRef} data-section="crayonbrain">
-      {hasIntersected ? (
-        <Suspense fallback={
-          <div className="flex items-center justify-center w-full h-96">
-            <span className="loading loading-spinner loading-lg text-primary"></span>
-          </div>
-        }>
-          <Crayonbrain />
-        </Suspense>
-      ) : (
-        <div className="h-96" /> // Placeholder to maintain layout
-      )}
-    </div>
-  );
-};
 
 const LazyFlowchart = () => {
   const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '200px' });
@@ -82,7 +62,9 @@ export default function Home() {
                 </div>
             </section>
 
-            <LazyCrayonbrain />
+            <div data-section="crayonbrain" className="w-full">
+              <Crayonbrain />
+            </div>
 
             <div className="flex justify-center w-full mt-2">
               <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>

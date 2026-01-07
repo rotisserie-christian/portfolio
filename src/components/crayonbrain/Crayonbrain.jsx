@@ -5,6 +5,31 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import cb from "../../assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
 import { SequencerProvider } from "../../contexts/SequencerContext.jsx";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+
+const LazyVisualizer = () => {
+    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
+
+    return (
+        <div ref={elementRef} className="w-full lg:w-1/2">
+            {hasIntersected ? (
+                <Suspense
+                    fallback={
+                        <div className="w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col items-center justify-center">
+                            <span className="loading loading-spinner loading-lg text-primary"></span>
+                        </div>
+                    }
+                >
+                    <Visualizer
+                        canvasId="demo-visualizer"
+                    />
+                </Suspense>
+            ) : (
+                <div className="w-full h-[420px] p-4 flex flex-col" />
+            )}
+        </div>
+    );
+};
 
 export default function Crayonbrain() {
     return (
@@ -46,19 +71,7 @@ export default function Crayonbrain() {
                             <DemoSequencer />
                         </div>
 
-                        <div className="w-full lg:w-1/2">
-                            <Suspense 
-                                fallback={
-                                    <div className="flex items-center justify-center w-full h-[220px] md:h-[280px] lg:h-[360px]">
-                                        <span className="loading loading-spinner loading-lg text-primary"></span>
-                                    </div>
-                                }>
-                                
-                                <Visualizer 
-                                    canvasId="demo-visualizer"
-                                />
-                            </Suspense>
-                        </div>
+                        <LazyVisualizer />
                     </div>
                 </SequencerProvider>
             </div>
