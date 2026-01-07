@@ -64,7 +64,7 @@ export default function Home() {
               <StarsBackground />
               <ShootingStars />
 
-                <div className="flex flex-col items-center justify-center bg-base-300/60 z-40 px-20 py-8 rounded-3xl">
+                <div className="flex flex-col items-center justify-center bg-base-300/60 z-40 lg:px-16 rounded-3xl">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                         Christian Waters
                     </h1>
@@ -95,7 +95,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row mt-5 mb-10 gap-10 items-center justify-center max-w-5xl mx-auto w-full">
               <LazyFlowchart />
               
-              <div className="flex flex-col items-center lg:items-start justify-center w-full px-2">
+              <div className="flex flex-col items-center lg:items-start justify-center w-full px-4">
                 <p className="lg:text-lg lg:text-left text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
                   The main feature is converting audio into abstract visuals that can be downloaded as a video file.<br /><br />
                   
