@@ -99,9 +99,8 @@ export default function Home() {
                 <p className="lg:text-lg lg:text-left text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
                   The main feature is converting audio into abstract visuals that can be downloaded as a video file.<br /><br />
                   
-                  Audio can be uploaded, composed on the site, or piped in from a microphone.<br /><br />
-
-                  
+                  Audio can be uploaded, composed on the site, or piped in from a microphone.
+                  The <br /><br />
 
                   It's meant for private experimentation. It runs with very few backend services and collects minimal user data.<br /><br />
 

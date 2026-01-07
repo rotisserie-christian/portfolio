@@ -38,21 +38,10 @@ const initialEdges = [
   },
 
 
-  // musical data source bottom to builds and renders target top
+  // musical data source bottom to audio output target top
   {
     id: 'e-musical-process',
     source: '3',
-    sourceHandle: 'bottom',
-    target: '5',
-    targetHandle: 'top',
-    animated: true,
-    type: 'smoothstep',
-  },
-
-  // builds and renders source bottom to main output target top
-  {
-    id: 'e-process-main',
-    source: '5',
     sourceHandle: 'bottom',
     target: '7',
     targetHandle: 'top',
