@@ -1,7 +1,7 @@
 const initialEdges = [
   // UI layer source bottom to callbacks and musical data target top for both
   {
-    id: 'e-ui-callbacks',
+    id: 'e-ui-hot-reloading',
     source: '1',
     target: '4',
     animated: true,
@@ -16,9 +16,9 @@ const initialEdges = [
     type: 'smoothstep',
   },
 
-  // callback source left to musical data target right
+  // hot reloading source left to musical data target right
   {
-    id: 'e-callbacks-musical',
+    id: 'e-hot-reloading-musical',
     source: '4',
     sourceHandle: 'left',
     target: '3',
@@ -26,6 +26,17 @@ const initialEdges = [
     animated: true,
     type: 'smoothstep',
   },
+
+  {
+    id: 'e-hot-reloading-visual',
+    source: '4',
+    sourceHandle: 'bottom',
+    target: '8',
+    targetHandle: 'top',
+    animated: true,
+    type: 'smoothstep',
+  },
+
 
   // musical data source bottom to builds and renders target top
   {

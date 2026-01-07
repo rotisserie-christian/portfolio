@@ -101,6 +101,8 @@ export default function Home() {
                   
                   Audio can be uploaded, composed on the site, or piped in from a microphone.<br /><br />
 
+                  
+
                   It's meant for private experimentation. It runs with very few backend services and collects minimal user data.<br /><br />
 
                   The visuals are made with Butterchurn, a web port of the famous MilkDrop visualizer featured in Winamp.

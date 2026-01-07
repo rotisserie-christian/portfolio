@@ -7,6 +7,7 @@ const CustomNode = ({ data }) => {
     <div className="darkNodeStyle">
       <Handle type="target" position={Position.Top} id="top" />
       <Handle type="source" position={Position.Left} id="left" />
+      <Handle type="source" position={Position.Bottom} id="bottom" />
       <div>{data.label}</div>
     </div>
   );
