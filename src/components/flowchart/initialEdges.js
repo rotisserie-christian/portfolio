@@ -13,7 +13,6 @@ const initialEdges = [
     target: '3',
     targetHandle: 'top',
     animated: true,
-    type: 'smoothstep',
   },
 
   // hot reloading source left to musical data target right
