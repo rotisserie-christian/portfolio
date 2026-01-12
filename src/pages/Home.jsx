@@ -14,14 +14,14 @@ const LazyFlowchart = () => {
     <div ref={elementRef} className="w-full">
       {hasIntersected ? (
         <Suspense fallback={
-          <div className="mx-auto w-[350px] lg:w-[421px] h-[750px] flex items-center justify-center">
+          <div className="mx-auto w-[350px] h-[750px] flex items-center justify-center">
             <span className="loading loading-spinner loading-lg text-primary"></span>
           </div>
         }>
           <Flowchart />
         </Suspense>
       ) : (
-        <div className="mx-auto w-[350px] lg:w-[421px] h-[750px]" /> // Placeholder
+        <div className="mx-auto w-[350px] h-[750px]" /> // Placeholder
       )}
     </div>
   );
