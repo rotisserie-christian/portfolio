@@ -40,7 +40,7 @@ const AudioVisualizerFlow = () => {
   );
 
   return (
-    <div className='pointer-events-none mx-auto w-[350px] lg:w-[421px] lg:w-[400px] h-[600px]'>
+    <div className='pointer-events-none mx-auto w-[350px] h-[600px]'>
       <ReactFlow
         nodes={nodes}
         edges={edges}

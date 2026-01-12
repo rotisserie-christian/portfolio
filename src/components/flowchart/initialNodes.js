@@ -2,7 +2,7 @@ const initialNodes = [
   {
     id: '1',
     position: { x: 175, y: 0 },
-    data: { label: 'UI layer for audio input' },
+    data: { label: 'UI layer' },
     draggable: false,
     type: 'ui',
   },
@@ -16,7 +16,7 @@ const initialNodes = [
   {
     id: '4',
     position: { x: 300, y: 188 },
-    data: { label: 'Hot reloading audio/video' },
+    data: { label: 'Hot reloading audio/visuals' },
     draggable: false,
     type: 'custom',
   },
