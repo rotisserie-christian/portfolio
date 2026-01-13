@@ -79,20 +79,22 @@ export default function Home() {
               
               <div className="flex flex-col items-center lg:items-start justify-center w-full px-4">
                 <p className="lg:text-lg lg:text-left text-neutral-content/85 text-left w-full max-w-sm lg:max-w-xl lg:text-left">
-                  The main feature is converting audio into abstract visuals that can be downloaded as a video file.<br /><br />
-                  
-                  It&apos;s modular, allowing for audio to be uploaded, composed on the site, or piped in from a microphone.<br /><br />
-
-                  The composer includes an optional sharing feature, and both microphone input and file uploads are sandboxed in the browser.
-                  It runs with very few backend services and collects minimal user data.<br /><br />
-
                   The visuals are made with 
                   <a href="https://github.com/jberg/butterchurn" target="_blank" rel="noreferrer" className="underline ml-1">Butterchurn</a>,
                   a web port of the famous 
                   <a href="https://www.geisswerks.com/milkdrop/" target="_blank" rel="noreferrer" className="underline mx-1">MilkDrop</a>
                   visualizer featured in Winamp.<br /><br />
 
-                  Crayonbrain is an attempt to build new audio systems around it, and make it easier to share the results.
+                  The composer builds audio data for drums, insturments, and mixer configurations.
+                  Data is saved/loaded with a git-like versioning system, and can be posted to a public feed.<br /><br />
+
+                  The feed is a sliding window where older posts are continually removed. 
+                  Posts can also be remixed, creating a new branch of audio data.<br /><br />
+
+                  Posting is optional, and other features such as visualizing uploaded audio or microphone input 
+                  are sandboxed to the browser.<br /><br />
+
+                  The project is designed to collect minimal user data and use very few backend services.  
                 </p>
               </div>
           </div>
