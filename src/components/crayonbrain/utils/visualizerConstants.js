@@ -1,5 +1,5 @@
 // Analyser configuration
-export const FFT_SIZE = 2048; // Frequency resolution (higher = more detail, more CPU)
+export const FFT_SIZE = 2048; // Frequency resolution for analyser node
 export const SMOOTHING_TIME_CONSTANT = 0.2; // Temporal smoothing (0-1, lower = more reactive)
 
 // Preset configuration

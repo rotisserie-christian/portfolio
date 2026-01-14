@@ -1,4 +1,4 @@
-import { FFT_SIZE, SMOOTHING_TIME_CONSTANT } from '../../../../utils/visualizerConstants';
+import { FFT_SIZE, SMOOTHING_TIME_CONSTANT } from '../../utils/visualizerConstants';
 
 /**
  * Creates and configures a Web Audio analyser node

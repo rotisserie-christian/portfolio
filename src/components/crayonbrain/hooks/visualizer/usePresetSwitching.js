@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { loadPreset } from './presetLoader';
-import { PRESET_BLEND_TIME, PRESET_INDICES } from '../../../../utils/visualizerConstants';
+import { PRESET_BLEND_TIME, PRESET_INDICES } from '../../utils/visualizerConstants';
 
 /**
  * Manages preset switching logic for the visualizer

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useVisualizer } from './hooks/visualizer/useVisualizer';
 import { useSequencerContext } from './hooks/useSequencerContext';
 import { usePresetSwitching } from './hooks/visualizer/usePresetSwitching';
-import { PRESET_INDICES } from '../../utils/visualizerConstants';
+import { PRESET_INDICES } from './utils/visualizerConstants';
 import PresetControls from './PresetControls';
 
 const Visualizer = ({ className = '', canvasId, fillParent = false }) => {

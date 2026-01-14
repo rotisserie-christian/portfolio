@@ -6,7 +6,7 @@ import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import { createAnalyser } from '../analyserSetup';
 import { loadPreset } from '../presetLoader';
-import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../../../../utils/visualizerConstants';
+import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../../utils/visualizerConstants';
 import {
   setupDevicePixelRatio,
   restoreDevicePixelRatio,
@@ -43,7 +43,7 @@ vi.mock('../presetLoader', () => ({
   loadPreset: vi.fn(() => true),
 }));
 
-vi.mock('../../utils/visualizerConstants', () => ({
+vi.mock('../../../utils/visualizerConstants', () => ({
   PRESET_BLEND_TIME: 1.0,
   MAX_DEVICE_PIXEL_RATIO: 2,
 }));
