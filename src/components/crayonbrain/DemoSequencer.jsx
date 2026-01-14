@@ -10,12 +10,16 @@ import kick from '../../assets/kick.wav';
 import snare from '../../assets/snare.wav';
 import snare2 from '../../assets/snare2.wav';
 import hat from '../../assets/hat.wav';
+import kick808 from '../../assets/808kick.wav';
+import hat2 from '../../assets/hat2.wav';
 
 const DRUM_SOUNDS = [
     { id: 'kick', name: 'Kick', src: kick },
     { id: 'snare', name: 'Snare', src: snare },
     { id: 'snare2', name: 'Snare2', src: snare2 },
     { id: 'hat', name: 'Hat', src: hat },
+    { id: '808kick', name: '808 Kick', src: kick808 },
+    { id: 'hat2', name: 'Hat2', src: hat2 },
 ];
 
 const TIME_STEPS = 8;
@@ -30,6 +34,8 @@ const DemoSequencer = () => {
         { steps: [false, false, true, false, false, false, true, false] }, // snare
         { steps: [false, false, false, false, false, false, false, false] }, // snare2
         { steps: [true, false, false, false, true, false, false, false] }, // hat
+        { steps: [false, false, false, false, false, false, false, false] }, // 808kick
+        { steps: [false, false, false, false, false, false, false, false] }, // hat2
     ]);
     
     const [bpm, setBpm] = useState(DEFAULT_BPM);
@@ -78,7 +84,7 @@ const DemoSequencer = () => {
     };
 
     return (
-        <div ref={elementRef} className="demo-sequencer w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+        <div ref={elementRef} className="demo-sequencer w-full h-[500px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
             <div className="flex flex-row items-center justify-between w-full mb-4 md:mb-6 lg:mb-8 px-2">
                 <button
                     onClick={handlePlay}
@@ -115,13 +121,13 @@ const DemoSequencer = () => {
                             {sound.name}
                         </div>
 
-                        <div className="flex-grow grid gap-2 md:gap-1.5 lg:gap-1" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
+                        <div className="flex-grow grid gap-1" style={{ gridTemplateColumns: `repeat(${TIME_STEPS}, minmax(0, 1fr))` }}>
                             {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                                 <button
                                     key={`${sound.id}-${stepIndex}`}
                                     onClick={() => handleDrumCellClick(soundIndex, stepIndex)}
                                     className={`
-                                        h-10 w-full min-w-[32px] md:min-w-[34px] lg:min-w-[34px] rounded border border-base-content/30
+                                        h-10 w-full min-w-[32px] md:min-w-[34px] lg:min-w-[35px] rounded border border-base-content/30
                                         transition-all duration-100 ease-in-out cursor-pointer
                                         ${isActive ? 'bg-accent scale-95' : (shouldBeDarkerDrum(stepIndex) ? 'bg-base-300 hover:bg-neutral-500' : 'bg-base-100 hover:bg-neutral-focus/30')}
                                         ${currentStep === stepIndex && isPlaying ? 'border-2 border-primary md:border-base-content/30 md:ring-2 md:ring-primary md:ring-offset-1 md:ring-offset-base-300' : ''}
