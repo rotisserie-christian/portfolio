@@ -1,0 +1,4 @@
+- **`errors.js`** - Error classes for sequencer and visualizer
+- **`sequencerConstants.js`** - Sequencer configuration constants
+- **`sequencerUtils.js`** - Utility functions for sequencer operations
+- **`visualizerConstants.js`** - Visualizer configuration constants
