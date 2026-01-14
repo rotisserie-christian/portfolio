@@ -22,7 +22,7 @@ const Visualizer = ({ className = '', canvasId, fillParent = false }) => {
 
   return (
     <div className={`w-full flex flex-col ${className}`}>
-      <div className="w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+      <div className="w-full h-[500px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
         <PresetControls
           currentPresetSelection={currentPresetSelection}
           presetName={presetName}
