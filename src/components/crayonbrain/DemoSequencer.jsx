@@ -5,7 +5,17 @@ import { useSequencer } from './hooks/sequencer/useSequencer';
 import { useSequencerContext } from './hooks/useSequencerContext';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import TempoSlider from './TempoSlider';
-import { DEFAULT_BPM } from './utils/sequencerConstants';
+import { 
+    DEFAULT_BPM, 
+    TIME_STEPS, 
+    SEQUENCER_OBSERVER_ROOT_MARGIN,
+} from './utils/sequencerConstants';
+import {
+    createDefaultSequence,
+    createEmptySequence,
+    shouldBeDarkerStep,
+    toggleStep
+} from './utils/sequencerUtils';
 import kick from '../../assets/kick.wav';
 import snare from '../../assets/snare.wav';
 import snare2 from '../../assets/snare2.wav';
@@ -22,24 +32,11 @@ const DRUM_SOUNDS = [
     { id: 'hat2', name: 'Hat2', src: hat2 },
 ];
 
-const TIME_STEPS = 8;
-
 const DemoSequencer = () => {
     const { setIsPlaying, sequencerGainRef: contextGainRef } = useSequencerContext();
-    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: '100px' });
-    
-    // Default pattern
-    const [drumSequence, setDrumSequence] = useState([
-        { steps: [true, false, false, false, false, true, false, false] }, // kick
-        { steps: [false, false, true, false, false, false, true, false] }, // snare
-        { steps: [false, false, false, false, false, false, false, false] }, // snare2
-        { steps: [true, false, false, false, true, false, false, false] }, // hat
-        { steps: [false, false, false, false, false, false, false, false] }, // 808kick
-        { steps: [false, false, false, false, false, false, false, false] }, // hat2
-    ]);
-    
+    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: SEQUENCER_OBSERVER_ROOT_MARGIN });
+    const [drumSequence, setDrumSequence] = useState(() => createDefaultSequence(DRUM_SOUNDS.length));
     const [bpm, setBpm] = useState(DEFAULT_BPM);
-
     const { isPlaying, currentStep, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
@@ -60,27 +57,12 @@ const DemoSequencer = () => {
     }, [sequencerGainRef, contextGainRef]);
 
     const handleDrumCellClick = (soundIndex, stepIndex) => {
-        setDrumSequence(prev => prev.map((track, currentSoundIndex) => {
-            if (currentSoundIndex === soundIndex) {
-                const newSteps = [...track.steps];
-                newSteps[stepIndex] = !newSteps[stepIndex];
-                return { ...track, steps: newSteps };
-            }
-            return track;
-        }));
+        setDrumSequence(prev => toggleStep(prev, soundIndex, stepIndex));
     };
 
     const handleClear = () => {
-        const clearedSequence = drumSequence.map(track => ({
-            ...track,
-            steps: Array(TIME_STEPS).fill(false)
-        }));
+        const clearedSequence = createEmptySequence(DRUM_SOUNDS.length);
         setDrumSequence(clearedSequence);
-    };
-
-    // alternating shades to highlight 1/4 notes 
-    const shouldBeDarkerDrum = (timeStep) => {
-        return (timeStep === 2 || timeStep === 3) || (timeStep === 6 || timeStep === 7);
     };
 
     return (
@@ -129,7 +111,7 @@ const DemoSequencer = () => {
                                     className={`
                                         h-10 w-full min-w-[32px] md:min-w-[34px] lg:min-w-[35px] rounded border border-base-content/30
                                         transition-all duration-100 ease-in-out cursor-pointer
-                                        ${isActive ? 'bg-accent scale-95' : (shouldBeDarkerDrum(stepIndex) ? 'bg-base-300 hover:bg-neutral-500' : 'bg-base-100 hover:bg-neutral-focus/30')}
+                                        ${isActive ? 'bg-accent scale-95' : (shouldBeDarkerStep(stepIndex) ? 'bg-base-300 hover:bg-neutral-500' : 'bg-base-100 hover:bg-neutral-focus/30')}
                                         ${currentStep === stepIndex && isPlaying ? 'border-2 border-primary md:border-base-content/30 md:ring-2 md:ring-primary md:ring-offset-1 md:ring-offset-base-300' : ''}
                                     `}
                                     aria-label={`Toggle ${sound.name} at step ${stepIndex + 1}`}
