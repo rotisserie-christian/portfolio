@@ -15,7 +15,7 @@ const LazyVisualizer = () => {
             {hasIntersected ? (
                 <Suspense
                     fallback={
-                        <div className="w-full h-[420px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col items-center justify-center">
+                        <div className="w-full h-[500px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col items-center justify-center">
                             <span className="loading loading-spinner loading-lg text-primary"></span>
                         </div>
                     }
