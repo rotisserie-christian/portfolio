@@ -4,7 +4,7 @@ import { useVisualizer } from './hooks/visualizer/useVisualizer';
 import { useSequencerContext } from './hooks/useSequencerContext';
 import { usePresetSwitching } from './hooks/visualizer/usePresetSwitching';
 import { PRESET_INDICES } from './utils/visualizerConstants';
-import PresetControls from './PresetControls';
+import PresetControls from './ui/PresetControls';
 
 const Visualizer = ({ className = '', canvasId, fillParent = false }) => {
   const canvasRef = useRef(null);

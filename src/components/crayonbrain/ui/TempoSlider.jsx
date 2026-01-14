@@ -1,7 +1,7 @@
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import { MIN_BPM, MAX_BPM } from './utils/sequencerConstants';
-import CustomSlider from '../ui/CustomSlider';
+import { MIN_BPM, MAX_BPM } from '../utils/sequencerConstants';
+import CustomSlider from '../../ui/CustomSlider';
 
 const TempoSlider = ({ bpm, onBpmChange, minBpm = MIN_BPM, maxBpm = MAX_BPM }) => {
     const handleDecrement = () => {
