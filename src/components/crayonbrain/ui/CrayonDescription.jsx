@@ -7,7 +7,7 @@ const CrayonDescription = () => {
             <a href="https://www.geisswerks.com/milkdrop/" target="_blank" rel="noreferrer" className="underline mx-1">MilkDrop</a>
             visualizer featured in Winamp.<br /><br />
 
-            The composer builds audio data for drums, insturments, and mixer configurations.
+            The composer builds audio data for drums, instruments, and mixer configurations.
             Data is saved/loaded with a git-like versioning system, and can be posted to a public feed.<br /><br />
 
             The feed is a sliding window where older posts are continually removed. 
