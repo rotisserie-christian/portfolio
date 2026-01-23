@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { TIME_STEPS } from '../utils/sequencerConstants';
 import { shouldBeDarkerStep } from '../utils/sequencerUtils';
 
-const DrumPad = ({ drumSounds, drumSequence, currentStep, isPlaying, onCellClick }) => {
+const DrumPad = ({ drumSounds, drumSequence, isPlaying, onCellClick }) => {
     return (
         <div className="flex flex-col gap-1 p-1 md:p-2 lg:p-3 bg-base-300 rounded">
             {drumSounds.map((sound, soundIndex) => (
@@ -15,13 +15,15 @@ const DrumPad = ({ drumSounds, drumSequence, currentStep, isPlaying, onCellClick
                         {/* 
                             fill button if the step is active for that sample
                             darken the notes for the 2nd and 4th quarters of the bar 
-                            highlight currently playing step
+                            highlight currently playing step 
                         */}
                         {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                             <button
                                 key={`${sound.id}-${stepIndex}`}
+                                data-step={stepIndex}
                                 onClick={() => onCellClick(soundIndex, stepIndex)}
                                 className={`
+                                    drum-cell
                                     h-10 w-full min-w-[32px] md:min-w-[34px] lg:min-w-[35px] rounded border border-base-content/30
                                     transition-all duration-100 ease-in-out cursor-pointer
                                     ${isActive ? 'bg-accent scale-95' : 
@@ -30,11 +32,6 @@ const DrumPad = ({ drumSounds, drumSequence, currentStep, isPlaying, onCellClick
                                                 'bg-base-300 hover:bg-neutral-500' : 
                                                 isPlaying ? 'bg-base-300 hover:bg-neutral-focus/30' : 'bg-base-100 hover:bg-neutral-focus/30'
                                         )
-                                    }
-                                    
-                                    ${currentStep === stepIndex && isPlaying ? 
-                                        'border-2 border-primary md:border-base-content/30 md:ring-2 md:ring-primary md:ring-offset-1 md:ring-offset-base-300' : 
-                                        ''
                                     }
                                 `}
 
@@ -61,7 +58,6 @@ DrumPad.propTypes = {
             steps: PropTypes.arrayOf(PropTypes.bool).isRequired,
         })
     ).isRequired,
-    currentStep: PropTypes.number.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     onCellClick: PropTypes.func.isRequired,
 };

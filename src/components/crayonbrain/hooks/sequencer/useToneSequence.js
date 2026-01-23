@@ -9,7 +9,7 @@ import { TIME_STEPS } from '../../utils/sequencerConstants';
  * @param {Object} playersRef - React ref containing Tone.Player instances
  * @param {Object} drumSequenceRef - React ref to current drum sequence pattern
  * @param {Object} sequenceRef - React ref to store Tone.Sequence instance
- * @param {Function} setCurrentStep - Function to update current step state
+ * @param {Object} currentStepRef - React ref to store current step (avoids re-renders)
  * @returns {void}
  */
 export const useToneSequence = (
@@ -17,11 +17,23 @@ export const useToneSequence = (
   playersRef,
   drumSequenceRef,
   sequenceRef,
-  setCurrentStep
+  currentStepRef
 ) => {
   useEffect(() => {
     sequenceRef.current = new Tone.Sequence((time, step) => {
-      setCurrentStep(step);
+      // Update ref 
+      currentStepRef.current = step;
+      
+      const drumPad = document.querySelector('.demo-sequencer');
+      if (drumPad) {
+        // Remove previous step highlighting
+        const prevCells = drumPad.querySelectorAll('.drum-cell.playing');
+        prevCells.forEach(cell => cell.classList.remove('playing'));
+        
+        // Add highlighting to current step cells
+        const currentCells = drumPad.querySelectorAll(`.drum-cell[data-step="${step}"]`);
+        currentCells.forEach(cell => cell.classList.add('playing'));
+      }
       
       stableDrumSounds.forEach((sound, soundIndex) => {
         const track = drumSequenceRef.current[soundIndex];
@@ -45,6 +57,6 @@ export const useToneSequence = (
         sequenceRef.current = null;
       }
     };
-  }, [stableDrumSounds, playersRef, drumSequenceRef, sequenceRef, setCurrentStep]);
+  }, [stableDrumSounds, drumSequenceRef, sequenceRef, currentStepRef]);
 };
 

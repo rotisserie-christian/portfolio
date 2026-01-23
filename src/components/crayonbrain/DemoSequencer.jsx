@@ -35,7 +35,7 @@ const DemoSequencer = () => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: SEQUENCER_OBSERVER_ROOT_MARGIN });
     const [drumSequence, setDrumSequence] = useState(() => createDefaultSequence(DRUM_SOUNDS.length));
     const [bpm, setBpm] = useState(DEFAULT_BPM);
-    const { isPlaying, currentStep, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
+    const { isPlaying, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
         bpm,
@@ -77,7 +77,6 @@ const DemoSequencer = () => {
             <DrumPad
                 drumSounds={DRUM_SOUNDS}
                 drumSequence={drumSequence}
-                currentStep={currentStep}
                 isPlaying={isPlaying}
                 onCellClick={handleDrumCellClick}
             />

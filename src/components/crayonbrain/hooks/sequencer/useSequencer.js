@@ -21,7 +21,7 @@ import { useTransport } from './useTransport';
  */
 export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_BPM, shouldInitialize = true) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [currentStep, setCurrentStep] = useState(0);
+    const currentStepRef = useRef(0);
     const [isInitializing, setIsInitializing] = useState(true);
     
     const playersRef = useRef({});
@@ -52,27 +52,27 @@ export const useSequencer = (drumSequence, drumSounds, tempoBpm = DEFAULT_BPM, s
         shouldInitialize
     );
 
-    // Setup Tone.Sequence for step-based playback
+    // Setup Tone.Sequence
     useToneSequence(
         stableDrumSounds,
         playersRef,
         drumSequenceRef,
         sequenceRef,
-        setCurrentStep
+        currentStepRef
     );
 
-    // Manage Transport play/stop functionality
+    // Manage Transport play/stop 
     const handlePlay = useTransport(
         isPlaying,
         setIsPlaying,
-        setCurrentStep,
+        currentStepRef,
         sequenceRef,
         tempoBpmRef
     );
 
     return {
         isPlaying,
-        currentStep,
+        currentStepRef, 
         handlePlay,
         playersRef,
         sequencerGainRef,

@@ -7,7 +7,7 @@ import { TransportError } from '../../utils/errors';
  * 
  * @param {boolean} isPlaying - Current playback state
  * @param {Function} setIsPlaying - Function to update playback state
- * @param {Function} setCurrentStep - Function to reset step to 0
+ * @param {Object} currentStepRef - React ref to store current step (avoids re-renders)
  * @param {Object} sequenceRef - React ref to Tone.Sequence instance
  * @param {Object} tempoBpmRef - React ref to current tempo value
  * @returns {Function} handlePlay - Function to start/stop playback
@@ -15,7 +15,7 @@ import { TransportError } from '../../utils/errors';
 export const useTransport = (
   isPlaying,
   setIsPlaying,
-  setCurrentStep,
+  currentStepRef,
   sequenceRef,
   tempoBpmRef
 ) => {
@@ -42,7 +42,14 @@ export const useTransport = (
       } else {
         Tone.getTransport().stop();
         setIsPlaying(false);
-        setCurrentStep(0);
+        currentStepRef.current = 0;
+        
+        // Clear cell highlighting
+        const drumPad = document.querySelector('.demo-sequencer');
+        if (drumPad) {
+          const highlightedCells = drumPad.querySelectorAll('.drum-cell.playing');
+          highlightedCells.forEach(cell => cell.classList.remove('playing'));
+        }
       }
     } catch (error) {
       const transportError = new TransportError('Error controlling playback', error);
@@ -51,9 +58,16 @@ export const useTransport = (
       }
       // Reset state on error
       setIsPlaying(false);
-      setCurrentStep(0);
+      currentStepRef.current = 0;
+      
+      // Clear cell highlighting
+      const drumPad = document.querySelector('.demo-sequencer');
+      if (drumPad) {
+        const highlightedCells = drumPad.querySelectorAll('.drum-cell.playing');
+        highlightedCells.forEach(cell => cell.classList.remove('playing'));
+      }
     }
-  }, [isPlaying, setIsPlaying, setCurrentStep, sequenceRef, tempoBpmRef]);
+  }, [isPlaying, setIsPlaying, currentStepRef, sequenceRef, tempoBpmRef]);
 
   return handlePlay;
 };
