@@ -68,7 +68,7 @@ export default function Crayonbrain() {
                 </a>
 
                 <SequencerProvider>
-                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl px-4">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl">
                         <div className="w-full lg:w-1/2">
                             <DemoSequencer />
                         </div>

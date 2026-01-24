@@ -64,7 +64,7 @@ const DemoSequencer = () => {
     };
 
     return (
-        <div ref={elementRef} className="demo-sequencer w-full h-[500px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+        <div ref={elementRef} className="demo-sequencer w-full h-[500px] w-full p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
             <SequencerControls
                 isPlaying={isPlaying}
                 isInitializing={isInitializing}
