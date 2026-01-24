@@ -6,8 +6,7 @@ import cb from "../../assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
 import { SequencerProvider } from "../../contexts/SequencerContext.jsx";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import HowItWorks from "../ui/HowItWorks";
-import CrayonDescription from "./ui/CrayonDescription";
+import HowItWorks from "./ui/HowItWorks.jsx";
 
 const LazyVisualizer = () => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
@@ -78,7 +77,7 @@ export default function Crayonbrain() {
                     </div>
                 </SequencerProvider>
 
-                <HowItWorks description={<CrayonDescription />} />
+                <HowItWorks />
             </div>
         </section>
     );

@@ -1,4 +1,3 @@
-- **`CrayonDescription.jsx`** - Text to pass into How it Works 
 - **`DrumPad.jsx`** - Grid for step sequencing
 - **`PresetControls.jsx`** - Controls for visualizer presets
 - **`SequencerControls.jsx`** - Play/Stop and Clear buttons for sequencer
