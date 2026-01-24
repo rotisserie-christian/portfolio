@@ -1,4 +1,5 @@
 - **`DrumPad.jsx`** - Grid for step sequencing
+- **`HowItWorks.jsx`** - Crayonbrain expanded description 
 - **`PresetControls.jsx`** - Controls for visualizer presets
 - **`SequencerControls.jsx`** - Play/Stop and Clear buttons for sequencer
 - **`TempoSlider.jsx`** - BPM tempo control with slider and increment/decrement buttons
