@@ -25,7 +25,11 @@
     font-style: normal;
 }
 
+/* Sequencer step highlighting - applied via DOM manipulation (no React re-renders) */
 .drum-cell.playing {
-  border: 2px solid oklch(var(--p));
-  box-shadow: 0 0 8px oklch(var(--p) / 0.5);
+    border-width: 2px !important;
+    padding: 2px !important;
+    border-color: rgb(108, 108, 249) !important;
+    border-style: solid !important;
+    box-shadow: 0 0 4px hsl(var(--p) / 0.5) !important;
 }

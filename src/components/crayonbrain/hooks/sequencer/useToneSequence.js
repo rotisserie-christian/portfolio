@@ -9,7 +9,7 @@ import { TIME_STEPS } from '../../utils/sequencerConstants';
  * @param {Object} playersRef - React ref containing Tone.Player instances
  * @param {Object} drumSequenceRef - React ref to current drum sequence pattern
  * @param {Object} sequenceRef - React ref to store Tone.Sequence instance
- * @param {Object} currentStepRef - React ref to store current step (avoids re-renders)
+ * @param {Object} currentStepRef - React ref to store current step
  * @returns {void}
  */
 export const useToneSequence = (
@@ -21,16 +21,19 @@ export const useToneSequence = (
 ) => {
   useEffect(() => {
     sequenceRef.current = new Tone.Sequence((time, step) => {
+      // Only update highlighting if transport is still running
+      if (Tone.getTransport().state !== 'started') {
+        return;
+      }
+      
       // Update ref 
       currentStepRef.current = step;
       
       const drumPad = document.querySelector('.demo-sequencer');
       if (drumPad) {
-        // Remove previous step highlighting
         const prevCells = drumPad.querySelectorAll('.drum-cell.playing');
         prevCells.forEach(cell => cell.classList.remove('playing'));
         
-        // Add highlighting to current step cells
         const currentCells = drumPad.querySelectorAll(`.drum-cell[data-step="${step}"]`);
         currentCells.forEach(cell => cell.classList.add('playing'));
       }
@@ -55,6 +58,13 @@ export const useToneSequence = (
         }
         sequenceRef.current.dispose();
         sequenceRef.current = null;
+      }
+      
+      // Clear highlighting on cleanup
+      const drumPad = document.querySelector('.demo-sequencer');
+      if (drumPad) {
+        const highlightedCells = drumPad.querySelectorAll('.drum-cell.playing');
+        highlightedCells.forEach(cell => cell.classList.remove('playing'));
       }
     };
   }, [stableDrumSounds, drumSequenceRef, sequenceRef, currentStepRef]);

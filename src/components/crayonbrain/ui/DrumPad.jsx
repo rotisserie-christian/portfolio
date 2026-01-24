@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { TIME_STEPS } from '../utils/sequencerConstants';
 import { shouldBeDarkerStep } from '../utils/sequencerUtils';
 
-const DrumPad = ({ drumSounds, drumSequence, isPlaying, onCellClick }) => {
+const DrumPad = ({ drumSounds, drumSequence, onCellClick }) => {
     return (
         <div className="flex flex-col gap-1 p-1 md:p-2 lg:p-3 bg-base-300 rounded">
             {drumSounds.map((sound, soundIndex) => (
@@ -15,7 +15,6 @@ const DrumPad = ({ drumSounds, drumSequence, isPlaying, onCellClick }) => {
                         {/* 
                             fill button if the step is active for that sample
                             darken the notes for the 2nd and 4th quarters of the bar 
-                            highlight currently playing step 
                         */}
                         {drumSequence[soundIndex]?.steps.map((isActive, stepIndex) => (
                             <button
@@ -25,12 +24,12 @@ const DrumPad = ({ drumSounds, drumSequence, isPlaying, onCellClick }) => {
                                 className={`
                                     drum-cell
                                     h-10 w-full min-w-[32px] md:min-w-[34px] lg:min-w-[35px] rounded border border-base-content/30
-                                    transition-all duration-100 ease-in-out cursor-pointer
+                                    transition-[background-color,transform] duration-100 ease-in-out cursor-pointer
                                     ${isActive ? 'bg-accent scale-95' : 
                                         (
                                             shouldBeDarkerStep(stepIndex) ? 
                                                 'bg-base-300 hover:bg-neutral-500' : 
-                                                isPlaying ? 'bg-base-300 hover:bg-neutral-focus/30' : 'bg-base-100 hover:bg-neutral-focus/30'
+                                                'bg-base-100 hover:bg-neutral-focus/30'
                                         )
                                     }
                                 `}
@@ -58,7 +57,6 @@ DrumPad.propTypes = {
             steps: PropTypes.arrayOf(PropTypes.bool).isRequired,
         })
     ).isRequired,
-    isPlaying: PropTypes.bool.isRequired,
     onCellClick: PropTypes.func.isRequired,
 };
 
