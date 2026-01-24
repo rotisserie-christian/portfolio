@@ -40,11 +40,12 @@ const HowItWorks = () => {
                     Both are fixed to 8 steps per bar to ensure consistent UX across devices.<br /><br />
 
                     Each composer reads and modifies the data in a ToneJS sequence. 
-                    Each active instrument has an array of objects containing values for active notes, while the drums are simple boolean arrays.
-                    The drums could have been instrument objects as well, the separation is a UX decision to help mentally separate percussion 
+                    Each active instrument has an array of objects containing values for active notes, while the drums are simple boolean arrays.<br /><br />
+                    
+                     The drums could have been instrument objects as well, and the two sequencers consolidated. Splitting them is a UX decision to help mentally separate percussion 
                     from melodies while writing.<br /><br />
 
-                    Sequence data is stored using refs because if state were used, 
+                    Sequence data is stored using refs. If state were used, 
                     the component would rerender and the sequence instance would be recreated.   
                     This would cause frequent stale closures, and enough latency to notice, especially at higher BPMs. <br /><br />
 
@@ -111,7 +112,7 @@ const HowItWorks = () => {
                     <a href="https://www.geisswerks.com/milkdrop/" target="_blank" rel="noreferrer" className="underline mx-1">MilkDrop</a>
                     visualizer featured in Winamp.<br /><br />
 
-                    It recieves FFT data passed in from a Web Audio API analyzer node, which connects to either the ToneJS output or the user's microphone.  
+                    It recieves FFT data passed in from a Web Audio API analyzer node, which connects to either the ToneJS output or the user's microphone.<br /><br />  
                     The microphone input is used for the Live feature. In addition to composing music, 
                     the user can also pipe in the audio from their own enviroment and fullscreen the visuals.<br /><br />
 
