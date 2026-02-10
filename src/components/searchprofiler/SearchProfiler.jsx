@@ -85,7 +85,7 @@ export default function SearchProfiler() {
                     </a>
                 </div>
 
-                <div className="w-full mb-8">
+                <div className="w-full mb-8 hidden lg:block">
                     <ScrollBar
                         clusters={clusters}
                         activeCluster={activeCluster}
@@ -96,7 +96,16 @@ export default function SearchProfiler() {
 
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start">
                     <LazyChart filteredData={filteredData} />
-                    <div className="w-full lg:w-1/2">
+
+                    <div className="flex flex-col items-center justify-start w-full lg:w-1/2">
+                        <div className="w-full mb-6 lg:hidden">
+                            <ScrollBar
+                                clusters={clusters}
+                                activeCluster={activeCluster}
+                                onClusterSelect={setActiveCluster}
+                                className="rounded-xl shadow-inner bg-base-200/50"
+                            />
+                        </div>
                         <Table data={filteredData} />
                     </div>
                 </div>
