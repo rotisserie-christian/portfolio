@@ -1,5 +1,5 @@
 import { Suspense, lazy, useState, useEffect, useMemo } from "react";
-import { FaAngleDoubleRight, FaPython } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import Table from "./Table";
 import ScrollBar from "./ScrollBar";
@@ -66,11 +66,6 @@ export default function SearchProfiler() {
                     <h1 className="ubuntu-bold text-3xl lg:text-5xl text-neutral-content/85">
                         Search Profiler
                     </h1>
-
-                    <div className="flex flex-row items-center justify-center w-24 h-8 bg-base-100 rounded-lg gap-2 mt-4">
-                        <FaPython className="text-xl text-neutral-content/85" />
-                        <p className="text-xs text-neutral-content/85">Python</p>
-                    </div>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
                         Toolkit for researching search terms specific to the behaviour of a given user profile
