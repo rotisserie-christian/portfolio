@@ -1,604 +1,142 @@
 [
     {
-        "cluster": "### Music Creation",
-        "query": "Free music maker",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 67.32,
-            "max_interest": 100.0,
-            "min_interest": 38.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "online drum machine",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 21.97,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "software for making music",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 18.56,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "make edm",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 16.68,
-            "max_interest": 54.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Finding Pre-Made Content (Loops/Samples)**",
-        "query": "royalty free loops",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 7.35,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Finding Pre-Made Content (Loops/Samples)**",
-        "query": "free music loops",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 6.37,
-            "max_interest": 80.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "how to make edm",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 4.02,
-            "max_interest": 41.0,
-            "min_interest": 0.0,
-            "trend_direction": "stable",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
         "query": "Free music making software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 3.84,
-            "max_interest": 27.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "cluster": "Music Creation",
+        "slope": 0.1626,
+        "avg_interest": 3.84,
+        "max_interest": 27.0
     },
     {
-        "cluster": "### Music Creation",
-        "query": "create music without experience",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 2.53,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "how to make edm",
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.1117,
+        "avg_interest": 4.02,
+        "max_interest": 41.0
     },
     {
-        "cluster": "### Comparisons & Recommendations",
-        "query": "best electronic music software beginners",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 2.0,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "free easy music software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 1.53,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Comparisons & Recommendations",
-        "query": "best easy music software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 1.08,
-            "max_interest": 40.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Software Options",
-        "query": "simple DAW for beginners",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 1.08,
-            "max_interest": 100.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
         "query": "best mobile DAW easy",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 1.01,
-            "max_interest": 94.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.0351,
+        "avg_interest": 1.01,
+        "max_interest": 94.0
     },
     {
-        "cluster": "### Comparisons & Recommendations",
-        "query": "most user friendly DAW",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0.9,
-            "max_interest": 84.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "software for making music",
+        "cluster": "Music Creation",
+        "slope": 0.0239,
+        "avg_interest": 18.56,
+        "max_interest": 100.0
     },
     {
-        "cluster": "### Software Options",
-        "query": "beginner music production software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0.89,
-            "max_interest": 83.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "free easy music software",
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.0123,
+        "avg_interest": 1.53,
+        "max_interest": 100.0
     },
     {
-        "cluster": "**Genre-Specific Tools**",
         "query": "make ambient music easily",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0.71,
-            "max_interest": 66.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.0023,
+        "avg_interest": 0.71,
+        "max_interest": 66.0
     },
     {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "beginner house music maker",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0.66,
-            "max_interest": 61.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "best electronic music software beginners",
+        "cluster": "Comparisons & Recommendations",
+        "slope": 0.0,
+        "avg_interest": 2.0,
+        "max_interest": 100.0
     },
     {
-        "cluster": "### Music Creation",
+        "query": "simple DAW for beginners",
+        "cluster": "Software Options",
+        "slope": 0.0,
+        "avg_interest": 1.08,
+        "max_interest": 100.0
+    },
+    {
+        "query": "most user friendly DAW",
+        "cluster": "Comparisons & Recommendations",
+        "slope": 0.0,
+        "avg_interest": 0.9,
+        "max_interest": 84.0
+    },
+    {
         "query": "electronic beats for beginners",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0.18,
-            "max_interest": 17.0,
-            "min_interest": 0.0,
-            "trend_direction": "falling",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "cluster": "Music Creation",
+        "slope": 0.0,
+        "avg_interest": 0.18,
+        "max_interest": 17.0
     },
     {
-        "cluster": "### Music Creation",
         "query": "make music fast and easy",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0.01,
-            "max_interest": 1.0,
-            "min_interest": 0.0,
-            "trend_direction": "rising",
-            "data_points": 93
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "cluster": "Music Creation",
+        "slope": 0.0,
+        "avg_interest": 0.01,
+        "max_interest": 1.0
     },
     {
-        "cluster": "**Finding Pre-Made Content (Loops/Samples)**",
-        "query": "electronic music loops",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "best easy music software",
+        "cluster": "Comparisons & Recommendations",
+        "slope": -0.0031,
+        "avg_interest": 1.08,
+        "max_interest": 40.0
     },
     {
-        "cluster": "**Finding Pre-Made Content (Loops/Samples)**",
-        "query": "simple music loops",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "create music without experience",
+        "cluster": "Music Creation",
+        "slope": -0.0145,
+        "avg_interest": 2.53,
+        "max_interest": 100.0
     },
     {
-        "cluster": "### Comparisons & Recommendations",
-        "query": "simple DAW recommendations",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "make edm",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.0261,
+        "avg_interest": 16.68,
+        "max_interest": 54.0
     },
     {
-        "cluster": "### Comparisons & Recommendations",
-        "query": "easiest music production app",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "beginner house music maker",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.0477,
+        "avg_interest": 0.66,
+        "max_interest": 61.0
     },
     {
-        "cluster": "### Comparisons & Recommendations",
-        "query": "beginner friendly music software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "royalty free loops",
+        "cluster": "Finding Pre-Made Content",
+        "slope": -0.0506,
+        "avg_interest": 7.35,
+        "max_interest": 100.0
     },
     {
-        "cluster": "### Software Options",
-        "query": "easy music making software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "beginner music production software",
+        "cluster": "Software Options",
+        "slope": -0.053,
+        "avg_interest": 0.89,
+        "max_interest": 83.0
     },
     {
-        "cluster": "### Software Options",
-        "query": "easy beat maker software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "online drum machine",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.1119,
+        "avg_interest": 21.97,
+        "max_interest": 100.0
     },
     {
-        "cluster": "### Software Options",
-        "query": "music software for non musicians",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "free music loops",
+        "cluster": "Finding Pre-Made Content",
+        "slope": -0.1238,
+        "avg_interest": 6.37,
+        "max_interest": 80.0
     },
     {
-        "cluster": "### Software Options",
-        "query": "simple electronic music software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Software Options",
-        "query": "easy to learn music program",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Software Options",
-        "query": "free music making software easy",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Software Options",
-        "query": "simple music creator software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "make electronic music easily",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "simple song creation software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "easy home music production",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "quick music maker online",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "instant beat creator",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "### Music Creation",
-        "query": "simple music recording software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "easy techno music software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "simple dubstep software",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "easy trance music program",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "online music maker simple",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
-    },
-    {
-        "cluster": "**Genre-Specific Tools**",
-        "query": "music production app simple",
-        "source": "generated",
-        "metrics": {
-            "avg_interest": 0,
-            "max_interest": 0,
-            "min_interest": 0,
-            "trend_direction": "unknown",
-            "data_points": 0
-        },
-        "related_to": null,
-        "timestamp": "2026-02-10T06:56:54.749536Z"
+        "query": "Free music maker",
+        "cluster": "Music Creation",
+        "slope": -0.3579,
+        "avg_interest": 67.32,
+        "max_interest": 100.0
     }
 ]
