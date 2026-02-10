@@ -1,5 +1,47 @@
+import { Suspense, lazy, useState, useEffect } from "react";
 import { FaAngleDoubleRight, FaPython } from "react-icons/fa";
-import Chart from "./Chart";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+
+const Chart = lazy(() => import("./Chart"));
+
+const LazyChart = () => {
+    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
+    const [isButterchurnLoaded, setIsButterchurnLoaded] = useState(!!window.butterchurnLoaded);
+
+    useEffect(() => {
+        if (isButterchurnLoaded) return;
+
+        const handleLoaded = () => setIsButterchurnLoaded(true);
+        window.addEventListener('butterchurn-loaded', handleLoaded);
+        return () => window.removeEventListener('butterchurn-loaded', handleLoaded);
+    }, [isButterchurnLoaded]);
+
+    const shouldLoad = hasIntersected && isButterchurnLoaded;
+
+    return (
+        <div ref={elementRef} className="w-full flex items-center justify-center min-h-[450px]">
+            {shouldLoad ? (
+                <Suspense
+                    fallback={
+                        <div className="flex flex-col items-center justify-center w-full h-[450px]">
+                            <span className="loading loading-spinner loading-lg text-primary"></span>
+                        </div>
+                    }
+                >
+                    <Chart />
+                </Suspense>
+            ) : (
+                <div className="flex flex-col items-center justify-center w-full h-[450px]">
+                    {!isButterchurnLoaded && hasIntersected && (
+                        <div className="flex flex-col items-center gap-2">
+                            <span className="loading loading-spinner loading-md text-neutral-content/40"></span>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
 
 export default function SearchProfiler() {
     return (
@@ -28,7 +70,7 @@ export default function SearchProfiler() {
                     </a>
                 </div>
 
-                <Chart />
+                <LazyChart />
             </div>
         </section>
     );

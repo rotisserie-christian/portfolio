@@ -39,7 +39,7 @@ export const useSetupVisualizer = (
 
       // Create and configure analyser for frequency analysis
       analyserRef.current = createAnalyser(audioCtx);
-      
+
       // Try to connect immediately if audio source is available
       connectAnalyser();
 
@@ -48,7 +48,7 @@ export const useSetupVisualizer = (
       const rect = canvas.getBoundingClientRect();
       const initialWidth = Math.max(1, Math.floor(rect.width * dpr));
       const initialHeight = Math.max(1, Math.floor(rect.height * dpr));
-      
+
       const viz = butterchurn.createVisualizer(audioCtx, canvas, {
         width: initialWidth,
         height: initialHeight,
@@ -62,6 +62,10 @@ export const useSetupVisualizer = (
 
       // Load initial preset: index 0 = $$$ Royal - Mashup (197)
       loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
+
+      // Dispatch event to allow other components to sequence their loading
+      window.dispatchEvent(new CustomEvent('butterchurn-loaded'));
+      window.butterchurnLoaded = true; // Also set a flag for components that mount after loading
     } catch (error) {
       const vizError = new VisualizerSetupError('Error setting up visualizer', error);
       if (import.meta?.env?.MODE === 'development') {
