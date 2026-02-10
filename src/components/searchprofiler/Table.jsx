@@ -11,7 +11,7 @@ export default function Table({ data }) {
 
     return (
         <div className="w-full overflow-hidden rounded-xl border border-base-content/10 bg-base-200/50 backdrop-blur-sm">
-            <div className="overflow-x-auto h-[450px] scrollbar-thin scrollbar-thumb-base-content/10">
+            <div className="overflow-x-auto h-[350px] lg:h-[450px] scrollbar-thin scrollbar-thumb-base-content/10">
                 <table className="table table-sm lg:table-md table-pin-rows">
                     <thead className="bg-base-300 text-neutral-content/85">
                         <tr>

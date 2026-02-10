@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
     Chart as ChartJS,
     LinearScale,
@@ -14,7 +15,7 @@ ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
 export default function Chart({ dataOverride }) {
     const dataToUse = dataOverride || searchData;
 
-    const options = {
+    const options = useMemo(() => ({
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -62,45 +63,54 @@ export default function Chart({ dataOverride }) {
                     stepSize: 10
                 },
                 beginAtZero: true,
-                max: 100
             },
         },
-    };
+    }), []);
 
-    // Group data by cluster
-    const clusters = {};
-    dataToUse.forEach((item) => {
-        if (!clusters[item.cluster]) {
-            clusters[item.cluster] = [];
-        }
-        clusters[item.cluster].push({
-            x: item.avg_interest,
-            y: item.max_interest,
-            r: 5 + (item.slope > 0 ? Math.sqrt(item.slope) * 40 : 0), // Only positive slopes increase size
-            query: item.query,
-            slope: item.slope
+    // Stable color map for all unique clusters
+    const colorMap = useMemo(() => {
+        const allClusters = [...new Set(searchData.map(item => item.cluster))].sort();
+        const map = {};
+        allClusters.forEach((cluster, index) => {
+            const hue = (index * 137.508) % 360;
+            map[cluster] = {
+                bg: `hsla(${hue}, 70%, 50%, 0.7)`,
+                border: `hsla(${hue}, 70%, 50%, 1)`
+            };
         });
-    });
+        return map;
+    }, []);
 
-    // datasets
-    const datasets = Object.keys(clusters).map((cluster, index) => {
-        const hue = (index * 137.508) % 360;
-        const color = `hsla(${hue}, 70%, 50%, 0.7)`;
-        const borderColor = `hsla(${hue}, 70%, 50%, 1)`;
+    const data = useMemo(() => {
+        // Group data by cluster
+        const clusters = {};
+        dataToUse.forEach((item) => {
+            if (!clusters[item.cluster]) {
+                clusters[item.cluster] = [];
+            }
+            clusters[item.cluster].push({
+                x: item.avg_interest,
+                y: item.max_interest,
+                r: 5 + (item.slope > 0 ? Math.sqrt(item.slope) * 25 : 0),
+                query: item.query,
+                slope: item.slope
+            });
+        });
 
-        return {
-            label: cluster,
-            data: clusters[cluster],
-            backgroundColor: color,
-            borderColor: borderColor,
-        };
-    });
+        // datasets
+        const datasets = Object.keys(clusters).map((cluster) => {
+            return {
+                label: cluster,
+                data: clusters[cluster],
+                backgroundColor: colorMap[cluster].bg,
+                borderColor: colorMap[cluster].border,
+            };
+        });
 
-    const data = {
-        datasets: datasets,
-    };
+        return { datasets };
+    }, [dataToUse, colorMap]);
 
-    const legendMargin = {
+    const legendMargin = useMemo(() => ({
         id: 'legendMargin',
         beforeInit(chart) {
             const originalFit = chart.legend.fit;
@@ -109,7 +119,7 @@ export default function Chart({ dataOverride }) {
                 this.height += 40; // padding bottom on legend 
             };
         }
-    };
+    }), []);
 
     return (
         <div className="p-4 w-full h-[450px] bg-base-300">

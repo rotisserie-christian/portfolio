@@ -88,7 +88,7 @@ export default function ScrollBar({
                             data-cluster-id="all"
                             onClick={() => onClusterSelect('all')}
                             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${activeCluster === 'all'
-                                ? 'border-2 border-cyan-200 text-cyan-200/85 shadow-md'
+                                ? 'border-2 border-purple-100/80 text-purple-100/85 shadow-md'
                                 : 'text-base-content/60 hover:text-base-content hover:bg-base-200'
                                 }`}
                         >
@@ -101,7 +101,7 @@ export default function ScrollBar({
                                 data-cluster-id={cluster}
                                 onClick={() => onClusterSelect(cluster)}
                                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${activeCluster === cluster
-                                    ? 'border-2 border-cyan-200 text-cyan-200/85 shadow-md'
+                                    ? 'border-2 border-purple-100/80 text-purple-100/85 shadow-md'
                                     : 'text-base-content/60 hover:text-base-content hover:bg-base-200'
                                     }`}
                             >
