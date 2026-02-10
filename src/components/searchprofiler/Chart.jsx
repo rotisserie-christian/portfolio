@@ -11,7 +11,9 @@ import searchData from './data/searchterms.json';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
 
-export default function Chart() {
+export default function Chart({ dataOverride }) {
+    const dataToUse = dataOverride || searchData;
+
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -56,12 +58,10 @@ export default function Chart() {
                     color: '#2a323c'
                 },
                 ticks: {
-                    color: '#a6adbb'
-                },
-                beginAtZero: true,
-                ticks: {
+                    color: '#a6adbb',
                     stepSize: 10
                 },
+                beginAtZero: true,
                 max: 100
             },
         },
@@ -69,14 +69,14 @@ export default function Chart() {
 
     // Group data by cluster
     const clusters = {};
-    searchData.forEach((item) => {
+    dataToUse.forEach((item) => {
         if (!clusters[item.cluster]) {
             clusters[item.cluster] = [];
         }
         clusters[item.cluster].push({
             x: item.avg_interest,
             y: item.max_interest,
-            r: 5 + (Math.sqrt(Math.abs(item.slope)) * 40), // Base size + sqrt scaling for visibility
+            r: 5 + (item.slope > 0 ? Math.sqrt(item.slope) * 40 : 0), // Only positive slopes increase size
             query: item.query,
             slope: item.slope
         });
@@ -112,8 +112,8 @@ export default function Chart() {
     };
 
     return (
-        <div className="p-4 w-full h-[450px] max-w-[600px] bg-base-300">
-            <Bubble options={options} data={data} plugins={[legendMargin]} />
+        <div className="p-4 w-full h-[450px] bg-base-300">
+            <Bubble options={options} data={data} plugins={[legendMargin]} redraw={true} />
         </div>
     );
 }
