@@ -54,8 +54,15 @@ export default function ScrollBar({
         }
     };
 
+    const isFirstRender = useRef(true);
+
     // Scroll active tab into view
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
         if (tabsContainerRef.current && activeCluster) {
             const activeTab = tabsContainerRef.current.querySelector(`[data-cluster-id="${activeCluster}"]`);
             if (activeTab) {
