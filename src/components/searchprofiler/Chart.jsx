@@ -29,7 +29,7 @@ export default function Chart({ dataOverride }) {
                 callbacks: {
                     label: (context) => {
                         const point = context.raw;
-                        return `${point.query}: Slope ${point.slope}, Avg ${point.x}, Max ${point.y}`;
+                        return `${point.query}: Slope ${point.x}, Avg ${point.y}`;
                     }
                 }
             }
@@ -38,7 +38,7 @@ export default function Chart({ dataOverride }) {
             y: {
                 title: {
                     display: true,
-                    text: 'Max Interest',
+                    text: 'Average Interest',
                     color: '#a6adbb'
                 },
                 grid: {
@@ -52,22 +52,26 @@ export default function Chart({ dataOverride }) {
             x: {
                 title: {
                     display: true,
-                    text: 'Average Interest',
+                    text: 'Rate of Change',
                     color: '#a6adbb'
                 },
                 grid: {
-                    color: '#2a323c'
+                    color: (context) => {
+                        if (context.tick.value === 0) {
+                            return '#575c64ff';
+                        }
+                        return '#2a323c';
+                    }
                 },
                 ticks: {
-                    color: '#a6adbb',
-                    stepSize: 10
+                    color: '#a6adbb'
                 },
-                beginAtZero: true,
+                beginAtZero: false,
             },
         },
     }), []);
 
-    // Stable color map for all unique clusters
+    // color map for clusters
     const colorMap = useMemo(() => {
         const allClusters = [...new Set(searchData.map(item => item.cluster))].sort();
         const map = {};
@@ -89,11 +93,12 @@ export default function Chart({ dataOverride }) {
                 clusters[item.cluster] = [];
             }
             clusters[item.cluster].push({
-                x: item.avg_interest,
-                y: item.max_interest,
-                r: 5 + (item.slope > 0 ? Math.sqrt(item.slope) * 25 : 0),
+                x: item.slope,
+                y: item.avg_interest,
+                r: 7,
                 query: item.query,
-                slope: item.slope
+                slope: item.slope,
+                max_interest: item.max_interest
             });
         });
 

@@ -135,8 +135,30 @@
     {
         "query": "Free music maker",
         "cluster": "Music Creation",
-        "slope": -0.3579,
+        "slope": -0.07,
         "avg_interest": 67.32,
         "max_interest": 100.0
+    },
+    {
+        "query": "free music apps",
+        "cluster": "Music Creation",
+        "slope": -0.16,
+        "avg_interest": 50.0,
+        "max_interest": 100.0
+    },
+    {
+        "query": "music apps for free",
+        "cluster": "Music Creation",
+        "slope": -0.05,
+        "avg_interest": 28.0,
+        "max_interest": 67.0
+    },
+    {
+        "query": "Music maker",
+        "cluster": "Music Creation",
+        "slope": -0.18,
+        "avg_interest": 75.0,
+        "max_interest": 100.0
     }
+
 ]
