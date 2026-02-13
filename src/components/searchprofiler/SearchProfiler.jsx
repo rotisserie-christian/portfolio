@@ -22,7 +22,7 @@ const LazyChart = ({ filteredData }) => {
     const shouldLoad = hasIntersected && isButterchurnLoaded;
 
     return (
-        <div ref={elementRef} className="w-full lg:w-1/2 flex items-center justify-center min-h-[450px]">
+        <div ref={elementRef} className="w-full flex items-center justify-center min-h-[450px]">
             {shouldLoad ? (
                 <Suspense
                     fallback={
@@ -68,7 +68,7 @@ export default function SearchProfiler() {
                     </h1>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        Toolkit for researching search terms specific to the behaviour of a given user profile
+                        Toolkit for researching search terms
                     </p>
 
                     <a
@@ -89,10 +89,16 @@ export default function SearchProfiler() {
                     />
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start">
-                    <LazyChart filteredData={filteredData} />
+                <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start justify-center">
+                    <div className="flex flex-col items-center justify-center w-full lg:w-[60%]">
+                        <p className="text-lg lg:text-xl mt-4 lg:mb-4 ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                            Interest Levels by Rate of Change
+                        </p>
 
-                    <div className="flex flex-col items-center justify-start w-full lg:w-1/2">
+                        <LazyChart filteredData={filteredData} />
+                    </div>
+
+                    <div className="flex flex-col items-center justify-start w-full lg:w-[40%]">
                         <div className="w-full mb-6 lg:hidden">
                             <ScrollBar
                                 clusters={clusters}

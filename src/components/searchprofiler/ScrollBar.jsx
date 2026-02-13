@@ -73,7 +73,7 @@ export default function ScrollBar({
 
     return (
         <div className={`w-full bg-base-300 border-b border-base-content/10 ${className}`}>
-            <div className="flex items-center">
+            <div className="flex items-center justify-center">
                 {/* Left Arrow */}
                 <button
                     onClick={() => scroll('left')}
@@ -90,7 +90,7 @@ export default function ScrollBar({
                     onWheel={handleWheel}
                     className="flex-1 overflow-x-auto scrollbar-hide select-none py-2"
                 >
-                    <div className="flex flex-row items-center gap-2 px-4 whitespace-nowrap">
+                    <div className="flex flex-row items-center lg:justify-center gap-2 px-4 whitespace-nowrap">
                         <button
                             data-cluster-id="all"
                             onClick={() => onClusterSelect('all')}
@@ -99,7 +99,7 @@ export default function ScrollBar({
                                 : 'text-base-content/60 hover:text-base-content hover:bg-base-200'
                                 }`}
                         >
-                            All Clusters
+                            All
                         </button>
 
                         {clusters.map((cluster) => (

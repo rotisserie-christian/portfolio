@@ -1,164 +1,191 @@
 [
     {
-        "query": "Free music making software",
-        "cluster": "Music Creation",
-        "slope": 0.1626,
-        "avg_interest": 3.84,
-        "max_interest": 27.0
-    },
-    {
-        "query": "how to make edm",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.1117,
-        "avg_interest": 4.02,
-        "max_interest": 41.0
-    },
-    {
-        "query": "best mobile DAW easy",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.0351,
-        "avg_interest": 1.01,
-        "max_interest": 94.0
+        "query": "free audio visualizer",
+        "cluster": "Visualization",
+        "slope": 0.0852,
+        "avg_interest": 1.13,
+        "max_interest": 16.0
     },
     {
         "query": "software for making music",
         "cluster": "Music Creation",
-        "slope": 0.0239,
-        "avg_interest": 18.56,
-        "max_interest": 100.0
+        "slope": 0.0743,
+        "avg_interest": 5.09,
+        "max_interest": 26.0
     },
     {
-        "query": "free easy music software",
+        "query": "how to make edm",
         "cluster": "Genre-Specific Tools",
-        "slope": 0.0123,
-        "avg_interest": 1.53,
-        "max_interest": 100.0
+        "slope": 0.0719,
+        "avg_interest": 1.46,
+        "max_interest": 11.0
     },
     {
-        "query": "make ambient music easily",
+        "query": "drum pad machine",
         "cluster": "Genre-Specific Tools",
-        "slope": 0.0023,
-        "avg_interest": 0.71,
-        "max_interest": 66.0
+        "slope": 0.0707,
+        "avg_interest": 1.32,
+        "max_interest": 16.0
     },
     {
-        "query": "best electronic music software beginners",
-        "cluster": "Comparisons & Recommendations",
-        "slope": 0.0,
-        "avg_interest": 2.0,
-        "max_interest": 100.0
-    },
-    {
-        "query": "simple DAW for beginners",
-        "cluster": "Software Options",
-        "slope": 0.0,
-        "avg_interest": 1.08,
-        "max_interest": 100.0
-    },
-    {
-        "query": "most user friendly DAW",
-        "cluster": "Comparisons & Recommendations",
-        "slope": 0.0,
-        "avg_interest": 0.9,
-        "max_interest": 84.0
-    },
-    {
-        "query": "electronic beats for beginners",
+        "query": "free music making software",
         "cluster": "Music Creation",
-        "slope": 0.0,
-        "avg_interest": 0.18,
-        "max_interest": 17.0
+        "slope": 0.055,
+        "avg_interest": 2.96,
+        "max_interest": 23.0
     },
     {
-        "query": "make music fast and easy",
-        "cluster": "Music Creation",
-        "slope": 0.0,
-        "avg_interest": 0.01,
+        "query": "how to make edm music",
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.0513,
+        "avg_interest": 0.14,
+        "max_interest": 2.0
+    },
+    {
+        "query": "make techno music",
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.0478,
+        "avg_interest": 0.75,
+        "max_interest": 19.0
+    },
+    {
+        "query": "music visualizer free",
+        "cluster": "Visualization",
+        "slope": 0.0228,
+        "avg_interest": 1.76,
+        "max_interest": 19.0
+    },
+    {
+        "query": "make trance music",
+        "cluster": "Genre-Specific Tools",
+        "slope": 0.0172,
+        "avg_interest": 0.05,
         "max_interest": 1.0
     },
     {
-        "query": "best easy music software",
-        "cluster": "Comparisons & Recommendations",
-        "slope": -0.0031,
-        "avg_interest": 1.08,
-        "max_interest": 40.0
+        "query": "music loops free download",
+        "cluster": "Finding Pre-Made Content",
+        "slope": -0.004,
+        "avg_interest": 0.06,
+        "max_interest": 1.0
     },
     {
-        "query": "create music without experience",
+        "query": "electronic music loops",
+        "cluster": "Finding Pre-Made Content",
+        "slope": -0.0053,
+        "avg_interest": 0.16,
+        "max_interest": 14.0
+    },
+    {
+        "query": "free easy music software",
         "cluster": "Music Creation",
+        "slope": -0.0127,
+        "avg_interest": 0.05,
+        "max_interest": 2.0
+    },
+    {
+        "query": "online music visualizer",
+        "cluster": "Visualization",
         "slope": -0.0145,
-        "avg_interest": 2.53,
-        "max_interest": 100.0
+        "avg_interest": 1.01,
+        "max_interest": 19.0
     },
     {
-        "query": "make edm",
+        "query": "make ambient music",
         "cluster": "Genre-Specific Tools",
-        "slope": -0.0261,
-        "avg_interest": 16.68,
-        "max_interest": 54.0
+        "slope": -0.0343,
+        "avg_interest": 1.72,
+        "max_interest": 24.0
     },
     {
-        "query": "beginner house music maker",
+        "query": "make house music",
         "cluster": "Genre-Specific Tools",
-        "slope": -0.0477,
-        "avg_interest": 0.66,
-        "max_interest": 61.0
+        "slope": -0.0718,
+        "avg_interest": 35.71,
+        "max_interest": 67.0
     },
     {
         "query": "royalty free loops",
         "cluster": "Finding Pre-Made Content",
-        "slope": -0.0506,
-        "avg_interest": 7.35,
-        "max_interest": 100.0
+        "slope": -0.0873,
+        "avg_interest": 1.59,
+        "max_interest": 34.0
     },
     {
-        "query": "beginner music production software",
-        "cluster": "Software Options",
-        "slope": -0.053,
-        "avg_interest": 0.89,
-        "max_interest": 83.0
+        "query": "music visualizer",
+        "cluster": "Visualization",
+        "slope": -0.1111,
+        "avg_interest": 43.51,
+        "max_interest": 74.0
+    },
+    {
+        "query": "audio visualizer",
+        "cluster": "Visualization",
+        "slope": -0.1166,
+        "avg_interest": 40.67,
+        "max_interest": 76.0
+    },
+    {
+        "query": "make edm",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.1167,
+        "avg_interest": 5.53,
+        "max_interest": 18.0
     },
     {
         "query": "online drum machine",
         "cluster": "Genre-Specific Tools",
-        "slope": -0.1119,
-        "avg_interest": 21.97,
-        "max_interest": 100.0
+        "slope": -0.1222,
+        "avg_interest": 6.97,
+        "max_interest": 32.0
     },
     {
         "query": "free music loops",
         "cluster": "Finding Pre-Made Content",
-        "slope": -0.1238,
-        "avg_interest": 6.37,
-        "max_interest": 80.0
+        "slope": -0.1336,
+        "avg_interest": 2.61,
+        "max_interest": 39.0
+    },
+    {
+        "query": "music maker free online",
+        "cluster": "Music Creation",
+        "slope": -0.1469,
+        "avg_interest": 11.58,
+        "max_interest": 37.0
+    },
+    {
+        "query": "online drum kit",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.1957,
+        "avg_interest": 5.65,
+        "max_interest": 33.0
     },
     {
         "query": "Free music maker",
         "cluster": "Music Creation",
-        "slope": -0.07,
-        "avg_interest": 67.32,
+        "slope": -0.1977,
+        "avg_interest": 62.57,
+        "max_interest": 97.0
+    },
+    {
+        "query": "drums online",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.3271,
+        "avg_interest": 40.53,
         "max_interest": 100.0
     },
     {
-        "query": "free music apps",
-        "cluster": "Music Creation",
-        "slope": -0.16,
-        "avg_interest": 50.0,
+        "query": "drum pad",
+        "cluster": "Genre-Specific Tools",
+        "slope": -0.3456,
+        "avg_interest": 65.95,
         "max_interest": 100.0
     },
     {
-        "query": "music apps for free",
+        "query": "music maker online",
         "cluster": "Music Creation",
-        "slope": -0.05,
-        "avg_interest": 28.0,
-        "max_interest": 67.0
-    },
-    {
-        "query": "Music maker",
-        "cluster": "Music Creation",
-        "slope": -0.18,
-        "avg_interest": 75.0,
-        "max_interest": 100.0
+        "slope": -0.3775,
+        "avg_interest": 38.77,
+        "max_interest": 91.0
     }
-
 ]
