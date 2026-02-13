@@ -60,7 +60,7 @@ export default function SearchProfiler() {
     }, [activeCluster]);
 
     return (
-        <section className="flex items-center justify-center w-full bg-base-300 py-20 px-4">
+        <section className="flex items-center justify-center w-full bg-base-300 py-20 px-2">
             <div className="flex flex-col items-center justify-center w-full max-w-7xl">
                 <div className="flex flex-col mb-10 lg:mb-16 items-center justify-center w-full">
                     <h1 className="ubuntu-bold text-3xl lg:text-5xl text-neutral-content/85">
@@ -90,7 +90,7 @@ export default function SearchProfiler() {
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start justify-center">
-                    <div className="flex flex-col items-center justify-center w-full lg:w-[60%]">
+                    <div className="flex flex-col items-center justify-center w-full lg:w-[50%]">
                         <p className="text-lg lg:text-xl mt-4 ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
                             Interest Levels by Rate of Change
                         </p>
@@ -102,7 +102,7 @@ export default function SearchProfiler() {
                         <LazyChart filteredData={filteredData} />
                     </div>
 
-                    <div className="flex flex-col items-center justify-start w-full lg:w-[40%]">
+                    <div className="flex flex-col items-center justify-start w-full lg:w-[50%]">
                         <div className="w-full mb-6 lg:hidden">
                             <ScrollBar
                                 clusters={clusters}
