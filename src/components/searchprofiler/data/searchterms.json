@@ -161,13 +161,6 @@
         "max_interest": 33.0
     },
     {
-        "query": "Free music maker",
-        "cluster": "Music Creation",
-        "slope": -0.1977,
-        "avg_interest": 62.57,
-        "max_interest": 97.0
-    },
-    {
         "query": "drums online",
         "cluster": "Genre-Specific Tools",
         "slope": -0.3271,
