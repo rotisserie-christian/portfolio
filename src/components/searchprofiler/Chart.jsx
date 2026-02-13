@@ -48,6 +48,7 @@ export default function Chart({ dataOverride }) {
                     color: '#a6adbb'
                 },
                 beginAtZero: true,
+                max: 100,
             },
             x: {
                 title: {
