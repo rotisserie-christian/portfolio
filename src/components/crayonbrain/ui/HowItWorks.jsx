@@ -37,7 +37,7 @@ const HowItWorks = () => {
             {isSequencingOpen && (
                 <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left px-4">
                     Music is written using 2 seperate step sequencer components, one for drums and the other for instruments.
-                    Both are fixed to 8 steps per bar to ensure consistent UX across devices.<br /><br />
+                    Both are fixed to 8/16 steps per bar (8 on this demo) to ensure consistent UX across devices.<br /><br />
 
                     Each composer reads and modifies the data in a ToneJS sequence. 
                     Each active instrument has an array of objects containing values for active notes, while the drums are simple boolean arrays.<br /><br />
