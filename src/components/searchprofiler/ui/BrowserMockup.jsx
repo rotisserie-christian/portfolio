@@ -14,7 +14,7 @@ export default function BrowserMockup({ param }) {
     const ActiveComponent = components[param];
 
     return (
-        <div className="mockup-browser bg-base-200 border-base-300 border w-full max-w-[370px]">
+        <div className="mockup-browser bg-base-200 border-base-300 border w-full max-w-[380px]">
             <div className="mockup-browser-toolbar">
                 <div className="input border border-base-300">https://crayonbrain.com/?t={param}</div>
             </div>
