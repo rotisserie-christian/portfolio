@@ -4,7 +4,7 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import Table from "./Table";
 import ScrollBar from "./ScrollBar";
 import searchData from "./data/searchterms.json";
-import WhatItDoes from "./WhatItDoes";
+//import WhatItDoes from "./WhatItDoes";
 
 const Chart = lazy(() => import("./Chart"));
 
