@@ -1,3 +1,5 @@
+import BrowserMockup from "./ui/BrowserMockup";
+
 export default function WhatItDoes() {
     return (
         <section className="flex flex-col items-center justify-center w-full">
@@ -9,10 +11,12 @@ export default function WhatItDoes() {
                 What it does
             </h1>
 
-            <p className="text-lg lg:text-xl mt-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+            <p className="mb-16 text-lg lg:text-xl mt-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
                 The point is to create dynamic routes containing content and metadata
                 that matches the search intent
             </p>
+
+            <BrowserMockup param="drum-pad" />
         </section>
     );
 }

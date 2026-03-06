@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+.courier-new {
+    font-family: "Courier New", monospace;
+}
+
+.courier-new-medium {
+    font-family: "Courier New", monospace;
+    font-weight: 500;
+    font-style: normal;
+}
+
 .ubuntu-regular {
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;

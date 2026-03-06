@@ -14,13 +14,13 @@ export default function BrowserMockup({ param }) {
     const ActiveComponent = components[param];
 
     return (
-        <div className="mockup-browser border-base-300 border w-full">
+        <div className="mockup-browser bg-base-200 border-base-300 border w-full max-w-[370px]">
             <div className="mockup-browser-toolbar">
                 <div className="input border border-base-300">https://crayonbrain.com/?t={param}</div>
             </div>
 
             <div className="grid place-content-center border-t border-base-300 h-80">
-                {ActiveComponent ? <ActiveComponent /> : "Hello!"}
+                {ActiveComponent ? <ActiveComponent /> : "error :("}
             </div>
         </div>
     );

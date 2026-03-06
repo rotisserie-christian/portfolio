@@ -116,7 +116,7 @@ export default function SearchProfiler() {
                     </div>
                 </div>
 
-                {/*<WhatItDoes />*/}
+                {/* <WhatItDoes /> */}
             </div>
         </section>
     );
