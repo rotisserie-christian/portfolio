@@ -1,0 +1,4 @@
+- **`Chart.jsx`** - Bubble chart for search term interest 
+- **`RoutesCards.jsx`** - Cards with links to specific application entry points
+- **`ScrollBar.jsx`** - Horizontal scrolling for filters 
+- **`Table.jsx`** - Paginated data table
