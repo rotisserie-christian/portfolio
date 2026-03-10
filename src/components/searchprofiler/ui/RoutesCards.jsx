@@ -1,5 +1,5 @@
 
-export default function BrowserMockup() {
+export default function RoutesCards() {
 
     return (
         <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-2">

@@ -1,12 +1,12 @@
 import { Suspense, lazy, useState, useEffect, useMemo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import Table from "./Table";
-import ScrollBar from "./ScrollBar";
+import Table from "./ui/Table";
+import ScrollBar from "./ui/ScrollBar";
 import searchData from "./data/searchterms.json";
 import WhatItDoes from "./WhatItDoes";
 
-const Chart = lazy(() => import("./Chart"));
+const Chart = lazy(() => import("./ui/Chart"));
 
 const LazyChart = ({ filteredData }) => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });

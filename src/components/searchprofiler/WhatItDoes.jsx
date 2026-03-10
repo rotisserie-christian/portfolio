@@ -1,4 +1,4 @@
-import BrowserMockup from "./ui/BrowserMockup";
+import RoutesCards from "./ui/RoutesCards";
 
 export default function WhatItDoes() {
     return (
@@ -16,7 +16,7 @@ export default function WhatItDoes() {
                 that matches the search intent
             </p>
 
-            <BrowserMockup param="drum-pad" />
+            <RoutesCards />
 
             <div className="flex justify-center w-full mt-8 lg:mt-10">
                 <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>

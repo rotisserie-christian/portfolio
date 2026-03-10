@@ -8,7 +8,7 @@ import {
   Title,
 } from 'chart.js';
 import { Bubble } from 'react-chartjs-2';
-import searchData from './data/searchterms.json';
+import searchData from '../data/searchterms.json';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
 
