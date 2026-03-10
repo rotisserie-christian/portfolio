@@ -17,6 +17,15 @@ export default function WhatItDoes() {
             </p>
 
             <BrowserMockup param="drum-pad" />
+
+            <div className="flex justify-center w-full mt-8 lg:mt-10">
+                <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
+            </div>
+
+            <p className="mb-16 text-lg lg:text-xl mt-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                This connects the dots between what the user is trying to find and the feature they want
+                on the website<br /><br />
+            </p>
         </section>
     );
 }
