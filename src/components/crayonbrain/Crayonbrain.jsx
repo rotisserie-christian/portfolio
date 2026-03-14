@@ -7,6 +7,7 @@ import DemoSequencer from "./DemoSequencer";
 import { SequencerProvider } from "../../contexts/SequencerContext.jsx";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import HowItWorks from "./ui/HowItWorks.jsx";
+import Features from "./ui/Features.jsx";
 
 const LazyVisualizer = () => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
@@ -59,9 +60,9 @@ export default function Crayonbrain() {
                     Music composer with reactive visuals
                 </p>
 
-                <a 
-                href='https://crayonbrain.com/create' 
-                target='_blank' rel='noreferrer'>
+                <a
+                    href='https://crayonbrain.com/create'
+                    target='_blank' rel='noreferrer'>
                     <button className="btn w-26 bg-neutral rounded-xl mt-4 mb-8">
                         Visit<FaAngleDoubleRight />
                     </button>
@@ -77,6 +78,7 @@ export default function Crayonbrain() {
                     </div>
                 </SequencerProvider>
 
+                <Features />
                 <HowItWorks />
             </div>
         </section>
