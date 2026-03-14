@@ -1,6 +1,7 @@
 This website hosts demo versions of my projects
 
-The main interactive components render on the home page, progressively loading heavier assets and dependencies using Intersection Observer. 
+> [!NOTE]  
+> There are a lot of heavy dependencies here, and I'm using them all within a single route. However, I'm lazy loading them, and most bot traffic doesn't go past the fold, so it's more manageable than it looks.
 
 # Dependencies 
 ### Audio / Visual 
