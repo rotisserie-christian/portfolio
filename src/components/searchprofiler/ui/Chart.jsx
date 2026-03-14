@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { Bubble } from 'react-chartjs-2';
 import searchData from '../data/searchterms.json';
+import { getClusterColors } from '../utils/colors';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
 
@@ -69,18 +70,7 @@ export default function Chart({ dataOverride }) {
   }), []);
 
   // color map for clusters
-  const colorMap = useMemo(() => {
-    const allClusters = [...new Set(searchData.map(item => item.cluster))].sort();
-    const map = {};
-    allClusters.forEach((cluster, index) => {
-      const hue = (index * 137.508) % 360;
-      map[cluster] = {
-        bg: `hsla(${hue}, 70%, 50%, 0.7)`,
-        border: `hsla(${hue}, 70%, 50%, 1)`
-      };
-    });
-    return map;
-  }, []);
+  const colorMap = useMemo(() => getClusterColors(), []);
 
   const data = useMemo(() => {
     // Group data by cluster
@@ -104,8 +94,8 @@ export default function Chart({ dataOverride }) {
       return {
         label: cluster,
         data: clusters[cluster],
-        backgroundColor: colorMap[cluster].bg,
-        borderColor: colorMap[cluster].border,
+        backgroundColor: colorMap[cluster]?.bg || '#888',
+        borderColor: colorMap[cluster]?.border || '#888',
       };
     });
 

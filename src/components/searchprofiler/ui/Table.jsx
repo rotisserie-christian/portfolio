@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { getClusterColors } from '../utils/colors';
 
 export default function Table({ data }) {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+
+    const colorMap = useMemo(() => getClusterColors(), []);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -46,8 +49,15 @@ export default function Table({ data }) {
                         <tbody>
                             {currentData.map((item, index) => (
                                 <tr key={index} className="hover:bg-base-300/50 transition-colors border-base-content/5">
-                                    <td className="font-medium text-neutral-content/90 truncate max-w-[150px] lg:max-w-xs" title={item.query}>
-                                        {item.query}
+                                    <td className="font-medium text-neutral-content/90 max-w-[150px] lg:max-w-xs" title={item.query}>
+                                        <div className="flex items-center min-w-0">
+                                            <div
+                                                className="w-2 h-2 rounded-full mr-2 shrink-0"
+                                                style={{ backgroundColor: colorMap[item.cluster]?.indicator || '#888' }}
+                                                title={item.cluster}
+                                            />
+                                            <span className="truncate">{item.query}</span>
+                                        </div>
                                     </td>
                                     <td className="text-right font-mono text-xs">{item.avg_interest.toFixed(2)}</td>
                                     <td className="text-right font-mono text-xs">{item.max_interest.toFixed(0)}</td>
