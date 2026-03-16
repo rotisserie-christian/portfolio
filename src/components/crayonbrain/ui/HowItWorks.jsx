@@ -42,7 +42,7 @@ const HowItWorks = () => {
                     Each composer reads and modifies the data in a ToneJS sequence.
                     Each active instrument has an array of objects containing values for active notes, while the drums are simple boolean arrays.<br /><br />
 
-                    The drums could have been instrument objects as well, and the two sequencers consolidated. Splitting them is a UX decision to help mentally separate percussion
+                    The drums could have been instrument objects as well, and the two sequencers consolidated. Splitting them is a UX decision to help mentaly separate percussion
                     from melodies while writing.<br /><br />
 
                     Sequence data is stored using refs. If state were used,
