@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useStarGeneration } from "./hooks/useStarGeneration";
 import { useCanvasResize } from "./hooks/useCanvasResize";
 import { useStarfieldAnimation } from "./hooks/useStarfieldAnimation";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { StarBackgroundPropTypes, StarBackgroundDefaultProps } from "./utils/starTypes";
 
 export const StarsBackground = ({
@@ -22,7 +23,9 @@ export const StarsBackground = ({
   className,
 }) => {
   const [stars, setStars] = useState([]);
-  const canvasRef = useRef(null);
+  const { elementRef: canvasRef, isIntersecting } = useIntersectionObserver({
+    rootMargin: "300px",
+  });
   const starsRef = useRef([]);
 
   // Generate stars hook
@@ -58,7 +61,7 @@ export const StarsBackground = ({
     trailLength,
     swirlRotationSpeed,
     minTrailStrength,
-  });
+  }, !isIntersecting);
 
   return (
     <canvas

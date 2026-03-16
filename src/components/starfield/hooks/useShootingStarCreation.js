@@ -7,10 +7,14 @@ import { getRandomStartPoint, getRandomSpeed, getRandomDelay } from '../utils/sh
  * @param {Object} config - Configuration object
  * @returns {void}
  */
-export const useShootingStarCreation = (onCreateStar, config) => {
+export const useShootingStarCreation = (onCreateStar, config, paused = false) => {
   const { minSpeed, maxSpeed, minDelay, maxDelay } = config;
 
   useEffect(() => {
+    if (paused) return;
+
+    let timeoutId;
+
     const createStar = () => {
       const { x, y, angle } = getRandomStartPoint();
       const newStar = {
@@ -26,13 +30,14 @@ export const useShootingStarCreation = (onCreateStar, config) => {
       onCreateStar(newStar);
 
       const randomDelay = getRandomDelay(minDelay, maxDelay);
-      setTimeout(createStar, randomDelay);
+      timeoutId = setTimeout(createStar, randomDelay);
     };
 
     createStar();
     
-    // Cleanup is handled by the timeout, but we return empty function for consistency
-    return () => {};
-  }, [onCreateStar, minSpeed, maxSpeed, minDelay, maxDelay]);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [onCreateStar, minSpeed, maxSpeed, minDelay, maxDelay, paused]);
 };
 

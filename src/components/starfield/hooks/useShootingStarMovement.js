@@ -8,7 +8,7 @@ import { calculateStarMovement } from '../utils/shootingStarMath';
  * @param {number} fps - Frames per second for animation (default: 30)
  * @returns {void}
  */
-export const useShootingStarMovement = (star, onStarUpdate, fps = 30) => {
+export const useShootingStarMovement = (star, onStarUpdate, fps = 30, paused = false) => {
   const starRef = useRef(star);
   const onStarUpdateRef = useRef(onStarUpdate);
 
@@ -22,20 +22,20 @@ export const useShootingStarMovement = (star, onStarUpdate, fps = 30) => {
   }, [onStarUpdate]);
 
   useEffect(() => {
-    if (!star) return;
+    if (!star || paused) return;
 
     const moveStar = () => {
       const currentStar = starRef.current;
       if (!currentStar) return;
-      
+
       const updatedStar = calculateStarMovement(currentStar);
       onStarUpdateRef.current(updatedStar);
     };
 
     const intervalMs = 1000 / fps; // Convert fps to milliseconds
     const intervalId = setInterval(moveStar, intervalMs);
-    
+
     return () => clearInterval(intervalId);
-  }, [star, fps]); // Only re-run when star changes or fps changes
+  }, [star, fps, paused]);
 };
 

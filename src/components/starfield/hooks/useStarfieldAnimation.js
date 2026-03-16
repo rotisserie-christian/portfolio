@@ -8,7 +8,7 @@ import { drawStarTrail, drawStar } from '../utils/starRendering';
  * @param {React.RefObject} starsRef - Reference to stars array
  * @param {Object} config - Animation configuration
  */
-export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
+export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = false) => {
   const {
     gravityStrength,
     swirlStrength,
@@ -20,12 +20,14 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
   } = config;
 
   useEffect(() => {
+    if (paused) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext("2d");
-    if (!ctx) return; // Context not available (e.g., in test environment)
-    
+    if (!ctx) return;
+
     let animationFrame;
 
     const render = () => {
@@ -45,11 +47,11 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
         width,
         height,
       };
-      
+
       const time = Date.now();
 
       starsRef.current.forEach((star) => {
-        // Calculate gravitational lensing + swirl effect
+        // gravitational lensing + swirl effect
         const { distortedX, distortedY, norm, isInGravityZone } = calculateSwirlEffect(
           star,
           center,
@@ -63,7 +65,7 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
           time
         );
 
-        // Update trail for stars in gravity zone (only if effect is strong enough)
+        // trail for stars in gravity zone
         if (isInGravityZone && norm >= minTrailStrength) {
           // Initialize trail if it doesn't exist
           if (!star.trail) {
@@ -76,7 +78,7 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
             star.trail.shift();
           }
         } else {
-          // Clear trail when star leaves gravity zone or effect is too weak
+          // Clear trail when star leaves gravity zone
           if (star.trail) {
             star.trail = [];
           }
@@ -101,7 +103,7 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
     };
 
     render();
-    
+
     return () => {
       if (animationFrame) cancelAnimationFrame(animationFrame);
     };
@@ -115,6 +117,7 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config) => {
     trailLength,
     swirlRotationSpeed,
     minTrailStrength,
+    paused,
   ]);
 };
 

@@ -2,6 +2,7 @@ import { cn } from "../../utils/cn";
 import { useState, useCallback } from "react";
 import { useShootingStarCreation } from "./hooks/useShootingStarCreation";
 import { useShootingStarMovement } from "./hooks/useShootingStarMovement";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { getStarRectProps } from "./utils/shootingStarRendering";
 import { ShootingStarsPropTypes, ShootingStarsDefaultProps } from "./utils/starTypes";
 
@@ -17,6 +18,9 @@ export const ShootingStars = ({
   className,
 }) => {
   const [star, setStar] = useState(null);
+  const { elementRef: svgRef, isIntersecting } = useIntersectionObserver({
+    rootMargin: "300px",
+  });
 
   // Handle star creation
   const handleCreateStar = useCallback((newStar) => {
@@ -34,15 +38,16 @@ export const ShootingStars = ({
     maxSpeed,
     minDelay,
     maxDelay,
-  });
+  }, !isIntersecting);
 
   // Animate star movement
-  useShootingStarMovement(star, handleStarUpdate, 30);
+  useShootingStarMovement(star, handleStarUpdate, 30, !isIntersecting);
 
   const starProps = getStarRectProps(star, starWidth, starHeight);
 
   return (
     <svg
+      ref={svgRef}
       className={cn("w-full h-full absolute inset-0", className)}
     >
       {starProps && <rect {...starProps} />}
