@@ -37,18 +37,26 @@ export default function Navbar() {
 
                     <ul className="flex flex-row items-center gap-2">
                         <li>
-                            <a href='https://github.com/rotisserie-christian' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
-                                <button className="btn btn-neutral btn-circle" aria-label="GitHub">
-                                    <FaGithub className="text-xl" />
-                                </button>
+                            <a 
+                                href='https://github.com/rotisserie-christian' 
+                                target='_blank' 
+                                rel='noreferrer' 
+                                aria-label="GitHub Profile"
+                                className="btn btn-neutral btn-circle"
+                            >
+                                <FaGithub className="text-xl" />
                             </a>
                         </li>
 
                         <li>
-                            <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
-                                <button className="btn btn-neutral btn-circle" aria-label="LinkedIn">
-                                    <FaLinkedin className="text-xl" />
-                                </button>
+                            <a 
+                                href='https://linkedin.com/in/cwaters123' 
+                                target='_blank' 
+                                rel='noreferrer' 
+                                aria-label="LinkedIn Profile"
+                                className="btn btn-neutral btn-circle"
+                            >
+                                <FaLinkedin className="text-xl" />
                             </a>
                         </li>
                     </ul>

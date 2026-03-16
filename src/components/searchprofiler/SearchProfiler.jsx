@@ -74,10 +74,10 @@ export default function SearchProfiler() {
 
                     <a
                         href='https://github.com/rotisserie-christian/search-profiler'
-                        target='_blank' rel='noreferrer'>
-                        <button className="btn w-26 bg-neutral rounded-xl mt-4 mb-8">
-                            GitHub<FaAngleDoubleRight />
-                        </button>
+                        target='_blank' rel='noreferrer'
+                        className="btn w-26 bg-neutral rounded-xl mt-4 mb-8"
+                    >
+                        GitHub<FaAngleDoubleRight />
                     </a>
                 </div>
 
