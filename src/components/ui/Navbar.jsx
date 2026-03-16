@@ -35,19 +35,23 @@ export default function Navbar() {
                         </ul>
                     </div>
 
-                    <div className="flex flex-row items-center gap-2">
-                        <a href='https://github.com/rotisserie-christian' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
-                            <button className="btn btn-neutral btn-circle" aria-label="GitHub">
-                                <FaGithub className="text-xl" />
-                            </button>
-                        </a>
+                    <ul className="flex flex-row items-center gap-2">
+                        <li>
+                            <a href='https://github.com/rotisserie-christian' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
+                                <button className="btn btn-neutral btn-circle" aria-label="GitHub">
+                                    <FaGithub className="text-xl" />
+                                </button>
+                            </a>
+                        </li>
 
-                        <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
-                            <button className="btn btn-neutral btn-circle" aria-label="LinkedIn">
-                                <FaLinkedin className="text-xl" />
-                            </button>
-                        </a>
-                    </div>
+                        <li>
+                            <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
+                                <button className="btn btn-neutral btn-circle" aria-label="LinkedIn">
+                                    <FaLinkedin className="text-xl" />
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
