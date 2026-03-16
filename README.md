@@ -8,7 +8,6 @@ This website hosts demo versions of my projects
 - **`butterchurn`** - WebGL music visualizer
 - **`butterchurn-presets`** - Visualizer preset library
 - **`tone`** - Web Audio framework
-- **`reactflow`** - Library for making flowcharts
 - **`react-chartjs-2`** - Charting library 
 ### Design / Styling
 - **`tailwindcss`** - CSS framework
