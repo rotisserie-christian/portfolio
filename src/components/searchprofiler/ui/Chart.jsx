@@ -82,7 +82,7 @@ export default function Chart({ dataOverride }) {
       clusters[item.cluster].push({
         x: item.max_interest,
         y: item.avg_interest,
-        r: Math.abs(item.slope || 0) * 100 + 3,
+        r: (Math.max(0, item.slope || 0) * 180) + 8,
         query: item.query,
         slope: item.slope,
         max_interest: item.max_interest
