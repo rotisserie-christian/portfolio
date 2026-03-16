@@ -18,7 +18,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between w-full">
                 <div className="flex flex-row items-center justify-between w-full max-w-7xl mx-auto py-2 px-4">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle" aria-label="Open navigation menu">
                             <HiMenuAlt1 className="text-xl text-neutral-content/90" />
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-2 shadow mt-4">
@@ -36,14 +36,14 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex flex-row items-center gap-2">
-                        <a href='https://github.com/rotisserie-christian' target='_blank' rel='noreferrer'>
-                            <button className="btn btn-neutral btn-circle">
+                        <a href='https://github.com/rotisserie-christian' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
+                            <button className="btn btn-neutral btn-circle" aria-label="GitHub">
                                 <FaGithub className="text-xl" />
                             </button>
                         </a>
 
-                        <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer'>
-                            <button className="btn btn-neutral btn-circle">
+                        <a href='https://linkedin.com/in/cwaters123' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
+                            <button className="btn btn-neutral btn-circle" aria-label="LinkedIn">
                                 <FaLinkedin className="text-xl" />
                             </button>
                         </a>
