@@ -64,9 +64,9 @@ export default function SearchProfiler() {
         <section className="flex items-center justify-center w-full bg-base-300 py-20 px-2">
             <div className="flex flex-col items-center justify-center w-full max-w-7xl">
                 <div className="flex flex-col mb-10 lg:mb-16 items-center justify-center w-full">
-                    <h1 className="ubuntu-bold text-3xl lg:text-5xl text-neutral-content/85">
+                    <h2 className="ubuntu-bold text-3xl lg:text-5xl text-neutral-content/85">
                         Search Profiler
-                    </h1>
+                    </h2>
 
                     <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
                         Toolkit for researching search terms

@@ -40,9 +40,9 @@ export default function Crayonbrain() {
             <div className="flex flex-col mt-10 mb-10 lg:mb-16 items-center justify-center w-full">
                 <img src={cb} alt="Crayonbrain" className="w-[120px] mt-10" />
 
-                <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
+                <h2 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                     Crayonbrain
-                </h1>
+                </h2>
 
                 <div className="flex flex-row items-center justify-center w-full gap-2">
                     <div className="flex flex-row items-center justify-center w-24 h-8 bg-base-300 rounded-lg gap-2 mt-4">
