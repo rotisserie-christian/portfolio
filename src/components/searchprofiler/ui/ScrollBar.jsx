@@ -78,6 +78,7 @@ export default function ScrollBar({
                 <button
                     onClick={() => scroll('left')}
                     disabled={!canScrollLeft}
+                    aria-label="Scroll clusters left"
                     className={`p-3 flex-shrink-0 transition-all duration-200 ${!canScrollLeft ? 'opacity-20 cursor-not-allowed' : 'hover:bg-base-200 cursor-pointer'
                         }`}
                 >
@@ -90,8 +91,10 @@ export default function ScrollBar({
                     onWheel={handleWheel}
                     className="flex-1 overflow-x-auto scrollbar-hide select-none py-2"
                 >
-                    <div className="flex flex-row items-center lg:justify-center gap-2 px-4 whitespace-nowrap">
+                    <div role="tablist" className="flex flex-row items-center lg:justify-center gap-2 px-4 whitespace-nowrap">
                         <button
+                            role="tab"
+                            aria-selected={activeCluster === 'all'}
                             data-cluster-id="all"
                             onClick={() => onClusterSelect('all')}
                             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${activeCluster === 'all'
@@ -105,6 +108,8 @@ export default function ScrollBar({
                         {clusters.map((cluster) => (
                             <button
                                 key={cluster}
+                                role="tab"
+                                aria-selected={activeCluster === cluster}
                                 data-cluster-id={cluster}
                                 onClick={() => onClusterSelect(cluster)}
                                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${activeCluster === cluster
@@ -122,6 +127,7 @@ export default function ScrollBar({
                 <button
                     onClick={() => scroll('right')}
                     disabled={!canScrollRight}
+                    aria-label="Scroll clusters right"
                     className={`p-3 flex-shrink-0 transition-all duration-200 ${!canScrollRight ? 'opacity-20 cursor-not-allowed' : 'hover:bg-base-200 cursor-pointer'
                         }`}
                 >
