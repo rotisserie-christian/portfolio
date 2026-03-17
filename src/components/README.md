@@ -1,6 +1,6 @@
 ### Components
 - **`/crayonbrain`** - Drum sequencer and butterchurn visualizer 
-- **`/flowchart`** - Diagram with custom nodes 
+- **`/contact`** - Form for leaving a message 
 - **`/searchprofiler`** - Data visualizations of search profiler outputs 
 - **`/starfield`** - Space background animation
-- **`Navbar.jsx`** - GitHub and LinkedIn links
+- **`/ui`** - Navbar + slider component 
