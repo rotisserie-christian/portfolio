@@ -77,13 +77,6 @@
         "max_interest": 14.0
     },
     {
-        "query": "free easy music software",
-        "cluster": "Music Creation",
-        "slope": -0.0127,
-        "avg_interest": 0.05,
-        "max_interest": 2.0
-    },
-    {
         "query": "online music visualizer",
         "cluster": "Visualization",
         "slope": -0.0145,
@@ -175,10 +168,66 @@
         "max_interest": 100.0
     },
     {
-        "query": "music maker online",
+        "query": "free loops",
+        "cluster": "Finding Pre-Made Content",
+        "slope": -0.10,
+        "avg_interest": 70.12,
+        "max_interest": 100.0
+    },
+    {
+        "query": "free music samples",
+        "cluster": "Finding Pre-Made Content",
+        "slope": 0.07,
+        "avg_interest": 9.67,
+        "max_interest": 22.0
+    },
+    {
+        "query": "fl studio packs",
+        "cluster": "Finding Pre-Made Content",
+        "slope": -0.20,
+        "avg_interest": 8.0,
+        "max_interest": 22.20
+    },
+    {
+        "query": "free song maker",
         "cluster": "Music Creation",
-        "slope": -0.3775,
-        "avg_interest": 38.77,
-        "max_interest": 91.0
+        "slope": -0.07,
+        "avg_interest": 47.0,
+        "max_interest": 77.0
+    },
+    {
+        "query": "make your own music",
+        "cluster": "Music Creation",
+        "slope": 0.61,
+        "avg_interest": 58.0,
+        "max_interest": 85.0
+    },
+    {
+        "query": "beat maker",
+        "cluster": "Music Creation",
+        "slope": 1.0,
+        "avg_interest": 78.0,
+        "max_interest": 100.0
+    },
+    {
+        "query": "music maker free",
+        "cluster": "Music Creation",
+        "slope": 0.01,
+        "avg_interest": 72.0,
+        "max_interest": 100.0
+    },
+    {
+        "query": "make music online",
+        "cluster": "Music Creation",
+        "slope": 0.0127,
+        "avg_interest": 48.05,
+        "max_interest": 100.0
+    },
+    {
+        "query": "online music maker",
+        "cluster": "Music Creation",
+        "slope": -0.17,
+        "avg_interest": 39.05,
+        "max_interest": 62.0
     }
 ]
