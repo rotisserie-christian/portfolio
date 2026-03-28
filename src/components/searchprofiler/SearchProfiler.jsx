@@ -92,12 +92,16 @@ export default function SearchProfiler() {
 
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start justify-center">
                     <div className="flex flex-col items-center justify-center w-full lg:w-[50%]">
-                        <p className="text-lg lg:text-xl mt-4 ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                            Interest Levels by Rate of Change
+                        <p className="text-xl lg:text-2xl mt-4 ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                            Interest Levels (3-month)
                         </p>
 
-                        <p className="text-sm lg:text-base mt-2 mb-4 lg:mb-6 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
-                            3-Month, Anchored to 'Free Music Maker'
+                        <p className="text-sm mt-5 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
+                            Anchored to 'Free Music Maker'
+                        </p>
+
+                        <p className="text-sm mt-2 mb-4 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
+                            Bubble size = rate of change
                         </p>
 
                         <LazyChart filteredData={filteredData} />
