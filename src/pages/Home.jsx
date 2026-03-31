@@ -4,6 +4,7 @@ import { StarsBackground } from "../components/starfield/StarsBackground";
 import Crayonbrain from "../components/crayonbrain/Crayonbrain";
 import SearchProfiler from "../components/searchprofiler/SearchProfiler";
 import Contact from "../components/contact/Contact";
+import Footer from "../components/ui/Footer";
 
 export default function Home() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -51,6 +52,8 @@ export default function Home() {
                 <div data-section="contact" className="w-full">
                     <Contact />
                 </div>
+
+                <Footer />
             </div>
         </>
     );
