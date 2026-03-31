@@ -12,6 +12,7 @@
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.101.0",
     "@tailwindcss/vite": "^4.1.10",
     "autoprefixer": "^10.4.21",
     "butterchurn": "^2.6.7",

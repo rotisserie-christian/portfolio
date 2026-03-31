@@ -3,7 +3,7 @@ import { ShootingStars } from "../components/starfield/ShootingStars";
 import { StarsBackground } from "../components/starfield/StarsBackground";
 import Crayonbrain from "../components/crayonbrain/Crayonbrain";
 import SearchProfiler from "../components/searchprofiler/SearchProfiler";
-//import Contact from "../components/contact/Contact";
+import Contact from "../components/contact/Contact";
 
 export default function Home() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -47,10 +47,10 @@ export default function Home() {
                 <div data-section="searchprofiler" className="w-full">
                     <SearchProfiler />
                 </div>
-                {/*
+
                 <div data-section="contact" className="w-full">
                     <Contact />
-                </div>*/}
+                </div>
             </div>
         </>
     );
