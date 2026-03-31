@@ -23,13 +23,18 @@ export default function Navbar() {
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-2 shadow mt-4">
                             <li>
-                                <a onClick={() => scrollToSection('crayonbrain')} className="text-neutral-content/90 hover:text-white">
+                                <a onClick={() => scrollToSection('crayonbrain')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
                                     Crayonbrain
                                 </a>
                             </li>
                             <li>
-                                <a onClick={() => scrollToSection('searchprofiler')} className="text-neutral-content/90 hover:text-white">
+                                <a onClick={() => scrollToSection('searchprofiler')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
                                     Search Profiler
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={() => scrollToSection('contact')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
+                                    Contact
                                 </a>
                             </li>
                         </ul>
@@ -37,10 +42,10 @@ export default function Navbar() {
 
                     <ul className="flex flex-row items-center gap-2">
                         <li>
-                            <a 
-                                href='https://github.com/rotisserie-christian' 
-                                target='_blank' 
-                                rel='noreferrer' 
+                            <a
+                                href='https://github.com/rotisserie-christian'
+                                target='_blank'
+                                rel='noreferrer'
                                 aria-label="GitHub Profile"
                                 className="btn btn-neutral btn-circle"
                             >
@@ -49,10 +54,10 @@ export default function Navbar() {
                         </li>
 
                         <li>
-                            <a 
-                                href='https://linkedin.com/in/cwaters123' 
-                                target='_blank' 
-                                rel='noreferrer' 
+                            <a
+                                href='https://linkedin.com/in/cwaters123'
+                                target='_blank'
+                                rel='noreferrer'
                                 aria-label="LinkedIn Profile"
                                 className="btn btn-neutral btn-circle"
                             >

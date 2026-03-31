@@ -27,8 +27,8 @@ const Contact = () => {
     };
 
     return (
-        <section className="flex flex-col items-center justify-center w-full py-20 px-4">
-            <FaHubspot className="text-5xl text-neutral-content/50" />
+        <section data-section="contact" className="flex flex-col items-center justify-center w-full py-20 px-4">
+            <FaHubspot className="text-5xl lg:text-6xl text-neutral-content/80" />
 
             <h2 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold mt-4 text-center">
                 Hubspot Integration
