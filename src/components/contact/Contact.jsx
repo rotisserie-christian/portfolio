@@ -52,7 +52,7 @@ const Contact = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Type here"
-                    className="input input-bordered w-full mt-2 placeholder:text-neutral-content/40"
+                    className="input input-bordered text-base w-full mt-2 placeholder:text-neutral-content/40"
                     required
                     disabled={status === "loading"}
                 />
@@ -66,7 +66,7 @@ const Contact = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     maxLength={MAX_CHARS}
-                    className="textarea textarea-bordered w-full mt-2 placeholder:text-neutral-content/40"
+                    className="textarea textarea-bordered text-base w-full mt-2 placeholder:text-neutral-content/40"
                     placeholder="Type here"
                     required
                     disabled={status === "loading"}
