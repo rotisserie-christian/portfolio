@@ -19,6 +19,7 @@ export default function Chart({ dataOverride }) {
   const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
+    clip: 0, // Force clipping at chart boundaries 
     plugins: {
       legend: {
         position: 'top',
