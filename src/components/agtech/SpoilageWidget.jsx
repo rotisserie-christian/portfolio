@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { grainData } from "./data/grainData";
 import { useSpoilageLogic } from "./hooks/useSpoilageLogic";
 import InputCard from "./ui/InputCard";
+import DisplayCard from "./ui/DisplayCard";
 
 const SpoilageWidget = () => {
     const [grainId, setGrainId] = useState("canola");
@@ -19,7 +20,7 @@ const SpoilageWidget = () => {
 
     return (
         <div className="w-full flex flex-col items-center justify-center">
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 w-full max-w-6xl items-start justify-center">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 w-full max-w-6xl items-start justify-stretch">
 
                 {/* Inputs */}
                 <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-[2rem] shadow-xl border border-white/5">
@@ -37,11 +38,9 @@ const SpoilageWidget = () => {
                 </div>
 
                 {/* Display & Logic Output */}
-                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-[2rem] shadow-xl border border-white/5">
-                    <h3 className="text-xl ubuntu-semibold text-neutral-content/85 mb-4">Spoilage Risk</h3>
-                    <div className="w-full h-40 border-2 border-dashed border-base-content/20 rounded-xl flex items-center justify-center text-base-content/40">
-                        [Placeholder]
-                    </div>
+                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-[2rem] shadow-xl border border-white/5 h-full">
+                    <h3 className="text-xl ubuntu-semibold text-neutral-content/85 mb-6 w-full text-left">Spoilage Risk</h3>
+                    <DisplayCard logicData={logicData} />
                 </div>
 
             </div>
