@@ -11,12 +11,12 @@ const RiskMeter = ({ lossPercentage, colorClass }) => {
 
     return (
         <div className="relative flex flex-col items-center justify-end w-64 h-28">
-            {/* The SVG Gauge */}
+            {/* SVG Gauge */}
             <svg
                 viewBox="0 0 100 55"
                 className={`absolute top-0 w-full h-full overflow-visible ${colorClass}`}
             >
-                {/* Thick background track */}
+                {/* Background track */}
                 <path
                     d="M 10 50 A 40 40 0 0 1 90 50"
                     fill="none"
@@ -26,7 +26,7 @@ const RiskMeter = ({ lossPercentage, colorClass }) => {
                     className="opacity-20"
                 />
 
-                {/* Dynamic colored progress arc */}
+                {/* Arc */}
                 <path
                     d="M 10 50 A 40 40 0 0 1 90 50"
                     fill="none"
@@ -39,7 +39,7 @@ const RiskMeter = ({ lossPercentage, colorClass }) => {
                 />
             </svg>
 
-            {/* The inner text using Courier New style */}
+            {/* Inner text */}
             <div className="absolute bottom-0 flex flex-col items-center leading-none">
                 <span className={`text-3xl font-bold courier-new ${colorClass} drop-shadow-sm`}>
                     {displayValue.toFixed(0)}<span className="ubuntu-bold text-lg ml-1">%</span>
