@@ -10,7 +10,8 @@ export class SequencerContextError extends Error {
 }
 
 export class AudioInitializationError extends Error {
-  constructor(message = 'Failed to initialize audio', cause = null) {
+  cause?: any;
+  constructor(message = 'Failed to initialize audio', cause: any = null) {
     super(message);
     this.name = 'AudioInitializationError';
     this.cause = cause;
@@ -18,7 +19,8 @@ export class AudioInitializationError extends Error {
 }
 
 export class TransportError extends Error {
-  constructor(message = 'Transport operation failed', cause = null) {
+  cause?: any;
+  constructor(message = 'Transport operation failed', cause: any = null) {
     super(message);
     this.name = 'TransportError';
     this.cause = cause;
@@ -26,7 +28,8 @@ export class TransportError extends Error {
 }
 
 export class VisualizerSetupError extends Error {
-  constructor(message = 'Failed to setup visualizer', cause = null) {
+  cause?: any;
+  constructor(message = 'Failed to setup visualizer', cause: any = null) {
     super(message);
     this.name = 'VisualizerSetupError';
     this.cause = cause;
@@ -34,11 +37,12 @@ export class VisualizerSetupError extends Error {
 }
 
 export class PresetLoadError extends Error {
-  constructor(message = 'Failed to load preset', presetIndex = null, cause = null) {
+  presetIndex?: number | null;
+  cause?: any;
+  constructor(message = 'Failed to load preset', presetIndex: number | null = null, cause: any = null) {
     super(message);
     this.name = 'PresetLoadError';
     this.presetIndex = presetIndex;
     this.cause = cause;
   }
 }
-

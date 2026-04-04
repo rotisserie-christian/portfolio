@@ -16,7 +16,7 @@ export const useTransport = (
   isPlaying: boolean,
   setIsPlaying: (playing: boolean) => void,
   currentStepRef: RefObject<number>,
-  sequenceRef: RefObject<Tone.Part | Tone.Sequence | any>,
+  sequenceRef: RefObject<Tone.Part | Tone.Sequence>,
   tempoBpmRef: RefObject<number>
 ): () => Promise<void> => {
   const handlePlay = useCallback(async () => {
@@ -47,7 +47,7 @@ export const useTransport = (
         setIsPlaying(false);
 
         if (currentStepRef.current !== null) {
-          (currentStepRef as any).current = 0;
+          currentStepRef.current = 0;
         }
 
         // Clear cell highlighting
@@ -58,15 +58,15 @@ export const useTransport = (
         }
       }
     } catch (error) {
-      const transportError = new TransportError('Error controlling playback', error as any);
-      if ((import.meta as any).env?.MODE === 'development') {
+      const transportError = new TransportError('Error controlling playback', error as Error);
+      if (import.meta.env?.MODE === 'development') {
         console.error(transportError.message, transportError.cause);
       }
       // Reset state on error
       setIsPlaying(false);
 
       if (currentStepRef.current !== null) {
-        (currentStepRef as any).current = 0;
+        currentStepRef.current = 0;
       }
 
       // Clear cell highlighting
