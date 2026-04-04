@@ -20,6 +20,10 @@ const SpoilageWidget = () => {
     return (
         <div className="w-full flex flex-col items-center justify-center">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 w-full max-w-6xl items-start justify-stretch">
+                {/* Display & Logic Output */}
+                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-2xl shadow-lg h-[410px]">
+                    <DisplayCard logicData={logicData} />
+                </div>
 
                 {/* Inputs */}
                 <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-2xl shadow-lg h-[410px]">
@@ -34,12 +38,6 @@ const SpoilageWidget = () => {
                         setMarketPrice={(val) => updateField('price', val)}
                     />
                 </div>
-
-                {/* Display & Logic Output */}
-                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-2xl shadow-lg h-[410px]">
-                    <DisplayCard logicData={logicData} />
-                </div>
-
             </div>
         </div>
     );
