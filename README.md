@@ -1,5 +1,5 @@
 > [!NOTE]  
-> There are a lot of heavy dependencies here, but they're lazy loaded / gated, so it's more manageable than it looks.
+> There are a lot of heavy dependencies here, but they're lazy loaded / gated, so it's more manageable than it looks
 
 # Dependencies 
 ### Audio / Visual 
