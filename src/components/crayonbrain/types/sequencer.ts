@@ -12,12 +12,9 @@ export interface DrumSound {
 
 /**
  * Sequence track for a specific sound
- * pattern: Array of 0 (off) or 1 (on)
  */
 export interface DrumSequenceTrack {
-  id: string;
-  name: string;
-  pattern: number[];
+  steps: boolean[];
 }
 
 /**
