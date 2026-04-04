@@ -23,7 +23,7 @@ export interface DrumSequenceTrack {
 export interface SequencerState {
   isPlaying: boolean;
   currentStepRef: RefObject<number>;
-  handlePlay: () => void;
+  handlePlay: () => void | Promise<void>;
   playersRef: RefObject<Record<string, Tone.Player>>;
   sequencerGainRef: RefObject<Tone.Gain | null>;
   isInitializing: boolean;

@@ -16,7 +16,7 @@ export const useTransport = (
   isPlaying: boolean,
   setIsPlaying: (playing: boolean) => void,
   currentStepRef: RefObject<number>,
-  sequenceRef: RefObject<Tone.Part | Tone.Sequence>,
+  sequenceRef: RefObject<Tone.Part | Tone.Sequence | null>,
   tempoBpmRef: RefObject<number>
 ): () => Promise<void> => {
   const handlePlay = useCallback(async () => {
