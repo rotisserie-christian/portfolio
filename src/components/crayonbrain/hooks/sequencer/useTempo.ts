@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
 
 /**
  * Manages tempo synchronization between React state and Tone.js Transport
  * 
- * @param {number} tempoBpm - Current tempo in BPM
- * @param {Object} tempoBpmRef - React ref to store current tempo value
- * @returns {void}
+ * @param tempoBpm - Current tempo in BPM
+ * @param tempoBpmRef - React ref to store current tempo value
  */
-export const useTempo = (tempoBpm, tempoBpmRef) => {
+export const useTempo = (
+  tempoBpm: number,
+  tempoBpmRef: RefObject<number>
+): void => {
   useEffect(() => {
     tempoBpmRef.current = tempoBpm;
     if (Tone.getTransport().state === 'started') {
@@ -16,4 +18,3 @@ export const useTempo = (tempoBpm, tempoBpmRef) => {
     }
   }, [tempoBpm, tempoBpmRef]);
 };
-
