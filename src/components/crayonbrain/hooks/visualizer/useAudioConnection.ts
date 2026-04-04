@@ -1,17 +1,22 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, RefObject } from 'react';
 import * as Tone from 'tone';
 
 /**
  * Manages audio analyser connection to the source with polling fallback
  * 
- * @param {Object} audioSourceRef - Reference to the audio source gain node
- * @param {Object} analyserRef - Reference to the Web Audio analyser node
- * @param {Object} audioCtxRef - Reference to the Web Audio context
- * @param {Object} connectedGainRef - Reference to track the currently connected gain node
- * @returns {Function} connectAnalyser - Function to manually trigger connection
+ * @param audioSourceRef - Reference to the audio source gain node
+ * @param analyserRef - Reference to the Web Audio analyser node
+ * @param audioCtxRef - Reference to the Web Audio context
+ * @param connectedGainRef - Reference to track the currently connected gain node
+ * @returns connectAnalyser - Function to manually trigger connection
  */
-export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, connectedGainRef) => {
-  const pollingIntervalRef = useRef(null);
+export const useAudioConnection = (
+  audioSourceRef: RefObject<Tone.Gain | null>, 
+  analyserRef: RefObject<AnalyserNode | null>, 
+  audioCtxRef: RefObject<AudioContext | null>, 
+  connectedGainRef: RefObject<any>
+): () => void => {
+  const pollingIntervalRef = useRef<number | null>(null);
 
   const connectAnalyser = useCallback(() => {
     if (!analyserRef.current || !audioCtxRef.current) return;
@@ -23,11 +28,13 @@ export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, con
     // Disconnect from previous source if any
     try {
       if (connectedGainRef.current) {
-        connectedGainRef.current.disconnect(analyser);
-        connectedGainRef.current = null;
+        if (connectedGainRef.current.disconnect) {
+          connectedGainRef.current.disconnect(analyser);
+        }
+        (connectedGainRef as any).current = null;
       }
     } catch (err) {
-      if (import.meta?.env?.MODE === 'development') {
+      if (import.meta.env?.MODE === 'development') {
         console.debug('audio connection disconnect error', err);
       }
     }
@@ -35,14 +42,14 @@ export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, con
     try {
       if (audioSource) {
         audioSource.connect(analyser);
-        connectedGainRef.current = audioSource;
+        (connectedGainRef as any).current = audioSource;
       } else {
         // Fallback: gain node connected to master output
         const fallbackGain = audioCtx.createGain();
         fallbackGain.connect(analyser);
-        connectedGainRef.current = fallbackGain;
+        (connectedGainRef as any).current = fallbackGain;
         
-        const masterGain = Tone.getDestination().input;
+        const masterGain = (Tone.getDestination().input) as unknown as AudioNode;
         if (masterGain && masterGain.connect) {
           masterGain.connect(fallbackGain);
         } else {
@@ -75,7 +82,7 @@ export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, con
           // Stop polling once connected to audio source
           if (pollingIntervalRef.current && connectedGainRef.current === audioSource) {
             clearInterval(pollingIntervalRef.current);
-            pollingIntervalRef.current = null;
+            (pollingIntervalRef as any).current = null;
           }
         }
       }
@@ -85,12 +92,12 @@ export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, con
     
     // Poll periodically to catch when audioSourceRef becomes available
     // Stop polling once we're connected to the audio source
-    pollingIntervalRef.current = setInterval(() => {
+    (pollingIntervalRef as any).current = setInterval(() => {
       if (!connectedGainRef.current || connectedGainRef.current !== audioSourceRef?.current) {
         checkConnection();
       } else if (pollingIntervalRef.current) {
         clearInterval(pollingIntervalRef.current);
-        pollingIntervalRef.current = null;
+        (pollingIntervalRef as any).current = null;
       }
     }, 100);
     
@@ -98,11 +105,10 @@ export const useAudioConnection = (audioSourceRef, analyserRef, audioCtxRef, con
       isCleanedUp = true;
       if (pollingIntervalRef.current) {
         clearInterval(pollingIntervalRef.current);
-        pollingIntervalRef.current = null;
+        (pollingIntervalRef as any).current = null;
       }
     };
   }, [audioSourceRef, analyserRef, connectAnalyser, connectedGainRef]);
 
   return connectAnalyser;
 };
-
