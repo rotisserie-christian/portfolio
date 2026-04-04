@@ -1,27 +1,35 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, RefObject } from 'react';
+import * as Tone from 'tone';
 import { useAudioConnection } from './useAudioConnection';
 import { useCanvasResize } from './useCanvasResize';
 import { useRenderLoop } from './useRenderLoop';
 import { useSetupVisualizer } from './useSetupVisualizer';
 
+export interface VisualizerState {
+  visualizerRef: RefObject<any>;
+  analyserRef: RefObject<AnalyserNode | null>;
+  presetsRef: RefObject<any>;
+}
+
 /**
  * Renders reactive visuals from the main audio output
  * 
- * @param {Object} canvasRef - React ref to the canvas element
- * @param {boolean} isPlaying -  Is audio playing
- * @param {Object} sequencerGainRef - Reference to sequencer's gain node
- * @returns {Object} Visualizer state and controls
- * @returns {Object} returns.visualizerRef - Reference to the Butterchurn visualizer instance
- * @returns {Object} returns.analyserRef - Reference to the Web Audio analyser node
+ * @param canvasRef - React ref to the canvas element
+ * @param isPlaying - Is audio playing
+ * @param sequencerGainRef - Reference to sequencer's gain node
+ * @returns Visualizer state and controls
  */
-export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
-  const visualizerRef = useRef(null);
-  const analyserRef = useRef(null);
-  const presetsRef = useRef(null);
-  const isPlayingRef = useRef(isPlaying);
-  const connectedGainRef = useRef(null);
-  const audioCtxRef = useRef(null);
-
+export const useVisualizer = (
+  canvasRef: RefObject<HTMLCanvasElement | null>, 
+  isPlaying: boolean, 
+  sequencerGainRef: RefObject<Tone.Gain | null>
+): VisualizerState => {
+  const visualizerRef = useRef<any>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const presetsRef = useRef<any>(null);
+  const isPlayingRef = useRef<boolean>(isPlaying);
+  const connectedGainRef = useRef<any>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
 
   // Update playing state
   useEffect(() => {
@@ -61,7 +69,6 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
       visualizerRef.current.render();
     }
   }, true);
-  // disabled because canvasRef does not change between renders 
 
   return {
     visualizerRef,
@@ -69,4 +76,3 @@ export const useVisualizer = (canvasRef, isPlaying, sequencerGainRef) => {
     presetsRef
   };
 };
-
