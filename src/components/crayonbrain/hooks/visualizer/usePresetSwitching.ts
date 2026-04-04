@@ -1,14 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 import { loadPreset } from './presetLoader';
 import { PRESET_BLEND_TIME, PRESET_INDICES } from '../../utils/visualizerConstants';
 
+interface PresetSwitchingResult {
+  currentPresetSelection: number;
+  presetName: string;
+  switchPreset: (direction: 'next' | 'prev') => void;
+}
+
 /**
  * Manages preset switching logic for the visualizer
- * @param {React.RefObject} visualizerRef - Reference to the Butterchurn visualizer instance
- * @param {React.RefObject} presetsRef - Reference to the loaded presets object
- * @returns {{ currentPresetSelection: number, presetName: string, switchPreset: (direction: 'next' | 'prev') => void }}
+ * @param visualizerRef - Reference to the Butterchurn visualizer instance
+ * @param presetsRef - Reference to the loaded presets object
  */
-export const usePresetSwitching = (visualizerRef, presetsRef) => {
+export const usePresetSwitching = (
+  visualizerRef: RefObject<any>, 
+  presetsRef: RefObject<any>
+): PresetSwitchingResult => {
   const [currentPresetSelection, setCurrentPresetSelection] = useState(0); // 0, 1, or 2
   const [presetsLoaded, setPresetsLoaded] = useState(false);
 
@@ -30,7 +38,7 @@ export const usePresetSwitching = (visualizerRef, presetsRef) => {
     return () => clearInterval(interval);
   }, [presetsLoaded, presetsRef]);
 
-  const getPresetName = () => {
+  const getPresetName = (): string => {
     if (!presetsRef.current) return 'Loading...';
     const keys = Object.keys(presetsRef.current);
     const actualIndex = PRESET_INDICES[currentPresetSelection];
@@ -41,7 +49,7 @@ export const usePresetSwitching = (visualizerRef, presetsRef) => {
   };
 
   // Handle preset switching
-  const switchPreset = (direction) => {
+  const switchPreset = (direction: 'next' | 'prev'): void => {
     if (!visualizerRef.current || !presetsRef.current) return;
     
     let newSelection;
@@ -70,4 +78,3 @@ export const usePresetSwitching = (visualizerRef, presetsRef) => {
     switchPreset,
   };
 };
-
