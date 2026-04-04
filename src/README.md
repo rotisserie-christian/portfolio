@@ -5,6 +5,6 @@
 - **`/pages`** - Home page and integration test 
 - **`/hooks`** - Shared hooks 
 - **`/utils`** - Shared utils 
-- **`RouteSwitch.jsx`** - Sort of unnecessary right now but why not 
+- **`RouteSwitch.jsx`** - Routes 
 
 
