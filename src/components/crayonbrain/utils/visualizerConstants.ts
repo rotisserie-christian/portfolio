@@ -9,4 +9,3 @@ export const PRESET_INDICES = [0, 54, 77]; // Map UI selection indices to actual
 
 // Canvas configuration
 export const MAX_DEVICE_PIXEL_RATIO = 2; 
-
