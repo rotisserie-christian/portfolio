@@ -31,3 +31,12 @@ export interface SequencerState {
   sequencerGainRef: RefObject<Tone.Gain | null>;
   isInitializing: boolean;
 }
+
+/**
+ * Shared context between sequencer controls and visualizers
+ */
+export interface SequencerContextValue {
+  isPlaying: boolean;
+  setIsPlaying: (playing: boolean) => void;
+  sequencerGainRef: RefObject<Tone.Gain | null>;
+}
