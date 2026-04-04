@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
-import { grainData } from "./data/grainData";
+import { useState } from "react";
 import { useSpoilageLogic } from "./hooks/useSpoilageLogic";
+import { getInitialGrainState } from "./utils/grainUtils";
 import InputCard from "./ui/InputCard";
 import DisplayCard from "./ui/DisplayCard";
 
 const SpoilageWidget = () => {
-    const [grainId, setGrainId] = useState("canola");
-    const [capacity, setCapacity] = useState(5000);
-    const [currentMoisture, setCurrentMoisture] = useState(grainData["canola"].safeMoisture);
-    const [marketPrice, setMarketPrice] = useState(grainData["canola"].defaultPrice);
+    const [state, setState] = useState(getInitialGrainState("canola"));
 
-    // reset the defaults for grain type
-    useEffect(() => {
-        setCurrentMoisture(grainData[grainId].safeMoisture);
-        setMarketPrice(grainData[grainId].defaultPrice);
-    }, [grainId]);
+    const onGrainToggle = (newId) => {
+        setState(getInitialGrainState(newId, state.capacity));
+    };
 
-    const logicData = useSpoilageLogic(grainId, currentMoisture, capacity, marketPrice);
+    const updateField = (field, val) => {
+        setState(prev => ({ ...prev, [field]: val }));
+    };
+
+    const logicData = useSpoilageLogic(state.id, state.moisture, state.capacity, state.price);
 
     return (
         <div className="w-full flex flex-col items-center justify-center">
@@ -25,14 +24,14 @@ const SpoilageWidget = () => {
                 {/* Inputs */}
                 <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-2xl shadow-lg h-[410px]">
                     <InputCard
-                        grainId={grainId}
-                        setGrainId={setGrainId}
-                        capacity={capacity}
-                        setCapacity={setCapacity}
-                        currentMoisture={currentMoisture}
-                        setCurrentMoisture={setCurrentMoisture}
-                        marketPrice={marketPrice}
-                        setMarketPrice={setMarketPrice}
+                        grainId={state.id}
+                        setGrainId={onGrainToggle}
+                        capacity={state.capacity}
+                        setCapacity={(val) => updateField('capacity', val)}
+                        currentMoisture={state.moisture}
+                        setCurrentMoisture={(val) => updateField('moisture', val)}
+                        marketPrice={state.price}
+                        setMarketPrice={(val) => updateField('price', val)}
                     />
                 </div>
 
