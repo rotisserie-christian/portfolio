@@ -23,8 +23,7 @@ const SpoilageWidget = () => {
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 w-full max-w-6xl items-start justify-stretch">
 
                 {/* Inputs */}
-                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-[2rem] shadow-xl border border-white/5">
-                    <h3 className="text-xl ubuntu-semibold text-neutral-content/85 mb-6 w-full text-left">Storage</h3>
+                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-2xl shadow-lg h-[410px]">
                     <InputCard
                         grainId={grainId}
                         setGrainId={setGrainId}
@@ -38,8 +37,7 @@ const SpoilageWidget = () => {
                 </div>
 
                 {/* Display & Logic Output */}
-                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-[2rem] shadow-xl border border-white/5 h-full">
-                    <h3 className="text-xl ubuntu-semibold text-neutral-content/85 mb-6 w-full text-left">Spoilage Risk</h3>
+                <div className="flex flex-col items-center justify-start w-full lg:w-[50%] p-6 bg-base-300 rounded-2xl shadow-lg h-[410px]">
                     <DisplayCard logicData={logicData} />
                 </div>
 

@@ -19,7 +19,7 @@ export default function AgTech() {
             </section>
 
             {/* Reused Contact Section */}
-            <div className="w-full bg-base-300">
+            <div className="w-full bg-base-200">
                 <Contact />
             </div>
 
