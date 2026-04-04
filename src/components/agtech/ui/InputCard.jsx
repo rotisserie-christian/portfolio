@@ -1,4 +1,4 @@
-import { grainOptions } from '../data/grainData';
+import ToggleSwitch from '../../ui/ToggleSwitch';
 
 const InputCard = ({
     grainId,
@@ -13,20 +13,16 @@ const InputCard = ({
     return (
         <div className="flex flex-col w-full gap-6">
             
-            {/* Grain Selection Tabs */}
+            {/* Grain Selection Toggle */}
             <div className="flex flex-col gap-2">
                 <label className="text-xs uppercase tracking-widest text-neutral-content/40 font-bold ml-1">Commodity</label>
-                <div role="tablist" className="tabs tabs-boxed bg-base-100 p-1">
-                    {grainOptions.map((grain) => (
-                        <button
-                            key={grain.id}
-                            role="tab"
-                            className={`tab ${grainId === grain.id ? 'tab-active bg-primary text-primary-content' : 'text-neutral-content/60'} ubuntu-medium transition-all`}
-                            onClick={() => setGrainId(grain.id)}
-                        >
-                            {grain.name}
-                        </button>
-                    ))}
+                <div className="flex w-full items-center justify-center p-1">
+                    <ToggleSwitch 
+                        leftLabel="Canola"
+                        rightLabel="Wheat"
+                        isChecked={grainId === 'wheat'}
+                        onChange={(checked) => setGrainId(checked ? 'wheat' : 'canola')}
+                    />
                 </div>
             </div>
 
