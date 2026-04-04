@@ -6,7 +6,7 @@ import { supabase } from "../../supabaseClient";
  * @param {string} message 
  * @returns {Promise<{success: boolean, error?: string}>}
  */
-export const handleSend = async (email, message) => {
+export const handleSend = async (email, message, source = "home") => {
     const cleanEmail = email?.trim();
     const cleanMessage = message?.trim();
 
@@ -30,7 +30,7 @@ export const handleSend = async (email, message) => {
 
     try {
         const { error } = await supabase.functions.invoke("handle-message", {
-            body: { email: cleanEmail, message: cleanMessage },
+            body: { email: cleanEmail, message: cleanMessage, source },
         });
 
         if (error) {

@@ -2,7 +2,12 @@ import { useState } from "react";
 import { FaAngleDoubleRight, FaHubspot } from "react-icons/fa";
 import { handleSend } from "./handleSend";
 
-const Contact = () => {
+const Contact = ({ 
+    Icon = FaHubspot, 
+    heading = "Hubspot Integration", 
+    tagline = "Send something to my CRM",
+    source = "home" 
+}) => {
     const MAX_CHARS = 500;
     const [message, setMessage] = useState("");
     const [email, setEmail] = useState("");
@@ -14,7 +19,7 @@ const Contact = () => {
         setStatus("loading");
         setErrorMessage("");
 
-        const result = await handleSend(email, message);
+        const result = await handleSend(email, message, source);
 
         if (result.success) {
             setStatus("success");
@@ -28,14 +33,14 @@ const Contact = () => {
 
     return (
         <section data-section="contact" className="flex flex-col items-center justify-center w-full pt-20 pb-40 px-4">
-            <FaHubspot className="text-5xl lg:text-6xl text-neutral-content/80" />
+            <Icon className="text-5xl lg:text-6xl text-neutral-content/80" />
 
             <h2 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold mt-4 text-center">
-                Hubspot Integration
+                {heading}
             </h2>
 
             <p className="text-base lg:text-xl mt-4 lg:mb-4 ubuntu-regular text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                Send something to my CRM
+                {tagline}
             </p>
 
             <form
