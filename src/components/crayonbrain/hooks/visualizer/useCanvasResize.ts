@@ -1,16 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, RefObject } from 'react';
+
+export interface ResizeInfo {
+  width: number;
+  height: number;
+  dpr: number;
+}
 
 /**
  * Handles canvas sizing with device pixel ratio and window resize events
  * 
- * @param {Object} canvasRef - React ref to the canvas element
- * @param {Function} onResize - Optional callback when canvas is resized, receives { width, height, dpr }
- * @returns {Object} Canvas dimensions and DPR
- * @returns {number} returns.width - Canvas width in pixels
- * @returns {number} returns.height - Canvas height in pixels
- * @returns {number} returns.dpr - Device pixel ratio
+ * @param canvasRef - React ref to the canvas element
+ * @param onResize - Optional callback when canvas is resized, receives { width, height, dpr }
  */
-export const useCanvasResize = (canvasRef, onResize) => {
+export const useCanvasResize = (
+  canvasRef: RefObject<HTMLCanvasElement | null>,
+  onResize?: (info: ResizeInfo) => void
+): void => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -42,4 +47,3 @@ export const useCanvasResize = (canvasRef, onResize) => {
     };
   }, [canvasRef, onResize]);
 };
-
