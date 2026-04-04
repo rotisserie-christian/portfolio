@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
+// @ts-ignore - butterchurn does not have types package
 import butterchurn from 'butterchurn';
+// @ts-ignore
 import butterchurnPresets from 'butterchurn-presets';
 import { createAnalyser } from './analyserSetup';
 import { loadPreset } from './presetLoader';
@@ -10,35 +12,34 @@ import { VisualizerSetupError } from '../../utils/errors';
 /**
  * Sets up Butterchurn visualizer with audio context, analyser, and presets
  * 
- * @param {Object} canvasRef - React ref to the canvas element
- * @param {Object} visualizerRef - React ref to store the visualizer instance
- * @param {Object} analyserRef - React ref to store the analyser node
- * @param {Object} audioCtxRef - React ref to store the audio context
- * @param {Object} presetsRef - React ref to cache presets
- * @param {Object} connectedGainRef - React ref to track connected gain node
- * @param {Function} connectAnalyser - Function to connect analyser to audio source
- * @returns {void}
+ * @param canvasRef - React ref to the canvas element
+ * @param visualizerRef - React ref to store the visualizer instance
+ * @param analyserRef - React ref to store the analyser node
+ * @param audioCtxRef - React ref to store the audio context
+ * @param presetsRef - React ref to cache presets
+ * @param connectedGainRef - React ref to track connected gain node
+ * @param connectAnalyser - Function to connect analyser to audio source
  */
 export const useSetupVisualizer = (
-  canvasRef,
-  visualizerRef,
-  analyserRef,
-  audioCtxRef,
-  presetsRef,
-  connectedGainRef,
-  connectAnalyser
-) => {
+  canvasRef: RefObject<HTMLCanvasElement | null>,
+  visualizerRef: RefObject<any>,
+  analyserRef: RefObject<AnalyserNode | null>,
+  audioCtxRef: RefObject<AudioContext | null>,
+  presetsRef: RefObject<any>,
+  connectedGainRef: RefObject<any>,
+  connectAnalyser: () => void
+): void => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     try {
-      const audioCtx = Tone.getContext().rawContext;
-      audioCtxRef.current = audioCtx;
+      const audioCtx = (Tone.getContext().rawContext) as AudioContext;
+      (audioCtxRef as any).current = audioCtx;
 
       // Create and configure analyser for frequency analysis
-      analyserRef.current = createAnalyser(audioCtx);
+      (analyserRef as any).current = createAnalyser(audioCtx);
 
       // Try to connect immediately if audio source is available
       connectAnalyser();
@@ -55,36 +56,38 @@ export const useSetupVisualizer = (
         pixelRatio: dpr,
       });
       viz.connectAudio(analyserRef.current);
-      visualizerRef.current = viz;
+      (visualizerRef as any).current = viz;
 
       // Cache presets
-      presetsRef.current = butterchurnPresets.getPresets();
+      (presetsRef as any).current = butterchurnPresets.getPresets();
 
       // Load initial preset: index 0 = $$$ Royal - Mashup (197)
       loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
 
       // Dispatch event to allow other components to sequence their loading
       window.dispatchEvent(new CustomEvent('butterchurn-loaded'));
-      window.butterchurnLoaded = true; // Also set a flag for components that mount after loading
+      (window as any).butterchurnLoaded = true; // Also set a flag for components that mount after loading
     } catch (error) {
-      const vizError = new VisualizerSetupError('Error setting up visualizer', error);
-      if (import.meta?.env?.MODE === 'development') {
+      const vizError = new VisualizerSetupError('Error setting up visualizer', error as Error);
+      if (import.meta.env?.MODE === 'development') {
         console.error(vizError.message, vizError.cause);
       }
       // Reset refs to safe state
-      visualizerRef.current = null;
-      analyserRef.current = null;
-      presetsRef.current = null;
+      (visualizerRef as any).current = null;
+      (analyserRef as any).current = null;
+      (presetsRef as any).current = null;
     }
 
     return () => {
       try {
         if (connectedGainRef.current && analyserRef.current) {
-          connectedGainRef.current.disconnect(analyserRef.current);
-          connectedGainRef.current = null;
+          if (connectedGainRef.current.disconnect) {
+            connectedGainRef.current.disconnect(analyserRef.current);
+          }
+          (connectedGainRef as any).current = null;
         }
       } catch (err) {
-        if (import.meta?.env?.MODE === 'development') {
+        if (import.meta.env?.MODE === 'development') {
           console.debug('visualizer disconnect error', err);
         }
       }
@@ -92,7 +95,7 @@ export const useSetupVisualizer = (
         try {
           visualizerRef.current.disconnect();
         } catch (err) {
-          if (import.meta?.env?.MODE === 'development') {
+          if (import.meta.env?.MODE === 'development') {
             console.debug('visualizer disconnect error', err);
           }
         }
@@ -100,4 +103,3 @@ export const useSetupVisualizer = (
     };
   }, [canvasRef, visualizerRef, analyserRef, audioCtxRef, presetsRef, connectedGainRef, connectAnalyser]);
 };
-
