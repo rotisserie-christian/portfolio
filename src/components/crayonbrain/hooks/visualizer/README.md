@@ -1,10 +1,10 @@
-- **`analyserSetup.js`** - Creates and configures Web Audio analyser nodes
-- **`presetLoader.js`** - Loads Butterchurn presets
-- **`useCanvasResize.js`** - Handles canvas sizing on window resize events
-- **`usePresetSwitching.js`** - Manages preset selection, switching, and name display
-- **`useRenderLoop.js`** - Manages requestAnimationFrame render loop
-- **`useSetupVisualizer.js`** - Sets up Butterchurn with audio context, analyser, and presets
-- **`useVisualizer.js`** - Orchestrator
+- **`analyserSetup.ts`** - Creates and configures Web Audio analyser nodes
+- **`presetLoader.ts`** - Loads Butterchurn presets
+- **`useCanvasResize.ts`** - Handles canvas sizing on window resize events
+- **`usePresetSwitching.ts`** - Manages preset selection, switching, and name display
+- **`useRenderLoop.ts`** - Manages requestAnimationFrame render loop
+- **`useSetupVisualizer.ts`** - Sets up Butterchurn with audio context, analyser, and presets
+- **`useVisualizer.ts`** - Orchestrator
 
 
 # Main Hook: `useVisualizer`

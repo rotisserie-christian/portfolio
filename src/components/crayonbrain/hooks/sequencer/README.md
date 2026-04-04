@@ -1,9 +1,9 @@
-- **`utils/sequencerConstants.js`** - Sequencer configuration constants (located in `components/crayonbrain/utils/`)
-- **`useSequencer.js`** - Orchestrator
-- **`useTempo.js`** - Manages tempo synchronization between React state and Tone.js Transport
-- **`useTonePlayers.js`** - Initializes and manages Tone.Player instances
-- **`useToneSequence.js`** - Sets up and manages Tone.Sequence
-- **`useTransport.js`** - Manages Tone.js Transport play/stop functionality
+- **`utils/sequencerConstants.ts`** - Sequencer configuration constants (located in `components/crayonbrain/utils/`)
+- **`useSequencer.ts`** - Orchestrator
+- **`useTempo.ts`** - Manages tempo synchronization between React state and Tone.js Transport
+- **`useTonePlayers.ts`** - Initializes and manages Tone.Player instances
+- **`useToneSequence.ts`** - Sets up and manages Tone.Sequence
+- **`useTransport.ts`** - Manages Tone.js Transport play/stop functionality
 
 # Main Hook: `useSequencer`
 Main orchestrator that handles player initialization, sequence scheduling, tempo management, and transport control.
