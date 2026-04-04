@@ -3,11 +3,11 @@ import { useEffect, useRef } from 'react';
 /**
  * Manages a requestAnimationFrame render loop
  * 
- * @param {Function} renderCallback - Function to call on each frame
- * @param {boolean} isActive - Whether the loop should be running (default: true)
+ * @param renderCallback - Function to call on each frame
+ * @param isActive - Whether the loop should be running (default: true)
  */
-export const useRenderLoop = (renderCallback, isActive = true) => {
-  const rafRef = useRef(null);
+export const useRenderLoop = (renderCallback: () => void, isActive: boolean = true): void => {
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!isActive) return;
@@ -33,4 +33,3 @@ export const useRenderLoop = (renderCallback, isActive = true) => {
     };
   }, [renderCallback, isActive]);
 };
-
