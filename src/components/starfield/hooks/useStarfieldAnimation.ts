@@ -1,14 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, RefObject } from 'react';
 import { calculateSwirlEffect, calculateTwinkleOpacity } from '../utils/starMath';
 import { drawStarTrail, drawStar } from '../utils/starRendering';
+import { Star, AnimationConfig } from '../types';
 
 /**
  * Starfield animation loop
- * @param {React.RefObject} canvasRef - Reference to canvas element
- * @param {React.RefObject} starsRef - Reference to stars array
- * @param {Object} config - Animation configuration
+ * @param canvasRef - Reference to canvas element
+ * @param starsRef - Reference to stars array
+ * @param config - Animation configuration (gravity, swirl, trail settings)
+ * @param paused - Whether to pause the animation loop
  */
-export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = false) => {
+export const useStarfieldAnimation = (
+  canvasRef: RefObject<HTMLCanvasElement | null>, 
+  starsRef: RefObject<Star[]>, 
+  config: AnimationConfig, 
+  paused: boolean = false
+): void => {
   const {
     gravityStrength,
     swirlStrength,
@@ -28,10 +35,9 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = fals
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrame;
+    let animationFrame: number;
 
     const render = () => {
-      // Check if canvas still exists (component might have unmounted)
       const currentCanvas = canvasRef.current;
       if (!currentCanvas || !ctx) {
         if (animationFrame) cancelAnimationFrame(animationFrame);
@@ -50,7 +56,7 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = fals
 
       const time = Date.now();
 
-      starsRef.current.forEach((star) => {
+      starsRef.current?.forEach((star) => {
         // gravitational lensing + swirl effect
         const { distortedX, distortedY, norm, isInGravityZone } = calculateSwirlEffect(
           star,
@@ -63,22 +69,18 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = fals
             swirlRotationSpeed,
           },
           time
-        );
+        ) as { distortedX: number; distortedY: number; norm: number; isInGravityZone: boolean };
 
         // trail for stars in gravity zone
         if (isInGravityZone && norm >= minTrailStrength) {
-          // Initialize trail if it doesn't exist
           if (!star.trail) {
             star.trail = [];
           }
-          // Add current position to trail
           star.trail.push({ x: distortedX, y: distortedY });
-          // Keep only the last trailLength points
           if (star.trail.length > trailLength) {
             star.trail.shift();
           }
         } else {
-          // Clear trail when star leaves gravity zone
           if (star.trail) {
             star.trail = [];
           }
@@ -93,9 +95,11 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = fals
         drawStar(ctx, distortedX, distortedY, star.radius, star.opacity);
 
         // Update twinkle opacity
-        const twinkleOpacity = calculateTwinkleOpacity(star.twinkleSpeed, time);
-        if (twinkleOpacity !== null) {
-          star.opacity = twinkleOpacity;
+        if (star.twinkleSpeed !== null) {
+          const twinkleOpacity = calculateTwinkleOpacity(star.twinkleSpeed, time) as number | null;
+          if (twinkleOpacity !== null) {
+            star.opacity = twinkleOpacity;
+          }
         }
       });
 
@@ -120,4 +124,3 @@ export const useStarfieldAnimation = (canvasRef, starsRef, config, paused = fals
     paused,
   ]);
 };
-

@@ -51,3 +51,16 @@ export interface ShootingStarConfig {
   minDelay: number;
   maxDelay: number;
 }
+
+/**
+ * Configuration for the starfield animation loop
+ */
+export interface AnimationConfig {
+  gravityStrength: number;
+  swirlStrength: number;
+  gravityRadiusFactor: number;
+  innerGravityRadiusFactor: number;
+  trailLength: number;
+  swirlRotationSpeed: number;
+  minTrailStrength: number;
+}
