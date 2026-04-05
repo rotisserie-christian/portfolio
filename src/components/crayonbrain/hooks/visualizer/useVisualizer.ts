@@ -4,12 +4,7 @@ import { useAudioConnection } from './useAudioConnection';
 import { useCanvasResize } from './useCanvasResize';
 import { useRenderLoop } from './useRenderLoop';
 import { useSetupVisualizer } from './useSetupVisualizer';
-
-export interface VisualizerState {
-  visualizerRef: RefObject<any>;
-  analyserRef: RefObject<AnalyserNode | null>;
-  presetsRef: RefObject<any>;
-}
+import { VisualizerState, ButterchurnVisualizer } from '../../types';
 
 /**
  * Renders reactive visuals from the main audio output
@@ -24,7 +19,7 @@ export const useVisualizer = (
   isPlaying: boolean, 
   sequencerGainRef: RefObject<Tone.Gain | null>
 ): VisualizerState => {
-  const visualizerRef = useRef<any>(null);
+  const visualizerRef = useRef<ButterchurnVisualizer | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const presetsRef = useRef<any>(null);
   const isPlayingRef = useRef<boolean>(isPlaying);

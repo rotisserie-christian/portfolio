@@ -8,6 +8,7 @@ import { createAnalyser } from './analyserSetup';
 import { loadPreset } from './presetLoader';
 import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
 import { VisualizerSetupError } from '../../utils/errors';
+import { ButterchurnVisualizer } from '../../types';
 
 /**
  * Sets up Butterchurn visualizer with audio context, analyser, and presets
@@ -22,7 +23,7 @@ import { VisualizerSetupError } from '../../utils/errors';
  */
 export const useSetupVisualizer = (
   canvasRef: RefObject<HTMLCanvasElement | null>,
-  visualizerRef: RefObject<any>,
+  visualizerRef: RefObject<ButterchurnVisualizer | null>,
   analyserRef: RefObject<AnalyserNode | null>,
   audioCtxRef: RefObject<AudioContext | null>,
   presetsRef: RefObject<any>,
@@ -36,10 +37,10 @@ export const useSetupVisualizer = (
 
     try {
       const audioCtx = (Tone.getContext().rawContext) as AudioContext;
-      (audioCtxRef as any).current = audioCtx;
+      audioCtxRef.current = audioCtx;
 
       // Create and configure analyser for frequency analysis
-      (analyserRef as any).current = createAnalyser(audioCtx);
+      analyserRef.current = createAnalyser(audioCtx);
 
       // Try to connect immediately if audio source is available
       connectAnalyser();
@@ -56,10 +57,10 @@ export const useSetupVisualizer = (
         pixelRatio: dpr,
       });
       viz.connectAudio(analyserRef.current);
-      (visualizerRef as any).current = viz;
+      visualizerRef.current = viz;
 
       // Cache presets
-      (presetsRef as any).current = butterchurnPresets.getPresets();
+      presetsRef.current = butterchurnPresets.getPresets();
 
       // Load initial preset: index 0 = $$$ Royal - Mashup (197)
       loadPreset(viz, presetsRef.current, 0, PRESET_BLEND_TIME);
@@ -73,9 +74,9 @@ export const useSetupVisualizer = (
         console.error(vizError.message, vizError.cause);
       }
       // Reset refs to safe state
-      (visualizerRef as any).current = null;
-      (analyserRef as any).current = null;
-      (presetsRef as any).current = null;
+      visualizerRef.current = null;
+      analyserRef.current = null;
+      presetsRef.current = null;
     }
 
     return () => {
