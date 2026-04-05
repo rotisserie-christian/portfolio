@@ -1,19 +1,40 @@
+import { Star, AnimationConfig } from '../types';
+
+export interface SwirlEffectResult {
+  distortedX: number;
+  distortedY: number;
+  norm: number;
+  isInGravityZone: boolean;
+}
+
+export interface CanvasCenter {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 /**
  * Calculate distance between two points
  */
-export const calculateDistance = (x1, y1, x2, y2) => {
+export const calculateDistance = (x1: number, y1: number, x2: number, y2: number): number => {
   return Math.hypot(x2 - x1, y2 - y1);
 };
 
 /**
  * Calculate the gravitational distortion and swirl effect for a star
- * @param {Object} star - Star object with x, y properties
- * @param {Object} center - Center point {x, y}
- * @param {Object} config - Configuration object
- * @param {number} time - Current time in milliseconds
- * @returns {Object} {distortedX, distortedY, norm, isInGravityZone}
+ * @param star - Star object with x, y properties
+ * @param center - Center coordinate and bounds of the canvas
+ * @param config - Distrotion strength and radius configuration
+ * @param time - Current timestamp for animation rotation
+ * @returns Object containing distorted position and gravity zone status
  */
-export const calculateSwirlEffect = (star, center, config, time) => {
+export const calculateSwirlEffect = (
+  star: Star, 
+  center: CanvasCenter, 
+  config: Omit<AnimationConfig, 'trailLength' | 'minTrailStrength'>, 
+  time: number
+): SwirlEffectResult => {
   const { x, y } = star;
   const { 
     gravityStrength, 
@@ -66,12 +87,11 @@ export const calculateSwirlEffect = (star, center, config, time) => {
 
 /**
  * Calculate twinkling opacity for a star
- * @param {number} twinkleSpeed - Speed of twinkling
- * @param {number} time - Current time in milliseconds
- * @returns {number} Opacity value between 0.8 and 1.3
+ * @param twinkleSpeed - Speed of twinkling (null if no twinkle)
+ * @param time - Current time in milliseconds
+ * @returns Opacity value between 0.8 and 1.3 or null
  */
-export const calculateTwinkleOpacity = (twinkleSpeed, time) => {
+export const calculateTwinkleOpacity = (twinkleSpeed: number | null, time: number): number | null => {
   if (twinkleSpeed === null) return null;
   return 0.8 + Math.abs(Math.sin((time * 0.001) / twinkleSpeed) * 0.5);
 };
-

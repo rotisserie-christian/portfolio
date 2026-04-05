@@ -69,7 +69,7 @@ export const useStarfieldAnimation = (
             swirlRotationSpeed,
           },
           time
-        ) as { distortedX: number; distortedY: number; norm: number; isInGravityZone: boolean };
+        );
 
         // trail for stars in gravity zone
         if (isInGravityZone && norm >= minTrailStrength) {
@@ -96,7 +96,7 @@ export const useStarfieldAnimation = (
 
         // Update twinkle opacity
         if (star.twinkleSpeed !== null) {
-          const twinkleOpacity = calculateTwinkleOpacity(star.twinkleSpeed, time) as number | null;
+          const twinkleOpacity = calculateTwinkleOpacity(star.twinkleSpeed, time);
           if (twinkleOpacity !== null) {
             star.opacity = twinkleOpacity;
           }
