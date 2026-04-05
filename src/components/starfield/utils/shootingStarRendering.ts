@@ -1,4 +1,4 @@
-import { ShootingStar } from '../types/types';
+import { ShootingStar } from '../types';
 
 interface StarRectProps {
   key: number;

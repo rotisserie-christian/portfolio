@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { getRandomStartPoint, getRandomSpeed, getRandomDelay } from '../utils/shootingStarMath';
-import { ShootingStar, ShootingStarConfig } from '../types/types';
+import { ShootingStar, ShootingStarConfig } from '../types';
 
 /**
  * Hook for creating and scheduling shooting stars

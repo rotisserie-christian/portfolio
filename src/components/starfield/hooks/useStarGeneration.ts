@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Star, StarGenerationConfig, StarGenerationHook } from '../types/types';
+import { Star, StarGenerationConfig, StarGenerationHook } from '../types';
 
 /**
  * Hook for generating and initializing a field of stars

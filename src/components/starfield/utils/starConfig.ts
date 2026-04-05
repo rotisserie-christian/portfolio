@@ -1,4 +1,4 @@
-import { StarGenerationConfig, AnimationConfig, ShootingStarConfig } from '../types/types';
+import { StarGenerationConfig, AnimationConfig, ShootingStarConfig } from '../types';
 
 export const DEFAULT_STAR_CONFIG: StarGenerationConfig & AnimationConfig = {
   starDensity: 0.002,

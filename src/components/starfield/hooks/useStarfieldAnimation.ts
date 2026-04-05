@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import { calculateSwirlEffect, calculateTwinkleOpacity } from '../utils/starMath';
 import { drawStarTrail, drawStar } from '../utils/starRendering';
-import { Star, AnimationConfig } from '../types/types';
+import { Star, AnimationConfig } from '../types';
 
 /**
  * Starfield animation loop

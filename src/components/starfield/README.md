@@ -1,9 +1,9 @@
 ### /starfield
-- **`hooks/`** - Animation and canvas resizing logic 
-- **`utils/`** - Default configs and math functions 
+- **`/hooks`** - Animation and canvas resizing logic 
+- **`/utils`** - Default configs and math functions 
 - **`StarsBackground.jsx`** - Background orchestrator
 - **`ShootingStars.jsx`** - Shooting stars orchestrator
-- **`types.ts`** - TypeScript interfaces 
+- **`/types`** - TypeScript interfaces 
 
 ### How it works
 - Draw stars to the canvas at random x,y coordinates

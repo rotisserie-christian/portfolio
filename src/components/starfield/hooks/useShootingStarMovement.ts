@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { calculateStarMovement } from '../utils/shootingStarMath';
-import { ShootingStar } from '../types/types';
+import { ShootingStar } from '../types';
 
 /**
  * Hook for animating shooting star movement
