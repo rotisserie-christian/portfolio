@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { calculateStarMovement } from '../utils/shootingStarMath';
-import { ShootingStar } from '../types';
+import { ShootingStar } from '../types/types';
 
 /**
  * Hook for animating shooting star movement
@@ -11,9 +11,9 @@ import { ShootingStar } from '../types';
  * @returns {void}
  */
 export const useShootingStarMovement = (
-  star: ShootingStar | null, 
-  onStarUpdate: (star: ShootingStar | null) => void, 
-  fps: number = 30, 
+  star: ShootingStar | null,
+  onStarUpdate: (star: ShootingStar | null) => void,
+  fps: number = 30,
   paused: boolean = false
 ): void => {
   const starRef = useRef<ShootingStar | null>(star);

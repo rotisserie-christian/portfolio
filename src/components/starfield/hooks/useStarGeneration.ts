@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Star, StarGenerationConfig, StarGenerationHook } from '../types';
+import { Star, StarGenerationConfig, StarGenerationHook } from '../types/types';
 
 /**
  * Hook for generating and initializing a field of stars
@@ -14,7 +14,7 @@ export const useStarGeneration = ({
   maxTwinkleSpeed,
   exclusionSize,
 }: StarGenerationConfig): StarGenerationHook => {
-  
+
   const generateStars = useCallback(
     (width: number, height: number): Star[] => {
       const area = width * height;

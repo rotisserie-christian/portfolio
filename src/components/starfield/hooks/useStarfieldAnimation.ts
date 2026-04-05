@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import { calculateSwirlEffect, calculateTwinkleOpacity } from '../utils/starMath';
 import { drawStarTrail, drawStar } from '../utils/starRendering';
-import { Star, AnimationConfig } from '../types';
+import { Star, AnimationConfig } from '../types/types';
 
 /**
  * Starfield animation loop
@@ -11,9 +11,9 @@ import { Star, AnimationConfig } from '../types';
  * @param paused - Whether to pause the animation loop
  */
 export const useStarfieldAnimation = (
-  canvasRef: RefObject<HTMLCanvasElement | null>, 
-  starsRef: RefObject<Star[]>, 
-  config: AnimationConfig, 
+  canvasRef: RefObject<HTMLCanvasElement | null>,
+  starsRef: RefObject<Star[]>,
+  config: AnimationConfig,
   paused: boolean = false
 ): void => {
   const {

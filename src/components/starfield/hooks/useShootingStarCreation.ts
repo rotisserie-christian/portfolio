@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { getRandomStartPoint, getRandomSpeed, getRandomDelay } from '../utils/shootingStarMath';
-import { ShootingStar, ShootingStarConfig } from '../types';
+import { ShootingStar, ShootingStarConfig } from '../types/types';
 
 /**
  * Hook for creating and scheduling shooting stars
@@ -10,8 +10,8 @@ import { ShootingStar, ShootingStarConfig } from '../types';
  * @returns {void}
  */
 export const useShootingStarCreation = (
-  onCreateStar: (star: ShootingStar) => void, 
-  config: ShootingStarConfig, 
+  onCreateStar: (star: ShootingStar) => void,
+  config: ShootingStarConfig,
   paused: boolean = false
 ): void => {
   const { minSpeed, maxSpeed, minDelay, maxDelay } = config;
@@ -32,7 +32,7 @@ export const useShootingStarCreation = (
         speed: getRandomSpeed(minSpeed, maxSpeed),
         distance: 0,
       };
-      
+
       onCreateStar(newStar);
 
       const randomDelay = getRandomDelay(minDelay, maxDelay);
@@ -40,7 +40,7 @@ export const useShootingStarCreation = (
     };
 
     createStar();
-    
+
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
