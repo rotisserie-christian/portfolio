@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
+import { Star, StarGenerationConfig, StarGenerationHook } from '../types';
 
 /**
- * Generate stars
- * @param {Object} config - Star generation configuration
- * @returns {Function} generateStars function
+ * Hook for generating and initializing a field of stars
+ * @param config - Star generation configuration parameters
+ * @returns An object containing the generateStars function
  */
 export const useStarGeneration = ({
   starDensity,
@@ -12,20 +13,21 @@ export const useStarGeneration = ({
   minTwinkleSpeed,
   maxTwinkleSpeed,
   exclusionSize,
-}) => {
+}: StarGenerationConfig): StarGenerationHook => {
+  
   const generateStars = useCallback(
-    (width, height) => {
+    (width: number, height: number): Star[] => {
       const area = width * height;
       const numStars = Math.floor(area * starDensity);
       const centerX = width / 2;
       const centerY = height / 2;
       const exclusionRadius = exclusionSize / 2;
 
-      const getDistance = (x, y) =>
+      const getDistance = (x: number, y: number): number =>
         Math.hypot(x - centerX, y - centerY);
 
-      return Array.from({ length: numStars }, () => {
-        let x, y, dist;
+      return Array.from({ length: numStars }, (): Star => {
+        let x: number, y: number, dist: number;
         do {
           x = Math.random() * width;
           y = Math.random() * height;
@@ -39,8 +41,7 @@ export const useStarGeneration = ({
         );
         const baseOpacity = Math.random() * 0.5 + 0.5;
         const adjustedOpacity = baseOpacity * dFactor;
-        const shouldTwinkle =
-          allStarsTwinkle || Math.random() < twinkleProbability;
+        const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
 
         return {
           x,
@@ -48,8 +49,7 @@ export const useStarGeneration = ({
           radius: Math.random() * 0.05 + 0.5,
           opacity: adjustedOpacity,
           twinkleSpeed: shouldTwinkle
-            ? minTwinkleSpeed +
-              Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
+            ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
             : null,
           trail: [], // Initialize empty trail array
         };
@@ -67,4 +67,3 @@ export const useStarGeneration = ({
 
   return { generateStars };
 };
-
