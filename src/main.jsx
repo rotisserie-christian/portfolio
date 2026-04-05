@@ -1,10 +1,26 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot, createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import RouteSwitch from './RouteSwitch'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouteSwitch />
-  </StrictMode>,
-)
+const rootElement = document.getElementById('root');
+
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(
+    rootElement,
+    <StrictMode>
+      <HelmetProvider>
+        <RouteSwitch />
+      </HelmetProvider>
+    </StrictMode>
+  );
+} else {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <HelmetProvider>
+        <RouteSwitch />
+      </HelmetProvider>
+    </StrictMode>
+  );
+}

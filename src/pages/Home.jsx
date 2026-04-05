@@ -1,4 +1,5 @@
 import { FaAngleDoubleRight } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 import { ShootingStars } from "../components/starfield/ShootingStars";
 import { StarsBackground } from "../components/starfield/StarsBackground";
 import Crayonbrain from "../components/crayonbrain/Crayonbrain";
@@ -18,6 +19,12 @@ export default function Home() {
 
     return (
         <>
+            <Helmet>
+                <title>Christian Waters | Web Developer Saskatoon & Saskatchewan</title>
+                <meta name="description" content="Custom software development in Saskatoon. Full-stack expertise in React, Python, and SEO-driven applications. Delivering high-performance web solutions for the local market." />
+                <link rel="canonical" href="https://christianwaters.dev/" />
+            </Helmet>
+
             <div className="flex flex-col items-center justify-center w-full">
                 <section className="flex items-center justify-center w-full min-h-screen bg-base-300 min-h-screen">
                     <StarsBackground />
