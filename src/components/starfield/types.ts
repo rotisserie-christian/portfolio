@@ -1,6 +1,3 @@
-/**
- * Configuration for star generation and behavior
- */
 export interface StarGenerationConfig {
   starDensity: number;
   allStarsTwinkle: boolean;
@@ -10,9 +7,6 @@ export interface StarGenerationConfig {
   exclusionSize: number;
 }
 
-/**
- * Representation of a single star in the field
- */
 export interface Star {
   x: number;
   y: number;
@@ -22,16 +16,10 @@ export interface Star {
   trail: { x: number; y: number }[];
 }
 
-/**
- * Return type for the useStarGeneration hook
- */
 export interface StarGenerationHook {
   generateStars: (width: number, height: number) => Star[];
 }
 
-/**
- * Representation of a single shooting star
- */
 export interface ShootingStar {
   id: number;
   x: number;
@@ -42,9 +30,6 @@ export interface ShootingStar {
   distance: number;
 }
 
-/**
- * Configuration for shooting star timing and physics
- */
 export interface ShootingStarConfig {
   minSpeed: number;
   maxSpeed: number;
@@ -52,9 +37,6 @@ export interface ShootingStarConfig {
   maxDelay: number;
 }
 
-/**
- * Configuration for the starfield animation loop
- */
 export interface AnimationConfig {
   gravityStrength: number;
   swirlStrength: number;

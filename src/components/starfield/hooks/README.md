@@ -1,6 +1,6 @@
 ### starfield/hooks
-- `useStarGeneration.js` - Star generation logic
-- `useCanvasResize.js` - Canvas resize handling
-- `useStarfieldAnimation.js` - Animation loop
-- `useShootingStarCreation.js` - Shooting star creation and scheduling
-- `useShootingStarMovement.js` - Shooting star movement animation 
+- `useStarGeneration.ts` - Star generation logic
+- `useCanvasResize.ts` - Canvas resize handling
+- `useStarfieldAnimation.ts` - Animation loop
+- `useShootingStarCreation.ts` - Shooting star creation and scheduling
+- `useShootingStarMovement.ts` - Shooting star movement animation 
