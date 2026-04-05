@@ -1,21 +1,22 @@
 import { TIME_STEPS, DARKER_STEP_INDICES } from './sequencerConstants';
+import { DrumSequenceTrack } from '../types';
 
 /**
  * Determines if a step should have a darker background to highlight 1/4 notes
- * @param {number} timeStep - The step index (0-7)
- * @returns {boolean} - True if the step should be darker
+ * @param timeStep - The step index (0-7)
+ * @returns True if the step should be darker
  */
-export const shouldBeDarkerStep = (timeStep) => {
+export const shouldBeDarkerStep = (timeStep: number): boolean => {
   return DARKER_STEP_INDICES.includes(timeStep);
 };
 
 /**
  * Creates a default drum sequence pattern
- * @param {number} numSounds - Number of drum sounds (default: 6)
- * @returns {Array} - Array of track objects with step patterns
+ * @param numSounds - Number of drum sounds (default: 6)
+ * @returns Array of track objects with step patterns
  */
-export const createDefaultSequence = (numSounds = 6) => {
-  const defaultPatterns = [
+export const createDefaultSequence = (numSounds: number = 6): DrumSequenceTrack[] => {
+  const defaultPatterns: boolean[][] = [
     [true, false, false, false, false, true, false, false],  // kick
     [false, false, true, false, false, false, true, false],  // snare
     [false, false, false, false, false, false, false, false], // snare2
@@ -24,7 +25,7 @@ export const createDefaultSequence = (numSounds = 6) => {
   
   // Fill remaining sounds with empty patterns
   const emptyPattern = Array(TIME_STEPS).fill(false);
-  const patterns = [...defaultPatterns];
+  const patterns: boolean[][] = [...defaultPatterns];
   while (patterns.length < numSounds) {
     patterns.push([...emptyPattern]);
   }
@@ -34,10 +35,10 @@ export const createDefaultSequence = (numSounds = 6) => {
 
 /**
  * Creates an empty sequence with all steps set to false
- * @param {number} numTracks - Number of tracks in the sequence
- * @returns {Array} - Array of track objects with all steps set to false
+ * @param numTracks - Number of tracks in the sequence
+ * @returns Array of track objects with all steps set to false
  */
-export const createEmptySequence = (numTracks) => {
+export const createEmptySequence = (numTracks: number): DrumSequenceTrack[] => {
   return Array(numTracks).fill(null).map(() => ({
     steps: Array(TIME_STEPS).fill(false)
   }));
@@ -45,12 +46,16 @@ export const createEmptySequence = (numTracks) => {
 
 /**
  * Toggles a step in a drum sequence
- * @param {Array} sequence - Current drum sequence array
- * @param {number} soundIndex - Index of the sound track to modify
- * @param {number} stepIndex - Index of the step to toggle
- * @returns {Array} - New sequence with the step toggled
+ * @param sequence - Current drum sequence array
+ * @param soundIndex - Index of the sound track to modify
+ * @param stepIndex - Index of the step to toggle
+ * @returns New sequence with the step toggled
  */
-export const toggleStep = (sequence, soundIndex, stepIndex) => {
+export const toggleStep = (
+  sequence: DrumSequenceTrack[], 
+  soundIndex: number, 
+  stepIndex: number
+): DrumSequenceTrack[] => {
   return sequence.map((track, currentSoundIndex) => {
     if (currentSoundIndex === soundIndex) {
       const newSteps = [...track.steps];
