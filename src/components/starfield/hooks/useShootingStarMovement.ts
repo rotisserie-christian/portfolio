@@ -36,7 +36,7 @@ export const useShootingStarMovement = (
       if (!currentStar) return;
 
       // Note: calculateStarMovement returns a state-synced object or null if out of bounds
-      const updatedStar = calculateStarMovement(currentStar) as ShootingStar | null;
+      const updatedStar = calculateStarMovement(currentStar);
       onStarUpdateRef.current(updatedStar);
     };
 

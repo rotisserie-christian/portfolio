@@ -22,7 +22,7 @@ export const useShootingStarCreation = (
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const createStar = () => {
-      const { x, y, angle } = getRandomStartPoint() as { x: number, y: number, angle: number };
+      const { x, y, angle } = getRandomStartPoint();
       const newStar: ShootingStar = {
         id: Date.now(),
         x,
