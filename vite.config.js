@@ -1,23 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
-import prerender from 'vite-plugin-prerender'
-import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(), 
-    tailwindcss(),
-    prerender({
-      staticDir: path.join(process.cwd(), 'dist'),
-      routes: ['/'],
-      renderer: new prerender.PuppeteerRenderer({
-        renderAfterTime: 2000,
-        headless: true
-      })
-    })
-  ],
+  plugins: [react(), tailwindcss()],
   build: {
     cssCodeSplit: true,
     target: 'esnext',

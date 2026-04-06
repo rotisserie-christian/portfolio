@@ -4,7 +4,10 @@ import { useStarGeneration } from "./hooks/useStarGeneration";
 import { useCanvasResize } from "./hooks/useCanvasResize";
 import { useStarfieldAnimation } from "./hooks/useStarfieldAnimation";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import { StarBackgroundPropTypes, StarBackgroundDefaultProps } from "./utils/starTypes";
+import {
+  StarBackgroundPropTypes,
+  StarBackgroundDefaultProps,
+} from "./types/props";
 
 export const StarsBackground = ({
   starDensity = 0.002,

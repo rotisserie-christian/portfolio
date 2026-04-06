@@ -4,7 +4,10 @@ import { useShootingStarCreation } from "./hooks/useShootingStarCreation";
 import { useShootingStarMovement } from "./hooks/useShootingStarMovement";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { getStarRectProps } from "./utils/shootingStarRendering";
-import { ShootingStarsPropTypes, ShootingStarsDefaultProps } from "./utils/starTypes";
+import {
+  ShootingStarsPropTypes,
+  ShootingStarsDefaultProps,
+} from "./types/props";
 
 export const ShootingStars = ({
   minSpeed = 10,
