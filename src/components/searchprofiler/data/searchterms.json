@@ -1,233 +1,266 @@
 [
-    {
-        "query": "free audio visualizer",
-        "cluster": "Visualization",
-        "slope": 0.0852,
-        "avg_interest": 1.13,
-        "max_interest": 16.0
-    },
-    {
-        "query": "software for making music",
-        "cluster": "Music Creation",
-        "slope": 0.0743,
-        "avg_interest": 5.09,
-        "max_interest": 26.0
-    },
-    {
-        "query": "how to make edm",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.0719,
-        "avg_interest": 1.46,
-        "max_interest": 11.0
-    },
-    {
-        "query": "drum pad machine",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.0707,
-        "avg_interest": 1.32,
-        "max_interest": 16.0
-    },
-    {
-        "query": "free music making software",
-        "cluster": "Music Creation",
-        "slope": 0.055,
-        "avg_interest": 2.96,
-        "max_interest": 23.0
-    },
-    {
-        "query": "how to make edm music",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.0513,
-        "avg_interest": 0.14,
-        "max_interest": 2.0
-    },
-    {
-        "query": "make techno music",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.0478,
-        "avg_interest": 0.75,
-        "max_interest": 19.0
-    },
-    {
-        "query": "music visualizer free",
-        "cluster": "Visualization",
-        "slope": 0.0228,
-        "avg_interest": 1.76,
-        "max_interest": 19.0
-    },
-    {
-        "query": "make trance music",
-        "cluster": "Genre-Specific Tools",
-        "slope": 0.0172,
-        "avg_interest": 0.05,
-        "max_interest": 1.0
-    },
-    {
-        "query": "music loops free download",
-        "cluster": "Finding Pre-Made Content",
-        "slope": -0.004,
-        "avg_interest": 0.06,
-        "max_interest": 1.0
-    },
-    {
-        "query": "electronic music loops",
-        "cluster": "Finding Pre-Made Content",
-        "slope": -0.0053,
-        "avg_interest": 0.16,
-        "max_interest": 14.0
-    },
-    {
-        "query": "online music visualizer",
-        "cluster": "Visualization",
-        "slope": -0.0145,
-        "avg_interest": 1.01,
-        "max_interest": 19.0
-    },
-    {
-        "query": "make ambient music",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.0343,
-        "avg_interest": 1.72,
-        "max_interest": 24.0
-    },
-    {
-        "query": "make house music",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.0718,
-        "avg_interest": 35.71,
-        "max_interest": 67.0
-    },
-    {
-        "query": "royalty free loops",
-        "cluster": "Finding Pre-Made Content",
-        "slope": -0.0873,
-        "avg_interest": 1.59,
-        "max_interest": 34.0
-    },
-    {
-        "query": "music visualizer",
-        "cluster": "Visualization",
-        "slope": -0.1111,
-        "avg_interest": 43.51,
-        "max_interest": 74.0
-    },
-    {
-        "query": "audio visualizer",
-        "cluster": "Visualization",
-        "slope": -0.1166,
-        "avg_interest": 40.67,
-        "max_interest": 76.0
-    },
-    {
-        "query": "make edm",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.1167,
-        "avg_interest": 5.53,
-        "max_interest": 18.0
-    },
-    {
-        "query": "online drum machine",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.1222,
-        "avg_interest": 6.97,
-        "max_interest": 32.0
-    },
-    {
-        "query": "free music loops",
-        "cluster": "Finding Pre-Made Content",
-        "slope": -0.1336,
-        "avg_interest": 2.61,
-        "max_interest": 39.0
-    },
-    {
-        "query": "music maker free online",
-        "cluster": "Music Creation",
-        "slope": -0.1469,
-        "avg_interest": 11.58,
-        "max_interest": 37.0
-    },
-    {
-        "query": "online drum kit",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.1957,
-        "avg_interest": 5.65,
-        "max_interest": 33.0
-    },
-    {
-        "query": "drums online",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.3271,
-        "avg_interest": 40.53,
-        "max_interest": 100.0
-    },
-    {
-        "query": "drum pad",
-        "cluster": "Genre-Specific Tools",
-        "slope": -0.3456,
-        "avg_interest": 65.95,
-        "max_interest": 100.0
-    },
-    {
-        "query": "free loops",
-        "cluster": "Finding Pre-Made Content",
-        "slope": -0.10,
-        "avg_interest": 70.12,
-        "max_interest": 100.0
-    },
-    {
-        "query": "free music samples",
-        "cluster": "Finding Pre-Made Content",
-        "slope": 0.07,
-        "avg_interest": 9.67,
-        "max_interest": 22.0
-    },
-    {
-        "query": "fl studio packs",
-        "cluster": "Finding Pre-Made Content",
-        "slope": -0.20,
-        "avg_interest": 8.0,
-        "max_interest": 22.20
-    },
-    {
-        "query": "free song maker",
-        "cluster": "Music Creation",
-        "slope": -0.07,
-        "avg_interest": 47.0,
-        "max_interest": 77.0
-    },
-    {
-        "query": "make your own music",
-        "cluster": "Music Creation",
-        "slope": 0.61,
-        "avg_interest": 58.0,
-        "max_interest": 85.0
-    },
-    {
-        "query": "beat maker",
-        "cluster": "Music Creation",
-        "slope": 1.0,
-        "avg_interest": 78.0,
-        "max_interest": 100.0
-    },
-    {
-        "query": "music maker free",
-        "cluster": "Music Creation",
-        "slope": 0.01,
-        "avg_interest": 72.0,
-        "max_interest": 100.0
-    },
-    {
-        "query": "make music online",
-        "cluster": "Music Creation",
-        "slope": 0.0127,
-        "avg_interest": 48.05,
-        "max_interest": 100.0
-    },
-    {
-        "query": "online music maker",
-        "cluster": "Music Creation",
-        "slope": -0.17,
-        "avg_interest": 39.05,
-        "max_interest": 62.0
-    }
+  {
+    "query": "beat maker",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 155.17,
+    "max_interest": 212.77,
+    "is_normalized": true
+  },
+  {
+    "query": "drum pad",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 148.77,
+    "max_interest": 454.55,
+    "is_normalized": true
+  },
+  {
+    "query": "free loops",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 88.32,
+    "max_interest": 135.14,
+    "is_normalized": true
+  },
+  {
+    "query": "music maker free",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 71.55,
+    "max_interest": 100.0,
+    "is_normalized": true
+  },
+  {
+    "query": "make music online",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 70.0,
+    "max_interest": 148.94,
+    "is_normalized": true
+  },
+  {
+    "query": "drums online",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 56.14,
+    "max_interest": 90.91,
+    "is_normalized": true
+  },
+  {
+    "query": "make your own music",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 50.87,
+    "max_interest": 76.6,
+    "is_normalized": true
+  },
+  {
+    "query": "music visualizer",
+    "cluster": "Visualization",
+    "slope": 0.0,
+    "avg_interest": 47.27,
+    "max_interest": 80.0,
+    "is_normalized": false
+  },
+  {
+    "query": "free song maker",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 44.46,
+    "max_interest": 79.73,
+    "is_normalized": true
+  },
+  {
+    "query": "audio visualizer",
+    "cluster": "Visualization",
+    "slope": 0.0,
+    "avg_interest": 43.23,
+    "max_interest": 73.0,
+    "is_normalized": false
+  },
+  {
+    "query": "make house music",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 43.22,
+    "max_interest": 81.0,
+    "is_normalized": false
+  },
+  {
+    "query": "online music maker",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 36.99,
+    "max_interest": 61.0,
+    "is_normalized": false
+  },
+  {
+    "query": "music maker free online",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 12.27,
+    "max_interest": 40.91,
+    "is_normalized": true
+  },
+  {
+    "query": "make edm",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 11.77,
+    "max_interest": 30.0,
+    "is_normalized": false
+  },
+  {
+    "query": "online drum machine",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 10.62,
+    "max_interest": 27.0,
+    "is_normalized": false
+  },
+  {
+    "query": "free music samples",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 10.27,
+    "max_interest": 32.43,
+    "is_normalized": true
+  },
+  {
+    "query": "fl studio packs",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 9.72,
+    "max_interest": 36.49,
+    "is_normalized": true
+  },
+  {
+    "query": "software for making music",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 8.27,
+    "max_interest": 26.0,
+    "is_normalized": false
+  },
+  {
+    "query": "online drum kit",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 7.86,
+    "max_interest": 27.27,
+    "is_normalized": true
+  },
+  {
+    "query": "drum pad machine",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 5.0,
+    "max_interest": 37.0,
+    "is_normalized": false
+  },
+  {
+    "query": "free music making software",
+    "cluster": "Music Creation",
+    "slope": 0.0,
+    "avg_interest": 3.1,
+    "max_interest": 25.0,
+    "is_normalized": false
+  },
+  {
+    "query": "music visualizer free",
+    "cluster": "Visualization",
+    "slope": 0.0,
+    "avg_interest": 1.96,
+    "max_interest": 23.0,
+    "is_normalized": false
+  },
+  {
+    "query": "free music loops",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 1.69,
+    "max_interest": 21.0,
+    "is_normalized": false
+  },
+  {
+    "query": "how to make edm",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 1.66,
+    "max_interest": 18.0,
+    "is_normalized": false
+  },
+  {
+    "query": "free audio visualizer",
+    "cluster": "Visualization",
+    "slope": 0.0,
+    "avg_interest": 1.37,
+    "max_interest": 15.0,
+    "is_normalized": false
+  },
+  {
+    "query": "online music visualizer",
+    "cluster": "Visualization",
+    "slope": 0.0,
+    "avg_interest": 0.88,
+    "max_interest": 16.0,
+    "is_normalized": false
+  },
+  {
+    "query": "royalty free loops",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 0.87,
+    "max_interest": 20.0,
+    "is_normalized": false
+  },
+  {
+    "query": "make ambient music",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 0.44,
+    "max_interest": 3.0,
+    "is_normalized": false
+  },
+  {
+    "query": "make techno music",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 0.35,
+    "max_interest": 4.0,
+    "is_normalized": false
+  },
+  {
+    "query": "music loops free download",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 0.2,
+    "max_interest": 3.0,
+    "is_normalized": false
+  },
+  {
+    "query": "how to make edm music",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 0.16,
+    "max_interest": 2.0,
+    "is_normalized": false
+  },
+  {
+    "query": "make trance music",
+    "cluster": "Genre-Specific Tools",
+    "slope": 0.0,
+    "avg_interest": 0.03,
+    "max_interest": 1.0,
+    "is_normalized": false
+  },
+  {
+    "query": "electronic music loops",
+    "cluster": "Finding Pre-Made Content",
+    "slope": 0.0,
+    "avg_interest": 0.03,
+    "max_interest": 1.0,
+    "is_normalized": false
+  }
 ]

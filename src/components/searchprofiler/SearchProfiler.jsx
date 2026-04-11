@@ -96,12 +96,8 @@ export default function SearchProfiler() {
                             Interest Levels (3-month)
                         </p>
 
-                        <p className="text-sm mt-5 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
+                        <p className="text-sm mt-5 mb-4 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
                             Anchored to 'Free Music Maker'
-                        </p>
-
-                        <p className="text-sm mt-2 mb-4 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
-                            Bubble size = rate of change
                         </p>
 
                         <LazyChart filteredData={filteredData} />

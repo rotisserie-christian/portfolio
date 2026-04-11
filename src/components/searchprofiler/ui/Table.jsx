@@ -43,7 +43,6 @@ export default function Table({ data }) {
                                 <th className="bg-base-300">Query</th>
                                 <th className="bg-base-300 text-right">Avg</th>
                                 <th className="bg-base-300 text-right">Max</th>
-                                <th className="bg-base-300 text-right">Change</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,9 +60,6 @@ export default function Table({ data }) {
                                     </td>
                                     <td className="text-right font-mono text-xs">{item.avg_interest.toFixed(2)}</td>
                                     <td className="text-right font-mono text-xs">{item.max_interest.toFixed(0)}</td>
-                                    <td className={`text-right font-mono text-xs ${item.slope > 0 ? 'text-success' : item.slope < 0 ? 'text-error' : ''}`}>
-                                        {item.slope !== undefined ? (item.slope > 0 ? `+${item.slope.toFixed(4)}` : item.slope.toFixed(4)) : 'N/A'}
-                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -102,7 +98,6 @@ Table.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         query: PropTypes.string,
         cluster: PropTypes.string,
-        slope: PropTypes.number,
         avg_interest: PropTypes.number,
         max_interest: PropTypes.number
     })).isRequired
