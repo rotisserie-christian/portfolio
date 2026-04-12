@@ -1,11 +1,12 @@
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
-import { ShootingStars } from "../components/starfield/ShootingStars";
-import { StarsBackground } from "../components/starfield/StarsBackground";
-import Crayonbrain from "../components/crayonbrain/Crayonbrain";
-import SearchProfiler from "../components/searchprofiler/SearchProfiler";
-import Contact from "../components/contact/Contact";
-import Footer from "../components/ui/Footer";
+import { ShootingStars } from "@/components/starfield/ShootingStars";
+import { StarsBackground } from "@/components/starfield/StarsBackground";
+import Crayonbrain from "@/components/crayonbrain/Crayonbrain";
+import SearchProfiler from "@/components/searchprofiler/SearchProfiler";
+import Contact from "@/components/contact/Contact";
+import Footer from "@/components/ui/Footer";
+import ErrorBoundary from "@/components/ui/ErrorBoundary";
 
 export default function Home() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -26,11 +27,13 @@ export default function Home() {
             </Helmet>
 
             <div className="flex flex-col items-center justify-center w-full">
-                <section className="flex items-center justify-center w-full min-h-screen bg-base-300 min-h-screen">
-                    <StarsBackground />
-                    <ShootingStars />
+                <section className="flex items-center justify-center w-full min-h-screen bg-base-300 relative overflow-hidden">
+                    <ErrorBoundary name="Atmosphere">
+                        <StarsBackground />
+                        <ShootingStars />
+                    </ErrorBoundary>
 
-                    <div className="flex flex-col items-center justify-center bg-base-300/60 mb-20 lg:mb-0 z-40 lg:px-16 rounded-3xl">
+                    <div className="flex flex-col items-center justify-center bg-base-300/60 mb-20 lg:mb-0 z-40 lg:px-16 rounded-3xl backdrop-blur-sm">
                         <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                             Christian Waters
                         </h1>
@@ -49,11 +52,15 @@ export default function Home() {
                 </section>
 
                 <div data-section="crayonbrain" className="w-full">
-                    <Crayonbrain />
+                    <ErrorBoundary name="Crayonbrain">
+                        <Crayonbrain />
+                    </ErrorBoundary>
                 </div>
 
                 <div data-section="searchprofiler" className="w-full">
-                    <SearchProfiler />
+                    <ErrorBoundary name="Search Profiler">
+                        <SearchProfiler />
+                    </ErrorBoundary>
                 </div>
 
                 <div data-section="contact" className="w-full">
@@ -64,4 +71,4 @@ export default function Home() {
             </div>
         </>
     );
-}
+}
