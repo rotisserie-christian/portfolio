@@ -2,16 +2,16 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, act } from '@testing-library/react';
 import React from 'react';
 import DemoSequencer from '../DemoSequencer';
-import { SequencerProvider } from '../../../contexts/SequencerContext.jsx';
+import { SequencerProvider } from '@/contexts/SequencerContext.jsx';
 import { useSequencer } from '../hooks/sequencer/useSequencer';
-import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 // Mock the hooks
 vi.mock('../hooks/sequencer/useSequencer', () => ({
   useSequencer: vi.fn()
 }));
 
-vi.mock('../../../hooks/useIntersectionObserver', () => ({
+vi.mock('@/hooks/useIntersectionObserver', () => ({
   useIntersectionObserver: vi.fn()
 }));
 

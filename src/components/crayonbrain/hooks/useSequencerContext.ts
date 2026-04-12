@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SequencerContext } from '../../../contexts/SequencerContext';
+import { SequencerContext } from '@/contexts/SequencerContext';
 import { SequencerContextError } from '../utils/errors';
 import { SequencerContextValue } from '../types/sequencer';
 

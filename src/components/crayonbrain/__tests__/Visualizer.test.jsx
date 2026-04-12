@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Visualizer from '../Visualizer';
-import { SequencerProvider } from '../../../contexts/SequencerContext.jsx';
+import { SequencerProvider } from '@/contexts/SequencerContext.jsx';
 import { useVisualizer } from '../hooks/visualizer/useVisualizer';
 import { usePresetSwitching } from '../hooks/visualizer/usePresetSwitching';
 import { useSequencerContext } from '../hooks/useSequencerContext';

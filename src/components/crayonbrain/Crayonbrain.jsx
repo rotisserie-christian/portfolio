@@ -4,8 +4,8 @@ import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import cb from "../../assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
-import { SequencerProvider } from "../../contexts/SequencerContext.jsx";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { SequencerProvider } from "@/contexts/SequencerContext.jsx";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import HowItWorks from "./ui/HowItWorks.jsx";
 import Features from "./ui/Features.jsx";
 

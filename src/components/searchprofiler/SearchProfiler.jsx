@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState, useEffect, useMemo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Table from "./ui/Table";
 import ScrollBar from "./ui/ScrollBar";
 import searchData from "./data/searchterms.json";

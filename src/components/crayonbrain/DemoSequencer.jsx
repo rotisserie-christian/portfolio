@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSequencer } from './hooks/sequencer/useSequencer';
 import { useSequencerContext } from './hooks/useSequencerContext';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import TempoSlider from './ui/TempoSlider';
 import SequencerControls from './ui/SequencerControls';
 import DrumPad from './ui/DrumPad';
