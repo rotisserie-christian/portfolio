@@ -1,7 +1,8 @@
-import Contact from "../components/contact/Contact";
-import Footer from "../components/ui/Footer";
-import SpoilageWidget from "../components/agtech/SpoilageWidget";
+import Contact from "@/components/contact/Contact";
+import Footer from "@/components/ui/Footer";
+import SpoilageWidget from "@/components/agtech/SpoilageWidget";
 import { FaSeedling } from "react-icons/fa";
+import ErrorBoundary from "@/components/ui/ErrorBoundary";
 
 export default function AgTech() {
     return (
@@ -16,7 +17,9 @@ export default function AgTech() {
                     </p>
                 </div>
 
-                <SpoilageWidget />
+                <ErrorBoundary name="AgTech Widget">
+                    <SpoilageWidget />
+                </ErrorBoundary>
             </section>
 
             <div className="w-full bg-base-200">
