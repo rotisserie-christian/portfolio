@@ -1,4 +1,4 @@
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 import { useState, useCallback } from "react";
 import { useShootingStarCreation } from "./hooks/useShootingStarCreation";
 import { useShootingStarMovement } from "./hooks/useShootingStarMovement";

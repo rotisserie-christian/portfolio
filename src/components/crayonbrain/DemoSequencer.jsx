@@ -14,12 +14,12 @@ import {
     createEmptySequence,
     toggleStep
 } from './utils/sequencerUtils';
-import kick from '../../assets/kick.wav';
-import snare from '../../assets/snare.wav';
-import snare2 from '../../assets/snare2.wav';
-import hat from '../../assets/hat.wav';
-import kick808 from '../../assets/808kick.wav';
-import hat2 from '../../assets/hat2.wav';
+import kick from '@/assets/kick.wav';
+import snare from '@/assets/snare.wav';
+import snare2 from '@/assets/snare2.wav';
+import hat from '@/assets/hat.wav';
+import kick808 from '@/assets/808kick.wav';
+import hat2 from '@/assets/hat2.wav';
 
 const DRUM_SOUNDS = [
     { id: 'kick', name: 'Kick', src: kick },

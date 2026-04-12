@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
-import { AudioInitializationError } from '../../utils/errors';
-import { DrumSound } from '../../types/sequencer';
+import { AudioInitializationError } from '@/components/crayonbrain/utils/errors';
+import { DrumSound } from '@/components/crayonbrain/types/sequencer';
 
 /**
  * Initializes and manages Tone.Player instances

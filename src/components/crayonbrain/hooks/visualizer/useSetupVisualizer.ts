@@ -6,9 +6,9 @@ import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import { createAnalyser } from './analyserSetup';
 import { loadPreset } from './presetLoader';
-import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '../../utils/visualizerConstants';
-import { VisualizerSetupError } from '../../utils/errors';
-import { ButterchurnVisualizer } from '../../types';
+import { PRESET_BLEND_TIME, MAX_DEVICE_PIXEL_RATIO } from '@/components/crayonbrain/utils/visualizerConstants';
+import { VisualizerSetupError } from '@/components/crayonbrain/utils/errors';
+import { ButterchurnVisualizer } from '@/components/crayonbrain/types';
 
 /**
  * Sets up Butterchurn visualizer with audio context, analyser, and presets

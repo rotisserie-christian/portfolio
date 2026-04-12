@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 const Visualizer = lazy(() => import('./Visualizer'));
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
-import cb from "../../assets/cb.png";
+import cb from "@/assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
 import { SequencerProvider } from "@/contexts/SequencerContext.jsx";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";

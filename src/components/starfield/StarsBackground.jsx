@@ -1,4 +1,4 @@
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useStarGeneration } from "./hooks/useStarGeneration";
 import { useCanvasResize } from "./hooks/useCanvasResize";

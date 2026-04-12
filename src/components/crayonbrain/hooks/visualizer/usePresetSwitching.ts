@@ -1,6 +1,6 @@
 import { useState, useEffect, RefObject } from 'react';
 import { loadPreset } from './presetLoader';
-import { PRESET_BLEND_TIME, PRESET_INDICES } from '../../utils/visualizerConstants';
+import { PRESET_BLEND_TIME, PRESET_INDICES } from '@/components/crayonbrain/utils/visualizerConstants';
 
 interface PresetSwitchingResult {
   currentPresetSelection: number;

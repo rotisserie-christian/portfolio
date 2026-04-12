@@ -1,6 +1,6 @@
 import { useCallback, RefObject } from 'react';
 import * as Tone from 'tone';
-import { TransportError } from '../../utils/errors';
+import { TransportError } from '@/components/crayonbrain/utils/errors';
 
 /**
  * Manages Tone.js Transport play/stop functionality

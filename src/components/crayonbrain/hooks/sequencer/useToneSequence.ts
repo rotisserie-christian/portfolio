@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
-import { TIME_STEPS } from '../../utils/sequencerConstants';
-import { DrumSound, DrumSequenceTrack } from '../../types/sequencer';
+import { TIME_STEPS } from '@/components/crayonbrain/utils/sequencerConstants';
+import { DrumSound, DrumSequenceTrack } from '@/components/crayonbrain/types/sequencer';
 
 /**
  * Sets up and manages Tone.Sequence 

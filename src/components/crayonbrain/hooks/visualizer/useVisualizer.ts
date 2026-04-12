@@ -4,7 +4,7 @@ import { useAudioConnection } from './useAudioConnection';
 import { useCanvasResize } from './useCanvasResize';
 import { useRenderLoop } from './useRenderLoop';
 import { useSetupVisualizer } from './useSetupVisualizer';
-import { VisualizerState, ButterchurnVisualizer } from '../../types';
+import { VisualizerState, ButterchurnVisualizer } from '@/components/crayonbrain/types';
 
 /**
  * Renders reactive visuals from the main audio output

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import * as Tone from 'tone';
-import { DEFAULT_BPM } from '../../utils/sequencerConstants';
+import { DEFAULT_BPM } from '@/components/crayonbrain/utils/sequencerConstants';
 import { useTonePlayers } from './useTonePlayers';
 import { useTempo } from './useTempo';
 import { useToneSequence } from './useToneSequence';
 import { useTransport } from './useTransport';
-import { DrumSound, DrumSequenceTrack, SequencerState } from '../../types/sequencer';
+import { DrumSound, DrumSequenceTrack, SequencerState } from '@/components/crayonbrain/types/sequencer';
 
 /**
  * Builds and renders musical sequence, and callbacks to change the sequence during playback

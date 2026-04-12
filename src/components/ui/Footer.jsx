@@ -1,4 +1,4 @@
-import cb from '../../assets/cb.png';
+import cb from '@/assets/cb.png';
 
 const Footer = () => {
     const scrollToSection = (sectionId) => {

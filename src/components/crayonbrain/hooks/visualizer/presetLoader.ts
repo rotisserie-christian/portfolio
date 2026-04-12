@@ -1,4 +1,4 @@
-import { PresetLoadError } from '../../utils/errors';
+import { PresetLoadError } from '@/components/crayonbrain/utils/errors';
 
 /**
  * Loads a Butterchurn preset into the visualizer
