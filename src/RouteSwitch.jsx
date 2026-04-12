@@ -2,16 +2,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from '@/App';
 import Home from '@/pages/Home';
 import AgTech from '@/pages/AgTech';
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
 
 const RouteSwitch = () => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App />}>
-                    <Route index element={<Home />} />
-                    <Route path="agtech" element={<AgTech />} />
-                </Route>
-            </Routes>
+            <ErrorBoundary name="Portfolio App">
+                <Routes>
+                    <Route path="/" element={<App />}>
+                        <Route index element={<Home />} />
+                        <Route path="agtech" element={<AgTech />} />
+                    </Route>
+                </Routes>
+            </ErrorBoundary>
         </BrowserRouter>
     );
 };
