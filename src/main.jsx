@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { hydrateRoot, createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
-import RouteSwitch from './RouteSwitch'
+import RouteSwitch from '@/RouteSwitch'
 
 const rootElement = document.getElementById('root');
 

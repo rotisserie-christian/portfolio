@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
-import Home from './pages/Home';
-import AgTech from './pages/AgTech';
+import App from '@/App';
+import Home from '@/pages/Home';
+import AgTech from '@/pages/AgTech';
 
 const RouteSwitch = () => {
     return (
