@@ -8,30 +8,48 @@ import {
   Title,
 } from 'chart.js';
 import { Bubble } from 'react-chartjs-2';
-import searchData from '../data/searchterms.json';
 import { getClusterColors } from '../utils/colors';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
 
-export default function Chart({ dataOverride }) {
-  const dataToUse = dataOverride || searchData;
+export default function Chart({ 
+    dataOverride, 
+    xKey = 'max_interest', 
+    yKey = 'avg_interest', 
+    labelKey = 'query', 
+    clusterKey = 'cluster',
+    xAxisLabel = 'Max Interest',
+    yAxisLabel = 'Average Interest',
+    maxRangeX = 100,
+    maxRangeY = 100,
+    colorMap: providedColorMap
+}) {
+  const dataToUse = useMemo(() => dataOverride || [], [dataOverride]);
 
   const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
-    clip: 0, // Force clipping at chart boundaries 
+    clip: false,
+    layout: {
+      padding: {
+        top: 20,
+        right: 20,
+        bottom: 10,
+        left: 10
+      }
+    },
     plugins: {
       legend: {
         position: 'top',
         labels: {
-          color: '#a6adbb', // base-content color
+          color: '#a6adbb',
         },
       },
       tooltip: {
         callbacks: {
           label: (context) => {
             const point = context.raw;
-            return `${point.query}: Max ${point.x}, Avg ${point.y}`;
+            return `${point.label}: ${xAxisLabel} ${point.x}, ${yAxisLabel} ${point.y}`;
           }
         }
       }
@@ -40,22 +58,7 @@ export default function Chart({ dataOverride }) {
       y: {
         title: {
           display: true,
-          text: 'Average Interest',
-          color: '#a6adbb'
-        },
-        grid: {
-          color: '#2a323c' // base-300
-        },
-        ticks: {
-          color: '#a6adbb'
-        },
-        beginAtZero: true,
-        max: 100,
-      },
-      x: {
-        title: {
-          display: true,
-          text: 'Max Interest',
+          text: yAxisLabel,
           color: '#a6adbb'
         },
         grid: {
@@ -65,31 +68,47 @@ export default function Chart({ dataOverride }) {
           color: '#a6adbb'
         },
         beginAtZero: true,
-        max: 100,
+        max: maxRangeY,
+      },
+      x: {
+        title: {
+          display: true,
+          text: xAxisLabel,
+          color: '#a6adbb'
+        },
+        grid: {
+          color: '#2a323c'
+        },
+        ticks: {
+          color: '#a6adbb'
+        },
+        beginAtZero: true,
+        max: maxRangeX,
       },
     },
-  }), []);
+  }), [xAxisLabel, yAxisLabel, maxRangeX, maxRangeY]);
 
-  // color map for clusters
-  const colorMap = useMemo(() => getClusterColors(), []);
+  const colorMap = useMemo(() => {
+    if (providedColorMap) return providedColorMap;
+    const uniqueClusters = [...new Set(dataToUse.map(item => item[clusterKey]))].sort();
+    return getClusterColors(uniqueClusters);
+  }, [dataToUse, clusterKey, providedColorMap]);
 
   const data = useMemo(() => {
-    // Group data by cluster
     const clusters = {};
     dataToUse.forEach((item) => {
-      if (!clusters[item.cluster]) {
-        clusters[item.cluster] = [];
+      const clusterVal = item[clusterKey];
+      if (!clusters[clusterVal]) {
+        clusters[clusterVal] = [];
       }
-      clusters[item.cluster].push({
-        x: item.max_interest,
-        y: item.avg_interest,
+      clusters[clusterVal].push({
+        x: item[xKey],
+        y: item[yKey],
         r: 10,
-        query: item.query,
-        max_interest: item.max_interest
+        label: item[labelKey]
       });
     });
 
-    // datasets
     const datasets = Object.keys(clusters).map((cluster) => {
       return {
         label: cluster,
@@ -100,7 +119,7 @@ export default function Chart({ dataOverride }) {
     });
 
     return { datasets };
-  }, [dataToUse, colorMap]);
+  }, [dataToUse, colorMap, xKey, yKey, labelKey, clusterKey]);
 
   const legendMargin = useMemo(() => ({
     id: 'legendMargin',
@@ -108,7 +127,7 @@ export default function Chart({ dataOverride }) {
       const originalFit = chart.legend.fit;
       chart.legend.fit = function fit() {
         originalFit.bind(chart.legend)();
-        this.height += 40; // padding bottom on legend 
+        this.height += 40;
       };
     }
   }), []);
@@ -118,4 +137,4 @@ export default function Chart({ dataOverride }) {
       <Bubble options={options} data={data} plugins={[legendMargin]} redraw={true} />
     </div>
   );
-}
+}

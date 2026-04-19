@@ -1,0 +1,122 @@
+[
+  {
+    "feedback": "Packed Dance Floor",
+    "prevalence": 34,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Excellent Lighting And Effects",
+    "prevalence": 14,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Clear And Responsive Communication",
+    "prevalence": 25,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Read The Crowd Well",
+    "prevalence": 12,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Accommodated Song Requests",
+    "prevalence": 12,
+    "impact_score": 4.9,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Smooth Song Transitions",
+    "prevalence": 5,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Fun Photo Booth",
+    "prevalence": 8,
+    "impact_score": 4.8,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Affordable And Fair Pricing",
+    "prevalence": 11,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "High Quality Equipment",
+    "prevalence": 4,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Beautiful Backdrop Setup",
+    "prevalence": 2,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Unresponsive And Poor Communication",
+    "prevalence": 2,
+    "impact_score": 1.0,
+    "type": "Weakness"
+  },
+  {
+    "feedback": "Inattentive And On Phone",
+    "prevalence": 1,
+    "impact_score": 2.0,
+    "type": "Weakness"
+  },
+  {
+    "feedback": "Ignored Song Requests",
+    "prevalence": 2,
+    "impact_score": 1.4,
+    "type": "Weakness"
+  },
+  {
+    "feedback": "Struggled With Cultural Music",
+    "prevalence": 1,
+    "impact_score": 1.0,
+    "type": "Weakness"
+  },
+  {
+    "feedback": "Poor Transitions And Mixing",
+    "prevalence": 1,
+    "impact_score": 2.0,
+    "type": "Weakness"
+  },
+  {
+    "feedback": "Poor Timing And Announcements",
+    "prevalence": 2,
+    "impact_score": 2.0,
+    "type": "Friction"
+  },
+  {
+    "feedback": "Professional Conduct",
+    "prevalence": 18,
+    "impact_score": 4.9,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Navigated Bad Weather",
+    "prevalence": 1,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Accommodated Late Notice",
+    "prevalence": 1,
+    "impact_score": 5.0,
+    "type": "Strength"
+  },
+  {
+    "feedback": "Handled Diverse Music Well",
+    "prevalence": 2,
+    "impact_score": 5.0,
+    "type": "Strength"
+  }
+]

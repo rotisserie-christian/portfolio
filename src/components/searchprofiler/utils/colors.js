@@ -1,9 +1,6 @@
-import searchData from '../data/searchterms.json';
-
-export const getClusterColors = () => {
-    const allClusters = [...new Set(searchData.map(item => item.cluster))].sort();
+export const getClusterColors = (clusters = []) => {
     const map = {};
-    allClusters.forEach((cluster, index) => {
+    clusters.forEach((cluster, index) => {
         const hue = (index * 137.508) % 360;
         map[cluster] = {
             bg: `hsla(${hue}, 70%, 50%, 0.7)`,

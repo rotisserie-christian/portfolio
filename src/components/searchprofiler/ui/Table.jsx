@@ -3,11 +3,25 @@ import { useState, useEffect, useMemo } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { getClusterColors } from '../utils/colors';
 
-export default function Table({ data }) {
+export default function Table({ 
+    data, 
+    clusterKey = 'cluster', 
+    labelKey = 'query',
+    columns = [
+        { key: 'query', label: 'Query', type: 'text' },
+        { key: 'avg_interest', label: 'Avg', type: 'number', precision: 2 },
+        { key: 'max_interest', label: 'Max', type: 'number', precision: 0 }
+    ],
+    colorMap: providedColorMap
+}) {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
-    const colorMap = useMemo(() => getClusterColors(), []);
+    const colorMap = useMemo(() => {
+        if (providedColorMap) return providedColorMap;
+        const uniqueClusters = [...new Set(data.map(item => item[clusterKey]))].sort();
+        return getClusterColors(uniqueClusters);
+    }, [data, clusterKey, providedColorMap]);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -16,7 +30,7 @@ export default function Table({ data }) {
     if (!data || data.length === 0) {
         return (
             <div className="w-full flex justify-center py-10 text-neutral-content/40 italic">
-                No queries found
+                No items found
             </div>
         );
     }
@@ -40,26 +54,38 @@ export default function Table({ data }) {
                     <table className="table table-sm lg:table-md table-pin-rows">
                         <thead className="bg-base-300 text-neutral-content/85">
                             <tr>
-                                <th className="bg-base-300">Query</th>
-                                <th className="bg-base-300 text-right">Avg</th>
-                                <th className="bg-base-300 text-right">Max</th>
+                                {columns.map((col, idx) => (
+                                    <th key={idx} className={`bg-base-300 ${idx > 0 ? 'text-right' : ''}`}>
+                                        {col.label}
+                                    </th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
                             {currentData.map((item, index) => (
                                 <tr key={index} className="hover:bg-base-300/50 transition-colors border-base-content/5">
-                                    <td className="font-medium text-neutral-content/90 max-w-[150px] lg:max-w-xs" title={item.query}>
-                                        <div className="flex items-center min-w-0">
-                                            <div
-                                                className="w-2 h-2 rounded-full mr-2 shrink-0"
-                                                style={{ backgroundColor: colorMap[item.cluster]?.indicator || '#888' }}
-                                                title={item.cluster}
-                                            />
-                                            <span className="truncate">{item.query}</span>
-                                        </div>
-                                    </td>
-                                    <td className="text-right font-mono text-xs">{item.avg_interest.toFixed(2)}</td>
-                                    <td className="text-right font-mono text-xs">{item.max_interest.toFixed(0)}</td>
+                                    {columns.map((col, idx) => {
+                                        if (idx === 0) {
+                                            return (
+                                                <td key={idx} className="font-medium text-neutral-content/90 max-w-[150px] lg:max-w-xs" title={item[labelKey]}>
+                                                    <div className="flex items-center min-w-0">
+                                                        <div
+                                                            className="w-2 h-2 rounded-full mr-2 shrink-0"
+                                                            style={{ backgroundColor: colorMap[item[clusterKey]]?.indicator || '#888' }}
+                                                            title={item[clusterKey]}
+                                                        />
+                                                        <span className="truncate">{item[labelKey]}</span>
+                                                    </div>
+                                                </td>
+                                            );
+                                        }
+                                        const val = item[col.key];
+                                        return (
+                                            <td key={idx} className="text-right font-mono text-xs">
+                                                {col.type === 'number' ? (typeof val === 'number' ? val.toFixed(col.precision ?? 0) : val) : val}
+                                            </td>
+                                        );
+                                    })}
                                 </tr>
                             ))}
                         </tbody>
@@ -95,10 +121,13 @@ export default function Table({ data }) {
 }
 
 Table.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        query: PropTypes.string,
-        cluster: PropTypes.string,
-        avg_interest: PropTypes.number,
-        max_interest: PropTypes.number
-    })).isRequired
-};
+    data: PropTypes.array.isRequired,
+    clusterKey: PropTypes.string,
+    labelKey: PropTypes.string,
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        type: PropTypes.string,
+        precision: PropTypes.number
+    }))
+};

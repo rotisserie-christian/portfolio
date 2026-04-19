@@ -32,7 +32,15 @@ const LazyChart = ({ filteredData }) => {
                         </div>
                     }
                 >
-                    <Chart dataOverride={filteredData} />
+                    <Chart 
+                        dataOverride={filteredData} 
+                        xKey="max_interest"
+                        yKey="avg_interest"
+                        labelKey="query"
+                        clusterKey="cluster"
+                        xAxisLabel="Max Interest"
+                        yAxisLabel="Average Interest"
+                    />
                 </Suspense>
             ) : (
                 <div className="flex flex-col items-center justify-center w-full h-[450px]">
@@ -112,7 +120,16 @@ export default function SearchProfiler() {
                                 className="rounded-xl shadow-inner bg-base-200/50"
                             />
                         </div>
-                        <Table data={filteredData} />
+                        <Table 
+                            data={filteredData} 
+                            clusterKey="cluster"
+                            labelKey="query"
+                            columns={[
+                                { key: 'query', label: 'Query', type: 'text' },
+                                { key: 'avg_interest', label: 'Avg', type: 'number', precision: 2 },
+                                { key: 'max_interest', label: 'Max', type: 'number', precision: 0 }
+                            ]}
+                        />
                     </div>
                 </div>
 
