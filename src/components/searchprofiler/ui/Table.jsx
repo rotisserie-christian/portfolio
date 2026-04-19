@@ -12,10 +12,11 @@ export default function Table({
         { key: 'avg_interest', label: 'Avg', type: 'number', precision: 2 },
         { key: 'max_interest', label: 'Max', type: 'number', precision: 0 }
     ],
-    colorMap: providedColorMap
+    colorMap: providedColorMap,
+    itemsPerPage = 10,
+    heightClass = 'h-[410px] lg:h-[520px]'
 }) {
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
 
     const colorMap = useMemo(() => {
         if (providedColorMap) return providedColorMap;
@@ -50,7 +51,7 @@ export default function Table({
     return (
         <div className="flex flex-col gap-4 w-full">
             <div className="w-full overflow-hidden rounded-xl border border-base-content/10 bg-base-200/50 backdrop-blur-sm">
-                <div className="overflow-x-auto h-[410px] lg:h-[520px] scrollbar-thin scrollbar-thumb-base-content/10">
+                <div className={`overflow-x-auto ${heightClass} scrollbar-thin scrollbar-thumb-base-content/10`}>
                     <table className="table table-sm lg:table-md table-pin-rows">
                         <thead className="bg-base-300 text-neutral-content/85">
                             <tr>
@@ -124,6 +125,8 @@ Table.propTypes = {
     data: PropTypes.array.isRequired,
     clusterKey: PropTypes.string,
     labelKey: PropTypes.string,
+    itemsPerPage: PropTypes.number,
+    heightClass: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
