@@ -1,56 +1,22 @@
-import { useState, useMemo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import Table from "./ui/Table";
 import ScrollBar from "./ui/ScrollBar";
-import searchData from "./data/searchterms.json";
-import reviewData from "./data/reviews1.json";
 import WhatItDoes from "./WhatItDoes";
-import { getClusterColors } from './utils/colors';
 import ToggleSwitch from "../ui/ToggleSwitch";
 import LazyChart from "./ui/LazyChart";
+import { useSemanticMap } from "./hooks/useSemanticMap";
 
 export default function SemanticMaps() {
-    const [viewMode, setViewMode] = useState('keywords'); // 'keywords' or 'reviews'
-    const [activeCluster, setActiveCluster] = useState('all');
-
-    const activeData = useMemo(() => {
-        return viewMode === 'keywords' ? searchData : reviewData;
-    }, [viewMode]);
-
-    const clusterKey = viewMode === 'keywords' ? 'cluster' : 'type';
-
-    const clusters = useMemo(() => {
-        const unique = [...new Set(activeData.map(item => item[clusterKey]))].sort();
-        return unique;
-    }, [activeData, clusterKey]);
-
-    const filteredData = useMemo(() => {
-        if (activeCluster === 'all') return activeData;
-        return activeData.filter(item => item[clusterKey] === activeCluster);
-    }, [activeData, activeCluster, clusterKey]);
-
-    const colorMap = useMemo(() => {
-        if (viewMode === 'reviews') {
-            return {
-                Strength: {
-                    bg: 'hsla(142, 70%, 45%, 0.7)',
-                    border: 'hsla(142, 70%, 45%, 1)',
-                    indicator: 'hsla(142, 70%, 45%, 1)'
-                },
-                Weakness: {
-                    bg: 'hsla(0, 70%, 50%, 0.7)',
-                    border: 'hsla(0, 70%, 50%, 1)',
-                    indicator: 'hsla(0, 70%, 50%, 1)'
-                }
-            };
-        }
-        return getClusterColors(clusters);
-    }, [clusters, viewMode]);
-
-    const handleModeToggle = (checked) => {
-        setViewMode(checked ? 'reviews' : 'keywords');
-        setActiveCluster('all');
-    };
+    const {
+        viewMode,
+        activeCluster,
+        setActiveCluster,
+        filteredData,
+        colorMap,
+        clusters,
+        clusterKey,
+        handleModeToggle
+    } = useSemanticMap();
 
     return (
         <section className="flex items-center justify-center w-full bg-base-300 py-20 px-2">

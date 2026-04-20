@@ -1,0 +1,1 @@
+- **`useSemanticMap.js`** - Manages state for dataset toggling, category filtering, and color mapping. 
