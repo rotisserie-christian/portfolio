@@ -39,21 +39,17 @@ class ErrorBoundary extends Component<Props, State> {
 
       return (
         <div className="w-full p-8 lg:p-12 bg-base-300/50 backdrop-blur-sm rounded-3xl border border-error/20 flex flex-col items-center justify-center text-center shadow-xl">
-          <div className="w-16 h-16 bg-error/10 rounded-full flex items-center justify-center mb-6">
-            <FaExclamationTriangle className="text-error text-3xl" />
-          </div>
-
           <h2 className="text-2xl font-bold text-neutral-content/90 mb-2">
             Error 💀
           </h2>
 
           <p className="text-neutral-content/60 max-w-md mb-8">
-            {this.props.name || 'feature'} encountered an error. Your browser probably has a limitation that hardware prevents it from working
+            {this.props.name || 'feature'} encountered an error. Your browser might have a limitation that prevents it from working, or it just broke for some stupid reason
           </p>
 
           <button
             onClick={this.handleReset}
-            className="btn btn-primary rounded-xl px-8 flex items-center gap-2"
+            className="btn rounded-lg px-8 flex items-center gap-2"
           >
             <FaSyncAlt />
             Reload Feature
