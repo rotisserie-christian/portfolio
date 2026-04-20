@@ -1,6 +1,6 @@
 ### Components
 - **`/crayonbrain`** - Drum sequencer and butterchurn visualizer 
 - **`/contact`** - Form for leaving a message 
-- **`/searchprofiler`** - Data visualizations of search profiler outputs 
+- **`/semanticmaps`** - Data visualizations of qualitative data maps 
 - **`/starfield`** - Space background animation
 - **`/ui`** - Navbar + slider component 

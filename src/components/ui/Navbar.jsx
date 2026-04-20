@@ -28,8 +28,8 @@ export default function Navbar() {
                                 </a>
                             </li>
                             <li>
-                                <a onClick={() => scrollToSection('searchprofiler')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
-                                    Search Profiler
+                                <a onClick={() => scrollToSection('semanticmaps')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
+                                    Semantic Maps
                                 </a>
                             </li>
                             <li>

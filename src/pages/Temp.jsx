@@ -1,9 +1,9 @@
 import { Suspense, lazy, useState, useMemo } from "react";
-import Table from "../components/searchprofiler/ui/Table";
+import Table from "../components/semanticmaps/ui/Table";
 import ToggleSwitch from "../components/ui/ToggleSwitch";
-import reviewData from "../components/searchprofiler/data/reviews1.json";
+import reviewData from "../components/semanticmaps/data/reviews1.json";
 
-const Chart = lazy(() => import("../components/searchprofiler/ui/Chart"));
+const Chart = lazy(() => import("../components/semanticmaps/ui/Chart"));
 
 const COLOR_MAP = {
     Strength: {

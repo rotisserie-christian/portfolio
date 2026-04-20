@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { ShootingStars } from "@/components/starfield/ShootingStars";
 import { StarsBackground } from "@/components/starfield/StarsBackground";
 import Crayonbrain from "@/components/crayonbrain/Crayonbrain";
-import SearchProfiler from "@/components/searchprofiler/SearchProfiler";
+import SemanticMaps from "@/components/semanticmaps/SemanticMaps";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/ui/Footer";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
@@ -57,9 +57,9 @@ export default function Home() {
                     </ErrorBoundary>
                 </div>
 
-                <div data-section="searchprofiler" className="w-full">
-                    <ErrorBoundary name="Search Profiler">
-                        <SearchProfiler />
+                <div data-section="semanticmaps" className="w-full">
+                    <ErrorBoundary name="Semantic Maps">
+                        <SemanticMaps />
                     </ErrorBoundary>
                 </div>
 

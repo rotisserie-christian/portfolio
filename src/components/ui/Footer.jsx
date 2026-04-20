@@ -24,8 +24,8 @@ const Footer = () => {
                         <button onClick={() => scrollToSection('crayonbrain')} className="text-sm text-neutral-content/90 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
                             Crayonbrain
                         </button>
-                        <button onClick={() => scrollToSection('searchprofiler')} className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
-                            Search Profiler
+                        <button onClick={() => scrollToSection('semanticmaps')} className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
+                            Semantic Maps
                         </button>
                     </div>
 

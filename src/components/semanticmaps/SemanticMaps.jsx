@@ -40,7 +40,7 @@ const LazyChart = ({ filteredData, colorMap }) => {
     );
 };
 
-export default function SearchProfiler() {
+export default function SemanticMaps() {
     const [activeCluster, setActiveCluster] = useState('all');
 
     const clusters = useMemo(() => {

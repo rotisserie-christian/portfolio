@@ -20,8 +20,8 @@ vi.mock('../components/crayonbrain/Crayonbrain', () => ({
   default: () => <div data-testid="section-crayonbrain">Crayonbrain Visualizer</div>
 }));
 
-vi.mock('../components/searchprofiler/SearchProfiler', () => ({
-  default: () => <div data-testid="section-searchprofiler">Search Profiler Toolkit</div>
+vi.mock('../components/semanticmaps/SemanticMaps', () => ({
+  default: () => <div data-testid="section-semanticmaps">Semantic Maps Toolkit</div>
 }));
 
 // Mock icons
@@ -61,13 +61,13 @@ describe('Home Page Integration', () => {
     it('mounts the major project feature sections', () => {
       renderHome();
       expect(screen.getByTestId('section-crayonbrain')).toBeInTheDocument();
-      expect(screen.getByTestId('section-searchprofiler')).toBeInTheDocument();
+      expect(screen.getByTestId('section-semanticmaps')).toBeInTheDocument();
     });
 
     it('wraps projects in correct data-section attributes for anchoring', () => {
       const { container } = renderHome();
       expect(container.querySelector('[data-section="crayonbrain"]')).toBeInTheDocument();
-      expect(container.querySelector('[data-section="searchprofiler"]')).toBeInTheDocument();
+      expect(container.querySelector('[data-section="semanticmaps"]')).toBeInTheDocument();
     });
   });
 
