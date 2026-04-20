@@ -4,7 +4,7 @@ import reviewData from "../data/reviews1.json";
 import { getClusterColors } from '../utils/colors';
 
 export function useSemanticMap() {
-    const [viewMode, setViewMode] = useState('keywords'); // 'keywords' or 'reviews'
+    const [viewMode, setViewMode] = useState('reviews'); // keywords/reviews
     const [activeCluster, setActiveCluster] = useState('all');
 
     const activeData = useMemo(() => {
