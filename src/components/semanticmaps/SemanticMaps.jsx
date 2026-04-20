@@ -79,6 +79,7 @@ export default function SemanticMaps() {
                         </div>
                         <Table
                             data={filteredData}
+                            shouldTruncate={false}
                             colorMap={colorMap}
                             clusterKey={clusterKey}
                             labelKey={viewMode === 'keywords' ? 'query' : 'feedback'}
