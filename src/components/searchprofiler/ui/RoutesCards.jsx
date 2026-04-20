@@ -1,9 +1,4 @@
-import { useMemo } from 'react';
-import { getClusterColors } from '../utils/colors';
-
-export default function RoutesCards() {
-    const colorMap = useMemo(() => getClusterColors(), []);
-
+export default function RoutesCards({ colorMap = {} }) {
     const cards = [
         {
             title: "Drum Pad",
@@ -31,21 +26,21 @@ export default function RoutesCards() {
     return (
         <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-2">
             {cards.map((card, idx) => (
-                <div key={idx} className="flex flex-col items-center justify-center rounded-lg bg-base-200 p-4 border-base-300 w-full max-w-[360px]">
-                    <h1 className="ubuntu-bold text-2xl text-neutral-content/85 mt-6 flex items-center">
+                <div key={idx} className="flex flex-col items-start justify-start rounded-lg bg-base-200 p-8 border-base-300 w-full max-w-[360px] h-[240px]">
+                    <p className="ubuntu-bold text-2xl text-neutral-content/85 mt-2 flex items-center shrink-0">
                         <div
                             className="w-2.5 h-2.5 rounded-full mr-3 shrink-0"
                             style={{ backgroundColor: colorMap[card.cluster]?.indicator || '#888' }}
                             title={card.cluster}
                         />
                         {card.title}
-                    </h1>
+                    </p>
 
-                    <p className="ubuntu-medium text-base text-center text-neutral-content/85 w-64 mt-4">
+                    <p className="ubuntu-medium text-base text-left text-neutral-content/85 mt-4 flex-grow">
                         {card.description}
                     </p>
 
-                    <p className="ubuntu-medium text-base underline text-cyan-200/90 cursor-pointer mt-8 mb-4">
+                    <p className="ubuntu-medium text-base underline text-cyan-200/90 cursor-pointer mt-4">
                         <a href={card.url} target="_blank" rel="noreferrer">
                             {card.label}
                         </a>

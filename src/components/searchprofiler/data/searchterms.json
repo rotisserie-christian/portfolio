@@ -9,7 +9,7 @@
   },
   {
     "query": "drum pad",
-    "cluster": "Genre-Specific Tools",
+    "cluster": "Music Creation",
     "slope": 0.0,
     "avg_interest": 148.77,
     "max_interest": 454.55,
@@ -41,7 +41,7 @@
   },
   {
     "query": "drums online",
-    "cluster": "Genre-Specific Tools",
+    "cluster": "Music Creation",
     "slope": 0.0,
     "avg_interest": 56.14,
     "max_interest": 90.91,
@@ -113,7 +113,7 @@
   },
   {
     "query": "online drum machine",
-    "cluster": "Genre-Specific Tools",
+    "cluster": "Music Creation",
     "slope": 0.0,
     "avg_interest": 10.62,
     "max_interest": 27.0,
@@ -145,7 +145,7 @@
   },
   {
     "query": "online drum kit",
-    "cluster": "Genre-Specific Tools",
+    "cluster": "Music Creation",
     "slope": 0.0,
     "avg_interest": 7.86,
     "max_interest": 27.27,
@@ -153,7 +153,7 @@
   },
   {
     "query": "drum pad machine",
-    "cluster": "Genre-Specific Tools",
+    "cluster": "Music Creation",
     "slope": 0.0,
     "avg_interest": 5.0,
     "max_interest": 37.0,

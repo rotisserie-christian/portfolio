@@ -5,10 +5,11 @@ import Table from "./ui/Table";
 import ScrollBar from "./ui/ScrollBar";
 import searchData from "./data/searchterms.json";
 import WhatItDoes from "./WhatItDoes";
+import { getClusterColors } from './utils/colors';
 
 const Chart = lazy(() => import("./ui/Chart"));
 
-const LazyChart = ({ filteredData }) => {
+const LazyChart = ({ filteredData, colorMap }) => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
 
     return (
@@ -23,6 +24,7 @@ const LazyChart = ({ filteredData }) => {
                 >
                     <Chart
                         dataOverride={filteredData}
+                        colorMap={colorMap}
                         xKey="max_interest"
                         yKey="avg_interest"
                         labelKey="query"
@@ -51,16 +53,18 @@ export default function SearchProfiler() {
         return searchData.filter(item => item.cluster === activeCluster);
     }, [activeCluster]);
 
+    const colorMap = useMemo(() => getClusterColors(clusters), [clusters]);
+
     return (
         <section className="flex items-center justify-center w-full bg-base-300 py-20 px-2">
             <div className="flex flex-col items-center justify-center w-full max-w-7xl">
                 <div className="flex flex-col mb-10 lg:mb-16 items-center justify-center w-full">
                     <h2 className="ubuntu-bold text-3xl lg:text-5xl text-neutral-content/85">
-                        Search Profiler
+                        Semantic Maps
                     </h2>
 
-                    <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        Toolkit for researching search terms
+                    <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-md">
+                        Toolkit for transforming qualitative data into actionable insights
                     </p>
 
                     <a
@@ -84,14 +88,14 @@ export default function SearchProfiler() {
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start justify-center">
                     <div className="flex flex-col items-center justify-center w-full lg:w-[50%]">
                         <p className="text-xl lg:text-2xl mt-4 ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                            Interest Levels (3-month)
+                            Search Interest Levels (3-month)
                         </p>
 
                         <p className="text-sm mt-5 mb-4 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
                             Anchored to 'Free Music Maker'
                         </p>
 
-                        <LazyChart filteredData={filteredData} />
+                        <LazyChart filteredData={filteredData} colorMap={colorMap} />
                     </div>
 
                     <div className="flex flex-col items-center justify-start w-full lg:w-[50%]">
@@ -105,6 +109,7 @@ export default function SearchProfiler() {
                         </div>
                         <Table
                             data={filteredData}
+                            colorMap={colorMap}
                             clusterKey="cluster"
                             labelKey="query"
                             columns={[
@@ -116,7 +121,7 @@ export default function SearchProfiler() {
                     </div>
                 </div>
 
-                <WhatItDoes />
+                <WhatItDoes colorMap={colorMap} />
             </div>
         </section>
     );

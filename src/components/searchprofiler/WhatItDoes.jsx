@@ -1,31 +1,22 @@
 import RoutesCards from "./ui/RoutesCards";
 
-export default function WhatItDoes() {
+export default function WhatItDoes({ colorMap }) {
     return (
-        <section className="flex flex-col items-center justify-center w-full">
-            <div className="flex justify-center w-full mt-8 lg:mt-10">
+        <section className="flex flex-col items-center justify-center w-full mt-10 lg:mt-5">
+            <div className="flex justify-center w-full">
                 <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
             </div>
 
-            <h1 className="mt-8 lg:mt-10 text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
+            <p className="ubuntu-bold text-3xl lg:text-5xl text-neutral-content/85 mt-6 flex items-center">
                 What it does
-            </h1>
-
-            <p className="mb-16 text-lg lg:text-xl mt-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                The point is to create dynamic routes with content and metadata
-                that matches the search intent
             </p>
 
-            <RoutesCards />
-
-            <div className="flex justify-center w-full mt-8 lg:mt-10">
-                <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
-            </div>
-
             <p className="mb-16 text-lg lg:text-xl mt-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                This connects the dots between what the user is trying to find and the feature they want
-                on the website<br /><br />
+                The point is to connect the dots between what the user is trying to find and the feature they want
+                on the website
             </p>
+
+            <RoutesCards colorMap={colorMap} />
         </section>
     );
 }
