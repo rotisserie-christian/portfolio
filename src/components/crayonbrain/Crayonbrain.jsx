@@ -1,6 +1,6 @@
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useState, useRef } from "react";
 const Visualizer = lazy(() => import('./Visualizer'));
-import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
+import { FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import cb from "@/assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
@@ -43,6 +43,17 @@ const LazyVisualizer = ({ isDemoLoaded, onLoadDemo }) => {
 
 export default function Crayonbrain() {
     const [loadDemo, setLoadDemo] = useState(false);
+    const sequencerSectionRef = useRef(null);
+
+    const handleLoadDemo = () => {
+        setLoadDemo(true);
+        setTimeout(() => {
+            sequencerSectionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }, 100);
+    };
 
     return (
         <section className="flex items-center justify-center w-full">
@@ -65,19 +76,22 @@ export default function Crayonbrain() {
                     </div>
                 </div>
 
-                <p className="text-lg lg:text-xl mt-4 lg:mb-8 text-neutral-content/85 text-center max-w-xs lg:max-w-lg leading-relaxed">
+                <p className="text-lg lg:text-xl mt-4 mb-16 text-neutral-content/85 text-center max-w-xs lg:max-w-lg leading-relaxed">
                     Music composer with reactive visuals
                 </p>
 
                 <SequencerProvider>
-                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl">
+                    <div
+                        ref={sequencerSectionRef}
+                        className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl scroll-mt-24"
+                    >
                         <div className="w-full lg:w-1/2">
                             <DemoSequencer isDemoLoaded={loadDemo} />
                         </div>
 
                         <LazyVisualizer
                             isDemoLoaded={loadDemo}
-                            onLoadDemo={() => setLoadDemo(true)}
+                            onLoadDemo={handleLoadDemo}
                         />
                     </div>
                 </SequencerProvider>
