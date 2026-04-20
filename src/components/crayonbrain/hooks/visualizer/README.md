@@ -27,7 +27,7 @@ Main orchestrator that handles visualizer setup, audio connection, canvas resizi
 - Manages continuous render loop via requestAnimationFrame
 - Always renders (shows static visualization when no audio)
 
-**Used in:** `Visualizer.jsx:12`
+**Used in:** `Visualizer.jsx:12` (Note: Visualizer.jsx is lazy-loaded and gated behind a user interaction)
 
 
 # Supporting Hooks:

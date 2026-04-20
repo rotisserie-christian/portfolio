@@ -27,7 +27,7 @@ Main orchestrator that handles player initialization, sequence scheduling, tempo
 - `isInitializing` (boolean) - Whether audio players are still loading
 - `playersRef` (RefObject) - Reference to Tone.Player instances
 
-**Used in:** `DemoSequencer.jsx`
+**Used in:** `SequencerInner.jsx` (which is lazy-loaded via `DemoSequencer.jsx` once the demo is gated)
 
 # Supporting Hooks:
 ## `useTonePlayers`

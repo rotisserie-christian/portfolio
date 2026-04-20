@@ -3,6 +3,20 @@
 - **`PresetControls.jsx`** - Controls for visualizer presets
 - **`SequencerControls.jsx`** - Play/Stop and Clear buttons for sequencer
 - **`TempoSlider.jsx`** - BPM tempo control with slider and increment/decrement buttons
+- **`SequencerFeatures.jsx`** - Condensed feature list for gated cards
+- **`VisualizerGate.jsx`** - Placeholder UI with "Load Demo" and "Visit Site" actions
+
+## `SequencerFeatures`
+**Parameters:**
+- `isDemoLoaded` (boolean) - Whether the interactive demo is active (controls content variant)
+
+**Used in:** `DemoSequencer.jsx`
+
+## `VisualizerGate`
+**Parameters:**
+- `onLoadDemo` (Function) - Callback to trigger the demo loading process
+
+**Used in:** `Crayonbrain.jsx` (via `LazyVisualizer`)
 
 ## `DrumPad`
 **Parameters:**
