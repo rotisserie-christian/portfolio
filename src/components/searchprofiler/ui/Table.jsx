@@ -14,7 +14,8 @@ export default function Table({
     ],
     colorMap: providedColorMap,
     itemsPerPage = 10,
-    heightClass = 'h-[410px] lg:h-[520px]'
+    heightClass = 'h-[410px] lg:h-[520px]',
+    shouldTruncate = true
 }) {
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -68,14 +69,14 @@ export default function Table({
                                     {columns.map((col, idx) => {
                                         if (idx === 0) {
                                             return (
-                                                <td key={idx} className="font-medium text-neutral-content/90 max-w-[150px] lg:max-w-xs" title={item[labelKey]}>
+                                                <td key={idx} className={`font-medium text-neutral-content/90 ${shouldTruncate ? 'max-w-[150px] lg:max-w-xs' : ''}`} title={item[labelKey]}>
                                                     <div className="flex items-center min-w-0">
                                                         <div
                                                             className="w-2 h-2 rounded-full mr-2 shrink-0"
                                                             style={{ backgroundColor: colorMap[item[clusterKey]]?.indicator || '#888' }}
                                                             title={item[clusterKey]}
                                                         />
-                                                        <span className="truncate">{item[labelKey]}</span>
+                                                        <span className={shouldTruncate ? 'truncate' : 'whitespace-normal'}>{item[labelKey]}</span>
                                                     </div>
                                                 </td>
                                             );
@@ -127,6 +128,7 @@ Table.propTypes = {
     labelKey: PropTypes.string,
     itemsPerPage: PropTypes.number,
     heightClass: PropTypes.string,
+    shouldTruncate: PropTypes.bool,
     columns: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
