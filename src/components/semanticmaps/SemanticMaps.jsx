@@ -1,6 +1,5 @@
-import { Suspense, lazy, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Table from "./ui/Table";
 import ScrollBar from "./ui/ScrollBar";
 import searchData from "./data/searchterms.json";
@@ -8,52 +7,7 @@ import reviewData from "./data/reviews1.json";
 import WhatItDoes from "./WhatItDoes";
 import { getClusterColors } from './utils/colors';
 import ToggleSwitch from "../ui/ToggleSwitch";
-
-const Chart = lazy(() => import("./ui/Chart"));
-
-const LazyChart = ({ filteredData, colorMap, mode }) => {
-    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
-
-    const config = mode === 'keywords' ? {
-        xKey: "max_interest",
-        yKey: "avg_interest",
-        labelKey: "query",
-        clusterKey: "cluster",
-        xAxisLabel: "Max Interest",
-        yAxisLabel: "Average Interest"
-    } : {
-        xKey: "prevalence",
-        yKey: "impact_score",
-        labelKey: "feedback",
-        clusterKey: "type",
-        xAxisLabel: "Prevalence (Mentions)",
-        yAxisLabel: "Review Score (1-5)",
-        maxRangeX: 40,
-        maxRangeY: 5
-    };
-
-    return (
-        <div ref={elementRef} className="w-full flex items-center justify-center min-h-[450px]">
-            {hasIntersected ? (
-                <Suspense
-                    fallback={
-                        <div className="flex flex-col items-center justify-center w-full h-[450px]">
-                            <span className="loading loading-spinner loading-lg text-primary"></span>
-                        </div>
-                    }
-                >
-                    <Chart
-                        dataOverride={filteredData}
-                        colorMap={colorMap}
-                        {...config}
-                    />
-                </Suspense>
-            ) : (
-                <div className="flex flex-col items-center justify-center w-full h-[450px]" />
-            )}
-        </div>
-    );
-};
+import LazyChart from "./ui/LazyChart";
 
 export default function SemanticMaps() {
     const [viewMode, setViewMode] = useState('keywords'); // 'keywords' or 'reviews'

@@ -1,6 +1,7 @@
 ## /semanticmaps
-- **`data/`** - Search terms json
-- **`ui/`** - chart, table, scrollbar, and cards
-- **`utils/`** - get colours for the bubbles
-- **`SemanticMaps.jsx`** - Main container 
-- **`WhatItDoes.jsx`** - Links to the different entry points
+- **`data/`** - Qualitative datasets (Keywords & Customer Reviews)
+- **`ui/`** - Chart, Table, LazyChart, ScrollBar, and Cards
+- **`utils/`** - Color mapping and sorting utilities
+- **`SemanticMaps.jsx`** - Main container with dataset toggle logic
+- **`WhatItDoes.jsx`** - Detailed explanation of the keyword mapping logic
+
