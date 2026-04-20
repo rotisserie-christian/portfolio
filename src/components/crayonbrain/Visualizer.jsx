@@ -10,19 +10,19 @@ const Visualizer = ({ className = '', canvasId, fillParent = false }) => {
   const canvasRef = useRef(null);
   const { isPlaying, sequencerGainRef } = useSequencerContext();
   const { visualizerRef, presetsRef } = useVisualizer(canvasRef, isPlaying, sequencerGainRef);
-  
+
   const { currentPresetSelection, presetName, switchPreset } = usePresetSwitching(
     visualizerRef,
     presetsRef
   );
 
   const canvasClasses = fillParent
-    ? 'w-full h-full rounded-lg'
-    : 'w-full h-full rounded-lg';
+    ? 'w-full h-full rounded-br-lg rounded-bl-lg'
+    : 'w-full h-full rounded-bl-lg rounded-br-lg';
 
   return (
-    <div className={`w-full flex flex-col ${className}`}>
-      <div className="w-full h-[500px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+    <div className={`w-full h-full flex flex-col ${className}`}>
+      <div className={`w-full ${fillParent ? 'h-full' : 'h-[500px]'} pt-4 bg-base-300 rounded-xl shadow-sm flex flex-col`}>
         <PresetControls
           currentPresetSelection={currentPresetSelection}
           presetName={presetName}

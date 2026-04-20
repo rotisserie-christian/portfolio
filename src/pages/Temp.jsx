@@ -93,7 +93,6 @@ export default function Temp() {
                             colorMap={COLOR_MAP}
                             itemsPerPage={7}
                             heightClass="h-[320px] lg:h-[400px]"
-                            shouldTruncate={false}
                         />
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
 const Visualizer = lazy(() => import('./Visualizer'));
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
@@ -7,27 +7,34 @@ import DemoSequencer from "./DemoSequencer";
 import { SequencerProvider } from "@/contexts/SequencerContext.jsx";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import HowItWorks from "./ui/HowItWorks.jsx";
-import Features from "./ui/Features.jsx";
+import VisualizerGate from "./ui/VisualizerGate.jsx";
 
-const LazyVisualizer = () => {
+const LazyVisualizer = ({ isDemoLoaded, onLoadDemo }) => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
 
     return (
         <div ref={elementRef} className="w-full lg:w-1/2">
             {hasIntersected ? (
-                <Suspense
-                    fallback={
-                        <div className="w-full h-[500px] p-4 bg-base-300 rounded-xl shadow-sm flex flex-col items-center justify-center">
-                            <span className="loading loading-spinner loading-lg text-primary"></span>
-                        </div>
-                    }
-                >
-                    <Visualizer
-                        canvasId="demo-visualizer"
-                    />
-                </Suspense>
+                <div className="w-full h-[500px] pt-4 bg-base-300 rounded-xl shadow-sm flex flex-col">
+                    {!isDemoLoaded ? (
+                        <VisualizerGate onLoadDemo={onLoadDemo} />
+                    ) : (
+                        <Suspense
+                            fallback={
+                                <div className="w-full h-full flex flex-col items-center justify-center skeleton opacity-50">
+                                    <span className="loading loading-spinner loading-lg text-primary"></span>
+                                </div>
+                            }
+                        >
+                            <Visualizer
+                                canvasId="demo-visualizer"
+                                fillParent={true}
+                            />
+                        </Suspense>
+                    )}
+                </div>
             ) : (
-                <div className="w-full h-[420px] p-4 flex flex-col" />
+                <div className="w-full h-[500px] p-4 flex flex-col bg-base-300 rounded-xl shadow-sm skeleton opacity-30" />
             )}
         </div>
     );
@@ -35,6 +42,8 @@ const LazyVisualizer = () => {
 
 
 export default function Crayonbrain() {
+    const [loadDemo, setLoadDemo] = useState(false);
+
     return (
         <section className="flex items-center justify-center w-full">
             <div className="flex flex-col mt-10 mb-10 lg:mb-16 items-center justify-center w-full">
@@ -56,29 +65,23 @@ export default function Crayonbrain() {
                     </div>
                 </div>
 
-                <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                <p className="text-lg lg:text-xl mt-4 lg:mb-8 text-neutral-content/85 text-center max-w-xs lg:max-w-lg leading-relaxed">
                     Music composer with reactive visuals
                 </p>
-
-                <a
-                    href='https://crayonbrain.com/create'
-                    target='_blank' rel='noreferrer'
-                    className="btn w-26 bg-neutral rounded-xl mt-4 mb-8"
-                >
-                    Visit<FaAngleDoubleRight />
-                </a>
 
                 <SequencerProvider>
                     <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl">
                         <div className="w-full lg:w-1/2">
-                            <DemoSequencer />
+                            <DemoSequencer isDemoLoaded={loadDemo} />
                         </div>
 
-                        <LazyVisualizer />
+                        <LazyVisualizer
+                            isDemoLoaded={loadDemo}
+                            onLoadDemo={() => setLoadDemo(true)}
+                        />
                     </div>
                 </SequencerProvider>
 
-                <Features />
                 <HowItWorks />
             </div>
         </section>

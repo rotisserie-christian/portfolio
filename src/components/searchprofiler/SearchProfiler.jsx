@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState, useEffect, useMemo } from "react";
+import { Suspense, lazy, useState, useMemo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Table from "./ui/Table";
@@ -10,21 +10,10 @@ const Chart = lazy(() => import("./ui/Chart"));
 
 const LazyChart = ({ filteredData }) => {
     const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
-    const [isButterchurnLoaded, setIsButterchurnLoaded] = useState(!!window.butterchurnLoaded);
-
-    useEffect(() => {
-        if (isButterchurnLoaded) return;
-
-        const handleLoaded = () => setIsButterchurnLoaded(true);
-        window.addEventListener('butterchurn-loaded', handleLoaded);
-        return () => window.removeEventListener('butterchurn-loaded', handleLoaded);
-    }, [isButterchurnLoaded]);
-
-    const shouldLoad = hasIntersected && isButterchurnLoaded;
 
     return (
         <div ref={elementRef} className="w-full flex items-center justify-center min-h-[450px]">
-            {shouldLoad ? (
+            {hasIntersected ? (
                 <Suspense
                     fallback={
                         <div className="flex flex-col items-center justify-center w-full h-[450px]">
@@ -32,8 +21,8 @@ const LazyChart = ({ filteredData }) => {
                         </div>
                     }
                 >
-                    <Chart 
-                        dataOverride={filteredData} 
+                    <Chart
+                        dataOverride={filteredData}
                         xKey="max_interest"
                         yKey="avg_interest"
                         labelKey="query"
@@ -43,13 +32,7 @@ const LazyChart = ({ filteredData }) => {
                     />
                 </Suspense>
             ) : (
-                <div className="flex flex-col items-center justify-center w-full h-[450px]">
-                    {!isButterchurnLoaded && hasIntersected && (
-                        <div className="flex flex-col items-center gap-2">
-                            <span className="loading loading-spinner loading-md text-neutral-content/40"></span>
-                        </div>
-                    )}
-                </div>
+                <div className="flex flex-col items-center justify-center w-full h-[450px]" />
             )}
         </div>
     );
@@ -120,8 +103,8 @@ export default function SearchProfiler() {
                                 className="rounded-xl shadow-inner bg-base-200/50"
                             />
                         </div>
-                        <Table 
-                            data={filteredData} 
+                        <Table
+                            data={filteredData}
                             clusterKey="cluster"
                             labelKey="query"
                             columns={[
