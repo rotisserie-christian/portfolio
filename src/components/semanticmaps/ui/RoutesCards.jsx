@@ -4,21 +4,21 @@ export default function RoutesCards({ colorMap = {} }) {
             title: "Drum Pad",
             cluster: "Genre-Specific Tools",
             description: "Opens to the Studio tab with the drum machine active",
-            url: "https://crayonbrain.com/create?t=drum-pad",
+            url: "https://crayonbrain.com/studio?t=drum-pad",
             label: "crayonbrain.com/create?t=drum-pad"
         },
         {
             title: "Visualizer",
             cluster: "Visualization",
             description: "Opens to the Live tab with the visualizer active",
-            url: "https://crayonbrain.com/create?t=visualizer",
+            url: "https://crayonbrain.com/live?t=visualizer",
             label: "crayonbrain.com/create?t=visualizer"
         },
         {
             title: "House",
             cluster: "Genre-Specific Tools",
             description: "Opens to the Studio tab with a four to the floor pattern active",
-            url: "https://crayonbrain.com/create?t=house",
+            url: "https://crayonbrain.com/studio?t=house",
             label: "crayonbrain.com/create?t=house"
         }
     ];
