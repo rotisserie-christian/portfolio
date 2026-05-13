@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import { ShootingStars } from "@/components/starfield/ShootingStars";
@@ -10,6 +12,19 @@ import ErrorBoundary from "@/components/ui/ErrorBoundary";
 
 export default function Home() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/semanticmaps') {
+            const timer = setTimeout(() => {
+                document.querySelector('[data-section="semanticmaps"]')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [location.pathname]);
 
     const scrollToProjects = () => {
         document.querySelector('[data-section="crayonbrain"]')?.scrollIntoView({
@@ -71,4 +86,4 @@ export default function Home() {
             </div>
         </>
     );
-}
+}

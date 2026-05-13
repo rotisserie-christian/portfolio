@@ -12,6 +12,7 @@ const RouteSwitch = () => {
                 <Routes>
                     <Route path="/" element={<App />}>
                         <Route index element={<Home />} />
+                        <Route path="semanticmaps" element={<Home />} />
                         <Route path="agtech" element={<AgTech />} />
                         <Route path="temp" element={<Temp />} />
                     </Route>
