@@ -1,4 +1,4 @@
-import { FaAngleDoubleRight, FaMusic } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import PropTypes from "prop-types";
 
 const VisualizerGate = ({ onLoadDemo }) => {
@@ -9,7 +9,7 @@ const VisualizerGate = ({ onLoadDemo }) => {
                     onClick={onLoadDemo}
                     className="btn btn-lg text-cyan-200 rounded-xl ubuntu-bold"
                 >
-                    Load Demo <FaMusic />
+                    Load Demo
                 </button>
 
                 <a
