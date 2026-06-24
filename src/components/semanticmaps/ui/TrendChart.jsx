@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
     Chart as ChartJS,
     LineElement,
@@ -11,8 +11,7 @@ import {
 import 'chartjs-adapter-date-fns';
 import { Line } from 'react-chartjs-2';
 import ToggleSwitch from '../../ui/ToggleSwitch';
-import { buildTrendData } from '../utils/trends';
-import { getClusterColors } from '../utils/colors';
+import { useTrendData } from '../hooks/useTrendData';
 
 ChartJS.register(LineElement, PointElement, LinearScale, TimeScale, Tooltip, Title);
 
@@ -22,43 +21,14 @@ const RANGES = [
     { id: '3m', weeks: 13 },
 ];
 
-// Time-scale unit + display format per range. The time scale places ticks on real
-// calendar boundaries, so years/months are evenly spaced regardless of where the
-// data happens to start (no duplicate or cramped labels).
+// Time scale snaps ticks to calendar boundaries, so they're evenly spaced no matter where the data starts.
 const TIME_UNITS = { '5y': 'year', '1y': 'month', '3m': 'week' };
 const DISPLAY_FORMATS = { year: 'yyyy', month: 'MMM', week: 'MMM d', day: 'MMM d' };
-
-// Per-viewMode dynamic imports so each dataset is its own chunk, loaded on demand.
-const DATASETS = {
-    visuals: () => import('../data/joyplotdata1.json'),
-    music: () => import('../data/joyplotdata2.json'),
-};
 
 export default function TrendChart({ viewMode, onModeToggle }) {
     const [hidden, setHidden] = useState({});
     const [range, setRange] = useState('5y');
-    const [raw, setRaw] = useState(null);
-
-    useEffect(() => {
-        let active = true;
-        setRaw(null);
-        (DATASETS[viewMode] ?? DATASETS.visuals)().then((mod) => {
-            if (active) setRaw(mod.default);
-        });
-        return () => {
-            active = false;
-        };
-    }, [viewMode]);
-
-    const colorMap = useMemo(
-        () => (raw ? getClusterColors(raw.series.map((s) => s.query)) : {}),
-        [raw]
-    );
-
-    const { datasets: baseDatasets } = useMemo(
-        () => buildTrendData(raw, { colorMap }),
-        [raw, colorMap]
-    );
+    const { raw, baseDatasets } = useTrendData(viewMode);
 
     const data = useMemo(() => {
         const weeks = RANGES.find((r) => r.id === range)?.weeks ?? Infinity;
