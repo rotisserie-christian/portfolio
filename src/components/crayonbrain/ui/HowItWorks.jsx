@@ -7,7 +7,7 @@ const HowItWorks = () => {
                 <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
             </div>
 
-            <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold mt-8 lg:mt-10 mb-10">
+            <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold mt-8 mb-10 lg:mt-10">
                 How it works
             </h1>
 

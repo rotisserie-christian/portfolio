@@ -64,20 +64,8 @@ export default function Crayonbrain() {
                     Crayonbrain
                 </h2>
 
-                <div className="flex flex-row items-center justify-center w-full gap-2">
-                    <div className="flex flex-row items-center justify-center w-24 h-8 bg-base-300 rounded-lg gap-2 mt-4">
-                        <FaReact className="text-xl" />
-                        <p className="text-xs">React</p>
-                    </div>
-
-                    <div className="flex flex-row items-center justify-center w-24 h-8 bg-base-300 rounded-lg gap-2 mt-4">
-                        <RiTailwindCssFill className="text-xl" />
-                        <p className="text-xs">Tailwind</p>
-                    </div>
-                </div>
-
-                <p className="text-lg lg:text-xl mt-4 mb-16 text-neutral-content/85 text-center max-w-xs lg:max-w-lg leading-relaxed">
-                    Music composer with reactive visuals
+                <p className="text-lg lg:text-xl mt-4 mb-16 text-neutral-content/85 text-center max-w-sm lg:max-w-lg leading-relaxed">
+                    Make short-form content from your music
                 </p>
 
                 <SequencerProvider>
@@ -86,7 +74,7 @@ export default function Crayonbrain() {
                         className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-6xl scroll-mt-24"
                     >
                         <div className="w-full lg:w-1/2">
-                            <DemoSequencer isDemoLoaded={loadDemo} />
+                            <DemoSequencer />
                         </div>
 
                         <LazyVisualizer

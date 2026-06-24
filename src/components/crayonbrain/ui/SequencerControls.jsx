@@ -7,7 +7,7 @@ const SequencerControls = ({ isPlaying, isInitializing, onPlay, onClear }) => {
         <div className="flex flex-row items-center justify-between w-full mb-4 md:mb-6 lg:mb-8 px-2">
             <button
                 onClick={onPlay}
-                className={`btn btn-neutral rounded-xl ${isPlaying ? 'text-red-300' : 'text-cyan-200'} w-24 md:w-28 lg:w-32`}
+                className={`btn btn-neutral bg-black/10 rounded-lg ${isPlaying ? 'text-red-300' : 'text-cyan-200'} w-24 md:w-28 lg:w-32`}
                 disabled={isInitializing}
                 aria-label={isPlaying ? "Stop drum loop" : "Play drum loop"}
             >
@@ -23,7 +23,7 @@ const SequencerControls = ({ isPlaying, isInitializing, onPlay, onClear }) => {
 
             <button
                 onClick={onClear}
-                className="btn btn-neutral rounded-xl w-24 md:w-28 lg:w-32"
+                className="btn btn-neutral bg-black/10 rounded-lg w-24 md:w-28 lg:w-32"
                 aria-label="Clear drum pattern"
             >
                 <MdOutlineRemoveCircleOutline className="mr-1" />

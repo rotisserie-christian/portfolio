@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import * as Tone from 'tone';
 import { useSequencer } from './hooks/sequencer/useSequencer';
 import { useSequencerContext } from './hooks/useSequencerContext';
 import TempoSlider from './ui/TempoSlider';
@@ -28,16 +29,42 @@ const DRUM_SOUNDS = [
     { id: 'hat2', name: 'Hat2', src: hat2 },
 ];
 
-const SequencerInner = ({ hasIntersected }) => {
+const SequencerInner = () => {
     const { setIsPlaying, sequencerGainRef: contextGainRef } = useSequencerContext();
     const [drumSequence, setDrumSequence] = useState(() => createDefaultSequence(DRUM_SOUNDS.length));
     const [bpm, setBpm] = useState(DEFAULT_BPM);
+    // Tone is only initialized once the user presses play
+    const [activated, setActivated] = useState(false);
+    const pendingPlayRef = useRef(false);
     const { isPlaying, handlePlay, sequencerGainRef, isInitializing } = useSequencer(
         drumSequence, 
         DRUM_SOUNDS,
         bpm,
-        hasIntersected
+        activated
     );
+
+    const handlePlayClick = useCallback(async () => {
+        if (!activated) {
+            // Resume the audio context within the user gesture, then load Tone
+            try {
+                await Tone.start();
+            } catch {
+                // ignored, handlePlay retries Tone.start() if needed
+            }
+            pendingPlayRef.current = true;
+            setActivated(true);
+            return;
+        }
+        await handlePlay();
+    }, [activated, handlePlay]);
+
+    // Start playback once Tone finishes loading after the first activation
+    useEffect(() => {
+        if (activated && !isInitializing && pendingPlayRef.current) {
+            pendingPlayRef.current = false;
+            handlePlay();
+        }
+    }, [activated, isInitializing, handlePlay]);
 
     // Update context when sequencer state changes
     useEffect(() => {
@@ -65,7 +92,7 @@ const SequencerInner = ({ hasIntersected }) => {
             <SequencerControls
                 isPlaying={isPlaying}
                 isInitializing={isInitializing}
-                onPlay={handlePlay}
+                onPlay={handlePlayClick}
                 onClear={handleClear}
             />
 

@@ -24,7 +24,9 @@ export const useSequencer = (
 ): SequencerState => {
     const [isPlaying, setIsPlaying] = useState(false);
     const currentStepRef = useRef<number>(0);
-    const [isInitializing, setIsInitializing] = useState(true);
+    // Starts false so the play button is clickable before Tone is initialized;
+    // useTonePlayers flips this true while loading once activated.
+    const [isInitializing, setIsInitializing] = useState(false);
     
     const playersRef = useRef<Record<string, Tone.Player>>({});
     const sequenceRef = useRef<Tone.Sequence | null>(null);

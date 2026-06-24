@@ -2,8 +2,8 @@ import { FaCheck } from "react-icons/fa";
 
 const SequencerFeatures = () => {
     const featureList = [
-        "Drum pad, piano roll, synthesizer, and mixer",
-        "Reactive visuals from composed or uploaded audio",
+        "Upload audio, export visuals",
+        "Compose ",
         "Public feed for sharing and remixing tracks",
         "Export tracks to WAV or MIDI"
     ];

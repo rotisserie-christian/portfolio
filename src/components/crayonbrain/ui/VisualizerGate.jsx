@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 const VisualizerGate = ({ onLoadDemo }) => {
     return (
         <div className="w-full h-full flex flex-col items-center justify-center gap-6">
-            <div className="flex flex-col gap-4 w-full px-8 lg:px-12">
+            <div className="flex flex-col gap-4 px-8 lg:px-12">
                 <button
                     onClick={onLoadDemo}
-                    className="btn btn-lg text-cyan-200 rounded-xl ubuntu-bold"
+                    className="btn text-cyan-200 rounded-lg ubuntu-bold"
                 >
                     Load Demo
                 </button>
@@ -15,7 +15,7 @@ const VisualizerGate = ({ onLoadDemo }) => {
                 <a
                     href='https://crayonbrain.com/create'
                     target='_blank' rel='noreferrer'
-                    className="btn btn-lg rounded-xl ubuntu-bold"
+                    className="btn rounded-lg text-base-content/90 ubuntu-bold"
                 >
                     Visit Site <FaAngleDoubleRight />
                 </a>
