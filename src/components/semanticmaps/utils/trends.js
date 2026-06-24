@@ -1,22 +1,20 @@
 /**
- * Transforms Google-Trends-style series data into multi-line chart datasets.
+ * Transforms time series data into chart datasets
  * Each series is plotted as-is (actual interest values) against real timestamps
- * so the x-axis can be rendered with a Chart.js time scale.
  *
  * @param {{ series: Array<{ query: string, points: Array<{ timestamp: string, value: number }> }> }} raw
  * @param {Object} options
- * @param {Object} options.colorMap - map of query -> { border, bg, indicator }
+ * @param {Object} options.colorMap - map of query -> color string
  * @param {number} options.dropTrailing - number of trailing buckets to drop
  */
 export function buildTrendData(raw, { colorMap = {}, dropTrailing = 3 } = {}) {
     const series = raw?.series ?? [];
 
     // Drop the most recent buckets: Google Trends under-reports the latest few weeks
-    // (preliminary data, revised upward later), so all series dip in lockstep there.
     const trimPartial = (arr) => (dropTrailing > 0 ? arr.slice(0, -dropTrailing) : arr);
 
     const datasets = series.map((s) => {
-        const color = colorMap[s.query]?.border || '#888';
+        const color = colorMap[s.query] || '#888';
         return {
             label: s.query,
             data: trimPartial(

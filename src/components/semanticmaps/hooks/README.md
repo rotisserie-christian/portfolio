@@ -1,1 +1,2 @@
-- **`useSemanticMap.js`** - Manages state for dataset toggling, category filtering, and color mapping. 
+- **`useSemanticMap.js`** - Holds the visuals/music view-mode toggle state
+- **`useTrendData.js`** - Loads the active trend data and shapes it into a line dataset

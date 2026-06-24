@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { buildTrendData } from '../utils/trends';
-import { getClusterColors } from '../utils/colors';
+import { getSeriesColors } from '../utils/colors';
 
 const DATASETS = {
     visuals: () => import('../data/joyplotdata1.json'),
@@ -29,7 +29,7 @@ export function useTrendData(viewMode) {
     }, [viewMode]);
 
     const colorMap = useMemo(
-        () => (raw ? getClusterColors(raw.series.map((s) => s.query)) : {}),
+        () => (raw ? getSeriesColors(raw.series.map((s) => s.query)) : {}),
         [raw]
     );
 
