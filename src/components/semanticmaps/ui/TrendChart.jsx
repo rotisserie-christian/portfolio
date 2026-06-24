@@ -4,22 +4,29 @@ import {
     LineElement,
     PointElement,
     LinearScale,
-    CategoryScale,
+    TimeScale,
     Tooltip,
     Title,
 } from 'chart.js';
+import 'chartjs-adapter-date-fns';
 import { Line } from 'react-chartjs-2';
 import ToggleSwitch from '../../ui/ToggleSwitch';
-import { buildTrendData, formatLabel } from '../utils/trends';
+import { buildTrendData } from '../utils/trends';
 import { getClusterColors } from '../utils/colors';
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Title);
+ChartJS.register(LineElement, PointElement, LinearScale, TimeScale, Tooltip, Title);
 
 const RANGES = [
     { id: '5y', weeks: Infinity },
     { id: '1y', weeks: 52 },
     { id: '3m', weeks: 13 },
 ];
+
+// Time-scale unit + display format per range. The time scale places ticks on real
+// calendar boundaries, so years/months are evenly spaced regardless of where the
+// data happens to start (no duplicate or cramped labels).
+const TIME_UNITS = { '5y': 'year', '1y': 'month', '3m': 'week' };
+const DISPLAY_FORMATS = { year: 'yyyy', month: 'MMM', week: 'MMM d', day: 'MMM d' };
 
 // Per-viewMode dynamic imports so each dataset is its own chunk, loaded on demand.
 const DATASETS = {
@@ -48,24 +55,23 @@ export default function TrendChart({ viewMode, onModeToggle }) {
         [raw]
     );
 
-    const { labels, datasets: baseDatasets } = useMemo(
+    const { datasets: baseDatasets } = useMemo(
         () => buildTrendData(raw, { colorMap }),
         [raw, colorMap]
     );
 
     const data = useMemo(() => {
         const weeks = RANGES.find((r) => r.id === range)?.weeks ?? Infinity;
-        const count = weeks === Infinity ? labels.length : Math.min(labels.length, weeks);
-        const slice = (arr) => arr.slice(arr.length - count);
+        const slice = (arr) =>
+            weeks === Infinity ? arr : arr.slice(Math.max(0, arr.length - weeks));
         return {
-            labels: slice(labels),
             datasets: baseDatasets.map((d) => ({
                 ...d,
                 data: slice(d.data),
                 hidden: !!hidden[d.label],
             })),
         };
-    }, [labels, baseDatasets, hidden, range]);
+    }, [baseDatasets, hidden, range]);
 
     const toggle = (label) =>
         setHidden((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -78,13 +84,23 @@ export default function TrendChart({ viewMode, onModeToggle }) {
             legend: { display: false },
             tooltip: {
                 callbacks: {
+                    title: (items) =>
+                        new Date(items[0].parsed.x).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric',
+                        }),
                     label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
                 },
             },
         },
         scales: {
             x: {
-                type: 'category',
+                type: 'time',
+                time: {
+                    unit: TIME_UNITS[range],
+                    displayFormats: DISPLAY_FORMATS,
+                },
                 grid: { color: '#2a323c' },
                 ticks: {
                     color: '#a6adbb',
@@ -92,9 +108,6 @@ export default function TrendChart({ viewMode, onModeToggle }) {
                     maxTicksLimit: 6,
                     maxRotation: 0,
                     font: { family: '"Courier New", monospace', weight: 500 },
-                    callback(index) {
-                        return formatLabel(this.getLabelForValue(index), range);
-                    },
                 },
             },
             y: {

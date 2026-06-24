@@ -2,9 +2,6 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import WhatItDoes from "./WhatItDoes";
 import LazyTrendChart from "./ui/LazyTrendChart";
 import { useSemanticMap } from "./hooks/useSemanticMap";
-import { getClusterColors } from "./utils/colors";
-
-const ROUTES_COLOR_MAP = getClusterColors(["Genre-Specific Tools", "Visualization"]);
 
 export default function SemanticMaps() {
     const {
@@ -44,7 +41,7 @@ export default function SemanticMaps() {
                     />
                 </div>
 
-                <WhatItDoes colorMap={ROUTES_COLOR_MAP} />
+                <WhatItDoes />
             </div>
         </section>
     );

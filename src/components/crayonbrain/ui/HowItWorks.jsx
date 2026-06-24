@@ -1,11 +1,6 @@
-import { FaAngleRight, FaAngleUp } from "react-icons/fa";
-import { useState } from "react";
+import Accordion from "../../ui/Accordion";
 
 const HowItWorks = () => {
-    const [isSequencingOpen, setIsSequencingOpen] = useState(false);
-    const [isSyncOpen, setIsSyncOpen] = useState(false);
-    const [isVizOpen, setIsVizOpen] = useState(false);
-
     return (
         <div className="flex flex-col items-center justify-center lg:max-w-2xl w-full mb-20">
             <div className="flex justify-center w-full mt-8 lg:mt-10">
@@ -16,25 +11,7 @@ const HowItWorks = () => {
                 How it works
             </h1>
 
-            <div
-                role="button"
-                className="flex flex-col items-center justify-center bg-base-300 rounded-xl shadow-sm py-4 mb-2 w-full cursor-pointer"
-                onClick={() => setIsSequencingOpen(!isSequencingOpen)}
-            >
-                <div className="flex flex-row items-center px-4 justify-between w-full">
-                    <h2 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/75">
-                        Audio Sequencing
-                    </h2>
-
-                    {!isSequencingOpen ? (
-                        <FaAngleRight className="text-neutral-content/75 text-3xl" />
-                    ) : (
-                        <FaAngleUp className="text-neutral-content/75 text-3xl" />
-                    )}
-                </div>
-            </div>
-
-            {isSequencingOpen && (
+            <Accordion title="Audio Sequencing" titleClassName="ubuntu-semibold">
                 <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left px-4">
                     Music is written using 2 seperate step sequencer components, one for drums and the other for instruments.
                     Both are fixed to 8/16 steps per bar (8 on this demo) to ensure consistent UX across devices.<br /><br />
@@ -52,27 +29,9 @@ const HowItWorks = () => {
                     During playback, the callback reads the current sequence from the ref,
                     and determines if an audio sample should be triggered at the current step.
                 </p>
-            )}
+            </Accordion>
 
-            <div
-                role="button"
-                className="flex flex-col items-center justify-center bg-base-300 rounded-xl shadow-sm py-4 mb-2 w-full cursor-pointer"
-                onClick={() => setIsSyncOpen(!isSyncOpen)}
-            >
-                <div className="flex flex-row items-center px-4 justify-between w-full">
-                    <h2 className="text-xl lg:text-2xl ubuntu-bold text-neutral-content/75">
-                        UI Synchronization
-                    </h2>
-
-                    {!isSyncOpen ? (
-                        <FaAngleRight className="text-neutral-content/75 text-3xl" />
-                    ) : (
-                        <FaAngleUp className="text-neutral-content/75 text-3xl" />
-                    )}
-                </div>
-            </div>
-
-            {isSyncOpen && (
+            <Accordion title="UI Synchronization">
                 <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left px-4">
                     The currently playing step in both sequencers is highlighted during playback.<br /><br />
 
@@ -84,41 +43,20 @@ const HowItWorks = () => {
 
                     This keeps the UI in sync with the audio, while only rerendering when the sequence is changed, or if playback is stopped.
                 </p>
-            )}
+            </Accordion>
 
-            <div
-                role="button"
-                className="flex flex-col items-center justify-center bg-base-300 rounded-xl shadow-sm py-4 mb-2 w-full cursor-pointer"
-                onClick={() => setIsVizOpen(!isVizOpen)}
-            >
-                <div className="flex flex-row items-center px-4 justify-between w-full">
-                    <h2 className="text-xl lg:text-2xl ubuntu-bold text-neutral-content/75">
-                        Visualization
-                    </h2>
-
-                    {!isVizOpen ? (
-                        <FaAngleRight className="text-neutral-content/75 text-3xl" />
-                    ) : (
-                        <FaAngleUp className="text-neutral-content/75 text-3xl" />
-                    )}
-                </div>
-            </div>
-
-            {isVizOpen && (
+            <Accordion title="Visualization">
                 <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left px-4">
-                    The visuals are made with
+                    The visuals are all made using the same general pattern; take FFT data from an audio source, and wire different parts of it to something 
+                    on a web canvas.<br /><br />
+
+                    The simpler ones are made using the same DOM manipulation trick used in the UI. The more intricate ones are made using
                     <a href="https://github.com/jberg/butterchurn" target="_blank" rel="noreferrer" className="underline ml-1">Butterchurn</a>,
                     a web port of the famous
                     <a href="https://www.geisswerks.com/milkdrop/" target="_blank" rel="noreferrer" className="underline mx-1">MilkDrop</a>
                     visualizer featured in Winamp.<br /><br />
-
-                    It recieves FFT data passed in from a Web Audio API analyzer node, which connects to either the ToneJS output or the user's microphone.<br /><br />
-                    The microphone input is used for the Live feature. In addition to composing music,
-                    the user can also pipe in the audio from their own enviroment and fullscreen the visuals.<br /><br />
-
-                    This feature is sandboxed to the browser for privacy, the microphone input is not saved or recorded in any way.
                 </p>
-            )}
+            </Accordion>
         </div>
     );
 };
