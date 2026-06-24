@@ -1,20 +1,16 @@
 import { FaAngleDoubleRight } from "react-icons/fa";
-import Table from "./ui/Table";
-import ScrollBar from "./ui/ScrollBar";
 import WhatItDoes from "./WhatItDoes";
-import ToggleSwitch from "../ui/ToggleSwitch";
-import LazyChart from "./ui/LazyChart";
+import LazyTrendChart from "./ui/LazyTrendChart";
 import { useSemanticMap } from "./hooks/useSemanticMap";
+import { getClusterColors } from "./utils/colors";
+
+const ROUTES_COLOR_MAP = getClusterColors(["Genre-Specific Tools", "Visualization"]);
 
 export default function SemanticMaps() {
     const {
         viewMode,
-        activeCluster,
-        setActiveCluster,
-        filteredData,
+        raw,
         colorMap,
-        clusters,
-        clusterKey,
         handleModeToggle
     } = useSemanticMap();
 
@@ -33,70 +29,26 @@ export default function SemanticMaps() {
                     <a
                         href='https://github.com/rotisserie-christian/search-profiler'
                         target='_blank' rel='noreferrer'
-                        className="btn w-26 rounded-xl mt-4 mb-8"
+                        className="btn w-26 rounded-xl mt-4"
                     >
                         GitHub<FaAngleDoubleRight />
                     </a>
+                </div>
 
-                    <ToggleSwitch
-                        leftLabel="Keywords"
-                        rightLabel="Reviews"
-                        isChecked={viewMode === 'reviews'}
-                        onChange={handleModeToggle}
+                <div className="flex flex-col items-center justify-center w-full max-w-4xl">
+                    <p className="text-lg lg:text-xl ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
+                        Search Interest Over Time
+                    </p>
+
+                    <LazyTrendChart
+                        raw={raw}
+                        colorMap={colorMap}
+                        viewMode={viewMode}
+                        onModeToggle={handleModeToggle}
                     />
                 </div>
 
-                <div className="w-full mb-8 hidden lg:block">
-                    <ScrollBar
-                        clusters={clusters}
-                        activeCluster={activeCluster}
-                        onClusterSelect={setActiveCluster}
-                        className="rounded-xl shadow-inner bg-base-200/50"
-                    />
-                </div>
-
-                <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 w-full items-start justify-center">
-                    <div className="flex flex-col items-center justify-center w-full lg:w-[50%]">
-                        <p className="text-xl lg:text-2xl mt-4 ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                            {viewMode === 'keywords' ? 'Search Interest Levels (3-month)' : 'Review Score vs. Prevalence'}
-                        </p>
-
-                        <p className="text-sm mt-5 mb-4 ubuntu-medium text-neutral-content/75 text-center max-w-xs lg:max-w-lg">
-                            {viewMode === 'keywords' ? "Anchored to 'Free Music Maker'" : "Topic = DJ Services in Saskatoon"}
-                        </p>
-
-                        <LazyChart filteredData={filteredData} colorMap={colorMap} mode={viewMode} />
-                    </div>
-
-                    <div className="flex flex-col items-center justify-start w-full lg:w-[50%]">
-                        <div className="w-full mb-6 lg:hidden">
-                            <ScrollBar
-                                clusters={clusters}
-                                activeCluster={activeCluster}
-                                onClusterSelect={setActiveCluster}
-                                className="rounded-xl shadow-inner bg-base-200/50"
-                            />
-                        </div>
-                        <Table
-                            data={filteredData}
-                            shouldTruncate={false}
-                            colorMap={colorMap}
-                            clusterKey={clusterKey}
-                            labelKey={viewMode === 'keywords' ? 'query' : 'feedback'}
-                            columns={viewMode === 'keywords' ? [
-                                { key: 'query', label: 'Query', type: 'text' },
-                                { key: 'avg_interest', label: 'Avg', type: 'number', precision: 2 },
-                                { key: 'max_interest', label: 'Max', type: 'number', precision: 0 }
-                            ] : [
-                                { key: 'feedback', label: 'Feedback', type: 'text' },
-                                { key: 'impact_score', label: 'Review Score', type: 'number', precision: 1 },
-                                { key: 'prevalence', label: 'Mentions', type: 'number', precision: 0 }
-                            ]}
-                        />
-                    </div>
-                </div>
-
-                {viewMode === 'keywords' && <WhatItDoes colorMap={colorMap} />}
+                <WhatItDoes colorMap={ROUTES_COLOR_MAP} />
             </div>
         </section>
     );
