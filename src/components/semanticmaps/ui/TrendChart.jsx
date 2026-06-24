@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
     Chart as ChartJS,
     LineElement,
@@ -11,6 +11,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import ToggleSwitch from '../../ui/ToggleSwitch';
 import { buildTrendData, formatLabel } from '../utils/trends';
+import { getClusterColors } from '../utils/colors';
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Title);
 
@@ -20,9 +21,32 @@ const RANGES = [
     { id: '3m', weeks: 13 },
 ];
 
-export default function TrendChart({ raw, colorMap, viewMode, onModeToggle }) {
+// Per-viewMode dynamic imports so each dataset is its own chunk, loaded on demand.
+const DATASETS = {
+    visuals: () => import('../data/joyplotdata1.json'),
+    music: () => import('../data/joyplotdata2.json'),
+};
+
+export default function TrendChart({ viewMode, onModeToggle }) {
     const [hidden, setHidden] = useState({});
     const [range, setRange] = useState('5y');
+    const [raw, setRaw] = useState(null);
+
+    useEffect(() => {
+        let active = true;
+        setRaw(null);
+        (DATASETS[viewMode] ?? DATASETS.visuals)().then((mod) => {
+            if (active) setRaw(mod.default);
+        });
+        return () => {
+            active = false;
+        };
+    }, [viewMode]);
+
+    const colorMap = useMemo(
+        () => (raw ? getClusterColors(raw.series.map((s) => s.query)) : {}),
+        [raw]
+    );
 
     const { labels, datasets: baseDatasets } = useMemo(
         () => buildTrendData(raw, { colorMap }),
@@ -115,7 +139,13 @@ export default function TrendChart({ raw, colorMap, viewMode, onModeToggle }) {
             </div>
 
             <div className="p-4 w-full h-[350px] bg-base-300">
-                <Line options={options} data={data} />
+                {raw ? (
+                    <Line options={options} data={data} />
+                ) : (
+                    <div className="flex items-center justify-center w-full h-full">
+                        <span className="loading loading-spinner loading-lg text-primary"></span>
+                    </div>
+                )}
             </div>
             
             <div className="flex justify-center w-full mt-6 mb-4">

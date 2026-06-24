@@ -9,8 +9,6 @@ const ROUTES_COLOR_MAP = getClusterColors(["Genre-Specific Tools", "Visualizatio
 export default function SemanticMaps() {
     const {
         viewMode,
-        raw,
-        colorMap,
         handleModeToggle
     } = useSemanticMap();
 
@@ -41,8 +39,6 @@ export default function SemanticMaps() {
                     </p>
 
                     <LazyTrendChart
-                        raw={raw}
-                        colorMap={colorMap}
                         viewMode={viewMode}
                         onModeToggle={handleModeToggle}
                     />
