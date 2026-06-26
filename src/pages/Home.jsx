@@ -48,7 +48,7 @@ export default function Home() {
                         <ShootingStars />
                     </ErrorBoundary>
 
-                    <div className="flex flex-col items-center justify-center bg-base-300/60 mb-0 lg:mb-20 lg:mb-0 z-40 lg:px-16 rounded-3xl backdrop-blur-sm">
+                    <div className="flex flex-col items-center justify-center bg-base-300/60 mb-0 lg:mb-0 z-40 lg:px-16 rounded-3xl backdrop-blur-sm">
                         <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold">
                             Christian Waters
                         </h1>
