@@ -3,6 +3,7 @@ import App from '@/App';
 import Home from '@/pages/Home';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Temp from './pages/Temp';
+import Trends from './pages/Trends';
 
 const RouteSwitch = () => {
     return (
@@ -13,6 +14,7 @@ const RouteSwitch = () => {
                         <Route index element={<Home />} />
                         <Route path="semanticmaps" element={<Home />} />
                         <Route path="temp" element={<Temp />} />
+                        <Route path="trends" element={<Trends />} />
                     </Route>
                 </Routes>
             </ErrorBoundary>
