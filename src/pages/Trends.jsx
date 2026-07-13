@@ -2,8 +2,17 @@ import { useState } from "react";
 import LazyTrendChart from "@/components/semanticmaps/ui/LazyTrendChart";
 import ScatterPlot from "@/components/semanticmaps/ui/ScatterPlot";
 import TrendTable from "@/components/semanticmaps/ui/TrendTable";
+import SectionNav from "@/components/ui/SectionNav";
 
 const MUSIC_VIDEO_MAKER = ["music video maker"];
+
+const TRENDS_SECTIONS = [
+    { id: "term-set", label: "term set" },
+    { id: "bulk-comparison", label: "bulk comparison" },
+    { id: "anchor-terms", label: "anchor term" },
+    { id: "reading-trend", label: "reading trend" },
+    { id: "insights", label: "insights" },
+];
 
 export default function Trends() {
     const [viewMode, setViewMode] = useState("visuals");
@@ -27,8 +36,13 @@ export default function Trends() {
                     <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
                 </div>
 
+                <SectionNav sections={TRENDS_SECTIONS} className="mt-4" />
+
                 <article className="flex flex-col w-full max-w-4xl mt-8 lg:mt-10">
-                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85">
+                    <h2
+                        id="term-set"
+                        className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85"
+                    >
                         Assembling a Testable Term Set
                     </h2>
                     <div className="divider mt-2 mb-0"></div>
@@ -84,7 +98,10 @@ export default function Trends() {
                         so later rankings read as themes, rather than a flat list of keywords.
                     </p>
 
-                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                    <h2
+                        id="bulk-comparison"
+                        className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12"
+                    >
                         The Bulk Comparison Problem
                     </h2>
                     <div className="divider mt-2 mb-0"></div>
@@ -123,7 +140,10 @@ export default function Trends() {
                         that actually carry weight. Bulk comparison only becomes trustworthy once every batch is tied to the same baseline.
                     </p>
 
-                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                    <h2
+                        id="anchor-terms"
+                        className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12"
+                    >
                         Anchor Terms
                     </h2>
                     <div className="divider mt-2 mb-0"></div>
@@ -158,7 +178,10 @@ export default function Trends() {
                         A high-interest term and a low-interest term can finally be ranked against each other even if they never shared a request.
                     </p>
 
-                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                    <h2
+                        id="reading-trend"
+                        className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12"
+                    >
                         Reading Demand and Trend
                     </h2>
                     <div className="divider mt-2 mb-0"></div>
@@ -189,7 +212,10 @@ export default function Trends() {
                         the same baseline?&rdquo; not &ldquo;how many searches happen worldwide.&rdquo;
                     </p>
 
-                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                    <h2
+                        id="insights"
+                        className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12"
+                    >
                         Key Insights 
                     </h2>
                     <div className="divider mt-2 mb-0"></div>
