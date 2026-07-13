@@ -3,6 +3,8 @@ import LazyTrendChart from "@/components/semanticmaps/ui/LazyTrendChart";
 import ScatterPlot from "@/components/semanticmaps/ui/ScatterPlot";
 import TrendTable from "@/components/semanticmaps/ui/TrendTable";
 import SectionNav from "@/components/ui/SectionNav";
+import Contact from "@/components/contact/Contact";
+import Footer from "@/components/ui/Footer";
 
 const MUSIC_VIDEO_MAKER = ["music video maker"];
 
@@ -95,7 +97,10 @@ export default function Trends() {
                         
                         After this we can merge near-duplicates and drop noise. This curation step is important to avoid wasting API tokens on 
                         low quality or irrelevant terms. Once we have a clean set of terms, we can group them into semantic clusters, 
-                        so later rankings read as themes, rather than a flat list of keywords.
+                        so later rankings read as themes, rather than a flat list of keywords.<br /><br />
+
+                        Each term is embedded with a sentence transformer, then grouped by cosine similarity so semantically close phrases 
+                        land in the same cluster. That sorts near-duplicates automatically, and a quick human pass still fixes labels and intent mismatches.
                     </p>
 
                     <h2
@@ -254,7 +259,14 @@ export default function Trends() {
                     professional software. 
                     </p>
                 </article>
+
+                <div className="flex justify-center w-full mt-12 lg:mt-16">
+                    <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
+                </div>
             </div>
+
+            <Contact source="trends" />
+            <Footer />
         </section>
     );
 }
