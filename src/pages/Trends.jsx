@@ -1,3 +1,7 @@
+import LazyTrendChart from "@/components/semanticmaps/ui/LazyTrendChart";
+
+const MUSIC_VIDEO_MAKER = ["music video maker"];
+
 export default function Trends() {
     return (
         <section className="flex flex-col items-center justify-center w-full bg-base-300 py-20 px-2 min-h-screen font-ubuntu">
@@ -31,10 +35,20 @@ export default function Trends() {
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         Start from a concrete user, not from a feature list. The goal is to start with 
-                        who the ideal user is and what they want, and end with a better understanding of what to build.<br /><br />     
-                        
-                        From that framing, segment the user profile into a series of streams with clearly defined intent. 
-                        The next step is to assemble a set of terms within each stream that capture more specific aspects 
+                        who the ideal user is and what they want, and end with a better understanding of what to build.<br /><br /> 
+                    </p>
+
+                    <div className="w-full my-8">
+                        <LazyTrendChart
+                            viewMode="visuals"
+                            showModeToggle={false}
+                            queries={MUSIC_VIDEO_MAKER}
+                        />
+                    </div>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        From that framing, choose a head term that clearly defines a stream of search intent. 
+                        The next step is to assemble a set of terms within this stream that capture more specific aspects 
                         of the user&apos;s search behaviour. This can be done by first manually brainstorming seed queries,
                         and then expanding the set to be more comprehensive. 
                     </p>
@@ -122,7 +136,7 @@ export default function Trends() {
                         Scaling Batches to a Shared Baseline
                     </h3>
 
-                    <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left">
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         In practice, each Trends request carries up to four candidate terms plus the anchor. 
                         The first batch establishes a reference from the anchor&apos;s peak interest. 
                         Every later batch measures how the same anchor scored in that request, computes a multiplier against the reference, 
@@ -130,6 +144,43 @@ export default function Trends() {
 
                         After rebasing, scores from different batches sit on roughly the same scale. 
                         A high-interest term and a low-interest term can finally be ranked against each other even if they never shared a request.
+                    </p>
+
+                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                        Reading Demand and Trend
+                    </h2>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        Two signals matter most: how strong interest is relative to the rest of the set, 
+                        and whether that interest is moving over the measurement window.
+                    </p>
+
+                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
+                        Ranking by Normalized Interest
+                    </h3>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        After normalization, terms are ranked by average interest over the window. 
+                        Terms with no usable signal drop out, what remains is a ordered view of where relative demand concentrates.<br /><br />
+
+                        That ranking is still relative, not absolute volume. It answers &ldquo;which of these topics pull harder than the others against 
+                        the same baseline?&rdquo; not &ldquo;how many searches happen worldwide.&rdquo;
+                    </p>
+
+                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
+                        Trend Direction Over the Window
+                    </h3>
+
+                    <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left">
+                        Average interest says how loud a term is. Trend direction says whether that loudness is growing, fading, or holding still. 
+                        Over the validation window, interest in the first half of the series is compared to the second.
+                         A clear lift marks rising, a clear drop marks falling, and everything in between is treated as stable.<br /><br />
+
+                        This is a coarse momentum check, not a full seasonality model. 
+                        It will not explain holiday spikes or long-cycle shifts on its own. 
+                        What it does well is separate steady high-interest topics from ones that are actively gaining or 
+                        losing attention inside the same window you used for ranking. 
+                        Used together, level and direction stop you from treating every high score as equally actionable.
                     </p>
                 </article>
             </div>

@@ -12,9 +12,10 @@ const DATASETS = {
  * Transforms it into line datasets
  *
  * @param {string} viewMode - 'visuals' | 'music'
+ * @param {string[]=} queries - optional allowlist of series labels to include
  * @returns {{ raw: object | null, baseDatasets: Array }}
  */
-export function useTrendData(viewMode) {
+export function useTrendData(viewMode, queries) {
     const [raw, setRaw] = useState(null);
 
     useEffect(() => {
@@ -28,15 +29,25 @@ export function useTrendData(viewMode) {
         };
     }, [viewMode]);
 
+    const filteredRaw = useMemo(() => {
+        if (!raw) return null;
+        if (!queries?.length) return raw;
+        const allowed = new Set(queries);
+        return {
+            ...raw,
+            series: raw.series.filter((s) => allowed.has(s.query)),
+        };
+    }, [raw, queries]);
+
     const colorMap = useMemo(
-        () => (raw ? getSeriesColors(raw.series.map((s) => s.query)) : {}),
-        [raw]
+        () => (filteredRaw ? getSeriesColors(filteredRaw.series.map((s) => s.query)) : {}),
+        [filteredRaw]
     );
 
     const { datasets: baseDatasets } = useMemo(
-        () => buildTrendData(raw, { colorMap }),
-        [raw, colorMap]
+        () => buildTrendData(filteredRaw, { colorMap }),
+        [filteredRaw, colorMap]
     );
 
-    return { raw, baseDatasets };
+    return { raw: filteredRaw, baseDatasets };
 }

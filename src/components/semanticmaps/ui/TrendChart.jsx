@@ -25,10 +25,15 @@ const RANGES = [
 const TIME_UNITS = { '5y': 'year', '1y': 'month', '3m': 'week' };
 const DISPLAY_FORMATS = { year: 'yyyy', month: 'MMM', week: 'MMM d', day: 'MMM d' };
 
-export default function TrendChart({ viewMode, onModeToggle }) {
+export default function TrendChart({
+    viewMode,
+    onModeToggle,
+    showModeToggle = true,
+    queries,
+}) {
     const [hidden, setHidden] = useState({});
     const [range, setRange] = useState('5y');
-    const { raw, baseDatasets } = useTrendData(viewMode);
+    const { raw, baseDatasets } = useTrendData(viewMode, queries);
 
     const data = useMemo(() => {
         const weeks = RANGES.find((r) => r.id === range)?.weeks ?? Infinity;
@@ -131,16 +136,18 @@ export default function TrendChart({ viewMode, onModeToggle }) {
                 )}
             </div>
             
-            <div className="flex justify-center w-full mt-6 mb-4">
-                <ToggleSwitch
-                    leftLabel="Visuals"
-                    rightLabel="Music"
-                    isChecked={viewMode === 'music'}
-                    onChange={onModeToggle}
-                />
-            </div>
+            {showModeToggle && (
+                <div className="flex justify-center w-full mt-6 mb-4">
+                    <ToggleSwitch
+                        leftLabel="Visuals"
+                        rightLabel="Music"
+                        isChecked={viewMode === 'music'}
+                        onChange={onModeToggle}
+                    />
+                </div>
+            )}
 
-            <div className='flex flex-row items-center justify-center gap-2'>
+            <div className={`flex flex-row items-center justify-center gap-2 ${showModeToggle ? '' : 'mt-6'}`}>
                 {RANGES.map((r) => (
                     <button
                         key={r.id}
