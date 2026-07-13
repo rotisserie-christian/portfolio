@@ -87,7 +87,7 @@ export default function Trends() {
                         Why Unanchored Ranking Misleads
                     </h3>
 
-                    <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left">
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         Without a shared reference across batches, ranking the full list by those scores will mix incompatible scales. 
                         A niche term can look like a breakout hit because it was the loudest voice in a quiet batch. 
                         A genuinely high-volume term can look mediocre because it sat next to an even larger one. 
@@ -96,7 +96,40 @@ export default function Trends() {
                         That distortion matters for product decisions. If the goal is to refine what to build based on where interest 
                         concentrates, a false ranking is worse than no ranking: it can push attention toward noise and away from the streams 
                         that actually carry weight. Bulk comparison only becomes trustworthy once every batch is tied to the same baseline.
-                        <br /><br />
+                    </p>
+
+                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                        Anchor Terms
+                    </h2>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        This bulk comparison problem is the reason why we started this process with higher-level segmentation. 
+                        These main streams of search intent can act as anchors, a fixed reference included in every batch so each request 
+                        can be scaled onto one shared baseline. 
+                    </p>
+
+                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
+                        Choosing a Calibration Reference
+                    </h3>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        A good anchor is stable, somewhat general, and strong enough to return a clear Trends signal in every batch. 
+                        If the anchor is too obscure, some batches will have nothing reliable to scale against. 
+                        If it is wildly larger than everything else in the set, terms can get crushed toward zero and lose useful resolution.<br /><br />
+                    </p>
+
+                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
+                        Scaling Batches to a Shared Baseline
+                    </h3>
+
+                    <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left">
+                        In practice, each Trends request carries up to four candidate terms plus the anchor. 
+                        The first batch establishes a reference from the anchor&apos;s peak interest. 
+                        Every later batch measures how the same anchor scored in that request, computes a multiplier against the reference, 
+                        and rebases the other terms in the batch by that factor.<br /><br />
+
+                        After rebasing, scores from different batches sit on roughly the same scale. 
+                        A high-interest term and a low-interest term can finally be ranked against each other even if they never shared a request.
                     </p>
                 </article>
             </div>
