@@ -81,7 +81,7 @@ export default function Home() {
                     </ErrorBoundary>
                 </div>
 
-                <div data-section="contact" className="w-full">
+                <div data-section="contact" className="w-full mt-12">
                     <Contact />
                 </div>
 
