@@ -5,6 +5,7 @@ import TrendTable from "@/components/semanticmaps/ui/TrendTable";
 import SectionNav from "@/components/ui/SectionNav";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/ui/Footer";
+import ErrorBoundary from "@/components/ui/ErrorBoundary";
 
 const MUSIC_VIDEO_MAKER = ["music video maker"];
 
@@ -65,11 +66,13 @@ export default function Trends() {
                     </p>
 
                     <div className="w-full my-8">
-                        <LazyTrendChart
-                            viewMode="visuals"
-                            showModeToggle={false}
-                            queries={MUSIC_VIDEO_MAKER}
-                        />
+                        <ErrorBoundary name="Trends Chart">
+                            <LazyTrendChart
+                                viewMode="visuals"
+                                showModeToggle={false}
+                                queries={MUSIC_VIDEO_MAKER}
+                            />
+                        </ErrorBoundary>
                     </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
@@ -198,7 +201,9 @@ export default function Trends() {
 
                     <div className="w-full my-8 flex flex-col lg:flex-row gap-6 lg:items-start">
                         <div className="w-full lg:w-1/2 min-w-0">
-                            <ScatterPlot />
+                            <ErrorBoundary name="Scatter Plot">
+                                <ScatterPlot />
+                            </ErrorBoundary>
                         </div>
                         <div className="w-full lg:w-1/2 min-w-0">
                             <TrendTable />
@@ -237,11 +242,13 @@ export default function Trends() {
                     </p>
 
                     <div className="w-full my-8">
-                        <LazyTrendChart
-                            viewMode={viewMode}
-                            onModeToggle={handleModeToggle}
-                            showModeToggle={true}
-                        />
+                        <ErrorBoundary name="Trends Chart">
+                            <LazyTrendChart
+                                viewMode={viewMode}
+                                onModeToggle={handleModeToggle}
+                                showModeToggle={true}
+                            />
+                        </ErrorBoundary>
                     </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">

@@ -185,11 +185,19 @@ describe('useIntersectionObserver', () => {
     });
   });
 
-  it('should not observe if element ref is null', () => {
-    renderHook(() => useIntersectionObserver());
+  it('should ignore empty IntersectionObserver callbacks', async () => {
+    const { result } = setupHookWithElement();
 
-    // Should not call observe if ref is null
-    expect(observeSpy).not.toHaveBeenCalled();
+    await waitFor(() => {
+      expect(observeSpy).toHaveBeenCalled();
+    });
+
+    act(() => {
+      mockObserver.callback([]);
+    });
+
+    expect(result.current.isIntersecting).toBe(false);
+    expect(result.current.hasIntersected).toBe(false);
   });
 });
 

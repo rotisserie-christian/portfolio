@@ -22,15 +22,14 @@ export default function SectionNav({
 
         if (!elements.length) return;
 
-        const observer = new IntersectionObserver(
+const observer = new IntersectionObserver(
             (entries) => {
                 const visible = entries
                     .filter((e) => e.isIntersecting)
                     .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-                if (visible[0]?.target?.id) {
-                    setActiveTab(visible[0].target.id);
-                }
+                const id = visible[0]?.target?.id;
+                if (id) setActiveTab(id);
             },
             {
                 // Account for sticky navbar + this bar sitting underneath

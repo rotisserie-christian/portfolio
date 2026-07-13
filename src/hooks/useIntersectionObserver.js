@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * Observing element intersection with viewport
@@ -8,29 +8,51 @@ import { useEffect, useRef, useState } from 'react';
 export const useIntersectionObserver = (options = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasIntersected, setHasIntersected] = useState(false);
-  const elementRef = useRef(null);
+  const [node, setNode] = useState(null);
+  const nodeRef = useRef(null);
+  const optionsRef = useRef(options);
+  optionsRef.current = options;
+
+  // Ref object with a setter so attaching the node (via JSX ref or tests) re-runs the effect
+  const elementRef = useMemo(
+    () => ({
+      get current() {
+        return nodeRef.current;
+      },
+      set current(value) {
+        nodeRef.current = value;
+        setNode(value);
+      },
+    }),
+    []
+  );
+
+  // Primitive deps so inline `{ rootMargin: "0px" }` objects don't re-subscribe every render
+  const rootMargin = options.rootMargin ?? '100px';
+  const threshold = options.threshold;
 
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
+    if (!node) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
+
       setIsIntersecting(entry.isIntersecting);
-      if (entry.isIntersecting && !hasIntersected) {
+      if (entry.isIntersecting) {
         setHasIntersected(true);
       }
     }, {
-      rootMargin: '100px', // Start loading 100px before entering viewport
-      ...options
+      rootMargin: '100px',
+      ...optionsRef.current,
     });
 
-    observer.observe(element);
+    observer.observe(node);
 
     return () => {
       observer.disconnect();
     };
-  }, [hasIntersected, options]);
+  }, [node, rootMargin, threshold]);
 
   return { elementRef, isIntersecting, hasIntersected };
 };
-

@@ -64,12 +64,17 @@ export default function ScrollableTabBar({
         };
     }, [tabs]);
 
-    useEffect(() => {
+    const scrollActiveTabIntoView = (tabId) => {
         const container = tabsContainerRef.current;
         if (!container) return;
-        const activeTabElement = container.querySelector(`[data-tab-id="${activeTab}"]`);
+        const activeTabElement = container.querySelector(`[data-tab-id="${tabId}"]`);
         activeTabElement?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }, [activeTab]);
+    };
+
+    const handleTabClick = (tabId) => {
+        onTabChange(tabId);
+        scrollActiveTabIntoView(tabId);
+    };
 
     const scrollByPage = (direction) => {
         const container = tabsContainerRef.current;
@@ -117,7 +122,7 @@ export default function ScrollableTabBar({
                             key={tab.id}
                             type="button"
                             data-tab-id={tab.id}
-                            onClick={() => onTabChange(tab.id)}
+                            onClick={() => handleTabClick(tab.id)}
                             className={`${tabStyles.base} ${isActive ? tabStyles.active : tabStyles.inactive}`}
                         >
                             {tab.icon && <span className="text-lg">{tab.icon}</span>}

@@ -3,13 +3,15 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const TrendChart = lazy(() => import("./TrendChart"));
 
+const CHART_OBSERVER_OPTIONS = { rootMargin: "0px" };
+
 export default function LazyTrendChart({
     viewMode,
     onModeToggle,
     showModeToggle = true,
     queries,
 }) {
-    const { elementRef, hasIntersected } = useIntersectionObserver({ rootMargin: "0px" });
+    const { elementRef, hasIntersected } = useIntersectionObserver(CHART_OBSERVER_OPTIONS);
 
     return (
         <div ref={elementRef} className="w-full flex items-center justify-center min-h-[350px]">

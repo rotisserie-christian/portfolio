@@ -59,12 +59,15 @@ export default function TrendChart({
             legend: { display: false },
             tooltip: {
                 callbacks: {
-                    title: (items) =>
-                        new Date(items[0].parsed.x).toLocaleDateString('en-US', {
+                    title: (items) => {
+                        const x = items[0]?.parsed?.x;
+                        if (x == null) return '';
+                        return new Date(x).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric',
                             year: 'numeric',
-                        }),
+                        });
+                    },
                     label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
                 },
             },
