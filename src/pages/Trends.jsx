@@ -1,8 +1,17 @@
+import { useState } from "react";
 import LazyTrendChart from "@/components/semanticmaps/ui/LazyTrendChart";
+import ScatterPlot from "@/components/semanticmaps/ui/ScatterPlot";
+import TrendTable from "@/components/semanticmaps/ui/TrendTable";
 
 const MUSIC_VIDEO_MAKER = ["music video maker"];
 
 export default function Trends() {
+    const [viewMode, setViewMode] = useState("visuals");
+
+    const handleModeToggle = (checked) => {
+        setViewMode(checked ? "music" : "visuals");
+    };
+
     return (
         <section className="flex flex-col items-center justify-center w-full bg-base-300 py-20 px-2 min-h-screen font-ubuntu">
             <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-2">
@@ -18,10 +27,11 @@ export default function Trends() {
                     <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
                 </div>
 
-                <article className="flex flex-col w-full lg:max-w-3xl mt-8 lg:mt-10">
+                <article className="flex flex-col w-full max-w-4xl mt-8 lg:mt-10">
                     <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85">
                         Assembling a Testable Term Set
                     </h2>
+                    <div className="divider mt-2 mb-0"></div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         Keyword analysis is only as useful as the set of terms behind it. The goal at this stage is not to prove demand, 
@@ -77,6 +87,7 @@ export default function Trends() {
                     <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
                         The Bulk Comparison Problem
                     </h2>
+                    <div className="divider mt-2 mb-0"></div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         Once the term set is large, the natural next step is to measure search interest across all of it.
@@ -115,6 +126,7 @@ export default function Trends() {
                     <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
                         Anchor Terms
                     </h2>
+                    <div className="divider mt-2 mb-0"></div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         This bulk comparison problem is the reason why we started this process with higher-level segmentation. 
@@ -149,11 +161,21 @@ export default function Trends() {
                     <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
                         Reading Demand and Trend
                     </h2>
+                    <div className="divider mt-2 mb-0"></div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         Two signals matter most: how strong interest is relative to the rest of the set, 
                         and whether that interest is moving over the measurement window.
                     </p>
+
+                    <div className="w-full my-8 flex flex-col lg:flex-row gap-6 lg:items-start">
+                        <div className="w-full lg:w-1/2 min-w-0">
+                            <ScatterPlot />
+                        </div>
+                        <div className="w-full lg:w-1/2 min-w-0">
+                            <TrendTable />
+                        </div>
+                    </div>
 
                     <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
                         Ranking by Normalized Interest
@@ -167,20 +189,43 @@ export default function Trends() {
                         the same baseline?&rdquo; not &ldquo;how many searches happen worldwide.&rdquo;
                     </p>
 
-                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
-                        Trend Direction Over the Window
-                    </h3>
+                    <h2 className="text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12">
+                        Key Insights 
+                    </h2>
+                    <div className="divider mt-2 mb-0"></div>
 
-                    <p className="text-base mt-4 mb-8 ubuntu-regular text-neutral-content/75 text-left">
-                        Average interest says how loud a term is. Trend direction says whether that loudness is growing, fading, or holding still. 
-                        Over the validation window, interest in the first half of the series is compared to the second.
-                         A clear lift marks rising, a clear drop marks falling, and everything in between is treated as stable.<br /><br />
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                    We can see that the top keywords fit the anchor term 'music video maker' quite well, yet still carry their own unique intent.
+                    A 'background video' can be used to create a music video, but it can also be used to make a video for other purposes.
+                    Many people will want to create reactive music visuals for YouTube intros or advertising, but are less likely to phrase it as 
+                    a desire to create a music video.<br /><br />
 
-                        This is a coarse momentum check, not a full seasonality model. 
-                        It will not explain holiday spikes or long-cycle shifts on its own. 
-                        What it does well is separate steady high-interest topics from ones that are actively gaining or 
-                        losing attention inside the same window you used for ranking. 
-                        Used together, level and direction stop you from treating every high score as equally actionable.
+                    Similarly, 'spectrogram' is more likely to be used by more technical users such as music producers, DJs, or music tech developers. 
+                    Many of these people publish on social media, have a need for audioreactive visuals, and this need is adjacent to, yet distinct
+                    from, the need to create a music video.  
+                    </p>
+
+                    <div className="w-full my-8">
+                        <LazyTrendChart
+                            viewMode={viewMode}
+                            onModeToggle={handleModeToggle}
+                            showModeToggle={true}
+                        />
+                    </div>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                    These keywords capture search intent that is unique and specific enough to warrant being their own head terms.
+                    This gives us validated market segments, and a clear signal for building features that meet their needs.
+                    <br /><br />
+                    </p>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                    When we batch the head terms together with a time-series, we can see that that they move together. To speculate,
+                    I believe this is a due to the proliferation of AI music. These trends were dormant for years, and began to surge
+                    at a time that coincided with the release of AI music platforms. In 2024 I predicted that generative music would 
+                    create a wave of interest in both traditional music production, and music-driven visuals.
+                    I set out to create Crayonbrain in order to meet this demand and fill the gap between generative tools and 
+                    professional software. 
                     </p>
                 </article>
             </div>

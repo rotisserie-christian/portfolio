@@ -1,0 +1,634 @@
+[
+  {
+    "cluster": "video backgrounds",
+    "query": "background videos",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 141.51,
+      "max_interest": 232.26,
+      "min_interest": 76.65,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 2.3226
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "audio spectrum",
+    "query": "frequency spectrum",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 108.17,
+      "max_interest": 342.86,
+      "min_interest": 34.29,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 3.4286
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "audio spectrum",
+    "query": "spectrogram",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 102.16,
+      "max_interest": 176.0,
+      "min_interest": 40.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 8.0
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "music graphics",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 83.67,
+      "max_interest": 135.85,
+      "min_interest": 20.38,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 1.3585
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "audio spectrum",
+    "query": "audio spectrum",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 80.88,
+      "max_interest": 128.0,
+      "min_interest": 24.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 8.0
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "audio spectrum",
+    "query": "spectrum analyzer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 80.26,
+      "max_interest": 133.71,
+      "min_interest": 37.71,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 3.4286
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "audio spectrum",
+    "query": "sound spectrum",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 56.5,
+      "max_interest": 96.0,
+      "min_interest": 17.14,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 3.4286
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "audio waveform",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 46.31,
+      "max_interest": 69.28,
+      "min_interest": 17.66,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 1.3585
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "loop videos",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 45.99,
+      "max_interest": 76.5,
+      "min_interest": 18.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 4.5
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "music visualization",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 43.23,
+      "max_interest": 100.0,
+      "min_interest": 7.0,
+      "trend_direction": "falling",
+      "data_points": 92
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "music video template",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 41.93,
+      "max_interest": 77.54,
+      "min_interest": 11.08,
+      "trend_direction": "stable",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 5.5385
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "video loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 39.33,
+      "max_interest": 81.0,
+      "min_interest": 13.5,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 4.5
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "video backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 38.2,
+      "max_interest": 64.08,
+      "min_interest": 18.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "music visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 36.28,
+      "max_interest": 54.0,
+      "min_interest": 20.0,
+      "trend_direction": "stable",
+      "data_points": 92
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "audio visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 36.11,
+      "max_interest": 55.0,
+      "min_interest": 20.0,
+      "trend_direction": "stable",
+      "data_points": 92
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "music equalizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 32.16,
+      "max_interest": 48.91,
+      "min_interest": 17.66,
+      "trend_direction": "stable",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 1.3585
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "music reactive",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 31.16,
+      "max_interest": 54.0,
+      "min_interest": 7.2,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "audio reactive",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 26.2,
+      "max_interest": 42.48,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "stock loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 24.27,
+      "max_interest": 52.56,
+      "min_interest": 5.76,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "seamless loop",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 23.57,
+      "max_interest": 64.8,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "abstract loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 20.41,
+      "max_interest": 67.68,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "background footage",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 18.07,
+      "max_interest": 53.42,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 2.3226
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "3d visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 16.89,
+      "max_interest": 28.53,
+      "min_interest": 0.0,
+      "trend_direction": "stable",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 1.3585
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "animated backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 13.03,
+      "max_interest": 25.92,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "motion backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 8.38,
+      "max_interest": 23.23,
+      "min_interest": 0.0,
+      "trend_direction": "stable",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 2.3226
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "moving backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 5.68,
+      "max_interest": 32.0,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 8.0
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "visual loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 5.52,
+      "max_interest": 28.8,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "hd loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 5.51,
+      "max_interest": 20.88,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "abstract backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 4.25,
+      "max_interest": 16.26,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 2.3226
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "sound visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 2.21,
+      "max_interest": 14.4,
+      "min_interest": 0.0,
+      "trend_direction": "stable",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "concert visuals",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 1.04,
+      "max_interest": 18.0,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 4.5
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "vj loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.84,
+      "max_interest": 10.8,
+      "min_interest": 0.0,
+      "trend_direction": "stable",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "waveform visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.54,
+      "max_interest": 11.0,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "audio spectrum visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.44,
+      "max_interest": 2.77,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 5.5385
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "animated loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.42,
+      "max_interest": 10.8,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "equalizer visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.39,
+      "max_interest": 2.77,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 5.5385
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "neon backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.24,
+      "max_interest": 2.16,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "visual loops",
+    "query": "seamless loops",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.2,
+      "max_interest": 14.4,
+      "min_interest": 0.0,
+      "trend_direction": "falling",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "music visualizer",
+    "query": "beat visualizer",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.12,
+      "max_interest": 1.44,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  },
+  {
+    "cluster": "video backgrounds",
+    "query": "looping backgrounds",
+    "source": "generated",
+    "metrics": {
+      "avg_interest": 0.01,
+      "max_interest": 0.72,
+      "min_interest": 0.0,
+      "trend_direction": "rising",
+      "data_points": 92,
+      "is_normalized": true,
+      "normalization_multiplier": 0.72
+    },
+    "related_to": null,
+    "timestamp": "2026-07-13T04:51:54.496285Z"
+  }
+]
