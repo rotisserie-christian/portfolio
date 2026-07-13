@@ -34,6 +34,7 @@ const Footer = () => {
                         </button>
                         <Link
                             to="/trends"
+                            onClick={() => window.scrollTo(0, 0)}
                             className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
                         >
                             Market Research

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import LazyTrendChart from "@/components/semanticmaps/ui/LazyTrendChart";
 import ScatterPlot from "@/components/semanticmaps/ui/ScatterPlot";
 import TrendTable from "@/components/semanticmaps/ui/TrendTable";
@@ -14,27 +14,27 @@ const TRENDS_SECTIONS = [
     { id: "term-set", label: "term set" },
     { id: "bulk-comparison", label: "bulk comparison" },
     { id: "anchor-terms", label: "anchor terms" },
-    { id: "reading-trend", label: "demand & trend" },
+    { id: "reading-trend", label: "reading trends" },
     { id: "insights", label: "insights" },
 ];
 
 export default function Trends() {
     const [viewMode, setViewMode] = useState("visuals");
 
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const handleModeToggle = (checked) => {
         setViewMode(checked ? "music" : "visuals");
     };
 
     return (
-        <section className="flex flex-col items-center justify-center w-full bg-base-300 py-20 px-2 min-h-screen font-ubuntu">
+        <section className="flex flex-col items-center justify-center w-full bg-base-300 py-20 px-3 min-h-screen font-ubuntu">
             <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-2">
                 <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold text-center">
                     Refining Product-Market Fit Through Bulk Trends Analysis
                 </h1>
-
-                <p className="text-lg lg:text-xl mt-4 lg:mb-4 text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                    Optimizing product development based on search interest trends.
-                </p>
 
                 <div className="flex justify-center w-full mt-8 lg:mt-10">
                     <div className="border-l-[10px] border-dotted border-white/20 h-[120px]"></div>
@@ -66,7 +66,7 @@ export default function Trends() {
                     <div className="divider mt-2 mb-0"></div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                        Keyword analysis is only as useful as the set of terms behind it. The goal at this stage is not to prove demand, 
+                        Keyword analysis is only as useful as the set of terms behind it. The goal at this stage is not to prove demand;
                         it is to build a list that honestly reflects what topics a target user might be interested in. It should be
                         wide enough to discover unexpected pull, and structured enough to compare later under a shared scale.
                     </p>
@@ -77,7 +77,8 @@ export default function Trends() {
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         Start from a concrete user, not from a feature list. The goal is to start with 
-                        who the ideal user is and what they want, and end with a better understanding of what to build.<br /><br /> 
+                        who the ideal user is and what they want, and end with a better understanding of what to build.
+                        From that framing, choose a head term that clearly defines a stream of search intent.
                     </p>
 
                     <div className="w-full my-8">
@@ -91,7 +92,6 @@ export default function Trends() {
                     </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                        From that framing, choose a head term that clearly defines a stream of search intent. 
                         The next step is to assemble a set of terms within this stream that capture more specific aspects 
                         of the user&apos;s search behaviour. This can be done by first manually brainstorming seed queries,
                         and then expanding the set to be more comprehensive. 
@@ -102,13 +102,13 @@ export default function Trends() {
                     </h3>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                        Expand each seed by pulling related queries from Google Trends. These need to be looked over dilligently, 
+                        Expand each seed by pulling related queries from Google Trends. These need to be looked over diligently, 
                         as Google Trends will frequently return highly general, often branded keywords. For example, a related term for 
                         "drum machine" might be "Spotify". There is an enormous difference in search behavior between these two;
                         one is focused on short-form, low-stakes music creation, and the other is focused on long-form media consumption
                         from a specific platform.<br /><br />
 
-                        Another way to expand the set is to use an LLM. Related queries surface what people already search alongside the seeds, 
+                        Another way to expand the set is to use an LLM. Related queries surface what people already search alongside the seeds;
                         language models help fill gaps in wording that Google Trends alone will not invent. This is both a strength and a weakness;
                         it can create highly valuable alternate phrasings which are easy to miss, but it can also produce duplicate keywords,
                         or terms that are nonsensical.<br /><br />
@@ -205,13 +205,21 @@ export default function Trends() {
                         id="reading-trend"
                         className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12"
                     >
-                        Reading Demand and Trend
+                        Reading the Trends
                     </h2>
                     <div className="divider mt-2 mb-0"></div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                        Two signals matter most: how strong interest is relative to the rest of the set, 
-                        and whether that interest is moving over the measurement window.
+                        The signal we are looking for is how strong interest is relative to the rest of the set.
+                    </p>
+
+                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
+                        Ranking by Normalized Interest
+                    </h3>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        After normalization, terms are ranked by average interest over the window. 
+                        Terms with no usable signal drop out; what remains is an ordered view of where relative demand concentrates.
                     </p>
 
                     <div className="w-full my-8 flex flex-col lg:flex-row gap-6 lg:items-start">
@@ -225,14 +233,7 @@ export default function Trends() {
                         </div>
                     </div>
 
-                    <h3 className="text-xl lg:text-2xl ubuntu-semibold text-neutral-content/85 mt-8">
-                        Ranking by Normalized Interest
-                    </h3>
-
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                        After normalization, terms are ranked by average interest over the window. 
-                        Terms with no usable signal drop out, what remains is a ordered view of where relative demand concentrates.<br /><br />
-
                         That ranking is still relative, not absolute volume. It answers &ldquo;which of these topics pull harder than the others against 
                         the same baseline?&rdquo; not &ldquo;how many searches happen worldwide.&rdquo;
                     </p>
@@ -252,7 +253,7 @@ export default function Trends() {
                     a desire to create a music video.<br /><br />
 
                     Similarly, 'spectrogram' is more likely to be used by more technical users such as music producers, DJs, or music tech developers. 
-                    Many of these people publish on social media, have a need for audioreactive visuals, and this need is adjacent to, yet distinct
+                    Many of these people publish on social media, have a need for audio-reactive visuals, and this need is adjacent to, yet distinct
                     from, the need to create a music video.  
                     </p>
 
@@ -267,18 +268,30 @@ export default function Trends() {
                     </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                    These keywords capture search intent that is unique and specific enough to warrant being their own head terms.
+                    These keywords capture search intent distinct from the anchor, and their relative interest actually exceeds it.
+                    Because of this, they can be used as their own head terms.
                     This gives us validated market segments, and a clear signal for building features that meet their needs.
                     <br /><br />
-                    </p>
 
-                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
-                    When we batch the head terms together with a time-series, we can see that that they move together. To speculate,
-                    I believe this is a due to the proliferation of AI music. These trends were dormant for years, and began to surge
-                    at a time that coincided with the release of AI music platforms. In 2024 I predicted that generative music would 
-                    create a wave of interest in both traditional music production, and music-driven visuals.
-                    I set out to create Crayonbrain in order to meet this demand and fill the gap between generative tools and 
-                    professional software. 
+                    That was a lot of reading. Maybe you should take a break and play around with a{" "}
+                    <a
+                        href="https://crayonbrain.com/compose?t=drum-pad"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline text-cyan-200 hover:text-cyan-400 transition-colors"
+                    >
+                        drum pad
+                    </a>
+                    . Or maybe make a{" "}
+                    <a
+                        href="https://crayonbrain.com/visuals?t=spectrogram"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline text-cyan-200 hover:text-cyan-400 transition-colors"
+                    >
+                        spectrogram
+                    </a>
+                    , if that&apos;s your thing.
                     </p>
                 </article>
 

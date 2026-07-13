@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { useNavigateToSection } from "@/hooks/useNavigateToSection";
 
 export default function Navbar() {
@@ -7,6 +8,13 @@ export default function Navbar() {
 
     const handleNav = (sectionId) => {
         navigateToSection(sectionId);
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+    };
+
+    const handleTrendsNav = () => {
+        window.scrollTo(0, 0);
         if (document.activeElement instanceof HTMLElement) {
             document.activeElement.blur();
         }
@@ -30,6 +38,15 @@ export default function Navbar() {
                                 <a onClick={() => handleNav('semanticmaps')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
                                     Semantic Maps
                                 </a>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/trends"
+                                    onClick={handleTrendsNav}
+                                    className="text-neutral-content/90 hover:text-white ubuntu-regular"
+                                >
+                                    Market Research
+                                </Link>
                             </li>
                             <li>
                                 <a onClick={() => handleNav('contact')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
