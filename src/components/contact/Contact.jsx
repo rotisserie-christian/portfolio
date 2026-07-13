@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, createElement } from "react";
 import { FaAngleDoubleRight, FaHubspot } from "react-icons/fa";
 import { handleSend } from "./handleSend";
 
@@ -32,8 +32,12 @@ const Contact = ({
     };
 
     return (
-        <section data-section="contact" className="flex flex-col items-center justify-center w-full pt-20 pb-40 px-4">
-            <Icon className="text-5xl lg:text-6xl text-neutral-content/80" />
+        <section data-section="contact" className="flex flex-col items-center justify-center w-full pt-8 pb-40 px-4">
+            {Icon &&
+                createElement(Icon, {
+                    className: "text-5xl lg:text-6xl text-neutral-content/80",
+                    "aria-hidden": true,
+                })}
 
             <h2 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold mt-4 text-center">
                 {heading}

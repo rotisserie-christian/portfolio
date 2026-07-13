@@ -1,13 +1,12 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
+import { useNavigateToSection } from "@/hooks/useNavigateToSection";
 
 export default function Navbar() {
-    const scrollToSection = (sectionId) => {
-        document.querySelector(`[data-section="${sectionId}"]`)?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-        // Click to close dropdown by removing focus
+    const navigateToSection = useNavigateToSection();
+
+    const handleNav = (sectionId) => {
+        navigateToSection(sectionId);
         if (document.activeElement instanceof HTMLElement) {
             document.activeElement.blur();
         }
@@ -23,17 +22,17 @@ export default function Navbar() {
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-2 shadow mt-4">
                             <li>
-                                <a onClick={() => scrollToSection('crayonbrain')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
+                                <a onClick={() => handleNav('crayonbrain')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
                                     Crayonbrain
                                 </a>
                             </li>
                             <li>
-                                <a onClick={() => scrollToSection('semanticmaps')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
+                                <a onClick={() => handleNav('semanticmaps')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
                                     Semantic Maps
                                 </a>
                             </li>
                             <li>
-                                <a onClick={() => scrollToSection('contact')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
+                                <a onClick={() => handleNav('contact')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
                                     Contact
                                 </a>
                             </li>

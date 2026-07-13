@@ -1,12 +1,9 @@
+import { Link } from 'react-router-dom';
 import cb from '@/assets/cb.png';
+import { useNavigateToSection } from '@/hooks/useNavigateToSection';
 
 const Footer = () => {
-    const scrollToSection = (sectionId) => {
-        document.querySelector(`[data-section="${sectionId}"]`)?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    };
+    const navigateToSection = useNavigateToSection();
 
     return (
         <footer className="w-full py-12 bg-base-300 border-t border-white/5 flex flex-col items-center">
@@ -21,12 +18,26 @@ const Footer = () => {
                 <div className="flex flex-wrap justify-center gap-10">
                     <div className="flex flex-col items-start md:items-start gap-2">
                         <h4 className="text-sm font-bold tracking-wider text-base-content/40 uppercase">Projects</h4>
-                        <button onClick={() => scrollToSection('crayonbrain')} className="text-sm text-neutral-content/90 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
+                        <button
+                            type="button"
+                            onClick={() => navigateToSection('crayonbrain')}
+                            className="text-sm text-neutral-content/90 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
+                        >
                             Crayonbrain
                         </button>
-                        <button onClick={() => scrollToSection('semanticmaps')} className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
+                        <button
+                            type="button"
+                            onClick={() => navigateToSection('semanticmaps')}
+                            className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
+                        >
                             Semantic Maps
                         </button>
+                        <Link
+                            to="/trends"
+                            className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
+                        >
+                            Market Research
+                        </Link>
                     </div>
 
                     <div className="flex flex-col items-start md:items-start gap-2">

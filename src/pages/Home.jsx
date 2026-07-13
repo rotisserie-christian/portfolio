@@ -15,16 +15,19 @@ export default function Home() {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.pathname === '/semanticmaps') {
-            const timer = setTimeout(() => {
-                document.querySelector('[data-section="semanticmaps"]')?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }, 100);
-            return () => clearTimeout(timer);
-        }
-    }, [location.pathname]);
+        const sectionFromPath =
+            location.pathname === '/semanticmaps' ? 'semanticmaps' : null;
+        const section = location.state?.scrollTo || sectionFromPath;
+        if (!section) return;
+
+        const timer = setTimeout(() => {
+            document.querySelector(`[data-section="${section}"]`)?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }, 100);
+        return () => clearTimeout(timer);
+    }, [location.pathname, location.state]);
 
     const scrollToProjects = () => {
         document.querySelector('[data-section="crayonbrain"]')?.scrollIntoView({
