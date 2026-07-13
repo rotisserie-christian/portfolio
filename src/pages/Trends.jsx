@@ -10,10 +10,11 @@ import ErrorBoundary from "@/components/ui/ErrorBoundary";
 const MUSIC_VIDEO_MAKER = ["music video maker"];
 
 const TRENDS_SECTIONS = [
+    { id: "intro", label: "intro" },
     { id: "term-set", label: "term set" },
     { id: "bulk-comparison", label: "bulk comparison" },
-    { id: "anchor-terms", label: "anchor term" },
-    { id: "reading-trend", label: "reading trend" },
+    { id: "anchor-terms", label: "anchor terms" },
+    { id: "reading-trend", label: "demand & trend" },
     { id: "insights", label: "insights" },
 ];
 
@@ -43,8 +44,22 @@ export default function Trends() {
 
                 <article className="flex flex-col w-full max-w-4xl mt-8 lg:mt-10">
                     <h2
-                        id="term-set"
+                        id="intro"
                         className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85"
+                    >
+                        Introduction
+                    </h2>
+                    <div className="divider mt-2 mb-0"></div>
+
+                    <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
+                        Google Trends can show where demand concentrates, but only when many keywords sit on one comparable
+                        scale. With a five-term batch limit, a diverse set is hard to rank fairly. This article shows how to
+                        work around that limit so search interest can steer product development toward in-demand features.
+                    </p>
+
+                    <h2
+                        id="term-set"
+                        className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 mt-12"
                     >
                         Assembling a Testable Term Set
                     </h2>
