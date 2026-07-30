@@ -1,0 +1,1047 @@
+{
+  "meta": {
+    "method": "seeded themes + embedding assignment",
+    "primary_view": "pain",
+    "views": {
+      "pain": "Weakness themes; y = share of ≤2★ reviews that mention the theme",
+      "market": "All themes; y = share of all fetched reviews that mention the theme"
+    },
+    "embedding_model": "all-MiniLM-L6-v2",
+    "assign_similarity": 0.38,
+    "themes_proposed": 35,
+    "total_reviews": 643,
+    "low_reviews": 84,
+    "low_rating_max": 2.0,
+    "total_sentences": 3297,
+    "clusters_kept": 14,
+    "market_clusters": 31,
+    "max_themes": 35,
+    "source": "output/raw_reviews/latest_fetch.json"
+  },
+  "axes": {
+    "x": {
+      "field": "score",
+      "label": "Average review score",
+      "domain": [
+        1,
+        5
+      ]
+    },
+    "y": {
+      "field": "prevalence",
+      "label": "Prevalence among ≤2★ reviews (%)",
+      "domain": [
+        0,
+        100
+      ]
+    }
+  },
+  "points": [
+    {
+      "id": 0,
+      "label": "Missed deadlines",
+      "x": 1.2,
+      "y": 11.9,
+      "score": 1.2,
+      "prevalence": 11.9,
+      "prevalence_all": 1.6,
+      "prevalence_among_low": 11.9,
+      "low_review_count": 10,
+      "feedback": "Missed deadlines",
+      "impact_score": 1.2,
+      "type": "Weakness",
+      "severity": 1.8,
+      "sentence_count": 10,
+      "review_count": 10,
+      "examples": [
+        "They missed multiple deadlines with no explanation, workers were coming after 4.00pm and working till dark (maybe thats why the pool is not done well).",
+        "That deadline came and went with still no word from Martein.",
+        "project was 2 months late and they could not properly manage our expectations on when project would start or finish"
+      ]
+    },
+    {
+      "id": 1,
+      "label": "Unprofessional crew",
+      "x": 1.15,
+      "y": 10.7,
+      "score": 1.15,
+      "prevalence": 10.7,
+      "prevalence_all": 1.6,
+      "prevalence_among_low": 10.7,
+      "low_review_count": 9,
+      "feedback": "Unprofessional crew",
+      "impact_score": 1.2,
+      "type": "Weakness",
+      "severity": 1.85,
+      "sentence_count": 13,
+      "review_count": 10,
+      "examples": [
+        "Totally unprofessional and they had no respect for our time.",
+        "He is argumentative, interrupts constantly and is unwilling to fix the blatant mistakes of his unprofessional crew.",
+        "These people are not professional."
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Broken promises",
+      "x": 1.0,
+      "y": 7.1,
+      "score": 1.0,
+      "prevalence": 7.1,
+      "prevalence_all": 0.9,
+      "prevalence_among_low": 7.1,
+      "low_review_count": 6,
+      "feedback": "Broken promises",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 8,
+      "review_count": 6,
+      "examples": [
+        "I’ve been emailing, calling, messaging them to fix it, it’s either radio silence or empty promises.",
+        "He continuously makes false promises and gives you the run around.",
+        "We spoke to and messaged the representative; promises were made but nothing was done."
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Property damage",
+      "x": 1.0,
+      "y": 7.1,
+      "score": 1.0,
+      "prevalence": 7.1,
+      "prevalence_all": 0.9,
+      "prevalence_among_low": 7.1,
+      "low_review_count": 6,
+      "feedback": "Property damage",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 8,
+      "review_count": 6,
+      "examples": [
+        "Left me property filthy and full of pot holes.",
+        "They also damaged my existing driveway by driving their machines over it without my permission.",
+        "What they did to my driveway was completely unprofessional, deceptive, and careless."
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Winter damage concerns",
+      "x": 1.14,
+      "y": 7.1,
+      "score": 1.14,
+      "prevalence": 7.1,
+      "prevalence_all": 0.9,
+      "prevalence_among_low": 7.1,
+      "low_review_count": 6,
+      "feedback": "Winter damage concerns",
+      "impact_score": 1.1,
+      "type": "Weakness",
+      "severity": 1.86,
+      "sentence_count": 7,
+      "review_count": 6,
+      "examples": [
+        "With all due consideration for the large snow falls and snow emergencies this year, they never came within the promised time frames causing icy build ups that never got removed.",
+        "This company is great in the summer but as winter hits their so called snow removal crews rarely shovel instead opting for massive dumps of snow melt to do their work.",
+        "The snow removal side of this company is absolutely horrendous- they showed up super late -and I had to call or email when their crew would should up."
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Poor communication",
+      "x": 1.0,
+      "y": 6.0,
+      "score": 1.0,
+      "prevalence": 6.0,
+      "prevalence_all": 0.8,
+      "prevalence_among_low": 6.0,
+      "low_review_count": 5,
+      "feedback": "Poor communication",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 5,
+      "review_count": 5,
+      "examples": [
+        "The unprofessionalism and poor communication is something I have never experienced before.",
+        "Poor quality and garbage service.",
+        "No communication or contact from either method."
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Poor workmanship",
+      "x": 1.0,
+      "y": 4.8,
+      "score": 1.0,
+      "prevalence": 4.8,
+      "prevalence_all": 0.6,
+      "prevalence_among_low": 4.8,
+      "low_review_count": 4,
+      "feedback": "Poor workmanship",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 4,
+      "review_count": 4,
+      "examples": [
+        "I want to post pictures of their poor work.",
+        "I was at fault for shouting.",
+        "Management are terrible, work is garbage."
+      ]
+    },
+    {
+      "id": 7,
+      "label": "Abandoned incomplete job",
+      "x": 1.0,
+      "y": 4.8,
+      "score": 1.0,
+      "prevalence": 4.8,
+      "prevalence_all": 0.6,
+      "prevalence_among_low": 4.8,
+      "low_review_count": 4,
+      "feedback": "Abandoned incomplete job",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 5,
+      "review_count": 4,
+      "examples": [
+        "They missed out on the first project and will not contact them for the bigger planned jobs.",
+        "We had to email him to find out the job was being delayed.",
+        "Deposit was made and the project manager disappeared, took about 5 months for them to sort out the situation and have been bouncing between different correspondence ever since."
+      ]
+    },
+    {
+      "id": 8,
+      "label": "Overpriced quote",
+      "x": 1.5,
+      "y": 4.8,
+      "score": 1.5,
+      "prevalence": 4.8,
+      "prevalence_all": 0.6,
+      "prevalence_among_low": 4.8,
+      "low_review_count": 4,
+      "feedback": "Overpriced quote",
+      "impact_score": 1.5,
+      "type": "Weakness",
+      "severity": 1.5,
+      "sentence_count": 4,
+      "review_count": 4,
+      "examples": [
+        "The price wasn’t worth the headache.",
+        "When giving her a quote for her front and back lawn, he told her $70.",
+        "And concrete estimate went up 4x the original quote."
+      ]
+    },
+    {
+      "id": 9,
+      "label": "Unresponsive after deposit",
+      "x": 1.0,
+      "y": 3.6,
+      "score": 1.0,
+      "prevalence": 3.6,
+      "prevalence_all": 0.5,
+      "prevalence_among_low": 3.6,
+      "low_review_count": 3,
+      "feedback": "Unresponsive after deposit",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 5,
+      "review_count": 3,
+      "examples": [
+        "That delayed the process but he quickly came to take my deposit of course.",
+        "The next morning, instead of coming as promised, he sent a message saying he could not come and that he would refund the deposit.",
+        "Then he became unresponsive after reaching out after a month."
+      ]
+    },
+    {
+      "id": 10,
+      "label": "Slow to start project",
+      "x": 1.0,
+      "y": 3.6,
+      "score": 1.0,
+      "prevalence": 3.6,
+      "prevalence_all": 0.5,
+      "prevalence_among_low": 3.6,
+      "low_review_count": 3,
+      "feedback": "Slow to start project",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 3,
+      "review_count": 3,
+      "examples": [
+        "Couple of days before the project will start, I email Martein to make sure everything is good to go...no response.",
+        "What was promised to be a 6-week project dragged on for nearly three months with zero explanation.",
+        "The work started off strong, we had great conversations with the project manager and there was good progress made in the early weeks - this is where the goodness ended."
+      ]
+    },
+    {
+      "id": 11,
+      "label": "Bad grading drainage",
+      "x": 1.0,
+      "y": 2.4,
+      "score": 1.0,
+      "prevalence": 2.4,
+      "prevalence_all": 0.3,
+      "prevalence_among_low": 2.4,
+      "low_review_count": 2,
+      "feedback": "Bad grading drainage",
+      "impact_score": 1.0,
+      "type": "Weakness",
+      "severity": 2.0,
+      "sentence_count": 3,
+      "review_count": 2,
+      "examples": [
+        "To make matters worse, the improper grading caused our newly renovated basement to flood (which had never happened with our old driveway).",
+        "The asphalt was completed and not graded properly, which created an area that directed water towards one of my basement windows."
+      ]
+    },
+    {
+      "id": 12,
+      "label": "Hidden extra charges",
+      "x": 1.33,
+      "y": 2.4,
+      "score": 1.33,
+      "prevalence": 2.4,
+      "prevalence_all": 0.3,
+      "prevalence_among_low": 2.4,
+      "low_review_count": 2,
+      "feedback": "Hidden extra charges",
+      "impact_score": 1.3,
+      "type": "Weakness",
+      "severity": 1.67,
+      "sentence_count": 3,
+      "review_count": 2,
+      "examples": [
+        "I ask, though - why no charges for three months?",
+        "I paid extra for this service."
+      ]
+    },
+    {
+      "id": 13,
+      "label": "Permit handling issues",
+      "x": 1.6,
+      "y": 2.4,
+      "score": 1.6,
+      "prevalence": 2.4,
+      "prevalence_all": 0.3,
+      "prevalence_among_low": 2.4,
+      "low_review_count": 2,
+      "feedback": "Permit handling issues",
+      "impact_score": 1.6,
+      "type": "Weakness",
+      "severity": 1.4,
+      "sentence_count": 5,
+      "review_count": 2,
+      "examples": [
+        "When asked for a solution that would be more visibly pleasing, again I was told 'We are following the permit drawings.",
+        "The process of getting a permit was a long process."
+      ]
+    }
+  ],
+  "market": {
+    "axes": {
+      "x": {
+        "field": "score",
+        "label": "Average review score",
+        "domain": [
+          1,
+          5
+        ]
+      },
+      "y": {
+        "field": "prevalence",
+        "label": "Prevalence among all reviews (%)",
+        "domain": [
+          0,
+          100
+        ]
+      }
+    },
+    "points": [
+      {
+        "id": 0,
+        "label": "Beautiful yard transformation",
+        "x": 4.97,
+        "y": 22.7,
+        "score": 4.97,
+        "prevalence": 22.7,
+        "prevalence_all": 22.7,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Beautiful yard transformation",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 317,
+        "review_count": 146,
+        "examples": [
+          "My goodness - the transformation is significant, both in terms of how the yard functions and how it looks.",
+          "Our yard looks amazing and completely transformed the space.",
+          "Our yard always looks fantastic thanks to their work."
+        ]
+      },
+      {
+        "id": 1,
+        "label": "Quality craftsmanship",
+        "x": 4.97,
+        "y": 8.6,
+        "score": 4.97,
+        "prevalence": 8.6,
+        "prevalence_all": 8.6,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Quality craftsmanship",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 93,
+        "review_count": 55,
+        "examples": [
+          "The craftsmanship is top-notch, and the entire process was smooth from start to finish.",
+          "The craftsmanship is outstanding — clean lines, perfect alignment, and incredible attention to detail.",
+          "His craftsmanship sets an unparalleled standard of quality, from winter pruning to spring rejuvenation."
+        ]
+      },
+      {
+        "id": 2,
+        "label": "Strong design vision",
+        "x": 4.91,
+        "y": 6.1,
+        "score": 4.91,
+        "prevalence": 6.1,
+        "prevalence_all": 6.1,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Strong design vision",
+        "impact_score": 4.9,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 76,
+        "review_count": 39,
+        "examples": [
+          "High quality of design and work done. 2.",
+          "He has great design ideas and makes suggestions keeping our vision in mind.",
+          "Great experience from start to finish - brought our vision to life from design to completion."
+        ]
+      },
+      {
+        "id": 3,
+        "label": "Punctual reliable crew",
+        "x": 4.92,
+        "y": 5.9,
+        "score": 4.92,
+        "prevalence": 5.9,
+        "prevalence_all": 5.9,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Punctual reliable crew",
+        "impact_score": 4.9,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 59,
+        "review_count": 38,
+        "examples": [
+          "The crew was respectful, timely, friendly and meticulous.",
+          "The crew is efficient, polite, knowledgeable, and responsive to what I want.",
+          "The crew was hardworking, reliable, punctual, respectful of people and property, kept the job site tidy, and was always willing to go the extra mile."
+        ]
+      },
+      {
+        "id": 4,
+        "label": "Good plant selection",
+        "x": 4.95,
+        "y": 5.1,
+        "score": 4.95,
+        "prevalence": 5.1,
+        "prevalence_all": 5.1,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Good plant selection",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 63,
+        "review_count": 33,
+        "examples": [
+          "The plants chosen are perfect for the yard and the birds and butterflies are already checking them out.",
+          "Their knowledge of plants and their characteristics has been most helpful.",
+          "José's design work pulled together a wide selection of native plants to suit the space, which have provided a succession of colour and foliage over the last two months and attracted many butterflies and bees."
+        ]
+      },
+      {
+        "id": 5,
+        "label": "Attention to detail",
+        "x": 5.0,
+        "y": 3.4,
+        "score": 5.0,
+        "prevalence": 3.4,
+        "prevalence_all": 3.4,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Attention to detail",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 40,
+        "review_count": 22,
+        "examples": [
+          "Everything was done with great care and attention to detail.",
+          "Everything was completed efficiently and with great attention to detail.",
+          "The attention to detail was amazing, and the customer service was top-notch."
+        ]
+      },
+      {
+        "id": 6,
+        "label": "Leftover debris cleanup",
+        "x": 4.22,
+        "y": 3.0,
+        "score": 4.22,
+        "prevalence": 3.0,
+        "prevalence_all": 3.0,
+        "prevalence_among_low": 4.8,
+        "low_review_count": 4,
+        "feedback": "Leftover debris cleanup",
+        "impact_score": 4.2,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 27,
+        "review_count": 19,
+        "examples": [
+          "We are seniors and needed a one-time cleanup/weeding when our front and back yards became overgrown.",
+          "Every detail was thoughtfully done, and they left the property spotless, cleaning up thoroughly after the work was finished.",
+          "They were more thorough than needed but great quality work, cleanup."
+        ]
+      },
+      {
+        "id": 7,
+        "label": "Finished on schedule",
+        "x": 4.95,
+        "y": 2.2,
+        "score": 4.95,
+        "prevalence": 2.2,
+        "prevalence_all": 2.2,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Finished on schedule",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 21,
+        "review_count": 14,
+        "examples": [
+          "The work itself started and finished on schedule, with the team being careful not to disturb our neighbours, as well as cleaning up fully at the end of each day.",
+          "They finished the work before the scheduled time.",
+          "The stonework and planting layout are beautiful, and everything was completed on schedule."
+        ]
+      },
+      {
+        "id": 8,
+        "label": "Clean tidy job site",
+        "x": 5.0,
+        "y": 2.0,
+        "score": 5.0,
+        "prevalence": 2.0,
+        "prevalence_all": 2.0,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Clean tidy job site",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 19,
+        "review_count": 13,
+        "examples": [
+          "Site was kept tidy during the work and cleaned toughly after the work was competed.",
+          "They did a great job cleaning up the site each day.",
+          "Our neighbours even approached us to tell us how clean and organized the job site was."
+        ]
+      },
+      {
+        "id": 9,
+        "label": "Fair transparent pricing",
+        "x": 4.87,
+        "y": 1.7,
+        "score": 4.87,
+        "prevalence": 1.7,
+        "prevalence_all": 1.7,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Fair transparent pricing",
+        "impact_score": 4.9,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 15,
+        "review_count": 11,
+        "examples": [
+          "Pricing is fair, and they always make sure everything is running perfectly.",
+          "Pricing was fair and the work was done exactly as agreed upon.",
+          "Looks great and very fair priced."
+        ]
+      },
+      {
+        "id": 10,
+        "label": "Unprofessional crew",
+        "x": 1.15,
+        "y": 1.6,
+        "score": 1.15,
+        "prevalence": 1.6,
+        "prevalence_all": 1.6,
+        "prevalence_among_low": 10.7,
+        "low_review_count": 9,
+        "feedback": "Unprofessional crew",
+        "impact_score": 1.2,
+        "type": "Weakness",
+        "severity": 1.85,
+        "sentence_count": 13,
+        "review_count": 10,
+        "examples": [
+          "Totally unprofessional and they had no respect for our time.",
+          "He is argumentative, interrupts constantly and is unwilling to fix the blatant mistakes of his unprofessional crew.",
+          "These people are not professional."
+        ]
+      },
+      {
+        "id": 11,
+        "label": "Missed deadlines",
+        "x": 1.2,
+        "y": 1.6,
+        "score": 1.2,
+        "prevalence": 1.6,
+        "prevalence_all": 1.6,
+        "prevalence_among_low": 11.9,
+        "low_review_count": 10,
+        "feedback": "Missed deadlines",
+        "impact_score": 1.2,
+        "type": "Weakness",
+        "severity": 1.8,
+        "sentence_count": 10,
+        "review_count": 10,
+        "examples": [
+          "They missed multiple deadlines with no explanation, workers were coming after 4.00pm and working till dark (maybe thats why the pool is not done well).",
+          "That deadline came and went with still no word from Martein.",
+          "project was 2 months late and they could not properly manage our expectations on when project would start or finish"
+        ]
+      },
+      {
+        "id": 12,
+        "label": "Fixed issues promptly",
+        "x": 4.62,
+        "y": 1.6,
+        "score": 4.62,
+        "prevalence": 1.6,
+        "prevalence_all": 1.6,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Fixed issues promptly",
+        "impact_score": 4.6,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 13,
+        "review_count": 10,
+        "examples": [
+          "When there were a couple of issues they rectified them right away.",
+          "They took too long to deal with a couple of relatively minor issues.",
+          "I appreciate that they acknowledged the mistake, took responsibility, and worked to resolve the issue promptly."
+        ]
+      },
+      {
+        "id": 13,
+        "label": "Clear project communication",
+        "x": 4.94,
+        "y": 1.6,
+        "score": 4.94,
+        "prevalence": 1.6,
+        "prevalence_all": 1.6,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Clear project communication",
+        "impact_score": 4.9,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 17,
+        "review_count": 10,
+        "examples": [
+          "The entire process felt organized, and communication remained clear throughout the project.",
+          "The communication throughout the project was clear and consistent, and the crew showed up on time and kept the site clean and well-managed.",
+          "They communicate really well while the work is being planned and before they arrive to do the work."
+        ]
+      },
+      {
+        "id": 14,
+        "label": "Professional quote process",
+        "x": 5.0,
+        "y": 1.6,
+        "score": 5.0,
+        "prevalence": 1.6,
+        "prevalence_all": 1.6,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Professional quote process",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 15,
+        "review_count": 10,
+        "examples": [
+          "The builders, project management, design and quotation processes was very professional and accommodating.",
+          "Came and did a complete quote prior and helped as we shifted what we wanted to do after initial quote.",
+          "They weren’t the lowest quote we received, but they were transparent, reasonable, and willing to work with us to earn our business."
+        ]
+      },
+      {
+        "id": 15,
+        "label": "Responsive project manager",
+        "x": 5.0,
+        "y": 1.4,
+        "score": 5.0,
+        "prevalence": 1.4,
+        "prevalence_all": 1.4,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Responsive project manager",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 14,
+        "review_count": 9,
+        "examples": [
+          "Our project manager, Bar, was fantastic to work with — responsive, professional, and knowledgeable.",
+          "The management team was also very supportive and responsive throughout the project.",
+          "Yegor, my project manager, was so helpful."
+        ]
+      },
+      {
+        "id": 16,
+        "label": "Broken promises",
+        "x": 1.0,
+        "y": 0.9,
+        "score": 1.0,
+        "prevalence": 0.9,
+        "prevalence_all": 0.9,
+        "prevalence_among_low": 7.1,
+        "low_review_count": 6,
+        "feedback": "Broken promises",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 8,
+        "review_count": 6,
+        "examples": [
+          "I’ve been emailing, calling, messaging them to fix it, it’s either radio silence or empty promises.",
+          "He continuously makes false promises and gives you the run around.",
+          "We spoke to and messaged the representative; promises were made but nothing was done."
+        ]
+      },
+      {
+        "id": 17,
+        "label": "Property damage",
+        "x": 1.0,
+        "y": 0.9,
+        "score": 1.0,
+        "prevalence": 0.9,
+        "prevalence_all": 0.9,
+        "prevalence_among_low": 7.1,
+        "low_review_count": 6,
+        "feedback": "Property damage",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 8,
+        "review_count": 6,
+        "examples": [
+          "Left me property filthy and full of pot holes.",
+          "They also damaged my existing driveway by driving their machines over it without my permission.",
+          "What they did to my driveway was completely unprofessional, deceptive, and careless."
+        ]
+      },
+      {
+        "id": 18,
+        "label": "Winter damage concerns",
+        "x": 1.14,
+        "y": 0.9,
+        "score": 1.14,
+        "prevalence": 0.9,
+        "prevalence_all": 0.9,
+        "prevalence_among_low": 7.1,
+        "low_review_count": 6,
+        "feedback": "Winter damage concerns",
+        "impact_score": 1.1,
+        "type": "Weakness",
+        "severity": 1.86,
+        "sentence_count": 7,
+        "review_count": 6,
+        "examples": [
+          "With all due consideration for the large snow falls and snow emergencies this year, they never came within the promised time frames causing icy build ups that never got removed.",
+          "This company is great in the summer but as winter hits their so called snow removal crews rarely shovel instead opting for massive dumps of snow melt to do their work.",
+          "The snow removal side of this company is absolutely horrendous- they showed up super late -and I had to call or email when their crew would should up."
+        ]
+      },
+      {
+        "id": 19,
+        "label": "Respectful of property",
+        "x": 5.0,
+        "y": 0.9,
+        "score": 5.0,
+        "prevalence": 0.9,
+        "prevalence_all": 0.9,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Respectful of property",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 10,
+        "review_count": 6,
+        "examples": [
+          "The crew works hard and were very respectful of our neighbours property.",
+          "Our property now looks cohesive, clean and very beautiful.",
+          "They maintained a high standard of cleanliness and were respectful to both us and our neighbors."
+        ]
+      },
+      {
+        "id": 20,
+        "label": "Poor communication",
+        "x": 1.0,
+        "y": 0.8,
+        "score": 1.0,
+        "prevalence": 0.8,
+        "prevalence_all": 0.8,
+        "prevalence_among_low": 6.0,
+        "low_review_count": 5,
+        "feedback": "Poor communication",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 5,
+        "review_count": 5,
+        "examples": [
+          "The unprofessionalism and poor communication is something I have never experienced before.",
+          "Poor quality and garbage service.",
+          "No communication or contact from either method."
+        ]
+      },
+      {
+        "id": 21,
+        "label": "Poor workmanship",
+        "x": 1.0,
+        "y": 0.6,
+        "score": 1.0,
+        "prevalence": 0.6,
+        "prevalence_all": 0.6,
+        "prevalence_among_low": 4.8,
+        "low_review_count": 4,
+        "feedback": "Poor workmanship",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 4,
+        "review_count": 4,
+        "examples": [
+          "I want to post pictures of their poor work.",
+          "I was at fault for shouting.",
+          "Management are terrible, work is garbage."
+        ]
+      },
+      {
+        "id": 22,
+        "label": "Abandoned incomplete job",
+        "x": 1.0,
+        "y": 0.6,
+        "score": 1.0,
+        "prevalence": 0.6,
+        "prevalence_all": 0.6,
+        "prevalence_among_low": 4.8,
+        "low_review_count": 4,
+        "feedback": "Abandoned incomplete job",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 5,
+        "review_count": 4,
+        "examples": [
+          "They missed out on the first project and will not contact them for the bigger planned jobs.",
+          "We had to email him to find out the job was being delayed.",
+          "Deposit was made and the project manager disappeared, took about 5 months for them to sort out the situation and have been bouncing between different correspondence ever since."
+        ]
+      },
+      {
+        "id": 23,
+        "label": "Overpriced quote",
+        "x": 1.5,
+        "y": 0.6,
+        "score": 1.5,
+        "prevalence": 0.6,
+        "prevalence_all": 0.6,
+        "prevalence_among_low": 4.8,
+        "low_review_count": 4,
+        "feedback": "Overpriced quote",
+        "impact_score": 1.5,
+        "type": "Weakness",
+        "severity": 1.5,
+        "sentence_count": 4,
+        "review_count": 4,
+        "examples": [
+          "The price wasn’t worth the headache.",
+          "When giving her a quote for her front and back lawn, he told her $70.",
+          "And concrete estimate went up 4x the original quote."
+        ]
+      },
+      {
+        "id": 24,
+        "label": "Helpful material guidance",
+        "x": 5.0,
+        "y": 0.6,
+        "score": 5.0,
+        "prevalence": 0.6,
+        "prevalence_all": 0.6,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Helpful material guidance",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 8,
+        "review_count": 4,
+        "examples": [
+          "His advice was perfect and helpful.",
+          "My salesman, Darryl, was very knowledgeable and made lots of helpful suggestions.",
+          "Gave us such great advice and knowledge with his assessment service for parking pads."
+        ]
+      },
+      {
+        "id": 25,
+        "label": "Unresponsive after deposit",
+        "x": 1.0,
+        "y": 0.5,
+        "score": 1.0,
+        "prevalence": 0.5,
+        "prevalence_all": 0.5,
+        "prevalence_among_low": 3.6,
+        "low_review_count": 3,
+        "feedback": "Unresponsive after deposit",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 5,
+        "review_count": 3,
+        "examples": [
+          "That delayed the process but he quickly came to take my deposit of course.",
+          "The next morning, instead of coming as promised, he sent a message saying he could not come and that he would refund the deposit.",
+          "Then he became unresponsive after reaching out after a month."
+        ]
+      },
+      {
+        "id": 26,
+        "label": "Slow to start project",
+        "x": 1.0,
+        "y": 0.5,
+        "score": 1.0,
+        "prevalence": 0.5,
+        "prevalence_all": 0.5,
+        "prevalence_among_low": 3.6,
+        "low_review_count": 3,
+        "feedback": "Slow to start project",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 3,
+        "review_count": 3,
+        "examples": [
+          "Couple of days before the project will start, I email Martein to make sure everything is good to go...no response.",
+          "What was promised to be a 6-week project dragged on for nearly three months with zero explanation.",
+          "The work started off strong, we had great conversations with the project manager and there was good progress made in the early weeks - this is where the goodness ended."
+        ]
+      },
+      {
+        "id": 27,
+        "label": "Efficient hardscape install",
+        "x": 5.0,
+        "y": 0.5,
+        "score": 5.0,
+        "prevalence": 0.5,
+        "prevalence_all": 0.5,
+        "prevalence_among_low": 0.0,
+        "low_review_count": 0,
+        "feedback": "Efficient hardscape install",
+        "impact_score": 5.0,
+        "type": "Strength",
+        "severity": 0.0,
+        "sentence_count": 5,
+        "review_count": 3,
+        "examples": [
+          "They installed a terraced hardscape with a lot of stairs, railings, lighting, and in-ground irrigation.",
+          "The amount of planning, hard work, and detail that went into our project was mind blowing to fathom (even for myself, as a detail oriented person) and after having gone through the process of working with Earthscape, I wouldn’t hesitate to do it again.",
+          "Working with Earthscape was a real pleasure."
+        ]
+      },
+      {
+        "id": 28,
+        "label": "Bad grading drainage",
+        "x": 1.0,
+        "y": 0.3,
+        "score": 1.0,
+        "prevalence": 0.3,
+        "prevalence_all": 0.3,
+        "prevalence_among_low": 2.4,
+        "low_review_count": 2,
+        "feedback": "Bad grading drainage",
+        "impact_score": 1.0,
+        "type": "Weakness",
+        "severity": 2.0,
+        "sentence_count": 3,
+        "review_count": 2,
+        "examples": [
+          "To make matters worse, the improper grading caused our newly renovated basement to flood (which had never happened with our old driveway).",
+          "The asphalt was completed and not graded properly, which created an area that directed water towards one of my basement windows."
+        ]
+      },
+      {
+        "id": 29,
+        "label": "Hidden extra charges",
+        "x": 1.33,
+        "y": 0.3,
+        "score": 1.33,
+        "prevalence": 0.3,
+        "prevalence_all": 0.3,
+        "prevalence_among_low": 2.4,
+        "low_review_count": 2,
+        "feedback": "Hidden extra charges",
+        "impact_score": 1.3,
+        "type": "Weakness",
+        "severity": 1.67,
+        "sentence_count": 3,
+        "review_count": 2,
+        "examples": [
+          "I ask, though - why no charges for three months?",
+          "I paid extra for this service."
+        ]
+      },
+      {
+        "id": 30,
+        "label": "Permit handling issues",
+        "x": 1.6,
+        "y": 0.3,
+        "score": 1.6,
+        "prevalence": 0.3,
+        "prevalence_all": 0.3,
+        "prevalence_among_low": 2.4,
+        "low_review_count": 2,
+        "feedback": "Permit handling issues",
+        "impact_score": 1.6,
+        "type": "Weakness",
+        "severity": 1.4,
+        "sentence_count": 5,
+        "review_count": 2,
+        "examples": [
+          "When asked for a solution that would be more visibly pleasing, again I was told 'We are following the permit drawings.",
+          "The process of getting a permit was a long process."
+        ]
+      }
+    ]
+  }
+}
