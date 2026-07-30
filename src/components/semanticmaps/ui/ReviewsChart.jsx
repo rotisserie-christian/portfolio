@@ -43,13 +43,12 @@ export default function ReviewsChart() {
         return niceMax(dataMax || domainMax, domainMax ?? 100);
     }, [baseDatasets, axes]);
 
-    const xDomain = axes?.x?.domain ?? [1, 5];
-
     const toggle = (label) =>
         setHidden((prev) => ({ ...prev, [label]: !prev[label] }));
 
-    const options = useMemo(
-        () => ({
+    const options = useMemo(() => {
+        const xDomain = axes?.x?.domain ?? [1, 5];
+        return {
             responsive: true,
             maintainAspectRatio: false,
             clip: false,
@@ -100,9 +99,8 @@ export default function ReviewsChart() {
                     },
                 },
             },
-        }),
-        [axes, xDomain, yMax]
-    );
+        };
+    }, [axes, yMax]);
 
     return (
         <div className="w-full">
