@@ -3,4 +3,4 @@
 - **`/contact`** - Form for leaving a message 
 - **`/semanticmaps`** - Data visualizations
 - **`/starfield`** - Space background animation
-- **`/ui`** - Navbar + slider component 
+- **`/ui`** - Shared UI components 
