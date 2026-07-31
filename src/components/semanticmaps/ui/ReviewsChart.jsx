@@ -1,16 +1,17 @@
 import { useMemo, useState } from 'react';
 import {
     Chart as ChartJS,
+    CategoryScale,
     LinearScale,
-    PointElement,
+    BarElement,
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Scatter } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import reviewData from '../data/review_scatter5.json';
 import { buildReviewsScatterData } from '../utils/reviews';
 
-ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 function niceMax(value, fallback = 100) {
     if (!Number.isFinite(value) || value <= 0) return fallback;
@@ -21,55 +22,67 @@ function niceMax(value, fallback = 100) {
 export default function ReviewsChart() {
     const [hidden, setHidden] = useState({});
 
-    const { datasets: baseDatasets, axes } = useMemo(
+    const { points, types, colorMap, axes } = useMemo(
         () => buildReviewsScatterData(reviewData),
         []
     );
 
-    const data = useMemo(
-        () => ({
-            datasets: baseDatasets.map((d) => ({
-                ...d,
-                hidden: !!hidden[d.label],
-            })),
-        }),
-        [baseDatasets, hidden]
+    const visiblePoints = useMemo(
+        () => points.filter((p) => !hidden[p.type]),
+        [points, hidden]
     );
 
-    const yMax = useMemo(() => {
-        const values = baseDatasets.flatMap((d) => d.data.map((p) => p.y));
+    const data = useMemo(
+        () => ({
+            labels: visiblePoints.map((p) => p.label),
+            datasets: [
+                {
+                    label: 'Prevalence',
+                    data: visiblePoints.map((p) => p.prevalence),
+                    backgroundColor: visiblePoints.map((p) => colorMap[p.type]),
+                    borderColor: visiblePoints.map((p) => colorMap[p.type]),
+                    borderWidth: 0,
+                    borderRadius: 2,
+                    barPercentage: 0.8,
+                    categoryPercentage: 0.85,
+                },
+            ],
+        }),
+        [visiblePoints, colorMap]
+    );
+
+    const xMax = useMemo(() => {
+        const values = visiblePoints.map((p) => p.prevalence);
         const dataMax = values.length ? Math.max(...values) : 0;
         const domainMax = axes?.y?.domain?.[1];
         return niceMax(dataMax || domainMax, domainMax ?? 100);
-    }, [baseDatasets, axes]);
+    }, [visiblePoints, axes]);
 
     const toggle = (label) =>
         setHidden((prev) => ({ ...prev, [label]: !prev[label] }));
 
-    const options = useMemo(() => {
-        const xDomain = axes?.x?.domain ?? [1, 5];
-        return {
+    const options = useMemo(
+        () => ({
+            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
-            clip: false,
             plugins: {
                 legend: { display: false },
                 tooltip: {
                     callbacks: {
-                        title: (items) => items[0]?.raw?.label ?? '',
+                        title: (items) => items[0]?.label ?? '',
                         label: (ctx) => {
-                            const point = ctx.raw;
-                            if (!point) return '';
-                            return `Score ${point.score} · ${point.prevalence}% · ${point.reviewCount} reviews`;
+                            const point = visiblePoints[ctx.dataIndex];
+                            if (!point) return `${ctx.parsed.x}%`;
+                            return `Prevalence ${point.prevalence}% · Score ${point.score} · ${point.reviewCount} reviews`;
                         },
                     },
                 },
             },
             scales: {
                 x: {
-                    type: 'linear',
-                    min: xDomain[0],
-                    max: xDomain[1],
+                    beginAtZero: true,
+                    max: xMax,
                     grid: { color: '#2a323c' },
                     ticks: {
                         color: '#a6adbb',
@@ -77,56 +90,51 @@ export default function ReviewsChart() {
                     },
                     title: {
                         display: true,
-                        text: axes?.x?.label ?? 'Average review score',
+                        text: axes?.y?.label ?? 'Prevalence among all reviews (%)',
                         color: '#a6adbb',
-                        font: { size: 13, family: '"Courier New", monospace', weight: 500 },
+                        font: { size: 14, family: 'Ubuntu", sans-serif', weight: 500 },
                     },
                 },
                 y: {
-                    type: 'linear',
-                    beginAtZero: true,
-                    max: yMax,
-                    grid: { color: '#2a323c' },
+                    grid: { color: '#2a323c', drawOnChartArea: false },
                     ticks: {
                         color: '#a6adbb',
-                        font: { family: '"Courier New", monospace', weight: 500 },
-                    },
-                    title: {
-                        display: true,
-                        text: axes?.y?.label ?? 'Prevalence (%)',
-                        color: '#a6adbb',
-                        font: { size: 13, family: '"Courier New", monospace', weight: 500 },
+                        font: { size: 14, family: 'Ubuntu, sans-serif', weight: 500 },
+                        autoSkip: false,
                     },
                 },
             },
-        };
-    }, [axes, yMax]);
+        }),
+        [axes, visiblePoints, xMax]
+    );
+
+    const chartHeight = Math.max(350, visiblePoints.length * 22 + 48);
 
     return (
         <div className="w-full">
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-5 mb-5">
-                {baseDatasets.map((d) => {
-                    const isHidden = !!hidden[d.label];
+                {types.map((type) => {
+                    const isHidden = !!hidden[type];
                     return (
                         <button
-                            key={d.label}
+                            key={type}
                             type="button"
-                            onClick={() => toggle(d.label)}
+                            onClick={() => toggle(type)}
                             className="flex items-center gap-2 ubuntu-medium text-sm text-neutral-content/85 transition-opacity hover:opacity-100 cursor-pointer"
                             style={{ opacity: isHidden ? 0.4 : 1 }}
                         >
                             <span
                                 className="w-3 h-3 rounded-full shrink-0"
-                                style={{ backgroundColor: d.borderColor }}
+                                style={{ backgroundColor: colorMap[type] }}
                             />
-                            <span className={isHidden ? 'line-through' : ''}>{d.label}</span>
+                            <span className={isHidden ? 'line-through' : ''}>{type}</span>
                         </button>
                     );
                 })}
             </div>
 
-            <div className="p-4 w-full h-[350px] bg-base-300">
-                <Scatter options={options} data={data} />
+            <div className="p-4 w-full bg-base-300" style={{ height: chartHeight }}>
+                <Bar options={options} data={data} />
             </div>
         </div>
     );
