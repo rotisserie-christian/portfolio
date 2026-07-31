@@ -1,5 +1,4 @@
 import ReviewsChart from "@/components/semanticmaps/ui/ReviewsChart";
-import ReviewsTable from "@/components/semanticmaps/ui/ReviewsTable";
 
 export default function Temp() {
     return (
@@ -8,9 +7,6 @@ export default function Temp() {
                 <div className="w-full my-8 flex flex-col items-center justify-center gap-5">
                     <div className="w-full lg:w-1/2 min-w-0">
                         <ReviewsChart />
-                    </div>
-                    <div className="w-full lg:w-1/2 min-w-0">
-                        <ReviewsTable />
                     </div>
                 </div>
             </div>

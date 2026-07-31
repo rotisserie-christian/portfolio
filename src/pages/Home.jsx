@@ -14,9 +14,7 @@ export default function Home() {
     const location = useLocation();
 
     useEffect(() => {
-        const sectionFromPath =
-            location.pathname === '/semanticmaps' ? 'semanticmaps' : null;
-        const section = location.state?.scrollTo || sectionFromPath;
+        const section = location.state?.scrollTo;
         if (!section) return;
 
         const timer = setTimeout(() => {
@@ -26,7 +24,7 @@ export default function Home() {
             });
         }, 100);
         return () => clearTimeout(timer);
-    }, [location.pathname, location.state]);
+    }, [location.state]);
 
     const scrollToProjects = () => {
         document.querySelector('[data-section="crayonbrain"]')?.scrollIntoView({
