@@ -33,7 +33,7 @@ export default function Trends() {
         <section className="flex flex-col items-center justify-center w-full bg-base-300 py-20 px-3 min-h-screen font-ubuntu">
             <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-2">
                 <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold text-center">
-                    Refining Product-Market Fit Through Bulk Trends Analysis
+                    Refining Features Through Bulk Trends Analysis
                 </h1>
 
                 <div className="flex justify-center w-full mt-8 lg:mt-10">
