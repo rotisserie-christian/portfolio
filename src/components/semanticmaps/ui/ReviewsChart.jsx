@@ -13,6 +13,8 @@ import { buildReviewsScatterData } from '../utils/reviews';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
+const Y_AXIS_WIDTH = 210;
+
 function niceMax(value, fallback = 100) {
     if (!Number.isFinite(value) || value <= 0) return fallback;
     const step = value <= 20 ? 5 : 10;
@@ -90,9 +92,9 @@ export default function ReviewsChart() {
                     },
                     title: {
                         display: true,
-                        text: axes?.y?.label ?? 'Prevalence among all reviews (%)',
+                        text: axes?.y?.label ?? 'Prevalence',
                         color: '#a6adbb',
-                        font: { size: 14, family: 'Ubuntu", sans-serif', weight: 500 },
+                        font: { size: 14, family: 'Ubuntu, sans-serif', weight: 500 },
                     },
                 },
                 y: {
@@ -101,6 +103,9 @@ export default function ReviewsChart() {
                         color: '#a6adbb',
                         font: { size: 14, family: 'Ubuntu, sans-serif', weight: 500 },
                         autoSkip: false,
+                    },
+                    afterFit(scale) {
+                        scale.width = Math.max(scale.width, Y_AXIS_WIDTH);
                     },
                 },
             },
@@ -112,29 +117,34 @@ export default function ReviewsChart() {
 
     return (
         <div className="w-full">
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-5 mb-5">
-                {types.map((type) => {
-                    const isHidden = !!hidden[type];
-                    return (
-                        <button
-                            key={type}
-                            type="button"
-                            onClick={() => toggle(type)}
-                            className="flex items-center gap-2 ubuntu-medium text-sm text-neutral-content/85 transition-opacity hover:opacity-100 cursor-pointer"
-                            style={{ opacity: isHidden ? 0.4 : 1 }}
-                        >
-                            <span
-                                className="w-3 h-3 rounded-full shrink-0"
-                                style={{ backgroundColor: colorMap[type] }}
-                            />
-                            <span className={isHidden ? 'line-through' : ''}>{type}</span>
-                        </button>
-                    );
-                })}
-            </div>
+            <div className="p-4 bg-base-300">
+                <div
+                    className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-3"
+                    style={{ marginLeft: Y_AXIS_WIDTH }}
+                >
+                    {types.map((type) => {
+                        const isHidden = !!hidden[type];
+                        return (
+                            <button
+                                key={type}
+                                type="button"
+                                onClick={() => toggle(type)}
+                                className="flex items-center gap-2 ubuntu-medium text-sm text-neutral-content/85 transition-opacity hover:opacity-100 cursor-pointer"
+                                style={{ opacity: isHidden ? 0.4 : 1 }}
+                            >
+                                <span
+                                    className="w-3 h-3 rounded-full shrink-0"
+                                    style={{ backgroundColor: colorMap[type] }}
+                                />
+                                <span className={isHidden ? 'line-through' : ''}>{type}</span>
+                            </button>
+                        );
+                    })}
+                </div>
 
-            <div className="p-4 w-full bg-base-300" style={{ height: chartHeight }}>
-                <Bar options={options} data={data} />
+                <div style={{ height: chartHeight }}>
+                    <Bar options={options} data={data} />
+                </div>
             </div>
         </div>
     );

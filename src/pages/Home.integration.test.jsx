@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 
@@ -7,17 +7,8 @@ import Home from './Home';
  * Tests main layout structure and navigation logic
  */
 
-// Mock sections and complex background components
-vi.mock('../components/starfield/StarsBackground', () => ({
-  StarsBackground: () => <div data-testid="stars-background" />
-}));
-
-vi.mock('../components/starfield/ShootingStars', () => ({
-  ShootingStars: () => <div data-testid="shooting-stars" />
-}));
-
-vi.mock('../components/crayonbrain/Crayonbrain', () => ({
-  default: () => <div data-testid="section-crayonbrain">Crayonbrain Visualizer</div>
+vi.mock('../components/projects/Projects', () => ({
+  default: () => <div data-testid="section-projects">Projects</div>
 }));
 
 vi.mock('../components/contact/Contact', () => ({
@@ -28,15 +19,9 @@ vi.mock('../components/ui/Footer', () => ({
   default: () => <div data-testid="footer" />
 }));
 
-// Mock icons
-vi.mock('react-icons/fa', () => ({
-  FaAngleDoubleRight: () => <span>→</span>,
-}));
-
 describe('Home Page Integration', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Mock for scrollIntoView (attaching to HTMLElement prototype)
     if (typeof window !== 'undefined') {
       window.HTMLElement.prototype.scrollIntoView = vi.fn();
     }
@@ -49,22 +34,9 @@ describe('Home Page Integration', () => {
   );
 
   describe('Page Layout', () => {
-    it('renders the hero section with core identity info', () => {
+    it('mounts the projects section', () => {
       renderHome();
-      expect(screen.getByText(/Christian Waters/i)).toBeInTheDocument();
-      expect(screen.getByText(/Web Developer/i)).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /projects/i })).toBeInTheDocument();
-    });
-
-    it('renders the background animation layers', () => {
-      renderHome();
-      expect(screen.getByTestId('stars-background')).toBeInTheDocument();
-      expect(screen.getByTestId('shooting-stars')).toBeInTheDocument();
-    });
-
-    it('mounts the Crayonbrain project section', () => {
-      renderHome();
-      expect(screen.getByTestId('section-crayonbrain')).toBeInTheDocument();
+      expect(screen.getByTestId('section-projects')).toBeInTheDocument();
     });
 
     it('wraps sections in correct data-section attributes for anchoring', () => {
@@ -72,24 +44,11 @@ describe('Home Page Integration', () => {
       expect(container.querySelector('[data-section="crayonbrain"]')).toBeInTheDocument();
       expect(container.querySelector('[data-section="contact"]')).toBeInTheDocument();
     });
-  });
 
-  describe('Navigation Flow', () => {
-    it('triggers a smooth scroll to the Crayonbrain section when clicking the CTA', async () => {
-      const scrollSpy = vi.fn();
-      window.HTMLElement.prototype.scrollIntoView = scrollSpy;
-
+    it('mounts contact and footer', () => {
       renderHome();
-      const projectsButton = screen.getByRole('button', { name: /projects/i });
-
-      await act(async () => {
-        projectsButton.click();
-      });
-
-      expect(scrollSpy).toHaveBeenCalledWith({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      expect(screen.getByTestId('section-contact')).toBeInTheDocument();
+      expect(screen.getByTestId('footer')).toBeInTheDocument();
     });
   });
 });

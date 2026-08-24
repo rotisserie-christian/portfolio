@@ -300,11 +300,7 @@ export default function Trends() {
                 </div>
             </div>
 
-            <Contact
-                Icon={null}
-                heading="Contact"
-                source="trends"
-            />
+            <Contact source="trends" />
             <Footer />
         </section>
     );
