@@ -2,20 +2,9 @@ import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/Expa
 import MusicComposerDemo from "./MusicComposerDemo";
 
 export default function Projects() {
-    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-
     return (
         <section className="flex items-center justify-center w-full">
-            <div className="flex flex-col mt-5 mb-10 lg:mb-16 items-stretch w-full max-w-5xl px-4">
-                <header className="mb-12 lg:mb-16">
-                    <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold text-left mt-8">
-                        Christian Waters
-                    </h1>
-                    <p className="text-lg lg:text-xl mt-3 text-neutral-content/85 text-left">
-                        {!isChrome && <span className="text-xl mr-2">🇨🇦</span>}Web Developer
-                    </p>
-                </header>
-
+            <div className="flex flex-col mb-10 lg:mb-16 items-stretch w-full max-w-5xl px-4">
                 <h2 className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 text-left">
                     Projects
                 </h2>
