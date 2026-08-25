@@ -1,21 +1,19 @@
 ### Contexts
-- **`SequencerContext.js`** - Enables communication between `DemoSequencer` and `Visualizer`
-- **`SequencerContext.jsx`** - Provider component
+- **`SequencerContext.ts`** - Typed context shared by the sequencer and visualizer
+- **`SequencerContext.jsx`** - Provider for playback state and the sequencer gain-node ref
 
 ---
 
 **Provider Setup:**
-- `SequencerProvider` wraps both sequencer and visualizer components
+- `SequencerProvider` wraps sequencer and visualizer siblings
 - Initializes `isPlaying: false` and `sequencerGainRef: null`
 
 **State Updates:**
-- **DemoSequencer** writes to context:
-  - `isPlaying` state → `setIsPlaying(isPlaying)` (DemoSequencer.jsx:46)
-  - `sequencerGainRef` → `contextGainRef.current = sequencerGainRef.current` (DemoSequencer.jsx:52)
+- **SequencerInner** writes to context:
+  - Synchronizes playback state with `setIsPlaying(isPlaying)`
+  - Copies its Tone.js gain node into the shared `sequencerGainRef`
 
 **State Consumption:**
 - **Visualizer** reads from context:
-  - Gets `isPlaying` and `sequencerGainRef` via `useSequencerContext()` (Visualizer.jsx:11)
+  - Gets `isPlaying` and `sequencerGainRef` through `useSequencerContext()`
   - Passes `sequencerGainRef` to `useVisualizer` for audio connection
-
-**See also:** `hooks/README.md`

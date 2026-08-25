@@ -3,14 +3,7 @@
 - **`PresetControls.jsx`** - Controls for visualizer presets
 - **`SequencerControls.jsx`** - Play/Stop and Clear buttons for sequencer
 - **`TempoSlider.jsx`** - BPM tempo control with slider and increment/decrement buttons
-- **`SequencerFeatures.jsx`** - Condensed feature list for gated cards
 - **`VisualizerGate.jsx`** - Placeholder UI with "Load Demo" and "Visit Site" actions
-
-## `SequencerFeatures`
-**Parameters:**
-- `isDemoLoaded` (boolean) - Whether the interactive demo is active (controls content variant)
-
-**Used in:** `DemoSequencer.jsx`
 
 ## `VisualizerGate`
 **Parameters:**
@@ -22,13 +15,11 @@
 **Parameters:**
 - `drumSounds` (Array) - Array of drum sound objects { id, name, src }
 - `drumSequence` (Array) - Array of objects, each with a `steps` property containing an array of booleans
-- `currentStep` (number) - Current step in sequence (0-7)
-- `isPlaying` (boolean) - Whether sequencer is currently playing
 - `onCellClick` (Function) - Callback when a step cell is clicked (soundIndex, stepIndex)
 
 **Returns:** JSX element
 
-**Used in:** `DemoSequencer.jsx:77`
+**Used in:** `SequencerInner.jsx`
 
 ## `SequencerControls`
 **Parameters:**
@@ -37,7 +28,7 @@
 - `onPlay` (Function) - Callback when Play/Stop button is clicked
 - `onClear` (Function) - Callback when Clear button is clicked
 
-**Used in:** `DemoSequencer.jsx:68`
+**Used in:** `SequencerInner.jsx`
 
 ## `TempoSlider`
 **Parameters:**
@@ -46,7 +37,7 @@
 - `minBpm` (number, optional) - Minimum BPM (default: 75)
 - `maxBpm` (number, optional) - Maximum BPM (default: 175)
 
-**Used in:** `DemoSequencer.jsx:75`
+**Used in:** `SequencerInner.jsx`
 
 ## `PresetControls`
 **Parameters:**
@@ -56,4 +47,4 @@
 - `onNext` (Function) - Callback when Next button is clicked
 - `totalPresets` (number, optional) - Total number of presets (default: 3)
 
-**Used in:** `Visualizer.jsx:26`
+**Used in:** `Visualizer.jsx`

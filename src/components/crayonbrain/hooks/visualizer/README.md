@@ -1,5 +1,6 @@
 - **`analyserSetup.ts`** - Creates and configures Web Audio analyser nodes
 - **`presetLoader.ts`** - Loads Butterchurn presets
+- **`useAudioConnection.ts`** - Connects the analyser to the sequencer gain node, with polling and fallback routing
 - **`useCanvasResize.ts`** - Handles canvas sizing on window resize events
 - **`usePresetSwitching.ts`** - Manages preset selection, switching, and name display
 - **`useRenderLoop.ts`** - Manages requestAnimationFrame render loop
@@ -27,10 +28,25 @@ Main orchestrator that handles visualizer setup, audio connection, canvas resizi
 - Manages continuous render loop via requestAnimationFrame
 - Always renders (shows static visualization when no audio)
 
-**Used in:** `Visualizer.jsx:12` (Note: Visualizer.jsx is lazy-loaded and gated behind a user interaction)
+**Used in:** `Visualizer.jsx`
 
 
 # Supporting Hooks:
+## `useAudioConnection`
+
+Connects the analyser to the sequencer gain node. Because refs do not trigger renders, it polls until the source becomes available and then stops polling once connected.
+
+**Parameters:**
+- `audioSourceRef` (RefObject) - Reference to the sequencer gain node
+- `analyserRef` (RefObject) - Reference to the Web Audio analyser
+- `audioCtxRef` (RefObject) - Reference to the Web Audio context
+- `connectedGainRef` (RefObject) - Tracks the currently connected source
+
+**Returns:** `connectAnalyser` (Function) - Manually triggers the connection
+
+**Used internally by:** `useVisualizer`
+
+
 ## `useSetupVisualizer`
 
 Sets up Butterchurn with audio context, analyser, and presets. Initializes the visualizer instance and connects it to audio analysis.
@@ -75,7 +91,7 @@ Manages preset selection, switching, and name display for the visualizer.
 - `presetName` (string) - Name of the current preset
 - `switchPreset` (Function) - Function to switch presets ('next' | 'prev')
 
-**Used in:** `Visualizer.jsx:14`
+**Used in:** `Visualizer.jsx`
 
 
 ## `useCanvasResize`
