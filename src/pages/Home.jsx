@@ -30,7 +30,7 @@ export default function Home() {
                 <link rel="canonical" href="https://christianwaters.dev/" />
             </Helmet>
 
-            <div className="flex flex-col items-center justify-center w-full">
+            <div className="flex flex-1 flex-col items-center w-full">
                 <div data-section="crayonbrain" className="w-full">
                     <ErrorBoundary name="Projects">
                         <Projects />

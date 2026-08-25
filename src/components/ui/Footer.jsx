@@ -1,55 +1,31 @@
-import { Link } from 'react-router-dom';
-import cb from '@/assets/cb.png';
-import { useNavigateToSection } from '@/hooks/useNavigateToSection';
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
-    const navigateToSection = useNavigateToSection();
-
     return (
-        <footer className="w-full py-12 bg-base-300 border-t border-white/5 flex flex-col items-center">
-            <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row justify-between items-center gap-8 mb-4">
-                <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    <div className="flex items-center gap-2 mb-2">
-                        <img src={cb} alt="Crayonbrain Logo" className="w-10 h-10" />
-                        <span className="text-xl ubuntu-bold text-neutral-content/90">Christian Waters</span>
-                    </div>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-10">
-                    <div className="flex flex-col items-start md:items-start gap-2">
-                        <h4 className="text-sm font-bold tracking-wider text-base-content/40 uppercase">Projects</h4>
-                        <button
-                            type="button"
-                            onClick={() => navigateToSection('crayonbrain')}
-                            className="text-sm text-neutral-content/90 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
-                        >
-                            Crayonbrain
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => navigateToSection('semanticmaps')}
-                            className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
-                        >
-                            Semantic Maps
-                        </button>
-                        <Link
-                            to="/trends"
-                            onClick={() => window.scrollTo(0, 0)}
-                            className="text-sm text-neutral-content/80 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular"
-                        >
-                            Market Research
-                        </Link>
-                    </div>
-
-                    <div className="flex flex-col items-start md:items-start gap-2">
-                        <h4 className="text-sm font-bold tracking-wider text-base-content/40 uppercase">Links</h4>
-                        <a href="https://linkedin.com/in/cwaters123" target="_blank" rel="noreferrer" className="text-sm text-neutral-content/90 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
-                            LinkedIn
-                        </a>
-                        <a href="https://github.com/rotisserie-christian" target="_blank" rel="noreferrer" className="text-sm text-neutral-content/90 hover:text-cyan-400 transition-colors cursor-pointer ubuntu-regular">
-                            GitHub
-                        </a>
-                    </div>
+        <footer className="mt-auto w-full py-12 bg-base-300 border-t border-white/5 flex flex-col items-center">
+            <div className="flex flex-col items-center text-center px-6">
+                <span className="text-xl ubuntu-bold text-neutral-content/90">Christian Waters</span>
+                <div className="flex flex-row items-center gap-4 mt-3">
+                    <a
+                        href="https://linkedin.com/in/cwaters123"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="LinkedIn Profile"
+                        className="flex items-center gap-2 underline text-neutral-content/75 hover:text-neutral-content ubuntu-regular"
+                    >
+                        <FaLinkedin className="text-lg" />
+                        LinkedIn
+                    </a>
+                    <a
+                        href="https://github.com/rotisserie-christian"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="GitHub Profile"
+                        className="flex items-center gap-2 underline text-neutral-content/75 hover:text-neutral-content ubuntu-regular"
+                    >
+                        <FaGithub className="text-lg" />
+                        GitHub
+                    </a>
                 </div>
             </div>
         </footer>

@@ -1,24 +1,16 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { useNavigateToSection } from "@/hooks/useNavigateToSection";
 
 export default function Navbar() {
-    const navigateToSection = useNavigateToSection();
-
-    const handleNav = (sectionId) => {
-        navigateToSection(sectionId);
-        if (document.activeElement instanceof HTMLElement) {
-            document.activeElement.blur();
-        }
-    };
-
-    const handleTrendsNav = () => {
+    const closeMenu = () => {
         window.scrollTo(0, 0);
         if (document.activeElement instanceof HTMLElement) {
             document.activeElement.blur();
         }
     };
+
+    const linkClass = "text-neutral-content/90 hover:text-white ubuntu-regular";
 
     return (
         <nav className="sticky top-0 z-50 w-full bg-base-300/70 backdrop-blur-sm shadow-sm">
@@ -30,28 +22,9 @@ export default function Navbar() {
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 p-2 shadow mt-4">
                             <li>
-                                <a onClick={() => handleNav('crayonbrain')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
-                                    Crayonbrain
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={() => handleNav('semanticmaps')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
-                                    Semantic Maps
-                                </a>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/trends"
-                                    onClick={handleTrendsNav}
-                                    className="text-neutral-content/90 hover:text-white ubuntu-regular"
-                                >
-                                    Market Research
+                                <Link to="/" onClick={closeMenu} className={linkClass}>
+                                    Portfolio
                                 </Link>
-                            </li>
-                            <li>
-                                <a onClick={() => handleNav('contact')} className="text-neutral-content/90 hover:text-white ubuntu-regular">
-                                    Contact
-                                </a>
                             </li>
                         </ul>
                     </div>
