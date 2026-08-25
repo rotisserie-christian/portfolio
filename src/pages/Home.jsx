@@ -32,7 +32,7 @@ export default function Home() {
             </Helmet>
 
             <div className="flex flex-1 flex-col items-center w-full">
-                <div data-section="crayonbrain" className="w-full">
+                <div data-section="projects" className="w-full">
                     <ErrorBoundary name="Projects">
                         <Projects />
                     </ErrorBoundary>

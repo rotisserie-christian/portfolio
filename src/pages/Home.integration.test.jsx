@@ -1,59 +1,64 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { act, render, screen } from '@testing-library/react';
+import { HelmetProvider } from 'react-helmet-async';
+import { MemoryRouter } from 'react-router-dom';
 import Home from './Home';
 
-/**
- * Tests main layout structure and navigation logic
- */
-
-vi.mock('../components/projects/Projects', () => ({
-  default: () => <div data-testid="section-projects">Projects</div>
-}));
-
-vi.mock('../components/articles/Articles', () => ({
-  default: () => <div data-testid="section-articles">Articles</div>
-}));
-
-vi.mock('../components/contact/Contact', () => ({
-  default: () => <div data-testid="section-contact">Contact</div>
-}));
-
-vi.mock('../components/ui/Footer', () => ({
-  default: () => <div data-testid="footer" />
-}));
-
 describe('Home Page Integration', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    if (typeof window !== 'undefined') {
-      window.HTMLElement.prototype.scrollIntoView = vi.fn();
-    }
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
-  const renderHome = () => render(
-    <BrowserRouter>
-      <Home />
-    </BrowserRouter>
+  const renderHome = (entry = '/') => render(
+    <HelmetProvider>
+      <MemoryRouter initialEntries={[entry]}>
+        <Home />
+      </MemoryRouter>
+    </HelmetProvider>
   );
 
-  describe('Page Layout', () => {
-    it('mounts the projects section', () => {
-      renderHome();
-      expect(screen.getByTestId('section-projects')).toBeInTheDocument();
+  it('renders the document sections in order with the footer', () => {
+    renderHome();
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Christian Waters' })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
+      'Projects',
+      'Articles',
+      'Contact',
+    ]);
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+  });
+
+  it('scrolls to a section requested through navigation state', () => {
+    vi.useFakeTimers();
+    const scrollIntoView = vi.fn();
+    vi.spyOn(window.HTMLElement.prototype, 'scrollIntoView').mockImplementation(scrollIntoView);
+
+    renderHome({ pathname: '/', state: { scrollTo: 'articles' } });
+
+    act(() => {
+      vi.advanceTimersByTime(100);
     });
 
-    it('wraps sections in correct data-section attributes for anchoring', () => {
-      const { container } = renderHome();
-      expect(container.querySelector('[data-section="crayonbrain"]')).toBeInTheDocument();
-      expect(container.querySelector('[data-section="articles"]')).toBeInTheDocument();
-      expect(container.querySelector('[data-section="contact"]')).toBeInTheDocument();
+    expect(scrollIntoView).toHaveBeenCalledOnce();
+    expect(scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'smooth',
+      block: 'start',
     });
+  });
 
-    it('mounts contact and footer', () => {
-      renderHome();
-      expect(screen.getByTestId('section-contact')).toBeInTheDocument();
-      expect(screen.getByTestId('footer')).toBeInTheDocument();
-    });
+  it('sets the home page metadata', () => {
+    renderHome();
+
+    expect(document.title).toBe('Christian Waters | Developer Portfolio');
+    expect(document.querySelector('meta[name="description"]')).toHaveAttribute(
+      'content',
+      'Full stack creative tools developer in Saskatoon, Saskatchewan',
+    );
+    expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://christianwaters.dev/',
+    );
   });
 });

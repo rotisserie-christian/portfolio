@@ -1,11 +1,12 @@
 ### /src/pages
-- **`Home.jsx`** - Renders crayonbrain demo, houses links
+- **`Home.jsx`** - Renders the portfolio with Projects, Articles, Contact, and Footer sections
 - **`Temp.jsx`** - Sandbox page for experimenting with new features
-- **`Trends.jsx`** - Bulk trends analysis article 
+- **`Trends.jsx`** - Bulk trends analysis article
+- **`Prerendering.jsx`** - Prerendering for legacy SPAs article
 
-### Home integration test 
-- Hero shows name, title, and Projects CTA
-- Stars background + shooting stars mount
-- Crayonbrain section mounts
-- data-section="crayonbrain" and data-section="contact" anchors exist
-- Projects CTA calls scrollIntoView with smooth / start
+### Home integration test
+- Renders the Home child components
+- Verifies the main heading and Projects, Articles, and Contact section order
+- Confirms the footer is present
+- Confirms navigation state scrolls to the requested section with smooth / start behavior
+- Verifies the page title, description, and canonical URL
