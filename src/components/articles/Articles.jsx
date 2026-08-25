@@ -38,7 +38,7 @@ export default function Articles() {
                             <p className={paragraphClass}>
                                 Placeholder
                             </p>
-                            <ProjectLink href="https://github.com/rotisserie-christian/simple-prerender" label="View repo" />
+                            <ProjectLink href="/prerendering" label="Read more" />
                             <p className={paragraphClass}>
                                 Placeholder
                             </p>
