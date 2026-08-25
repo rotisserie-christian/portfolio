@@ -55,7 +55,9 @@ export default function Home() {
                 </div>
 
                 <div data-section="contact" className="w-full">
-                    <Contact />
+                    <ErrorBoundary name="Contact">
+                        <Contact />
+                    </ErrorBoundary>
                 </div>
 
                 <Footer />
