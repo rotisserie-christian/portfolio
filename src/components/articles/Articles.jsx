@@ -36,11 +36,20 @@ export default function Articles() {
 
                         <ExpandableRow title="Prerendering for Legacy SPAs">
                             <p className={paragraphClass}>
-                                Placeholder
+                                Older React SPAs often return an empty HTML shell and rely on JavaScript to render the page.
+                                That can leave crawlers without the headings, copy, or links they need.
+                            </p>
+                            <p className={paragraphClass}>
+                                Migrating the whole application to an SSR framework can be hard to justify when only a few
+                                routes need to be crawlable, so I built a small post-build prerendering script instead.
                             </p>
                             <ProjectLink href="/prerendering" label="Read more" />
                             <p className={paragraphClass}>
-                                Placeholder
+                                After Vite builds the site, the script opens each configured route in headless Chromium,
+                                waits for the page to render, and saves the resulting HTML to the matching path in
+                                {" "}<code className="text-neutral-content/85">dist/</code>.
+                                It is meant for a short list of important pages, not as a replacement for SSR or static site
+                                generation.
                             </p>
                         </ExpandableRow>
                     </div>
