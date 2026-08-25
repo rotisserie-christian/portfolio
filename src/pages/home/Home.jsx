@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import Projects from "@/components/projects/Projects";
-import Articles from "@/components/articles/Articles";
+import Projects from "./Projects";
+import Articles from "./Articles";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/ui/Footer";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";

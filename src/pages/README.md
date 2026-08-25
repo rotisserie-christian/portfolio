@@ -1,5 +1,5 @@
 ### /src/pages
-- **`Home.jsx`** - Renders the portfolio with Projects, Articles, Contact, and Footer sections
+- **`home/`** - Home page, its Projects and Articles sections, and integration test
 - **`Temp.jsx`** - Sandbox page for experimenting with new features
 - **`Trends.jsx`** - Bulk trends analysis article
 - **`Prerendering.jsx`** - Prerendering for legacy SPAs article

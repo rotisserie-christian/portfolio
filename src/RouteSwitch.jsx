@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from '@/App';
-import Home from '@/pages/Home';
+import Home from '@/pages/home/Home';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Temp from './pages/Temp';
 import Trends from './pages/Trends';
