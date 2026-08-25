@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Projects from "@/components/projects/Projects";
+import Articles from "@/components/articles/Articles";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/ui/Footer";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
@@ -34,6 +35,12 @@ export default function Home() {
                 <div data-section="crayonbrain" className="w-full">
                     <ErrorBoundary name="Projects">
                         <Projects />
+                    </ErrorBoundary>
+                </div>
+
+                <div data-section="articles" className="w-full">
+                    <ErrorBoundary name="Articles">
+                        <Articles />
                     </ErrorBoundary>
                 </div>
 

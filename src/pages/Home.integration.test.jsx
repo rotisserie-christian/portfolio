@@ -11,6 +11,10 @@ vi.mock('../components/projects/Projects', () => ({
   default: () => <div data-testid="section-projects">Projects</div>
 }));
 
+vi.mock('../components/articles/Articles', () => ({
+  default: () => <div data-testid="section-articles">Articles</div>
+}));
+
 vi.mock('../components/contact/Contact', () => ({
   default: () => <div data-testid="section-contact">Contact</div>
 }));
@@ -42,6 +46,7 @@ describe('Home Page Integration', () => {
     it('wraps sections in correct data-section attributes for anchoring', () => {
       const { container } = renderHome();
       expect(container.querySelector('[data-section="crayonbrain"]')).toBeInTheDocument();
+      expect(container.querySelector('[data-section="articles"]')).toBeInTheDocument();
       expect(container.querySelector('[data-section="contact"]')).toBeInTheDocument();
     });
 
