@@ -1,7 +1,11 @@
 ## src/components/ui
 - **`Accordion.jsx`** - Collapsible section with a header bar and expandable content
 - **`CustomSlider.jsx`** - Slider for tempo, and other future controllers
-- **`Footer.jsx`** - Footer with Github/Linkedin buttons, and links to other pages
+- **`ErrorBoundary.tsx`** - Isolates descendant render failures and displays a resettable fallback
+- **`ExpandableRow.jsx`** - Collapsible document row and internal/external project link helpers
+- **`Footer.jsx`** - Footer with GitHub and LinkedIn profile links
 - **`LoadingSpinner.jsx`** - Accessible, size-configurable loading indicator
 - **`Navbar.jsx`** - Github/Linkedin buttons & hamburger menu
+- **`ScrollableTabBar.jsx`** - Horizontally scrollable tabs with overflow controls
+- **`SectionNav.jsx`** - Sticky section navigation with active-section tracking
 - **`ToggleSwitch.jsx`** - Toggle between two states

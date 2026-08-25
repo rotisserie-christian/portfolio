@@ -8,4 +8,4 @@
 **Returns:**
 - `string` - Merged class names
 
-**Used in:** `ShootingStars.jsx:1`, `StarsBackground.jsx:1`
+**Used in:** `ShootingStars.jsx`, `StarsBackground.jsx`, `ExpandableRow.jsx`, and `LoadingSpinner.jsx`
