@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { MdOutlineRemoveCircleOutline } from 'react-icons/md';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 const SequencerControls = ({ isPlaying, isInitializing, onPlay, onClear }) => {
     return (
@@ -12,7 +13,7 @@ const SequencerControls = ({ isPlaying, isInitializing, onPlay, onClear }) => {
                 aria-label={isPlaying ? "Stop drum loop" : "Play drum loop"}
             >
                 {isInitializing ? (
-                    <span className="loading loading-spinner loading-sm"></span>
+                    <LoadingSpinner size="sm" label="Initializing sequencer" />
                 ) : (
                     <>
                         {isPlaying ? <FaStop className="mr-1" /> : <FaPlay className="mr-1" />}

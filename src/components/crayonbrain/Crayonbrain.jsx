@@ -6,6 +6,7 @@ import cb from "@/assets/cb.png";
 import DemoSequencer from "./DemoSequencer";
 import { SequencerProvider } from "@/contexts/SequencerContext.jsx";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import HowItWorks from "./ui/HowItWorks.jsx";
 import VisualizerGate from "./ui/VisualizerGate.jsx";
 
@@ -22,7 +23,7 @@ const LazyVisualizer = ({ isDemoLoaded, onLoadDemo }) => {
                         <Suspense
                             fallback={
                                 <div className="w-full h-full flex flex-col items-center justify-center skeleton opacity-50">
-                                    <span className="loading loading-spinner loading-lg text-primary"></span>
+                                    <LoadingSpinner className="text-primary" label="Loading visualizer" />
                                 </div>
                             }
                         >

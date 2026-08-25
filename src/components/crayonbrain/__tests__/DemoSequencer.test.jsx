@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import DemoSequencer from '../DemoSequencer';
 import { SequencerProvider } from '@/contexts/SequencerContext.jsx';
@@ -59,15 +59,15 @@ describe('DemoSequencer Component (Light)', () => {
     );
   };
 
-  it('renders correctly in its base state', () => {
+  it('renders correctly in its base state', async () => {
     renderWithProvider();
 
-    expect(screen.getByTestId('sequencer-controls')).toBeInTheDocument();
-    expect(screen.getByTestId('tempo-slider')).toBeInTheDocument();
-    expect(screen.getByTestId('drum-pad')).toBeInTheDocument();
+    expect(await screen.findByTestId('sequencer-controls')).toBeInTheDocument();
+    expect(await screen.findByTestId('tempo-slider')).toBeInTheDocument();
+    expect(await screen.findByTestId('drum-pad')).toBeInTheDocument();
   });
 
-  it('toggles the play button when state changes', () => {
+  it('toggles the play button when state changes', async () => {
     vi.mocked(useSequencer).mockReturnValue({
       ...defaultHookReturn,
       isPlaying: true
@@ -75,10 +75,10 @@ describe('DemoSequencer Component (Light)', () => {
 
     renderWithProvider();
 
-    expect(screen.getByText('Stop')).toBeInTheDocument();
+    expect(await screen.findByText('Stop')).toBeInTheDocument();
   });
 
-  it('disables play button during initialization', () => {
+  it('disables play button during initialization', async () => {
     vi.mocked(useSequencer).mockReturnValue({
       ...defaultHookReturn,
       isInitializing: true
@@ -86,7 +86,7 @@ describe('DemoSequencer Component (Light)', () => {
 
     renderWithProvider();
 
-    const playBtn = screen.getByRole('button', { name: /Play/i });
+    const playBtn = await screen.findByRole('button', { name: /Play/i });
     expect(playBtn).toBeDisabled();
   });
 });

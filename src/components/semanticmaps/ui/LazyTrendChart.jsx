@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const TrendChart = lazy(() => import("./TrendChart"));
 
@@ -19,7 +20,7 @@ export default function LazyTrendChart({
                 <Suspense
                     fallback={
                         <div className="flex flex-col items-center justify-center w-full h-[350px]">
-                            <span className="loading loading-spinner loading-lg text-primary"></span>
+                            <LoadingSpinner className="text-primary" label="Loading trend chart" />
                         </div>
                     }
                 >

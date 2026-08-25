@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { handleSend } from "./handleSend";
 
 const Contact = ({ source = "home" }) => {
@@ -79,7 +80,7 @@ const Contact = ({ source = "home" }) => {
                             className={`btn btn-neutral rounded-lg text-cyan-200 ${status === "success" ? "btn-success text-white" : ""}`}
                         >
                             {status === "loading" ? (
-                                <span className="loading loading-spinner loading-sm"></span>
+                                <LoadingSpinner size="sm" label="Sending message" />
                             ) : status === "success" ? (
                                 "Success!"
                             ) : (

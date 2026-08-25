@@ -11,6 +11,7 @@ import {
 import 'chartjs-adapter-date-fns';
 import { Line } from 'react-chartjs-2';
 import ToggleSwitch from '../../ui/ToggleSwitch';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { useTrendData } from '../hooks/useTrendData';
 
 ChartJS.register(LineElement, PointElement, LinearScale, TimeScale, Tooltip, Title);
@@ -134,7 +135,7 @@ export default function TrendChart({
                     <Line options={options} data={data} />
                 ) : (
                     <div className="flex items-center justify-center w-full h-full">
-                        <span className="loading loading-spinner loading-lg text-primary"></span>
+                        <LoadingSpinner className="text-primary" label="Loading trend data" />
                     </div>
                 )}
             </div>
