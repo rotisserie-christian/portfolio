@@ -28,7 +28,7 @@ const Contact = ({ source = "home" }) => {
 
     return (
         <section data-section="contact" className="flex flex-col items-center justify-center w-full pt-8 pb-40">
-            <div className="flex flex-col items-stretch w-full max-w-4xl px-4">
+            <div className="flex flex-col items-stretch w-full max-w-5xl px-4">
                 <h2 className="scroll-mt-28 text-2xl lg:text-3xl ubuntu-bold text-neutral-content/85 text-left">
                     Contact
                 </h2>

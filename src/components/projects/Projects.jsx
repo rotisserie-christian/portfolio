@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
+import { SequencerProvider } from "@/contexts/SequencerContext.jsx";
+import { cn } from "@/utils/cn";
+
+const DemoSequencer = lazy(() => import("@/components/crayonbrain/DemoSequencer"));
+const Visualizer = lazy(() => import("@/components/crayonbrain/Visualizer"));
 
 const paragraphClass = "text-base mt-4 ubuntu-regular text-neutral-content/75 text-left";
 
-function ProjectLink({ href, label }) {
-    const className = "btn btn-outline border-cyan-200/25 border-2 mt-4 text-cyan-100";
+function ProjectLink({ href, label, className }) {
+    const classes = cn("btn btn-outline border-cyan-200/25 border-2 mt-4 text-cyan-100", className);
     const content = (
         <>
             {label}
@@ -15,14 +20,14 @@ function ProjectLink({ href, label }) {
 
     if (href.startsWith("/")) {
         return (
-            <Link to={href} className={className}>
+            <Link to={href} className={classes}>
                 {content}
             </Link>
         );
     }
 
     return (
-        <a href={href} target="_blank" rel="noreferrer" className={className}>
+        <a href={href} target="_blank" rel="noreferrer" className={classes}>
             {content}
         </a>
     );
@@ -59,12 +64,58 @@ function ProjectRow({ title, children }) {
     );
 }
 
+function DemoFallback() {
+    return (
+        <div className="w-full h-[500px] flex flex-col items-center justify-center bg-base-300 rounded-xl shadow-sm skeleton opacity-50">
+            <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+    );
+}
+
+function MusicComposerDemo() {
+    const [demoOpen, setDemoOpen] = useState(false);
+    const buttonClass = "btn btn-outline border-cyan-200/25 border-2 text-cyan-100";
+
+    return (
+        <>
+            <div className="flex flex-row flex-wrap items-center gap-3 mt-4">
+                <button
+                    type="button"
+                    className={buttonClass}
+                    aria-expanded={demoOpen}
+                    onClick={() => setDemoOpen((open) => !open)}
+                >
+                    {demoOpen ? "Close demo" : "Load demo"}
+                </button>
+                <ProjectLink href="https://crayonbrain.com" label="Visit site" className="mt-0" />
+            </div>
+
+            {demoOpen && (
+                <SequencerProvider>
+                    <div className="flex flex-col lg:flex-row items-stretch justify-center gap-4 w-full mt-4">
+                        <div className="w-full lg:w-1/2">
+                            <Suspense fallback={<DemoFallback />}>
+                                <DemoSequencer />
+                            </Suspense>
+                        </div>
+                        <div className="w-full lg:w-1/2 h-[500px]">
+                            <Suspense fallback={<DemoFallback />}>
+                                <Visualizer canvasId="composer-demo-visualizer" fillParent />
+                            </Suspense>
+                        </div>
+                    </div>
+                </SequencerProvider>
+            )}
+        </>
+    );
+}
+
 export default function Projects() {
     const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
     return (
         <section className="flex items-center justify-center w-full">
-            <div className="flex flex-col mt-5 mb-10 lg:mb-16 items-stretch w-full max-w-4xl px-4">
+            <div className="flex flex-col mt-5 mb-10 lg:mb-16 items-stretch w-full max-w-5xl px-4">
                 <header className="mb-12 lg:mb-16">
                     <h1 className="text-3xl lg:text-5xl text-neutral-content/85 ubuntu-bold text-left mt-8">
                         Christian Waters
@@ -95,7 +146,7 @@ export default function Projects() {
                                 To get the most variety for the least data, I built a composer on-site. 
                                 We only transfer the sequence, and the client reconstructs the song.
                             </p>
-                            <ProjectLink href="https://crayonbrain.com" label="Visit site" />
+                            <MusicComposerDemo />
                             <p className={paragraphClass}>
                                 Music is written using two separate step sequencer components, one for drums and the other for instruments.
                             </p>

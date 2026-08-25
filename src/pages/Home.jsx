@@ -25,8 +25,8 @@ export default function Home() {
     return (
         <>
             <Helmet>
-                <title>Christian Waters | Web Developer Saskatoon & Saskatchewan</title>
-                <meta name="description" content="Custom software development in Saskatoon. Full-stack expertise in React, Python, and SEO-driven applications. Delivering high-performance web solutions for the local market." />
+                <title>Christian Waters | Developer Portfolio</title>
+                <meta name="description" content="Full stack creative tools developer in Saskatoon, Saskatchewan" />
                 <link rel="canonical" href="https://christianwaters.dev/" />
             </Helmet>
 
