@@ -42,7 +42,7 @@ export function ExpandableRow({ title, children }) {
                 aria-label={buttonLabel}
                 onClick={() => setIsOpen((open) => !open)}
             >
-                <h3 className="text-xl lg:text-2xl text-neutral-content/85 ubuntu-semibold text-left min-w-0">
+                <h3 className="text-lg lg:text-xl text-neutral-content/85 ubuntu-semibold text-left min-w-0">
                     {title}
                 </h3>
                 <div className="flex-1 h-px bg-neutral-content/20 min-w-4" aria-hidden="true" />

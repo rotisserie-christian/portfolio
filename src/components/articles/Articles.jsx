@@ -13,7 +13,7 @@ export default function Articles() {
                         className="absolute left-0 top-[-20px] bottom-2 w-px bg-neutral-content/10"
                         aria-hidden="true"
                     />
-                    <div className="flex flex-col items-stretch gap-6 pl-6">
+                    <div className="flex flex-col items-stretch gap-4 pl-6">
                         <ExpandableRow title="Bulk Trends Analysis">
                             <p className={paragraphClass}>
                                 A good way to uncover trending niches is to test sets of keywords 

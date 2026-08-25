@@ -75,7 +75,7 @@ export default function Projects() {
                         className="absolute left-0 top-[-20px] bottom-2 w-px bg-neutral-content/10"
                         aria-hidden="true"
                     />
-                    <div className="flex flex-col items-stretch gap-6 pl-6">
+                    <div className="flex flex-col items-stretch gap-4 pl-6">
                         <ExpandableRow title="Music Composer">
                             <p className={paragraphClass}>
                                 My biggest project is a website for creating reactive visuals from music.
