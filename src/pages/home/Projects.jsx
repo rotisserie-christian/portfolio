@@ -43,6 +43,7 @@ export default function Projects() {
                             </p>
                         </ExpandableRow>
 
+                        {/*}
                         <ExpandableRow title="Video Export Pipeline">
                             <p className={paragraphClass}>
                                 To make reactive visuals from music, we can take FFT data from an audio source and wire parts of it to a web canvas.
@@ -70,7 +71,7 @@ export default function Projects() {
                                 The free tier provides a set number of tokens, and a weekly cron tops them up if any are used.
                             </p>
                         </ExpandableRow>
-
+                        */}
                         <ExpandableRow title="Terminal CRM">
                             <p className={paragraphClass}>
                                 A lot of GTM-type work involves using scripts to score leads and produce signals. 
