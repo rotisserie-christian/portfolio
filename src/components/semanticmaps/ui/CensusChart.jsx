@@ -125,9 +125,6 @@ export default function CensusChart() {
             <div className="p-4 w-full h-[350px] bg-base-300">
                 <Scatter options={options} data={data} />
             </div>
-            <p className="ubuntu-regular text-xs text-neutral-content/60 text-center mt-16">
-                This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau
-            </p>
         </div>
     );
 }

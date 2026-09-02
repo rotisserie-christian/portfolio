@@ -1,5 +1,6 @@
 import ReviewsChart from "@/components/semanticmaps/ui/ReviewsChart";
 import CensusChart from "@/components/semanticmaps/ui/CensusChart";
+import CensusTable from "@/components/semanticmaps/ui/CensusTable";
 
 export default function Temp() {
     return (
@@ -9,9 +10,17 @@ export default function Temp() {
                     <div className="w-full lg:w-1/2 min-w-0">
                         <ReviewsChart />
                     </div>
-                    <div className="w-full lg:w-1/2 min-w-0">
-                        <CensusChart />
+                    <div className="w-full my-8 flex flex-col lg:flex-row gap-6 lg:items-start">
+                        <div className="w-full lg:w-1/2 min-w-0">
+                            <CensusChart />
+                        </div>
+                        <div className="w-full lg:w-1/2 min-w-0">
+                            <CensusTable />
+                        </div>
                     </div>
+                    <p className="ubuntu-regular text-xs text-neutral-content/60 text-center mt-16">
+                        This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau
+                    </p>
                 </div>
             </div>
         </section>
