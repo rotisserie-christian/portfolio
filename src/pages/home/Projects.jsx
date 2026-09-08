@@ -1,5 +1,6 @@
 import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/ExpandableRow";
 import MusicComposerDemo from "./MusicComposerDemo";
+import StocksVisualizerDemo from "./StocksVisualizerDemo";
 
 export default function Projects() {
     return (
@@ -50,7 +51,7 @@ export default function Projects() {
                             <p className={paragraphClass}>
                                 It's meant to still react to energy and tempo, just through price action instead of another spectrum plot.
                             </p>
-                            <ProjectLink href="https://crayonbrain.com" label="Visit site" />
+                            <StocksVisualizerDemo />
                             <p className={paragraphClass}>
                                 Each candle is a biased random walk on the current price. Bull and bear options bias a direction and insert retracements that match. 
                                 Chaos re-rolls every few bars so the trend flips randomly.

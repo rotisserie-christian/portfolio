@@ -17,6 +17,8 @@ describe('useSequencerContext', () => {
     expect(result.current).toHaveProperty('isPlaying');
     expect(result.current).toHaveProperty('setIsPlaying');
     expect(result.current).toHaveProperty('sequencerGainRef');
+    expect(result.current).toHaveProperty('bpm');
+    expect(result.current).toHaveProperty('setBpm');
     expect(result.current.isPlaying).toBe(false);
     expect(result.current.sequencerGainRef).toBeDefined();
   });

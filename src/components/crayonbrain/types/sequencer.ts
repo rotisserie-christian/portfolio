@@ -36,4 +36,6 @@ export interface SequencerContextValue {
   isPlaying: boolean;
   setIsPlaying: (playing: boolean) => void;
   sequencerGainRef: RefObject<Tone.Gain | null>;
+  bpm: number;
+  setBpm: (bpm: number) => void;
 }

@@ -6,7 +6,7 @@ import { SequencerContextValue } from '../types/sequencer';
 /**
  * Hook to access sequencer context
  * @throws {SequencerContextError} If used outside SequencerProvider
- * @returns {SequencerContextValue} Sequencer context value with isPlaying, setIsPlaying, and sequencerGainRef
+ * @returns {SequencerContextValue} Sequencer context value with isPlaying, setIsPlaying, sequencerGainRef, and bpm
  */
 export const useSequencerContext = (): SequencerContextValue => {
   const context = useContext(SequencerContext);

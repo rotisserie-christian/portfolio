@@ -2,3 +2,8 @@
 - **`sequencerConstants.ts`** - Sequencer configuration constants
 - **`sequencerUtils.ts`** - Utility functions for sequencer operations
 - **`visualizerConstants.ts`** - Visualizer configuration constants
+- **`stocksConstants.js`** - Stocks visualizer configuration
+- **`stocksRenderCore.js`** - Shared stocks simulation and draw loop
+- **`generateCandles.js`** - Synthetic OHLC generator
+- **`detectChartPatterns.js`** - Trendline pattern detection
+- **`drawCandles.js`** - Canvas drawing for candles and overlays
