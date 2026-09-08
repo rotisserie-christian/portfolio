@@ -65,3 +65,16 @@ export const toggleStep = (
     return track;
   });
 };
+
+export const setPlayingStepHighlight = (root: Element | null, step: number): void => {
+  if (!root) return;
+  root.querySelectorAll('.drum-cell.playing').forEach((cell) => cell.classList.remove('playing'));
+  root.querySelectorAll(`.drum-cell[data-step="${step}"]`).forEach((cell) => {
+    cell.classList.add('playing');
+  });
+};
+
+export const clearPlayingStepHighlight = (root: Element | null): void => {
+  if (!root) return;
+  root.querySelectorAll('.drum-cell.playing').forEach((cell) => cell.classList.remove('playing'));
+};

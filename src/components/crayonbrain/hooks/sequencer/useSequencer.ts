@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, RefObject } from 'react';
 import * as Tone from 'tone';
 import { DEFAULT_BPM } from '@/components/crayonbrain/utils/sequencerConstants';
 import { useTonePlayers } from './useTonePlayers';
@@ -6,6 +6,7 @@ import { useTempo } from './useTempo';
 import { useToneSequence } from './useToneSequence';
 import { useTransport } from './useTransport';
 import { DrumSound, DrumSequenceTrack, SequencerState } from '@/components/crayonbrain/types/sequencer';
+import { createSequencerInstanceId } from '@/components/crayonbrain/utils/sequencerPlayback';
 
 /**
  * Builds and renders musical sequence, and callbacks to change the sequence during playback
@@ -20,10 +21,12 @@ export const useSequencer = (
   drumSequence: DrumSequenceTrack[], 
   drumSounds: DrumSound[], 
   tempoBpm: number = DEFAULT_BPM, 
-  shouldInitialize: boolean = true
+  shouldInitialize: boolean = true,
+  highlightRootRef: RefObject<HTMLElement | null>
 ): SequencerState => {
     const [isPlaying, setIsPlaying] = useState(false);
     const currentStepRef = useRef<number>(0);
+    const instanceIdRef = useRef(createSequencerInstanceId());
     // Starts false so the play button is clickable before Tone is initialized;
     // useTonePlayers flips this true while loading once activated.
     const [isInitializing, setIsInitializing] = useState(false);
@@ -62,7 +65,8 @@ export const useSequencer = (
         playersRef,
         drumSequenceRef,
         sequenceRef,
-        currentStepRef
+        currentStepRef,
+        highlightRootRef
     );
 
     // Manage Transport play/stop 
@@ -71,7 +75,9 @@ export const useSequencer = (
         setIsPlaying,
         currentStepRef,
         sequenceRef,
-        tempoBpmRef
+        tempoBpmRef,
+        highlightRootRef,
+        instanceIdRef.current
     );
 
     return {

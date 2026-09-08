@@ -1,6 +1,7 @@
 - **`errors.ts`** - Error classes for sequencer and visualizer
 - **`sequencerConstants.ts`** - Sequencer configuration constants
-- **`sequencerUtils.ts`** - Utility functions for sequencer operations
+- **`sequencerUtils.ts`** - Utility functions for sequencer operations and step highlighting
+- **`sequencerPlayback.ts`** - Exclusive play across mounted sequencer instances
 - **`visualizerConstants.ts`** - Visualizer configuration constants
 - **`stocksConstants.js`** - Stocks visualizer configuration
 - **`stocksRenderCore.js`** - Shared stocks simulation and draw loop

@@ -18,6 +18,7 @@ Main orchestrator that handles player initialization, sequence scheduling, tempo
 - `tempoBpm` (number, optional) - Tempo in BPM (default: 170)
 - `shouldInitialize` (boolean, optional) - Whether to initialize audio players (default: true)
   - `SequencerInner` passes its user-activation state so Tone.js initializes after the first Play action
+- `highlightRootRef` (RefObject) - Root element for step highlighting (scoped per sequencer instance)
 
 **Returns:**
 - `isPlaying` (boolean) - Current playback state
@@ -56,6 +57,7 @@ Sets up and manages Tone.Sequence playback, stores the current step in a ref, an
 - `drumSequenceRef` (RefObject) - React ref to current drum sequence pattern
 - `sequenceRef` (RefObject) - React ref to store Tone.Sequence instance
 - `currentStepRef` (RefObject) - React ref storing the current step
+- `highlightRootRef` (RefObject) - Root element whose drum cells receive the playing class
 
 **Returns:** `void`
 
@@ -83,6 +85,8 @@ Manages Tone.js Transport play/stop functionality. Handles audio context activat
 - `currentStepRef` (RefObject) - Current step ref, reset to 0 when playback stops
 - `sequenceRef` (RefObject) - React ref to Tone.Sequence instance
 - `tempoBpmRef` (RefObject) - React ref to current tempo value
+- `highlightRootRef` (RefObject) - Root element for clearing step highlighting
+- `instanceId` (number) - Identity used to stop other mounted sequencers when this one starts
 
 **Returns:**
 - `handlePlay` (Function) - Function to start/stop playback

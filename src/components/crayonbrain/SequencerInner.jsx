@@ -27,6 +27,7 @@ const DRUM_SOUNDS = [
 ];
 
 const SequencerInner = () => {
+    const highlightRootRef = useRef(null);
     const { setIsPlaying, sequencerGainRef: contextGainRef, bpm, setBpm } = useSequencerContext();
     const [drumSequence, setDrumSequence] = useState(() => createDefaultSequence(DRUM_SOUNDS.length));
     // Tone is only initialized once the user presses play
@@ -36,7 +37,8 @@ const SequencerInner = () => {
         drumSequence, 
         DRUM_SOUNDS,
         bpm,
-        activated
+        activated,
+        highlightRootRef
     );
 
     const handlePlayClick = useCallback(async () => {
@@ -84,7 +86,7 @@ const SequencerInner = () => {
     };
 
     return (
-        <>
+        <div ref={highlightRootRef} className="flex flex-col flex-1 min-h-0">
             <SequencerControls
                 isPlaying={isPlaying}
                 isInitializing={isInitializing}
@@ -100,7 +102,7 @@ const SequencerInner = () => {
                 isPlaying={isPlaying}
                 onCellClick={handleDrumCellClick}
             />
-        </>
+        </div>
     );
 };
 

@@ -1,6 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
 import { TIME_STEPS } from '@/components/crayonbrain/utils/sequencerConstants';
+import { setPlayingStepHighlight, clearPlayingStepHighlight } from '@/components/crayonbrain/utils/sequencerUtils';
 import { DrumSound, DrumSequenceTrack } from '@/components/crayonbrain/types/sequencer';
 
 /**
@@ -17,7 +18,8 @@ export const useToneSequence = (
   playersRef: RefObject<Record<string, Tone.Player>>,
   drumSequenceRef: RefObject<DrumSequenceTrack[]>,
   sequenceRef: RefObject<Tone.Sequence | null>,
-  currentStepRef: RefObject<number>
+  currentStepRef: RefObject<number>,
+  highlightRootRef: RefObject<HTMLElement | null>
 ): void => {
   useEffect(() => {
     (sequenceRef as any).current = new Tone.Sequence((time, step) => {
@@ -28,15 +30,7 @@ export const useToneSequence = (
       
       // Update ref 
       (currentStepRef as any).current = step;
-      
-      const drumPad = document.querySelector('.demo-sequencer');
-      if (drumPad) {
-        const prevCells = drumPad.querySelectorAll('.drum-cell.playing');
-        prevCells.forEach(cell => cell.classList.remove('playing'));
-        
-        const currentCells = drumPad.querySelectorAll(`.drum-cell[data-step="${step}"]`);
-        currentCells.forEach(cell => cell.classList.add('playing'));
-      }
+      setPlayingStepHighlight(highlightRootRef.current, step);
       
       stableDrumSounds.forEach((sound, soundIndex) => {
         const track = drumSequenceRef.current?.[soundIndex];
@@ -60,12 +54,7 @@ export const useToneSequence = (
         (sequenceRef as any).current = null;
       }
       
-      // Clear highlighting on cleanup
-      const drumPad = document.querySelector('.demo-sequencer');
-      if (drumPad) {
-        const highlightedCells = drumPad.querySelectorAll('.drum-cell.playing');
-        highlightedCells.forEach(cell => cell.classList.remove('playing'));
-      }
+      clearPlayingStepHighlight(highlightRootRef.current);
     };
-  }, [stableDrumSounds, drumSequenceRef, sequenceRef, currentStepRef]);
+  }, [stableDrumSounds, drumSequenceRef, sequenceRef, currentStepRef, highlightRootRef]);
 };

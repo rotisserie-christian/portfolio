@@ -1,6 +1,8 @@
-import { useCallback, RefObject } from 'react';
+import { useCallback, useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
 import { TransportError } from '@/components/crayonbrain/utils/errors';
+import { clearPlayingStepHighlight } from '@/components/crayonbrain/utils/sequencerUtils';
+import { registerSequencerStop, stopOtherSequencers } from '@/components/crayonbrain/utils/sequencerPlayback';
 
 /**
  * Manages Tone.js Transport play/stop functionality
@@ -17,8 +19,25 @@ export const useTransport = (
   setIsPlaying: (playing: boolean) => void,
   currentStepRef: RefObject<number>,
   sequenceRef: RefObject<Tone.Part | Tone.Sequence | null>,
-  tempoBpmRef: RefObject<number>
+  tempoBpmRef: RefObject<number>,
+  highlightRootRef: RefObject<HTMLElement | null>,
+  instanceId: number
 ): () => Promise<void> => {
+  const stopLocalPlayback = useCallback(() => {
+    try {
+      sequenceRef.current?.stop();
+    } catch {
+      // sequence may already be stopped
+    }
+    setIsPlaying(false);
+    if (currentStepRef.current !== null) {
+      currentStepRef.current = 0;
+    }
+    clearPlayingStepHighlight(highlightRootRef.current);
+  }, [sequenceRef, setIsPlaying, currentStepRef, highlightRootRef]);
+
+  useEffect(() => registerSequencerStop(instanceId, stopLocalPlayback), [instanceId, stopLocalPlayback]);
+
   const handlePlay = useCallback(async () => {
     try {
       if (Tone.getContext().state !== 'running') {
@@ -30,6 +49,8 @@ export const useTransport = (
           console.warn('Sequence not ready, cannot start playback');
           return;
         }
+
+        stopOtherSequencers(instanceId);
 
         if (tempoBpmRef.current !== null) {
           Tone.getTransport().bpm.value = tempoBpmRef.current;
@@ -44,39 +65,17 @@ export const useTransport = (
         }
       } else {
         Tone.getTransport().stop();
-        setIsPlaying(false);
-
-        if (currentStepRef.current !== null) {
-          currentStepRef.current = 0;
-        }
-
-        // Clear cell highlighting
-        const drumPad = document.querySelector('.demo-sequencer');
-        if (drumPad) {
-          const highlightedCells = drumPad.querySelectorAll('.drum-cell.playing');
-          highlightedCells.forEach(cell => cell.classList.remove('playing'));
-        }
+        stopLocalPlayback();
       }
     } catch (error) {
       const transportError = new TransportError('Error controlling playback', error as Error);
       if (import.meta.env?.MODE === 'development') {
         console.error(transportError.message, transportError.cause);
       }
-      // Reset state on error
-      setIsPlaying(false);
-
-      if (currentStepRef.current !== null) {
-        currentStepRef.current = 0;
-      }
-
-      // Clear cell highlighting
-      const drumPad = document.querySelector('.demo-sequencer');
-      if (drumPad) {
-        const highlightedCells = drumPad.querySelectorAll('.drum-cell.playing');
-        highlightedCells.forEach(cell => cell.classList.remove('playing'));
-      }
+      Tone.getTransport().stop();
+      stopLocalPlayback();
     }
-  }, [isPlaying, setIsPlaying, currentStepRef, sequenceRef, tempoBpmRef]);
+  }, [isPlaying, setIsPlaying, currentStepRef, sequenceRef, tempoBpmRef, highlightRootRef, instanceId, stopLocalPlayback]);
 
   return handlePlay;
 };
