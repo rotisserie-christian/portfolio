@@ -43,6 +43,27 @@ export default function Projects() {
                             </p>
                         </ExpandableRow>
 
+                        <ExpandableRow title="Stocks Visualizer">
+                            <p className={paragraphClass}>
+                                A candlestick chart driven by music.
+                            </p>
+                            <p className={paragraphClass}>
+                                It's meant to still react to energy and tempo, just through price action instead of another spectrum plot.
+                            </p>
+                            <ProjectLink href="https://crayonbrain.com" label="Visit site" />
+                            <p className={paragraphClass}>
+                                Each candle is a biased random walk on the current price. Bull and bear options bias a direction and insert retracements that match. 
+                                Chaos re-rolls every few bars so the trend flips randomly.
+                            </p>
+                            <p className={paragraphClass}>
+                                BPM sets how fast candles form. FFT density determines how far apart the open and close prices are. 
+                            </p>
+                            <p className={paragraphClass}>
+                                After a bar closes, a short lookback fits trendlines through recent highs and lows. 
+                                Parallel or converging setups flash on the chart, then cool down so the same pattern does not retrigger.
+                            </p>
+                        </ExpandableRow>
+
                         {/*}
                         <ExpandableRow title="Video Export Pipeline">
                             <p className={paragraphClass}>
