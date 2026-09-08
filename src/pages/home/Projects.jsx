@@ -48,9 +48,6 @@ export default function Projects() {
                             <p className={paragraphClass}>
                                 A candlestick chart driven by music.
                             </p>
-                            <p className={paragraphClass}>
-                                It's meant to still react to energy and tempo, just through price action instead of another spectrum plot.
-                            </p>
                             <StocksVisualizerDemo />
                             <p className={paragraphClass}>
                                 Each candle is a biased random walk on the current price. Bull and bear options bias a direction and insert retracements that match. 
