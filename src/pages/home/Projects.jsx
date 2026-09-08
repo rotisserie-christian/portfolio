@@ -93,6 +93,7 @@ export default function Projects() {
                             </p>
                         </ExpandableRow>
                         */}
+                        {/*}
                         <ExpandableRow title="Terminal CRM">
                             <p className={paragraphClass}>
                                 A lot of GTM-type work involves using scripts to score leads and produce signals. 
@@ -119,6 +120,7 @@ export default function Projects() {
                                 If it fails to meet the threshold, the budget is instead spent on chat history, pruned by oldest messages first.
                             </p>
                         </ExpandableRow>
+                        */}
                     </div>
                 </div>
             </div>
