@@ -64,7 +64,6 @@ export default function Projects() {
                             </p>
                         </ExpandableRow>
 
-                        {/*}
                         <ExpandableRow title="Video Export Pipeline">
                             <p className={paragraphClass}>
                                 To make reactive visuals from music, we can take FFT data from an audio source and wire parts of it to a web canvas.
@@ -74,7 +73,7 @@ export default function Projects() {
                                 encode a video this way.
                             </p>
                             <p className={paragraphClass}>
-                                Instead, I built a VPS that does the same thing in a stable environment.
+                                Instead, I have a server that does the same thing in a stable environment.
                             </p>
                             <ProjectLink href="https://crayonbrain.com" label="Visit site" />
                             <p className={paragraphClass}>
@@ -84,15 +83,10 @@ export default function Projects() {
                             </p>
                             <p className={paragraphClass}>
                                 To make a video, the track is decoded up front, then each frame is drawn at a fixed timestamp, encoded to H.264, and muxed
-                                with AAC into an MP4. That keeps A/V in lockstep even when the machine cannot draw the frame rate live. The VPS runs
-                                that same Chrome encode path headlessly.
-                            </p>
-                            <p className={paragraphClass}>
-                                To keep costs from running out of control, the job only starts if the user has enough tokens available.
-                                The free tier provides a set number of tokens, and a weekly cron tops them up if any are used.
+                                with AAC into an MP4. That keeps A/V in lockstep even when the machine cannot draw the frame rate live.
                             </p>
                         </ExpandableRow>
-                        */}
+
                         {/*}
                         <ExpandableRow title="Terminal CRM">
                             <p className={paragraphClass}>
