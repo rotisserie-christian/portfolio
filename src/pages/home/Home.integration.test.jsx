@@ -24,7 +24,6 @@ describe('Home Page Integration', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Christian Waters' })).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
       'Projects',
-      'Articles',
       'Contact',
     ]);
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
@@ -35,7 +34,7 @@ describe('Home Page Integration', () => {
     const scrollIntoView = vi.fn();
     vi.spyOn(window.HTMLElement.prototype, 'scrollIntoView').mockImplementation(scrollIntoView);
 
-    renderHome({ pathname: '/', state: { scrollTo: 'articles' } });
+    renderHome({ pathname: '/', state: { scrollTo: 'projects' } });
 
     act(() => {
       vi.advanceTimersByTime(100);
