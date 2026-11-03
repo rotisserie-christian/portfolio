@@ -1,7 +1,7 @@
 ## /semanticmaps
-- **`data/`** - Trend and review datasets (JSON, loaded on demand)
+- **`data/`** - Trend and review datasets
 - **`hooks/`** - View-mode state and trend data loading
-- **`ui/`** - Charts, table, and their lazy wrappers
+- **`ui/`** - Charts and tables
 - **`utils/`** - Color mapping and chart-data transforms
-- **`SemanticMaps.jsx`** - Main container; toggles search trends between visuals and music
+- **`SemanticMaps.jsx`** - Main container
 - **`WhatItDoes.jsx`** - Accordion explaining what the keyword mapping is for

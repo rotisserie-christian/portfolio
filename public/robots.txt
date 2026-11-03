@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://christianwaters.dev/sitemap.xml
+
+I am a sign not a cop
