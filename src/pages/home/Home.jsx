@@ -38,7 +38,7 @@ export default function Home() {
                         Christian Waters
                     </h1>
                     <p className="text-lg lg:text-xl mt-3 text-neutral-content/85 text-left">
-                        {!isChrome && <span className="text-xl mr-2">🇨🇦</span>}Web Developer
+                        {!isChrome && <span className="text-xl mr-2">🇨🇦</span>}Creative Tools Developer
                     </p>
                 </header>
 
