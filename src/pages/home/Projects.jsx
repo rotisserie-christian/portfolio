@@ -1,5 +1,4 @@
 import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/ExpandableRow";
-import MusicComposerDemo from "./MusicComposerDemo";
 import StocksVisualizerDemo from "./StocksVisualizerDemo";
 
 export default function Projects() {
@@ -16,6 +15,7 @@ export default function Projects() {
                         aria-hidden="true"
                     />
                     <div className="flex flex-col items-stretch gap-4 pl-6">
+                        {/*}
                         <ExpandableRow title="Music Composer">
                             <p className={paragraphClass}>
                                 My biggest project is a website for creating reactive visuals from music.
@@ -43,6 +43,7 @@ export default function Projects() {
                                 the sequence changes or playback stops.
                             </p>
                         </ExpandableRow>
+                        */}
 
                         <ExpandableRow title="Stocks Visualizer">
                             <p className={paragraphClass}>
