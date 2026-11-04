@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from "react";
 import { SequencerProvider } from "@/contexts/SequencerContext.jsx";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import { ProjectLink } from "@/components/ui/ExpandableRow";
 
 const DemoSequencer = lazy(() => import("@/components/crayonbrain/DemoSequencer"));
 const StocksVisualizer = lazy(() => import("@/components/crayonbrain/StocksVisualizer"));
@@ -28,6 +29,7 @@ export default function StocksVisualizerDemo() {
                 >
                     {demoOpen ? "Close demo" : "Load demo"}
                 </button>
+                <ProjectLink href="https://crayonbrain.com/chaos" label="Visit site" className="mt-0" />
             </div>
 
             {demoOpen && (
