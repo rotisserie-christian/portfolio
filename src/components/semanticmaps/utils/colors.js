@@ -1,4 +1,4 @@
-// Golden-angle hue stepping gives visually distinct colors for any number of chart lines
+// Golden-angle hue stepping gives visually distinct colors for any number of series
 export const getSeriesColors = (labels = []) => {
     const map = {};
     labels.forEach((label, index) => {

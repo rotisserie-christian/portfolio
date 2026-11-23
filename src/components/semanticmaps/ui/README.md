@@ -1,2 +1,2 @@
-- **`TrendChart.jsx`** - Multi-line chart of search interest over time
-- **`LazyTrendChart.jsx`** - Lazy-loads and gates `TrendChart`
+- **`TrendTable.jsx`** - Ranked table of normalized search terms
+- **`CensusTable.jsx`** - Paginated table of census income and housing rows

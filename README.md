@@ -6,8 +6,6 @@
 - **`butterchurn`** - WebGL music visualizer
 - **`butterchurn-presets`** - Visualizer preset library
 - **`tone`** - Web Audio framework
-- **`react-chartjs-2`** - Charting library 
-- **`chart.js`** - Underlying charting engine
 ### Design / Styling
 - **`tailwindcss`** - CSS framework
 - **`@tailwindcss/vite`** - Tailwind CSS Vite plugin

@@ -1,14 +1,7 @@
 import { FaAngleDoubleRight } from "react-icons/fa";
 import WhatItDoes from "./WhatItDoes";
-import LazyTrendChart from "./ui/LazyTrendChart";
-import { useSemanticMap } from "./hooks/useSemanticMap";
 
 export default function SemanticMaps() {
-    const {
-        viewMode,
-        handleModeToggle
-    } = useSemanticMap();
-
     return (
         <section className="flex items-center justify-center w-full bg-base-300 py-20 px-2">
             <div className="flex flex-col items-center justify-center w-full max-w-7xl">
@@ -28,17 +21,6 @@ export default function SemanticMaps() {
                     >
                         GitHub<FaAngleDoubleRight />
                     </a>
-                </div>
-
-                <div className="flex flex-col items-center justify-center w-full max-w-4xl">
-                    <p className="text-lg lg:text-xl ubuntu-semibold text-neutral-content/85 text-center max-w-xs lg:max-w-lg">
-                        Search Interest Over Time
-                    </p>
-
-                    <LazyTrendChart
-                        viewMode={viewMode}
-                        onModeToggle={handleModeToggle}
-                    />
                 </div>
 
                 <WhatItDoes />

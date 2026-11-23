@@ -1,13 +1,8 @@
-import { useState, useLayoutEffect } from "react";
-import LazyTrendChart from "@/components/semanticmaps/ui/LazyTrendChart";
-import ScatterPlot from "@/components/semanticmaps/ui/ScatterPlot";
+import { useLayoutEffect } from "react";
 import TrendTable from "@/components/semanticmaps/ui/TrendTable";
 import SectionNav from "@/components/ui/SectionNav";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/ui/Footer";
-import ErrorBoundary from "@/components/ui/ErrorBoundary";
-
-const MUSIC_VIDEO_MAKER = ["music video maker"];
 
 const TRENDS_SECTIONS = [
     { id: "intro", label: "intro" },
@@ -19,15 +14,9 @@ const TRENDS_SECTIONS = [
 ];
 
 export default function Trends() {
-    const [viewMode, setViewMode] = useState("visuals");
-
     useLayoutEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const handleModeToggle = (checked) => {
-        setViewMode(checked ? "music" : "visuals");
-    };
 
     return (
         <section className="flex flex-1 flex-col items-center w-full bg-base-300 py-20 px-3 font-ubuntu">
@@ -80,16 +69,6 @@ export default function Trends() {
                         who the ideal user is and what they want, and end with a better understanding of what to build.
                         From that framing, choose a head term that clearly defines a stream of search intent.
                     </p>
-
-                    <div className="w-full my-8">
-                        <ErrorBoundary name="Trends Chart">
-                            <LazyTrendChart
-                                viewMode="visuals"
-                                showModeToggle={false}
-                                queries={MUSIC_VIDEO_MAKER}
-                            />
-                        </ErrorBoundary>
-                    </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                         The next step is to assemble a set of terms within this stream that capture more specific aspects 
@@ -222,15 +201,8 @@ export default function Trends() {
                         Terms with no usable signal drop out; what remains is an ordered view of where relative demand concentrates.
                     </p>
 
-                    <div className="w-full my-8 flex flex-col lg:flex-row gap-6 lg:items-start">
-                        <div className="w-full lg:w-1/2 min-w-0">
-                            <ErrorBoundary name="Scatter Plot">
-                                <ScatterPlot />
-                            </ErrorBoundary>
-                        </div>
-                        <div className="w-full lg:w-1/2 min-w-0">
-                            <TrendTable />
-                        </div>
+                    <div className="w-full my-8">
+                        <TrendTable />
                     </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
@@ -256,16 +228,6 @@ export default function Trends() {
                     Many of these people publish on social media, have a need for audio-reactive visuals, and this need is adjacent to, yet distinct
                     from, the need to create a music video.  
                     </p>
-
-                    <div className="w-full my-8">
-                        <ErrorBoundary name="Trends Chart">
-                            <LazyTrendChart
-                                viewMode={viewMode}
-                                onModeToggle={handleModeToggle}
-                                showModeToggle={true}
-                            />
-                        </ErrorBoundary>
-                    </div>
 
                     <p className="text-base mt-4 ubuntu-regular text-neutral-content/75 text-left">
                     These keywords capture search intent distinct from the anchor, and their relative interest actually exceeds it.

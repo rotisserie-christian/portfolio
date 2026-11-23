@@ -7,7 +7,7 @@ function primaryState(row) {
 }
 
 /**
- * Builds Chart.js scatter datasets from ACS census rows, one dataset per state.
+ * Builds scatter points from ACS census rows, one series per state.
  * X = median household income, Y = detached housing units.
  *
  * @param {object} payload

@@ -3,7 +3,7 @@ import { getSeriesColors } from './colors';
 export const OMIT_CLUSTERS = ['visual loops'];
 
 /**
- * Builds Chart.js scatter datasets from validated terms, one dataset per cluster.
+ * Builds scatter points from validated terms, one series per cluster.
  * X = max interest, Y = average interest.
  *
  * @param {Array} terms

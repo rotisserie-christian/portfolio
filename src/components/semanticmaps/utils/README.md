@@ -1,3 +1,4 @@
 ## semanticmaps/utils
 - **`colors.js`** - Golden-angle hue stepping for distinct per-series colors
-- **`trends.js`** - Turns raw search data into chart lines, trimming the last few weeks (Google Trends under-reports recent data)
+- **`census.js`** - Turns ACS census rows into points for the census table
+- **`scatter.js`** - Turns validated search terms into rows for the trend table

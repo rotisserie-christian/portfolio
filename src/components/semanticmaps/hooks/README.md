@@ -1,2 +1,0 @@
-- **`useSemanticMap.js`** - Holds the visuals/music view-mode toggle state
-- **`useTrendData.js`** - Loads the active trend data and shapes it into a line dataset
