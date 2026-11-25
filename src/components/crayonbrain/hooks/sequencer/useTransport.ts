@@ -2,7 +2,7 @@ import { useCallback, useEffect, RefObject } from 'react';
 import * as Tone from 'tone';
 import { TransportError } from '@/components/crayonbrain/utils/errors';
 import { clearPlayingStepHighlight } from '@/components/crayonbrain/utils/sequencerUtils';
-import { registerSequencerStop, stopOtherSequencers } from '@/components/crayonbrain/utils/sequencerPlayback';
+import { hasOtherSequencers, registerSequencerStop, stopOtherSequencers } from '@/components/crayonbrain/utils/sequencerPlayback';
 
 /**
  * Manages Tone.js Transport play/stop functionality
@@ -64,7 +64,7 @@ export const useTransport = (
           setIsPlaying(true);
         }
       } else {
-        Tone.getTransport().stop();
+        if (!hasOtherSequencers(instanceId)) Tone.getTransport().stop();
         stopLocalPlayback();
       }
     } catch (error) {
@@ -72,7 +72,7 @@ export const useTransport = (
       if (import.meta.env?.MODE === 'development') {
         console.error(transportError.message, transportError.cause);
       }
-      Tone.getTransport().stop();
+      if (!hasOtherSequencers(instanceId)) Tone.getTransport().stop();
       stopLocalPlayback();
     }
   }, [isPlaying, setIsPlaying, currentStepRef, sequenceRef, tempoBpmRef, highlightRootRef, instanceId, stopLocalPlayback]);

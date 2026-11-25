@@ -18,3 +18,11 @@ export const stopOtherSequencers = (id: number): void => {
     if (otherId !== id) stop();
   });
 };
+
+/** True when another mounted sequencer is sharing the global Transport. */
+export const hasOtherSequencers = (id: number): boolean => {
+  for (const otherId of stopHandlers.keys()) {
+    if (otherId !== id) return true;
+  }
+  return false;
+};

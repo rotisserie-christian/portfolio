@@ -1,6 +1,7 @@
 import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/ExpandableRow";
 import StocksVisualizerDemo from "./StocksVisualizerDemo";
 import MusicComposerDemo from "./MusicComposerDemo";
+import HypnosisDemo from "./HypnosisDemo";
 
 export default function Projects() {
     return (
@@ -16,6 +17,10 @@ export default function Projects() {
                         aria-hidden="true"
                     />
                     <div className="flex flex-col items-stretch gap-4 pl-6">
+                        <ExpandableRow title="Hypnosis">
+                            <HypnosisDemo />
+                        </ExpandableRow>
+
                         <ExpandableRow title="Music Composer">
                             <p className={paragraphClass}>
                                 My biggest project is a website for creating reactive visuals from music.
@@ -80,58 +85,6 @@ export default function Projects() {
                                 generation.
                             </p>
                         </ExpandableRow>
-
-                        <ExpandableRow title="Video Export Pipeline">
-                            <p className={paragraphClass}>
-                                To make reactive visuals from music, we can take FFT data from an audio source and wire parts of it to a web canvas.
-                            </p>
-                            <p className={paragraphClass}>
-                                This works fine on the client for live feedback, but there are too many inconsistencies across browsers and devices to
-                                encode a video this way.
-                            </p>
-                            <p className={paragraphClass}>
-                                Instead, I have a server that does the same thing in a stable environment.
-                            </p>
-                            <ProjectLink href="https://crayonbrain.com" label="Visit site" />
-                            <p className={paragraphClass}>
-                                There are a lot of visuals on the site to choose from. The simpler ones run on the CPU, drawing to the
-                                canvas every frame. More intricate ones use WebGL through Butterchurn, a web port of the
-                                MilkDrop visualizer from Winamp.
-                            </p>
-                            <p className={paragraphClass}>
-                                To make a video, the track is decoded up front, then each frame is drawn at a fixed timestamp, encoded to H.264, and muxed
-                                with AAC into an MP4. That keeps A/V in lockstep even when the machine cannot draw the frame rate live.
-                            </p>
-                        </ExpandableRow>
-
-                        {/*}
-                        <ExpandableRow title="Terminal CRM">
-                            <p className={paragraphClass}>
-                                A lot of GTM-type work involves using scripts to score leads and produce signals. 
-                            </p>
-                            <p className={paragraphClass}>
-                                I built a terminal UI for tracking interactions with these leads, and running local LLM
-                                sessions that reference the context behind them. 
-                            </p>
-                            <p className={paragraphClass}>
-                                It's meant to be a lightweight and private tool for prototyping outbound strategies.
-                            </p>
-                            <ProjectLink href="https://github.com/rotisserie-christian/terminal-crm" label="View repo" />
-                            <p className={paragraphClass}>
-                                Leads import from JSON into SQLite, keyed by phone number so a second pass updates the same row instead of duplicating it. 
-                                There's a filtered queue that displays each row and prompts for an outcome, removing the entry or leaving it, depending on which 
-                                outcome was selected. 
-                            </p>
-                            <p className={paragraphClass}>
-                                The LLM feature lets you select a model from HuggingFace, download the weights to your machine, and run it locally.
-                                Up to 50% of the context window is reserved for relevant custom materials kept in a memory directory. 
-                            </p>
-                            <p className={paragraphClass}>
-                                Relevancy is determined by comparing cosine similarity between the latest user message and the materials. 
-                                If it fails to meet the threshold, the budget is instead spent on chat history, pruned by oldest messages first.
-                            </p>
-                        </ExpandableRow>
-                        */}
                     </div>
                 </div>
             </div>
