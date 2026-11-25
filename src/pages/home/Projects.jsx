@@ -17,7 +17,7 @@ export default function Projects() {
                         aria-hidden="true"
                     />
                     <div className="flex flex-col items-stretch gap-4 pl-6">
-                        <ExpandableRow title="Hypnosis">
+                        <ExpandableRow title="Music Visuals">
                             <HypnosisDemo />
                         </ExpandableRow>
 
