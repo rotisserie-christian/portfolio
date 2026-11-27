@@ -11,7 +11,7 @@ const formatTime = (seconds) => {
   return `${mins}:${secs.toString().padStart(2, '0')}`;
 };
 
-const HypnosisControls = ({
+const ShaderControls = ({
   fileName = 'Demo track',
   isPlaying = false,
   isLooping = true,
@@ -118,7 +118,7 @@ const HypnosisControls = ({
   );
 };
 
-HypnosisControls.propTypes = {
+ShaderControls.propTypes = {
   fileName: PropTypes.string,
   isPlaying: PropTypes.bool,
   isLooping: PropTypes.bool,
@@ -132,4 +132,4 @@ HypnosisControls.propTypes = {
   onScrubPreview: PropTypes.func,
 };
 
-export default HypnosisControls;
+export default ShaderControls;

@@ -2,7 +2,7 @@ import { SHADER_FFT_BANDS } from '../../audio/fftFeatures';
 import { makeShapePreset } from './shapePreset';
 
 /**
- * Simple geometric patterns for the Crayonbrain Hypnosis tab.
+ * Simple geometric patterns for the Crayonbrain Shader tab.
  * Same trick as Kaleidoscope: radius picks an FFT band, that band lights
  * the pattern there, and the low and high bands also bend it. Quiet bands
  * stay dim. The repeats still hit zero between crests, so a loud mix

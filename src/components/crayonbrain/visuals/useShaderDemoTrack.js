@@ -69,7 +69,7 @@ const EVENTS = buildEvents();
  * Transport clock, and that clock is left running while another
  * sequencer is mounted.
  */
-export const useHypnosisDemoTrack = () => {
+export const useShaderDemoTrack = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);

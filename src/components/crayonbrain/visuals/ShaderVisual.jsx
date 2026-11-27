@@ -39,7 +39,7 @@ LogoPulseOverlay.propTypes = {
   analyser: PropTypes.object,
 };
 
-const HypnosisVisual = ({
+const ShaderVisual = ({
   isPlaying = false,
   shaderAnalyser = null,
   waveAnalyser = null,
@@ -47,7 +47,7 @@ const HypnosisVisual = ({
 }) => (
   <div className="relative h-full w-full">
     <ShaderVisualizer
-      canvasId="hypnosis-ripples"
+      canvasId="shader-ripples"
       fillParent
       visible
       isPlaying={isPlaying}
@@ -59,11 +59,11 @@ const HypnosisVisual = ({
   </div>
 );
 
-HypnosisVisual.propTypes = {
+ShaderVisual.propTypes = {
   isPlaying: PropTypes.bool,
   shaderAnalyser: PropTypes.object,
   waveAnalyser: PropTypes.object,
   logoAnalyser: PropTypes.object,
 };
 
-export default HypnosisVisual;
+export default ShaderVisual;

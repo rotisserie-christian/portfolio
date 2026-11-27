@@ -1,5 +1,5 @@
 /**
- * Shared builder for the Hypnosis tab. Each preset is a fullscreen fragment
+ * Shared builder for the Shader tab. Each preset is a fullscreen fragment
  * shader on the existing shader renderer: params and colors become uniforms,
  * and `speed` drives the animation clock instead of a shader uniform.
  *

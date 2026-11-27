@@ -1,6 +1,6 @@
 import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/ExpandableRow";
 import MusicComposerDemo from "./MusicComposerDemo";
-import HypnosisDemo from "./HypnosisDemo";
+import ShaderDemo from "./ShaderDemo";
 
 export default function Projects() {
     return (
@@ -17,7 +17,7 @@ export default function Projects() {
                     />
                     <div className="flex flex-col items-stretch gap-4 pl-6">
                         <ExpandableRow title="Music Visuals">
-                            <HypnosisDemo />
+                            <ShaderDemo />
                         </ExpandableRow>
 
                         <ExpandableRow title="Music Composer">

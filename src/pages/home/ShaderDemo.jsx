@@ -1,14 +1,14 @@
-import HypnosisControls from '@/components/crayonbrain/visuals/HypnosisControls';
-import HypnosisVisual from '@/components/crayonbrain/visuals/HypnosisVisual';
-import { useHypnosisDemoTrack } from '@/components/crayonbrain/visuals/useHypnosisDemoTrack';
+import ShaderControls from '@/components/crayonbrain/visuals/ShaderControls';
+import ShaderVisual from '@/components/crayonbrain/visuals/ShaderVisual';
+import { useShaderDemoTrack } from '@/components/crayonbrain/visuals/useShaderDemoTrack';
 
-export default function HypnosisDemo() {
-  const track = useHypnosisDemoTrack();
+export default function ShaderDemo() {
+  const track = useShaderDemoTrack();
 
   return (
     <div className="mt-4 flex w-full flex-col items-stretch gap-4 lg:flex-row">
       <div className="relative h-[500px] w-full overflow-hidden rounded-xl bg-black lg:w-1/2">
-        <HypnosisVisual
+        <ShaderVisual
           isPlaying={track.isPlaying}
           shaderAnalyser={track.shaderAnalyser}
           waveAnalyser={track.waveAnalyser}
@@ -16,7 +16,7 @@ export default function HypnosisDemo() {
         />
       </div>
       <div className="w-full lg:w-1/2">
-        <HypnosisControls
+        <ShaderControls
           fileName={track.fileName}
           isPlaying={track.isPlaying}
           isLooping={track.isLooping}
