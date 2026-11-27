@@ -48,7 +48,7 @@ export default function Projects() {
                             </p>
                         </ExpandableRow>
 
-                        <ExpandableRow title="Prerendering for Legacy SPAs">
+                        <ExpandableRow title="Prerendering for SPAs">
                             <p className={paragraphClass}>
                                 Older React SPAs often return an empty HTML shell and rely on JavaScript to render the page.
                                 That can leave crawlers without the headings, copy, or links they need.
