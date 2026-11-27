@@ -1,2 +1,0 @@
-- **`TrendTable.jsx`** - Ranked table of normalized search terms
-- **`CensusTable.jsx`** - Paginated table of census income and housing rows

@@ -1,7 +1,6 @@
 ### /src/pages
 - **`home/`** - Home page, its Projects and Articles sections, music composer and stocks visualizer demos, and integration test
 - **`Temp.jsx`** - Sandbox page for experimenting with new features
-- **`Trends.jsx`** - Bulk trends analysis article
 - **`Prerendering.jsx`** - Prerendering for legacy SPAs article
 
 ### Home integration test

@@ -1,4 +1,4 @@
-import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/ExpandableRow";
+import { ExpandableRow, paragraphClass } from "@/components/ui/ExpandableRow";
 
 export default function Articles() {
     return (
@@ -23,7 +23,6 @@ export default function Articles() {
                                 This helps build a mental model of how search interest is distributed across a given product, 
                                 making the user segments better defined. 
                             </p>
-                            <ProjectLink href="/trends" label="Read more" />
                             <p className={paragraphClass}>
                                 Google Trends can show where interest concentrates, but only when many keywords sit on one comparable scale.
                                 With a five-term batch limit, a large set is hard to rank accurately.

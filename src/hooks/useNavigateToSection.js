@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const HOME_PATHS = new Set(['/', '/semanticmaps', '/crayonbrain', '/contact']);
+const HOME_PATHS = new Set(['/', '/crayonbrain', '/contact']);
 
 /**
  * Navigate to a Home page section. Scrolls in place when already on Home;

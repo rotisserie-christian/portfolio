@@ -3,7 +3,6 @@ import App from '@/App';
 import Home from '@/pages/home/Home';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Temp from './pages/Temp';
-import Trends from './pages/Trends';
 import Prerendering from './pages/Prerendering';
 
 const RouteSwitch = () => {
@@ -13,9 +12,7 @@ const RouteSwitch = () => {
                 <Routes>
                     <Route path="/" element={<App />}>
                         <Route index element={<Home />} />
-                        <Route path="semanticmaps" element={<Home />} />
                         <Route path="temp" element={<Temp />} />
-                        <Route path="trends" element={<Trends />} />
                         <Route path="prerendering" element={<Prerendering />} />
                     </Route>
                 </Routes>
