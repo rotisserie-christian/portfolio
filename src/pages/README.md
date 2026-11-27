@@ -1,7 +1,6 @@
 ### /src/pages
 - **`home/`** - Home page, its Projects and Articles sections, music visuals and music composer demos, and integration test
 - **`Temp.jsx`** - Sandbox page for experimenting with new features
-- **`Prerendering.jsx`** - Prerendering for legacy SPAs article
 
 ### Home integration test
 - Renders the Home child components

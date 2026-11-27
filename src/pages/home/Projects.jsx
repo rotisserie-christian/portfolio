@@ -57,7 +57,7 @@ export default function Projects() {
                                 Migrating the whole application to an SSR framework can be hard to justify when only a few
                                 routes need to be crawlable, so I built a small post-build prerendering script instead.
                             </p>
-                            <ProjectLink href="/prerendering" label="Read more" />
+                            <ProjectLink href="https://github.com/rotisserie-christian/simple-prerender" label="GitHub" />
                             <p className={paragraphClass}>
                                 After Vite builds the site, the script opens each configured route in headless Chromium,
                                 waits for the page to render, and saves the resulting HTML to the matching path in

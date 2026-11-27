@@ -3,7 +3,6 @@ import App from '@/App';
 import Home from '@/pages/home/Home';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Temp from './pages/Temp';
-import Prerendering from './pages/Prerendering';
 
 const RouteSwitch = () => {
     return (
@@ -13,7 +12,6 @@ const RouteSwitch = () => {
                     <Route path="/" element={<App />}>
                         <Route index element={<Home />} />
                         <Route path="temp" element={<Temp />} />
-                        <Route path="prerendering" element={<Prerendering />} />
                     </Route>
                 </Routes>
             </ErrorBoundary>
