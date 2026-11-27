@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Projects from "./Projects";
-// import Articles from "./Articles";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/ui/Footer";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
@@ -47,14 +46,6 @@ export default function Home() {
                         <Projects />
                     </ErrorBoundary>
                 </div>
-
-                {/*
-                <div data-section="articles" className="w-full">
-                    <ErrorBoundary name="Articles">
-                        <Articles />
-                    </ErrorBoundary>
-                </div>
-                */}
 
                 <div data-section="contact" className="w-full">
                     <ErrorBoundary name="Contact">
