@@ -6,4 +6,3 @@
 - **`DemoSequencer.jsx`** - Suspense shell that lazy-loads `SequencerInner`
 - **`SequencerInner.jsx`** - Interactive drum sequencer; initializes Tone.js and sample players after the first Play action
 - **`Visualizer.jsx`** - Butterchurn canvas and preset controls backed by sequencer context
-- **`StocksVisualizer.jsx`** - Candlestick visualizer backed by sequencer context

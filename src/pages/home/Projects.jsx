@@ -1,5 +1,4 @@
 import { ExpandableRow, ProjectLink, paragraphClass } from "@/components/ui/ExpandableRow";
-import StocksVisualizerDemo from "./StocksVisualizerDemo";
 import MusicComposerDemo from "./MusicComposerDemo";
 import HypnosisDemo from "./HypnosisDemo";
 
@@ -46,24 +45,6 @@ export default function Projects() {
                                 Instead, the current step is stored as a ref and updated by Tone. The same callback that triggers audio also updates the DOM,
                                 moving the highlighting from the previous step to the current one. That keeps the UI in sync with audio and only rerenders when
                                 the sequence changes or playback stops.
-                            </p>
-                        </ExpandableRow>
-
-                        <ExpandableRow title="Stocks Visualizer">
-                            <p className={paragraphClass}>
-                                A candlestick chart driven by music.
-                            </p>
-                            <StocksVisualizerDemo />
-                            <p className={paragraphClass}>
-                                Each candle is a biased random walk on the current price. Bull and bear options bias a direction and insert retracements that match. 
-                                Chaos re-rolls every few bars so the trend flips randomly.
-                            </p>
-                            <p className={paragraphClass}>
-                                BPM sets how fast candles form. FFT density determines how far apart the open and close prices are. 
-                            </p>
-                            <p className={paragraphClass}>
-                                After a bar closes, a short lookback fits trendlines through recent highs and lows. 
-                                Parallel or converging setups flash on the chart, then cool down so the same pattern does not retrigger.
                             </p>
                         </ExpandableRow>
 

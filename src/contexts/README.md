@@ -12,8 +12,8 @@
 - **SequencerInner** writes to context:
   - Synchronizes playback state with `setIsPlaying(isPlaying)`
   - Copies its Tone.js gain node into the shared `sequencerGainRef`
-  - Reads and writes `bpm` for the tempo slider so visualizers can follow candle rate
+  - Reads and writes `bpm` for the tempo slider
 
 **State Consumption:**
-- **Visualizer** and **StocksVisualizer** read from context:
-  - Gets `isPlaying`, `bpm`, and `sequencerGainRef` through `useSequencerContext()`
+- **Visualizer** reads from context:
+  - Gets `isPlaying` and `sequencerGainRef` through `useSequencerContext()`

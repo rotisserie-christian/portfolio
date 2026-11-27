@@ -6,7 +6,6 @@
 - **`useRenderLoop.ts`** - Manages requestAnimationFrame render loop
 - **`useSetupVisualizer.ts`** - Sets up Butterchurn with audio context, analyser, and presets
 - **`useVisualizer.ts`** - Orchestrator
-- **`useStocksVisualizer.ts`** - Stocks RAF loop, analyser, and renderer
 
 
 # Main Hook: `useVisualizer`
